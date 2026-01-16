@@ -1,0 +1,44 @@
+site_name: Florin Neagu Projects & Notes
+site_url: https://somelamecode.github.io/notes/
+site_description: Technical notes, projects, articles, and code references
+site_author: Florin Neagu
+repo_url: https://github.com/SomeLameCode/notes
+
+# Material theme
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+# Plugins
+plugins:
+  - search
+  - mermaid2
+  - git-revision-date
+  - git-revision-date-localized:
+      type: datetime
+      fallback_to_build_date: true
+ 
+
+# Paths
+docs_dir: docs      # folder with your Markdown content
+site_dir: site      # output folder for the built HTML
+
+# Navigation
+nav:
+  - Home: index.md
+  - Projects: []
+  - Articles: []
+  - Code: []
+  - Notebooks: []

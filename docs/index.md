@@ -15,3 +15,14 @@ For full documentation visit [mkdocs.org](https://www.mkdocs.org).
     docs/
         index.md  # The documentation homepage.
         ...       # Other markdown pages, images and other files.
+
+I like to play :soccer: after I drink :beers:
+
+[MkDocs Tutorial](https://www.youtube.com/watch?v=xlABhbnNrfI)
+
+.
+
+...
+
+....
+

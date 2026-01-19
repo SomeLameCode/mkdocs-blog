@@ -20,4 +20,16 @@
          <loc>https://somelamecode.github.io/notes/articles/diagram-examples/</loc>
          <lastmod>2026-01-19</lastmod>
     </url>
+    <url>
+         <loc>https://somelamecode.github.io/notes/articles/mkdocs-integrate-with-obsidian/</loc>
+         <lastmod>2026-01-19</lastmod>
+    </url>
+    <url>
+         <loc>https://somelamecode.github.io/notes/articles/mkdocs-setup/</loc>
+         <lastmod>2026-01-19</lastmod>
+    </url>
+    <url>
+         <loc>https://somelamecode.github.io/notes/articles/mkdocs-site-update/</loc>
+         <lastmod>2026-01-19</lastmod>
+    </url>
 </urlset>

@@ -60,6 +60,9 @@ nav:
     - Content Tabs example: articles/content-tabs.md
     - Admonitions example: articles/admonitions.md
     - Diagram example: articles/diagram-examples.md
+    - MkDocs Initial Setup: articles/mkdocs-setup.md
+    - MkDocs Publish to Github: articles/mkdocs-site-update.md
+    - MkDocs Integrate with Obsidian: articles/mkdocs-integrate-with-obsidian.md
   - Code: []
   - Notebooks: []
 

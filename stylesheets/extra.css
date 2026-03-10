@@ -1,0 +1,21 @@
+/* Compact footer */
+
+.md-footer-meta {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.md-footer-meta__inner {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.md-copyright {
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.md-footer nav,
+.md-footer__inner {
+  display: none !important;
+}

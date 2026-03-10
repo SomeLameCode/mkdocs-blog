@@ -1,0 +1,25 @@
+# MkDocs and plugins
+mkdocs==1.6.1
+mkdocs-material==9.7.1
+mkdocs-mermaid2-plugin==1.2.3
+mkdocs-git-revision-date-localized-plugin==1.5.0
+mkdocs-git-revision-date-plugin==0.3.2
+
+# Required dependencies
+babel==2.17.0
+click==8.3.1
+colorama==0.4.6
+ghp-import==2.1.0
+Jinja2==3.1.6
+Markdown==3.10
+mergedeep==1.3.4
+mkdocs-get-deps==0.2.0
+mkdocs-material-extensions==1.3.1
+packaging==25.0
+pathspec==1.0.3
+platformdirs==4.5.1
+Pygments==2.19.2
+pymdown-extensions==10.20
+PyYAML==6.0.3
+pyyaml_env_tag==1.1
+watchdog==6.0.0

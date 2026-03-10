@@ -3,6 +3,7 @@ site_url: https://somelamecode.github.io/notes/
 site_description: Technical notes, projects, articles, and code references
 site_author: Florin Neagu
 repo_url: https://github.com/SomeLameCode/notes
+repo_name: SomeLameCode/notes
 
 # Material theme
 theme:
@@ -13,8 +14,8 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: Dark mode
-      primary: green
-      accent: deep purple
+      primary: indigo
+      accent: indigo
 
     # Light Mode
     - scheme: default
@@ -33,9 +34,16 @@ theme:
     - navigation.tabs
     - navigation.footer
     - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
     - content.code.copy
     - content.code.annotate
     - content.tabs.link
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
 
 # Plugins
 plugins:

@@ -21,3 +21,6 @@ Thumbs.db
 # Archives / temp
 *.zip
 *.tar.gz
+
+# Claude Code local settings
+.claude/

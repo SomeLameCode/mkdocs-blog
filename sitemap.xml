@@ -2,34 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://somelamecode.github.io/notes/</loc>
-         <lastmod>2026-01-19</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://somelamecode.github.io/notes/articles/admonitions/</loc>
-         <lastmod>2026-01-19</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://somelamecode.github.io/notes/articles/code-example/</loc>
-         <lastmod>2026-01-19</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://somelamecode.github.io/notes/articles/content-tabs/</loc>
-         <lastmod>2026-01-19</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://somelamecode.github.io/notes/articles/diagram-examples/</loc>
-         <lastmod>2026-01-19</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://somelamecode.github.io/notes/articles/mkdocs-integrate-with-obsidian/</loc>
-         <lastmod>2026-01-19</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://somelamecode.github.io/notes/articles/mkdocs-setup/</loc>
-         <lastmod>2026-01-19</lastmod>
+         <lastmod>2026-03-10</lastmod>
     </url>
     <url>
          <loc>https://somelamecode.github.io/notes/articles/mkdocs-site-update/</loc>
-         <lastmod>2026-01-19</lastmod>
+         <lastmod>2026-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://somelamecode.github.io/notes/code/</loc>
+         <lastmod>2026-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://somelamecode.github.io/notes/notebooks/</loc>
+         <lastmod>2026-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://somelamecode.github.io/notes/projects/</loc>
+         <lastmod>2026-03-10</lastmod>
+    </url>
+    <url>
+         <loc>https://somelamecode.github.io/notes/projects/paperless-ngx/</loc>
+         <lastmod>2026-03-10</lastmod>
     </url>
 </urlset>

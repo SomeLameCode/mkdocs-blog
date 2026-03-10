@@ -54,7 +54,6 @@ site_dir: site      # output folder for the built HTML
 # Navigation
 nav:
   - Home: index.md
-  - Projects: []
   - Articles:
     - Code Simple Example: articles/code-example.md
     - Content Tabs example: articles/content-tabs.md
@@ -63,11 +62,15 @@ nav:
     - MkDocs Initial Setup: articles/mkdocs-setup.md
     - MkDocs Publish to Github: articles/mkdocs-site-update.md
     - MkDocs Integrate with Obsidian: articles/mkdocs-integrate-with-obsidian.md
-  - Code: []
-  - Notebooks: []
+  - Projects:
+    - Overview: projects/index.md
+    - Paperless-ngx: projects/paperless-ngx.md
+  - Code: code/index.md
+  - Notebooks: notebooks/index.md
 
 markdown_extensions:
   - attr_list
+  - md_in_html
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg

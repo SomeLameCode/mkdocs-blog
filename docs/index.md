@@ -1,28 +1,43 @@
-# Welcome to MkDocs
+# Florin Neagu — Projects & Notes
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+A personal knowledge base for technical notes, setup guides, code references, and project documentation.
 
-## Commands
+---
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## What's Here
 
-## Project layout
+<div class="grid cards" markdown>
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+-   :material-newspaper-variant-outline:{ .lg .middle } **Articles**
 
-I like to play :soccer: after I drink :beers:
+    ---
 
-[MkDocs Tutorial](https://www.youtube.com/watch?v=xlABhbnNrfI)
+    Setup guides, how-tos, and technical write-ups — including MkDocs, Material theme, and Obsidian integration.
 
-.
+    [:octicons-arrow-right-24: Browse Articles](articles/mkdocs-setup.md)
 
-...
+-   :material-folder-open-outline:{ .lg .middle } **Projects**
 
-....
+    ---
 
+    Project portfolios and case studies — self-hosted tools, home lab deployments, and more.
+
+    [:octicons-arrow-right-24: Browse Projects](projects/index.md)
+
+-   :material-code-braces:{ .lg .middle } **Code**
+
+    ---
+
+    Reusable code snippets, utilities, and reference implementations.
+
+    :octicons-clock-24: Coming soon
+
+-   :material-notebook-outline:{ .lg .middle } **Notebooks**
+
+    ---
+
+    Jupyter notebooks for data analysis, experiments, and exploratory work.
+
+    :octicons-clock-24: Coming soon
+
+</div>

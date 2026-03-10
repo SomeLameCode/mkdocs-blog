@@ -4,6 +4,7 @@ site_description: Technical notes, projects, articles, and code references
 site_author: Florin Neagu
 repo_url: https://github.com/SomeLameCode/notes
 repo_name: SomeLameCode/notes
+copyright: "Copyright &copy; 2026 Florin Neagu"
 
 # Material theme
 theme:
@@ -32,7 +33,6 @@ theme:
   features:
     - navigation.instant
     - navigation.tabs
-    - navigation.footer
     - navigation.sections
     - navigation.top
     - navigation.tracking
@@ -97,3 +97,6 @@ markdown_extensions:
       alternate_style: true      
   - admonition
   - pymdownx.details
+
+extra_css:
+  - stylesheets/extra.css

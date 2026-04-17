@@ -1,3 +1,15 @@
+---
+title: Diagram Examples
+description: Mermaid diagram examples — flowcharts and sequence diagrams rendered in MkDocs Material.
+date: 2026-01-16
+tags:
+  - mkdocs
+  - mermaid
+  - diagrams
+  - examples
+status: published
+---
+
 # Diagram Examples
 
 ## Flowcharts

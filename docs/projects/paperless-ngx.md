@@ -1,3 +1,17 @@
+---
+title: Paperless-ngx — Self-Hosted Document Management
+description: Practical guide to deploying Paperless-ngx on a Synology NAS with Docker, OCR, and document classification.
+date: 2026-03-10
+tags:
+  - self-hosted
+  - docker
+  - synology
+  - nas
+  - paperless-ngx
+  - home-lab
+status: published
+---
+
 # Paperless-ngx — Self-Hosted Document Management
 
 A practical guide to deploying, organising, and getting the most out of a self-hosted [Paperless-ngx](https://docs.paperless-ngx.com/) instance on a home NAS.

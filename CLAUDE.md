@@ -37,6 +37,12 @@ pip install mkdocs mkdocs-material mkdocs-mermaid2-plugin mkdocs-git-revision-da
 - `docs/` — all Markdown content (source of truth)
   - `index.md` — homepage
   - `articles/` — published articles and how-to guides
+  - `projects/` — project documentation and case studies
+  - `code/` — code snippets and utilities
+  - `notebooks/` — Jupyter notebooks
+  - `tags.md` — auto-generated tag index (do not edit manually)
+- `_blog/` — governance folder (never published; see Governance section below)
+- `temp/` — scratch space for notes and ideas (never published)
 - `venv/` — Python virtual environment (not committed)
 - `site/` — build output (not committed, managed by `mkdocs gh-deploy`)
 
@@ -46,6 +52,7 @@ The `nav:` section in `mkdocs.yml` controls the sidebar. Nav paths are **relativ
 
 ## Plugins in Use
 
+- `tags` — tag-based navigation; tag index rendered at `docs/tags.md`
 - `mermaid2` — Mermaid diagram support
 - `git-revision-date-localized` — shows last-modified dates on pages
 - `pymdownx.superfences` with custom `mermaid` fence — enables fenced Mermaid blocks
@@ -66,3 +73,62 @@ mkdocs gh-deploy
 ```
 
 `mkdocs gh-deploy` builds the site and pushes HTML to the `gh-pages` branch automatically.
+
+## Session Workflow
+
+**At session start** — read `_blog/session-state.md` to load current context (what is live, what is in progress, next actions).
+
+**At session end** — run `/blog-update` to update all governance files. Commit all work first; the command uses git history as its primary evidence source.
+
+## Governance
+
+The `_blog/` folder is the governance layer for this site. It is never published.
+
+| File | Purpose |
+|---|---|
+| `_blog/session-state.md` | Compact snapshot — read first each session |
+| `_blog/content-backlog.md` | Planned content and site improvements with status tracking |
+| `_blog/change-log.md` | Log of every publish or structural change |
+| `_blog/issue-log.md` | Known issues — broken links, outdated content |
+| `_blog/decisions.md` | Site decisions with rationale |
+
+**ID scheme:**
+
+| Prefix | Used for |
+|---|---|
+| `ART-NNN` | Planned articles |
+| `PRJ-NNN` | Planned project pages |
+| `SI-NNN` | Site improvement tasks |
+| `D-NNN` | Decisions |
+
+**Status markers** (used in `content-backlog.md`):
+
+```
+[ ] = planned   [x] = done   [-] = deferred   [/] = descoped
+```
+
+## Content Conventions
+
+Every content page in `docs/` (except index pages and placeholders) must have YAML frontmatter:
+
+```yaml
+---
+title: "Page Title"
+description: "One-sentence summary."
+date: YYYY-MM-DD
+tags:
+  - tag-one
+  - tag-two
+status: draft | review | published | outdated
+---
+```
+
+**Status values:**
+- `draft` — work in progress, not ready to publish
+- `review` — written but needs a pass before publishing
+- `published` — live and current
+- `outdated` — live but content needs updating (add to issue log)
+
+**Content templates** live in `C:\GitFolder\00_templates\3_template_blog\`:
+- `docs/articles/_template-article.md` — for how-to guides and tutorials
+- `docs/projects/_template-project.md` — for project documentation and case studies

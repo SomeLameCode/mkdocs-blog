@@ -1,3 +1,15 @@
+---
+title: MkDocs — Publish to GitHub Pages
+description: Cheatsheet for the local update and GitHub Pages deployment workflow for an MkDocs site.
+date: 2026-01-19
+tags:
+  - mkdocs
+  - github-pages
+  - deployment
+  - cheatsheet
+status: published
+---
+
 ## MkDocks - Local Update
 
 ### 1️⃣ Move the files physically

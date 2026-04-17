@@ -1,3 +1,14 @@
+---
+title: Content Tabs
+description: Examples of MkDocs Material content tabs — plain text, lists, and code blocks in tabbed layouts.
+date: 2026-01-16
+tags:
+  - mkdocs
+  - material-theme
+  - examples
+status: published
+---
+
 ## Content Tabs
 
 This is some examples of content tabs.

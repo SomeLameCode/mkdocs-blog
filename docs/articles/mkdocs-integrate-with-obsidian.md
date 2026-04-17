@@ -1,3 +1,15 @@
+---
+title: Integrate Git, MkDocs, and Obsidian
+description: How to use Obsidian as a writing front-end for an MkDocs site, with Git version control.
+date: 2026-01-19
+tags:
+  - mkdocs
+  - obsidian
+  - git
+  - workflow
+status: published
+---
+
 # Integrate Git, MkDocs, and Obsidian
 
 This guide explains how to use **Obsidian** as your note-editing front-end while publishing your notes as a **MkDocs** site — all tracked in **Git**.

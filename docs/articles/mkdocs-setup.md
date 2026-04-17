@@ -1,3 +1,16 @@
+---
+title: MkDocs Setup — Windows + VS Code + Material Theme
+description: Step-by-step guide to setting up MkDocs with the Material theme on Windows, with GitHub Pages deployment.
+date: 2026-01-19
+tags:
+  - mkdocs
+  - material-theme
+  - windows
+  - github-pages
+  - setup
+status: published
+---
+
 # MkDocs Setup (Windows + VS Code + Material Theme)
 
 This document describes the exact steps used to set up **MkDocs with the Material theme** on **Windows**, using **VS Code**, a **Python virtual environment**, and deployment to **GitHub Pages**.

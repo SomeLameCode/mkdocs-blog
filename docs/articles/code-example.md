@@ -1,3 +1,15 @@
+---
+title: Code Example — Normal Distribution Generator
+description: A Python function to generate samples from normal, Pareto, or uniform distributions with optional drift injection.
+date: 2026-01-16
+tags:
+  - python
+  - numpy
+  - statistics
+  - code-examples
+status: published
+---
+
 code example
 
 

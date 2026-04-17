@@ -1,3 +1,14 @@
+---
+title: Admonitions
+description: Examples of MkDocs Material admonition callout boxes and collapsible details blocks.
+date: 2026-01-16
+tags:
+  - mkdocs
+  - material-theme
+  - examples
+status: published
+---
+
 This is an example of an adominition with a title:
 
 !!! note "Title of the callout"

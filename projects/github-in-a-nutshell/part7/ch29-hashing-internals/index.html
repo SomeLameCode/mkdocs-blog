@@ -1,0 +1,1485 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Chapter 29 — SHA-1, Hashing & Object Storage Internals.">
+      
+      
+        <meta name="author" content="Florin Neagu">
+      
+      
+        <link rel="canonical" href="https://somelamecode.github.io/notes/projects/github-in-a-nutshell/part7/ch29-hashing-internals/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Chapter 29 — SHA-1, Hashing & Object Storage Internals - Florin Neagu Projects & Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-29-sha-1-hashing-object-storage-internals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Florin Neagu Projects & Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 29 — SHA-1, Hashing & Object Storage Internals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SomeLameCode/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SomeLameCode/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../articles/code-example/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../code/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Code
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../notebooks/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Notebooks
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Florin Neagu Projects & Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SomeLameCode/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SomeLameCode/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/code-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Simple Example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/content-tabs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content Tabs example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/admonitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admonitions example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/diagram-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagram example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Initial Setup
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-site-update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Publish to Github
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-integrate-with-obsidian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Integrate with Obsidian
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../paperless-ngx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paperless-ngx
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub in a Nutshell
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../notebooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-a-hash-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is a Hash Function?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hash-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hash Algorithms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sha-1-in-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SHA-1 in Detail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SHA-1 in Detail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hexadecimal-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hexadecimal representation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-avalanche-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Avalanche Effect
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-many-objects-can-git-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Many Objects Can Git Store?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hash-collision-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hash Collision Probability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hash Collision Probability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#probability-of-a-specific-collision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Probability of a specific collision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-birthday-problem-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The birthday problem analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sha-1-and-git-why-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SHA-1 and Git: Why It Works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SHA-1 and Git: Why It Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#computing-sha-1-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computing SHA-1 directly
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sha-256-and-the-transition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SHA-256 and the Transition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:git" class="md-tag">git</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:github" class="md-tag">github</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:internals" class="md-tag">internals</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:version-control" class="md-tag">version-control</a>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="chapter-29-sha-1-hashing-object-storage-internals">Chapter 29 — SHA-1, Hashing &amp; Object Storage Internals</h1>
+<p>Every object in Git is identified by a 40-character hexadecimal string. That string is not an arbitrary ID assigned by a counter or a database — it is a <strong>cryptographic hash</strong> of the object's content. Understanding how that hash is computed, what guarantees it provides, and why collision is effectively impossible explains why Git's content-addressable store is both simple and reliable.</p>
+<hr />
+<h2 id="what-is-a-hash-function">What Is a Hash Function?</h2>
+<p>A <strong>hash function</strong> takes an input of arbitrary length — a single byte, a sentence, a 2 GB file — and produces an output of a fixed, predetermined length. The output is called a <strong>hash</strong>, <strong>digest</strong>, or <strong>checksum</strong>.</p>
+<p><img alt="Hash function: variable-length input → fixed-length hash output" src="../../assets/images/4-0-how-git-works-under-the-hood_p0005_i0000.png" /></p>
+<p>Key properties of a cryptographic hash function:</p>
+<ul>
+<li><strong>Deterministic:</strong> the same input always produces the same output.</li>
+<li><strong>Fixed-length output:</strong> regardless of input size, the output is always the same number of bits.</li>
+<li><strong>Avalanche effect:</strong> a tiny change in the input produces a completely different output — there is no partial similarity.</li>
+<li><strong>One-way:</strong> you cannot reconstruct the input from the hash.</li>
+<li><strong>Collision-resistant:</strong> it is computationally infeasible to find two different inputs that produce the same hash.</li>
+</ul>
+<hr />
+<h2 id="hash-algorithms">Hash Algorithms</h2>
+<p>Several hash algorithms are in common use, differing in output size and therefore in the number of possible unique hashes:</p>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Output size</th>
+<th>Possible unique hashes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MD5</td>
+<td>128 bit</td>
+<td>2¹²⁸ ≈ 3.4 × 10³⁸</td>
+</tr>
+<tr>
+<td><strong>SHA-1</strong></td>
+<td><strong>160 bit</strong></td>
+<td><strong>2¹⁶⁰ ≈ 1.46 × 10⁴⁸</strong></td>
+</tr>
+<tr>
+<td>SHA-256</td>
+<td>256 bit</td>
+<td>2²⁵⁶ ≈ 1.16 × 10⁷⁷</td>
+</tr>
+<tr>
+<td>SHA-384</td>
+<td>384 bit</td>
+<td>2³⁸⁴</td>
+</tr>
+<tr>
+<td>SHA-512</td>
+<td>512 bit</td>
+<td>2⁵¹²</td>
+</tr>
+</tbody>
+</table>
+<p>Git uses <strong>SHA-1</strong> by default (with SHA-256 available as an opt-in since Git 2.29).</p>
+<hr />
+<h2 id="sha-1-in-detail">SHA-1 in Detail</h2>
+<p>SHA-1 produces a <strong>160-bit</strong> hash value, conventionally displayed as a 40-character hexadecimal string:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>C210FD2A1A62F9719955823CB31B7A7DA2E8D715
+</span></code></pre></div>
+<p><img alt="SHA-1: 160 bits expressed as 40 hexadecimal characters" src="../../assets/images/4-0-how-git-works-under-the-hood_p0007_i0000.png" /></p>
+<h3 id="hexadecimal-representation">Hexadecimal representation</h3>
+<p>Hexadecimal (base 16) uses 16 symbols: <code>0 1 2 3 4 5 6 7 8 9 A B C D E F</code>. Each hexadecimal digit represents exactly 4 bits, so 160 bits = 40 hex digits.</p>
+<p><img alt="Hexadecimal (base 16) vs binary (base 2) representation" src="../../assets/images/4-0-how-git-works-under-the-hood_p0008_i0000.png" /></p>
+<p>The same hash expressed in binary would be 160 characters of <code>0</code>s and <code>1</code>s — hexadecimal is simply a more compact human-readable encoding of the same value.</p>
+<hr />
+<h2 id="the-avalanche-effect">The Avalanche Effect</h2>
+<p>A defining property of SHA-1 is that even the smallest change to the input produces a completely different hash — there is no relationship between the two outputs:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&quot;Hello, Git&quot;  → 0A2B198F595E55060DEC9F0E196C10DE86F2CA1C
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>&quot;Hello, Git!&quot; → 1D4D7D92F79DC328154DC91424E6E740F8F5A563
+</span></code></pre></div>
+<p><img alt="Slightly different inputs produce completely different SHA-1 hashes" src="../../assets/images/4-0-how-git-works-under-the-hood_p0009_i0000.png" /></p>
+<p>Adding a single <code>!</code> changes every character of the 40-digit hash. This is not a coincidence — it is a deliberate property called the <strong>avalanche effect</strong>, and it is what makes hash-based identity reliable. You cannot tell from two hashes whether the underlying files are similar or not.</p>
+<p>This also explains Git's immutability guarantee: change one character anywhere in a commit message, author name, timestamp, or file content, and the commit's SHA changes entirely — as does every descendant commit that references it.</p>
+<hr />
+<h2 id="how-many-objects-can-git-store">How Many Objects Can Git Store?</h2>
+<p>SHA-1 produces 2¹⁶⁰ possible distinct hashes:</p>
+<p><img alt="2¹⁶⁰ = 1,461,501,637,330,902,918,203,684,832,716,283,019,655,932,542,976" src="../../assets/images/4-0-how-git-works-under-the-hood_p0012_i0000.png" /></p>
+<p>That number — approximately 1.46 × 10⁴⁸ — is orders of magnitude larger than any conceivable repository. For comparison, there are estimated to be around 10⁸⁰ atoms in the observable universe. Git's address space is not infinite, but it is so large that exhausting it is not a practical concern.</p>
+<hr />
+<h2 id="hash-collision-probability">Hash Collision Probability</h2>
+<p>A <strong>hash collision</strong> occurs when two different inputs produce the same hash. If two files in a repository collided, Git would treat them as identical — an incorrect and potentially dangerous result. Three questions arise:</p>
+<ol>
+<li>How many objects can Git store before collision becomes likely?</li>
+<li>What is the probability of producing the exact same hash for two specific files?</li>
+<li>What is the probability of any collision among a set of files?</li>
+</ol>
+<p><img alt="The three hash collision questions for a Git repository" src="../../assets/images/4-0-how-git-works-under-the-hood_p0010_i0000.png" /></p>
+<h3 id="probability-of-a-specific-collision">Probability of a specific collision</h3>
+<p>The probability that any two specific files happen to produce the same SHA-1 hash is:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>P(same specific hash) = 1/2¹⁶⁰ × 1/2¹⁶⁰ = 1/2³²⁰
+</span></code></pre></div>
+<p>2³²⁰ ≈ 2.13 × 10⁹⁶, so the probability is approximately <strong>4.68 × 10⁻⁹⁷</strong> — a decimal with 96 zeros before the first significant digit.</p>
+<p><img alt="Probability of producing the same specific SHA-1 hash for two files: 1/2³²⁰" src="../../assets/images/4-0-how-git-works-under-the-hood_p0015_i0000.png" /></p>
+<h3 id="the-birthday-problem-analogy">The birthday problem analogy</h3>
+<p>The probability of any collision among a set of N files (not two specific files) is higher — this is the <strong>birthday problem</strong>. It is analogous to rolling dice: as you roll more dice, the probability that any two show the same number grows faster than intuition suggests.</p>
+<p>With two dice (6 faces each), the probability that both show the same value is 1/6 ≈ 0.17.</p>
+<p><img alt="Probability of any matching number on two dice: 1/6" src="../../assets/images/4-0-how-git-works-under-the-hood_p0016_i0000.png" /></p>
+<p>With three dice, the probability of any matching pair drops to 1/36 ≈ 0.03.</p>
+<p><img alt="Probability of any matching number on three dice: 1/36" src="../../assets/images/4-0-how-git-works-under-the-hood_p0017_i0000.png" /></p>
+<p>Generalising to N dice:</p>
+<p><img alt="General formula: probability of any match on N dice = 1/6^(N-1)" src="../../assets/images/4-0-how-git-works-under-the-hood_p0018_i0000.png" /></p>
+<p>For SHA-1, the "dice" has 2¹⁶⁰ faces. Applying the same logic to N files in a repository:</p>
+<table>
+<thead>
+<tr>
+<th>N files</th>
+<th>Probability of any SHA-1 collision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>6.84 × 10⁻⁴⁹</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2.05 × 10⁻⁴⁸</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Collision probability for N Git objects: vanishingly small even for millions of files" src="../../assets/images/4-0-how-git-works-under-the-hood_p0022_i0000.png" /></p>
+<p>Even the Linux kernel repository — one of the largest Git repositories in existence, with millions of objects accumulated over decades — has a SHA-1 collision probability so close to zero that it is not a practical concern for data integrity. Every object in the store can be treated as uniquely identified by its hash.</p>
+<hr />
+<h2 id="sha-1-and-git-why-it-works">SHA-1 and Git: Why It Works</h2>
+<p>The properties of SHA-1 map directly onto Git's requirements:</p>
+<table>
+<thead>
+<tr>
+<th>SHA-1 property</th>
+<th>Git benefit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Same input → same hash</td>
+<td>Identical file content → same blob SHA → deduplication</td>
+</tr>
+<tr>
+<td>Different input → different hash</td>
+<td>Any content change → new object; old object preserved</td>
+</tr>
+<tr>
+<td>Hash embeds type and content</td>
+<td><code>git cat-file -t</code> reads type from inside the object</td>
+</tr>
+<tr>
+<td>Avalanche effect</td>
+<td>Tampered objects are immediately detectable</td>
+</tr>
+<tr>
+<td>Fixed 40-char output</td>
+<td>Uniform, efficiently stored object identifiers</td>
+</tr>
+</tbody>
+</table>
+<p>When you run <code>git add</code>, Git computes the SHA-1 of <code>blob &lt;size&gt;\0&lt;content&gt;</code>, writes the zlib-compressed result to <code>.git/objects/&lt;2-hex&gt;/&lt;38-hex&gt;</code>, and stores the SHA in the index. When you later run <code>git fsck</code>, it re-computes every SHA and compares — any corruption produces a mismatch.</p>
+<h3 id="computing-sha-1-directly">Computing SHA-1 directly</h3>
+<p>You can verify Git's SHA-1 computation yourself using <code>git hash-object</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello, Git&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>git<span class="w"> </span>hash-object<span class="w"> </span>--stdin
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># 8ab686eafeb1f44702738c8b0f24f2567c36da6d</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Equivalent using sha1sum on the full object format:</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;blob 11\0Hello, Git&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sha1sum
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># 8ab686eafeb1f44702738c8b0f24f2567c36da6d</span>
+</span></code></pre></div>
+<p>The SHA-1 Git computes is always over the full object content — <code>&lt;type&gt; &lt;size&gt;\0&lt;data&gt;</code> — not just the raw file bytes. This is why <code>git hash-object</code> and <code>sha1sum &lt;file&gt;</code> produce different values for the same file: the object header changes the input.</p>
+<hr />
+<h2 id="sha-256-and-the-transition">SHA-256 and the Transition</h2>
+<p>SHA-1 has a known theoretical weakness: researchers have demonstrated <strong>chosen-prefix collisions</strong> — crafted pairs of different inputs that produce the same SHA-1 hash (the SHAttered attack, 2017). While the attack requires enormous computational resources and the attack surface for Git objects is narrow (the header includes the type and size, constraining what an attacker can manipulate), Git's maintainers decided to begin a gradual transition to SHA-256.</p>
+<p>Since Git 2.29 (released 2020), you can initialise a SHA-256 repository:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>init<span class="w"> </span>--object-format<span class="o">=</span>sha256
+</span></code></pre></div>
+<p>SHA-256 hashes are 64 hexadecimal characters rather than 40. The object model is identical; only the hash algorithm and hash length change. SHA-256 and SHA-1 repositories are currently incompatible — you cannot mix objects or push between them without conversion tooling, which is still under active development.</p>
+<p>For all practical purposes in 2024–2025, the vast majority of repositories use SHA-1 and will continue to do so until the migration path matures.</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li>A <strong>hash function</strong> maps arbitrary-length input to a fixed-length output deterministically. Small input changes produce completely different outputs (avalanche effect).</li>
+<li>Git uses <strong>SHA-1</strong> by default: 160 bits, expressed as 40 hexadecimal characters.</li>
+<li>Every Git object's identifier is the SHA-1 of <code>&lt;type&gt; &lt;size&gt;\0&lt;content&gt;</code> — the header is included in the hash, not just the file bytes.</li>
+<li>The probability of a SHA-1 collision in any real repository is vanishingly small — approximately 6.84 × 10⁻⁴⁹ for any two specific objects.</li>
+<li>SHA-1 enables deduplication (identical content → same SHA), integrity checking (corruption → hash mismatch), and immutability (changing content changes the SHA).</li>
+<li>Git 2.29+ supports SHA-256 repositories (<code>git init --object-format=sha256</code>). The transition is ongoing; SHA-1 remains the default.</li>
+</ul>
+<blockquote>
+<p><strong>Further reading:</strong> <a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">Git Internals — Git Objects (Pro Git)</a> · <a href="https://shattered.io/">SHAttered — SHA-1 collision attack (2017)</a></p>
+</blockquote>
+<hr />
+<p><em>Previous: <a href="../ch28-object-model/">Chapter 28 — Git Object Model: Blobs, Trees &amp; Commits</a></em> · <em>Next: <a href="../../appendix/appA-submodules/">Appendix A — Git Submodules</a></em></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 18, 2026 03:30:12 UTC">April 18, 2026 03:30:12</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Florin Neagu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

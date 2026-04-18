@@ -1,0 +1,1630 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Chapter 28 — Git Object Model: Blobs, Trees & Commits.">
+      
+      
+        <meta name="author" content="Florin Neagu">
+      
+      
+        <link rel="canonical" href="https://somelamecode.github.io/notes/projects/github-in-a-nutshell/part7/ch28-object-model/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Chapter 28 — Git Object Model: Blobs, Trees & Commits - Florin Neagu Projects & Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-28-git-object-model-blobs-trees-commits" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Florin Neagu Projects & Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 28 — Git Object Model: Blobs, Trees & Commits
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SomeLameCode/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SomeLameCode/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../articles/code-example/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../code/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Code
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../notebooks/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Notebooks
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Florin Neagu Projects & Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SomeLameCode/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SomeLameCode/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/code-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Simple Example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/content-tabs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content Tabs example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/admonitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admonitions example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/diagram-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagram example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Initial Setup
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-site-update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Publish to Github
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-integrate-with-obsidian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Integrate with Obsidian
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../paperless-ngx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paperless-ngx
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub in a Nutshell
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../notebooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-git-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The .git Directory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-object-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Four Object Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blobs-file-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blobs — File Content
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blobs — File Content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-blob-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a blob manually
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspecting-objects-with-git-cat-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inspecting objects with git cat-file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-storage-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object storage format
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trees-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trees — Directories
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Trees — Directories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object-permission-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object permission modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-tree-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A tree in practice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-tree-manually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a tree manually
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commits-snapshots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commits — Snapshots
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Commits — Snapshots">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-commit-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The commit chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#annotated-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotated Tags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-storage-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Storage Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-three-areas-map-to-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the Three Areas Map to Objects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#low-level-commands-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Low-Level Commands Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:git" class="md-tag">git</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:github" class="md-tag">github</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:internals" class="md-tag">internals</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:version-control" class="md-tag">version-control</a>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="chapter-28-git-object-model-blobs-trees-commits">Chapter 28 — Git Object Model: Blobs, Trees &amp; Commits</h1>
+<p>Every high-level Git command — <code>git add</code>, <code>git commit</code>, <code>git checkout</code> — is ultimately a thin wrapper over a small set of operations on a content-addressable object store. Understanding what lives in <code>.git/objects/</code> and how the four object types relate to each other explains <em>why</em> Git behaves the way it does: why branching is free, why identical files are never stored twice, why history is immutable, and why a corrupt object is instantly detectable.</p>
+<hr />
+<h2 id="the-git-directory">The <code>.git</code> Directory</h2>
+<p>When you run <code>git init</code>, Git creates a <code>.git/</code> directory at the repository root:</p>
+<p><img alt="git init creates the .git directory structure" src="../../assets/images/4-0-how-git-works-under-the-hood_p0001_i0000.png" /></p>
+<p>Key subdirectories:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.git/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── objects/       ← the object store — all content lives here
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── refs/          ← branch and tag pointers (SHA references)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── HEAD           ← pointer to the current branch
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── index          ← the staging area (binary file)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>└── config         ← repository-local configuration
+</span></code></pre></div>
+<p>Everything Git knows about your project's history, content, and current state is in this directory.</p>
+<hr />
+<h2 id="the-four-object-types">The Four Object Types</h2>
+<p>Git stores everything as one of four object types:</p>
+<p><img alt="The four Git object types: blob, tree, commit, annotated tag" src="../../assets/images/4-0-how-git-works-under-the-hood_p0002_i0000.png" /></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Stores</th>
+<th>Analogous to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blob</strong></td>
+<td>Raw file content</td>
+<td>A file</td>
+</tr>
+<tr>
+<td><strong>Tree</strong></td>
+<td>A directory listing (names, modes, blob/tree SHAs)</td>
+<td>A directory</td>
+</tr>
+<tr>
+<td><strong>Commit</strong></td>
+<td>A snapshot pointer + metadata</td>
+<td>A version of the project</td>
+</tr>
+<tr>
+<td><strong>Annotated tag</strong></td>
+<td>A named, signed pointer to any object</td>
+<td>A labelled release</td>
+</tr>
+</tbody>
+</table>
+<p>Every object is identified by the SHA-1 hash of its content (covered in depth in Chapter 29). The objects are immutable — once written, they never change.</p>
+<hr />
+<h2 id="blobs-file-content">Blobs — File Content</h2>
+<p>A <strong>blob</strong> (Binary Large Object) stores the raw contents of a single file — nothing else. No filename, no permissions, no path.</p>
+<p><img alt="A blob stores only file content — no filename" src="../../assets/images/4-0-how-git-works-under-the-hood_p0026_i0000.png" /></p>
+<p>Two files with identical content — regardless of their names or locations — produce the same blob SHA and are stored as a single object. Git never stores duplicate content.</p>
+<h3 id="creating-a-blob-manually">Creating a blob manually</h3>
+<p>The low-level command <code>git hash-object</code> computes the SHA-1 of content and optionally writes it to the object store:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello, Git&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>git<span class="w"> </span>hash-object<span class="w"> </span>--stdin<span class="w"> </span>-w
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># 8ab686eafeb1f44702738c8b0f24f2567c36da6d</span>
+</span></code></pre></div>
+<p><img alt="git hash-object writes content to .git/objects and returns the SHA" src="../../assets/images/4-0-how-git-works-under-the-hood_p0023_i0000.png" /></p>
+<p>The <code>-w</code> flag writes the object; without it, <code>hash-object</code> only computes and prints the SHA.</p>
+<h3 id="inspecting-objects-with-git-cat-file">Inspecting objects with <code>git cat-file</code></h3>
+<p><code>git cat-file</code> is the low-level command for reading objects from the store:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>cat-file<span class="w"> </span>-p<span class="w"> </span>8ab686e<span class="w">   </span><span class="c1"># print content</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># Hello, Git</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>git<span class="w"> </span>cat-file<span class="w"> </span>-t<span class="w"> </span>8ab686e<span class="w">   </span><span class="c1"># print type</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># blob</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>git<span class="w"> </span>cat-file<span class="w"> </span>-s<span class="w"> </span>8ab686e<span class="w">   </span><span class="c1"># print size in bytes</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># 11</span>
+</span></code></pre></div>
+<p><img alt="git cat-file -p / -t / -s options for inspecting objects" src="../../assets/images/4-0-how-git-works-under-the-hood_p0024_i0000.png" /></p>
+<h3 id="object-storage-format">Object storage format</h3>
+<p>Every object stores its type and size as a header, followed by a null byte delimiter, followed by the content:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>blob 11\0Hello, Git
+</span></code></pre></div>
+<p>This is why <code>git cat-file -t</code> knows the type without consulting any external index — the type is embedded inside the object itself.</p>
+<p><img alt="The object stores: content + type + length. Type and size are inside the object." src="../../assets/images/4-0-how-git-works-under-the-hood_p0025_i0000.png" /></p>
+<p><img alt="Object format: &quot;blob&quot; | length | \0 | content" src="../../assets/images/4-0-how-git-works-under-the-hood_p0028_i0000.png" /></p>
+<p>The entire bundle is then zlib-compressed and written to <code>.git/objects/&lt;first-two-hex-chars&gt;/&lt;remaining-38-chars&gt;</code>.</p>
+<hr />
+<h2 id="trees-directories">Trees — Directories</h2>
+<p>A <strong>tree</strong> object represents a directory. It contains a list of entries, where each entry records:</p>
+<ul>
+<li>A <strong>mode</strong> (file permissions / object type)</li>
+<li>A <strong>type</strong> (<code>blob</code> or <code>tree</code>)</li>
+<li>A <strong>SHA-1</strong> (pointing to the blob or subtree)</li>
+<li>A <strong>name</strong> (filename or directory name)</li>
+</ul>
+<p><img alt="A tree entry: mode, type, SHA, and name for each item in a directory" src="../../assets/images/4-0-how-git-works-under-the-hood_p0029_i0000.png" /></p>
+<p>Blobs have no filenames — names live in tree entries. This is why renaming a file without changing its content produces no new blob: the blob is reused; only the tree entry changes.</p>
+<h3 id="object-permission-modes">Object permission modes</h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>040000</code></td>
+<td>Directory (subtree)</td>
+</tr>
+<tr>
+<td><code>100644</code></td>
+<td>Regular non-executable file</td>
+</tr>
+<tr>
+<td><code>100755</code></td>
+<td>Regular executable file</td>
+</tr>
+<tr>
+<td><code>120000</code></td>
+<td>Symbolic link</td>
+</tr>
+<tr>
+<td><code>160000</code></td>
+<td>Gitlink (submodule)</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Git object permission modes table" src="../../assets/images/4-0-how-git-works-under-the-hood_p0027_i0000.png" /></p>
+<h3 id="a-tree-in-practice">A tree in practice</h3>
+<p>Inspecting a tree with <code>git cat-file -p</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>cat-file<span class="w"> </span>-p<span class="w"> </span>HEAD^<span class="o">{</span>tree<span class="o">}</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># 100644 blob b7aec520dec0a7516c18eb4c68b64ae1eb9b5a5e    file1.txt</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># 100644 blob 4400aae52a27341314f423095846b1f215a7cf08    file2.txt</span>
+</span></code></pre></div>
+<p><img alt="A simple tree pointing to two blobs (file1.txt and file2.txt)" src="../../assets/images/4-0-how-git-works-under-the-hood_p0031_i0000.png" /></p>
+<p>Nested directories are represented by tree entries whose type is <code>tree</code>. The entire project tree is a recursive structure of tree and blob objects:</p>
+<p><img alt="Tree diagram: root tree points to blobs and subtrees recursively" src="../../assets/images/4-0-how-git-works-under-the-hood_p0030_i0000.png" /></p>
+<h3 id="creating-a-tree-manually">Creating a tree manually</h3>
+<p><code>git mktree</code> reads a tree listing from stdin and writes a tree object:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;100644 blob b7aec520    file1.txt\n100644 blob 4400aae5    file2.txt\n&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>git<span class="w"> </span>mktree
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># 3b95df25a1a42f06c6c98e8eedc91b72bfd6ac46</span>
+</span></code></pre></div>
+<hr />
+<h2 id="commits-snapshots">Commits — Snapshots</h2>
+<p>A <strong>commit</strong> object ties everything together. It contains:</p>
+<ul>
+<li>A pointer to the <strong>root tree</strong> — the complete state of the project at this point</li>
+<li>A pointer to the <strong>parent commit</strong> (or two parents for a merge commit, none for the root commit)</li>
+<li>Author name, email, and timestamp</li>
+<li>Committer name, email, and timestamp (may differ from author — e.g. after cherry-pick)</li>
+<li>The commit message</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>cat-file<span class="w"> </span>-p<span class="w"> </span>HEAD
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># tree   3b95df25a1a42f06c6c98e8eedc91b72bfd6ac46</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># parent a1b2c3d4e5f6...</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># author  Alice &lt;alice@example.com&gt; 1711234567 +1000</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># committer Alice &lt;alice@example.com&gt; 1711234567 +1000</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1">#</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Add file1.txt and file2.txt</span>
+</span></code></pre></div>
+<p>A commit does <strong>not</strong> store a diff. It stores a complete snapshot via the root tree pointer. Git computes diffs on the fly by comparing two tree objects.</p>
+<h3 id="the-commit-chain">The commit chain</h3>
+<p>Each commit points to its parent, forming an immutable linked list stretching back to the initial commit. Branches are simply named pointers to commits in this chain (Chapter 11). The chain cannot be modified — changing any commit would change its SHA and break every descendant.</p>
+<hr />
+<h2 id="annotated-tags">Annotated Tags</h2>
+<p>An <strong>annotated tag</strong> is a full Git object (unlike lightweight tags, which are just ref files) containing:</p>
+<ul>
+<li>A pointer to the tagged object (usually a commit)</li>
+<li>The tagger's name, email, and timestamp</li>
+<li>A tag message</li>
+<li>An optional GPG signature</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>cat-file<span class="w"> </span>-p<span class="w"> </span>v1.0.0
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># object a3f8c21d4e5b...</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># type   commit</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># tag    v1.0.0</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># tagger Alice &lt;alice@example.com&gt; 1711234567 +1000</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1">#</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># Release version 1.0.0</span>
+</span></code></pre></div>
+<p>Because an annotated tag is an object, it has its own SHA and can be cryptographically signed and verified. Lightweight tags (covered in Chapter 15) are not objects — they are just ref files pointing directly to a commit.</p>
+<hr />
+<h2 id="object-storage-layout">Object Storage Layout</h2>
+<p>Git stores objects under <code>.git/objects/</code>. The first two hex characters of the SHA become the directory name; the remaining 38 become the filename:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>.git/objects/
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>├── 8a/
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>│   └── b686eafeb1f44702738c8b0f24f2567c36da6d
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>├── 3b/
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>│   └── 95df25a1a42f06c6c98e8eedc91b72bfd6ac46
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>├── a3/
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>│   └── f8c21d4e5b...
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>└── ...
+</span></code></pre></div>
+<p>Git uses exactly 256 subdirectories (16 × 16 = one for every two-hex-character combination). This limits the number of entries per directory, keeping filesystem lookups fast even with millions of objects.</p>
+<p><img alt="Git creates 256 subdirectories in .git/objects — 16×16 hex combinations" src="../../assets/images/4-0-how-git-works-under-the-hood_p0040_i0000.png" /></p>
+<p>Over time, Git packs individual object files into <strong>packfiles</strong> (<code>.git/objects/pack/*.pack</code>) for efficiency. Packfiles use delta compression between similar objects and are created by <code>git gc</code> (garbage collection) or during <code>git push</code>.</p>
+<hr />
+<h2 id="how-the-three-areas-map-to-objects">How the Three Areas Map to Objects</h2>
+<p>Git's three areas (Chapter 5) map directly onto the object model:</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Object involvement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Working directory</strong></td>
+<td>Plain files — not yet objects</td>
+</tr>
+<tr>
+<td><strong>Staging area (index)</strong></td>
+<td>Blob SHAs computed and registered; tree not yet written</td>
+</tr>
+<tr>
+<td><strong>Repository (<code>.git/objects/</code>)</strong></td>
+<td>Blobs, tree, and commit all written</td>
+</tr>
+</tbody>
+</table>
+<p><code>git add</code> computes the blob SHA for each staged file and writes the blob to the object store, recording the SHA in the index. <code>git commit</code> then creates the tree object from the index and the commit object from the tree.</p>
+<hr />
+<h2 id="low-level-commands-reference">Low-Level Commands Reference</h2>
+<p>These plumbing commands operate directly on the object store, bypassing the porcelain layer:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git hash-object -w &lt;file&gt;</code></td>
+<td>Write a blob and return its SHA</td>
+</tr>
+<tr>
+<td><code>git cat-file -p &lt;sha&gt;</code></td>
+<td>Print object content</td>
+</tr>
+<tr>
+<td><code>git cat-file -t &lt;sha&gt;</code></td>
+<td>Print object type</td>
+</tr>
+<tr>
+<td><code>git cat-file -s &lt;sha&gt;</code></td>
+<td>Print object size</td>
+</tr>
+<tr>
+<td><code>git mktree</code></td>
+<td>Create a tree from a listing on stdin</td>
+</tr>
+<tr>
+<td><code>git read-tree &lt;sha&gt;</code></td>
+<td>Load a tree into the staging area</td>
+</tr>
+<tr>
+<td><code>git ls-files -s</code></td>
+<td>List files currently in the staging area</td>
+</tr>
+<tr>
+<td><code>git checkout-index -a</code></td>
+<td>Copy staging area to working directory</td>
+</tr>
+<tr>
+<td><code>git write-tree</code></td>
+<td>Write the current staging area as a tree object</td>
+</tr>
+<tr>
+<td><code>git commit-tree &lt;tree&gt;</code></td>
+<td>Create a commit object from a tree</td>
+</tr>
+</tbody>
+</table>
+<p>These are the building blocks that high-level commands (<code>git add</code>, <code>git commit</code>, <code>git checkout</code>) compose internally.</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Git stores everything as one of four immutable object types: <strong>blob</strong> (file content), <strong>tree</strong> (directory), <strong>commit</strong> (snapshot + metadata), <strong>annotated tag</strong> (signed pointer with message).</li>
+<li>Objects are identified by the SHA-1 hash of their content — identical content always produces the same SHA and is never stored twice.</li>
+<li>Blobs store content only — no filename. Filenames and paths live in tree entries.</li>
+<li>A commit points to a root tree (complete snapshot), its parent commit(s), and author metadata. It stores no diff.</li>
+<li>Objects are stored in <code>.git/objects/&lt;2-hex&gt;/&lt;38-hex&gt;</code>, in 256 subdirectories. Packfiles compress objects for long-term storage.</li>
+<li>Low-level plumbing commands (<code>git hash-object</code>, <code>git cat-file</code>, <code>git mktree</code>, <code>git read-tree</code>) expose the object store directly.</li>
+</ul>
+<blockquote>
+<p><strong>Further reading:</strong> <a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">Git Internals — Git Objects (Pro Git)</a></p>
+</blockquote>
+<hr />
+<p><em>Previous: <a href="../../part6/ch27-aliases-tips/">Chapter 27 — Git Aliases &amp; Productivity Tips</a></em> · <em>Next: <a href="../ch29-hashing-internals/">Chapter 29 — SHA-1, Hashing &amp; Object Storage Internals</a></em></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 18, 2026 03:30:12 UTC">April 18, 2026 03:30:12</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Florin Neagu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

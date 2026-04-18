@@ -1,0 +1,1667 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Chapter 08 — Undoing Changes.">
+      
+      
+        <meta name="author" content="Florin Neagu">
+      
+      
+        <link rel="canonical" href="https://somelamecode.github.io/notes/projects/github-in-a-nutshell/part2/ch08-undoing-changes/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Chapter 08 — Undoing Changes - Florin Neagu Projects & Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-08-undoing-changes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Florin Neagu Projects & Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 08 — Undoing Changes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SomeLameCode/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SomeLameCode/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../articles/code-example/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../code/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Code
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../notebooks/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Notebooks
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Florin Neagu Projects & Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SomeLameCode/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SomeLameCode/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/code-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Simple Example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/content-tabs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content Tabs example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/admonitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admonitions example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/diagram-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagram example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Initial Setup
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-site-update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Publish to Github
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-integrate-with-obsidian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Integrate with Obsidian
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../paperless-ngx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paperless-ngx
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub in a Nutshell
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../notebooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#four-undo-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Four Undo Scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amending-the-last-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amending the Last Commit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amending the Last Commit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fix-a-commit-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fix a commit message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-a-forgotten-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add a forgotten file
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undoing-staged-and-working-directory-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Undoing Staged and Working Directory Changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-reset-rewinding-the-branch-pointer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git reset — Rewinding the Branch Pointer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="git reset — Rewinding the Branch Pointer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-three-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding the three areas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-three-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specifying-the-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Specifying the target
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-each-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to use each mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-revert-safe-undo-for-shared-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git revert — Safe Undo for Shared History
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="git revert — Safe Undo for Shared History">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reverting-a-range-of-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverting a range of commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reset-vs-revert-when-to-use-which" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        reset vs revert — when to use which
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-reflog-the-safety-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git reflog — The Safety Net
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="git reflog — The Safety Net">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recovering-a-lost-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovering a lost commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safety-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:core-workflow" class="md-tag">core-workflow</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:git" class="md-tag">git</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:github" class="md-tag">github</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:version-control" class="md-tag">version-control</a>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="chapter-08-undoing-changes">Chapter 08 — Undoing Changes</h1>
+<p>Mistakes happen. You commit with a typo in the message, stage a file you did not mean to, or realise a whole commit introduced a bug. Git provides several distinct mechanisms for undoing work, each suited to a different scenario. This chapter covers them all, explains what each command actually does to your repository, and flags clearly which operations are irreversible.</p>
+<hr />
+<h2 id="four-undo-scenarios">Four Undo Scenarios</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Right tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fix the message or content of the last commit (not yet pushed)</td>
+<td><code>git commit --amend</code></td>
+</tr>
+<tr>
+<td>Unstage a file you accidentally staged</td>
+<td><code>git restore --staged</code></td>
+</tr>
+<tr>
+<td>Discard unsaved edits in the working directory</td>
+<td><code>git restore</code></td>
+</tr>
+<tr>
+<td>Undo one or more commits on a shared branch</td>
+<td><code>git revert</code></td>
+</tr>
+<tr>
+<td>Undo one or more commits on a local (unpublished) branch</td>
+<td><code>git reset</code></td>
+</tr>
+<tr>
+<td>Recover a commit lost to a hard reset</td>
+<td><code>git reflog</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="amending-the-last-commit">Amending the Last Commit</h2>
+<p><code>git commit --amend</code> replaces the most recent commit with a new one. It is useful for two situations: correcting a commit message, or including a file you forgot to stage.</p>
+<h3 id="fix-a-commit-message">Fix a commit message</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>commit<span class="w"> </span>--amend<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Correct commit message here&quot;</span>
+</span></code></pre></div>
+<h3 id="add-a-forgotten-file">Add a forgotten file</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Stage the file you forgot</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>git<span class="w"> </span>add<span class="w"> </span>forgotten-file.js
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Amend — opens your editor with the previous message pre-filled</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>git<span class="w"> </span>commit<span class="w"> </span>--amend
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Or amend without changing the message</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>git<span class="w"> </span>commit<span class="w"> </span>--amend<span class="w"> </span>--no-edit
+</span></code></pre></div>
+<blockquote>
+<p><strong>Warning:</strong> <code>--amend</code> rewrites history — it creates a new commit object with a different SHA. If you have already pushed the commit to a shared branch, amending and force-pushing will cause problems for anyone who has fetched that commit. Only amend commits that exist solely on your local machine.</p>
+</blockquote>
+<hr />
+<h2 id="undoing-staged-and-working-directory-changes">Undoing Staged and Working Directory Changes</h2>
+<p>These two scenarios are covered in detail in <a href="../ch06-file-states/">Chapter 06 — Tracking Files &amp; File States</a>. In brief:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Unstage a file (keep working directory changes)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>git<span class="w"> </span>restore<span class="w"> </span>--staged<span class="w"> </span>&lt;file&gt;
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Discard working directory changes (irreversible)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>git<span class="w"> </span>restore<span class="w"> </span>&lt;file&gt;
+</span></code></pre></div>
+<p>The rest of this chapter focuses on undoing <em>committed</em> work.</p>
+<hr />
+<h2 id="git-reset-rewinding-the-branch-pointer"><code>git reset</code> — Rewinding the Branch Pointer</h2>
+<p><code>git reset</code> moves the current branch pointer (and HEAD) backwards to an earlier commit. It is a history-rewriting operation and should only be used on commits that have not been shared with others.</p>
+<h3 id="understanding-the-three-areas">Understanding the three areas</h3>
+<p>To understand reset's modes, recall the three areas from Chapter 05: the working directory, the staging area (index), and the repository. Each mode of reset affects a different combination of these areas.</p>
+<h3 id="the-three-modes">The three modes</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>reset<span class="w"> </span>--soft<span class="w">  </span>&lt;target&gt;<span class="w">   </span><span class="c1"># moves HEAD only</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>git<span class="w"> </span>reset<span class="w"> </span>--mixed<span class="w"> </span>&lt;target&gt;<span class="w">   </span><span class="c1"># moves HEAD + resets index  (default)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w">  </span>&lt;target&gt;<span class="w">   </span><span class="c1"># moves HEAD + resets index + resets working directory</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>HEAD moved</th>
+<th>Index reset</th>
+<th>Working dir reset</th>
+<th>Changes end up…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--soft</code></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>Still staged</td>
+</tr>
+<tr>
+<td><code>--mixed</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Unstaged (in working dir)</td>
+</tr>
+<tr>
+<td><code>--hard</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td><strong>Gone — unrecoverable</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="specifying-the-target">Specifying the target</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>reset<span class="w"> </span>HEAD~1<span class="w">    </span><span class="c1"># one commit back (default: --mixed)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>reset<span class="w"> </span>HEAD~3<span class="w">    </span><span class="c1"># three commits back</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>reset<span class="w"> </span>abc1234<span class="w">   </span><span class="c1"># to a specific commit SHA</span>
+</span></code></pre></div>
+<p><code>HEAD~1</code> means "the parent of the current commit". <code>HEAD~2</code> means the grandparent, and so on.</p>
+<h3 id="when-to-use-each-mode">When to use each mode</h3>
+<p><strong><code>--soft</code></strong> — undo the commit but keep all changes staged, ready to be re-committed. Useful for combining several small commits into one before pushing.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Undo the last commit; changes remain staged</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>reset<span class="w"> </span>--soft<span class="w"> </span>HEAD~1
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># Now you can adjust and re-commit</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Better commit message with all changes&quot;</span>
+</span></code></pre></div>
+<p><strong><code>--mixed</code></strong> (default) — undo the commit and unstage the changes. The files are intact in the working directory; you can review, re-stage selectively, and recommit.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>reset<span class="w"> </span>HEAD~1
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Changes are unstaged but present — inspect with git diff</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git<span class="w"> </span>add<span class="w"> </span>specific-file.js
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Re-commit with correct scope&quot;</span>
+</span></code></pre></div>
+<p><strong><code>--hard</code></strong> — undo the commit and throw away all changes entirely. The working directory is restored to the state of the target commit.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Permanently discard the last commit and all its changes</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD~1
+</span></code></pre></div>
+<blockquote>
+<p><strong>Warning:</strong> <code>git reset --hard</code> is <strong>irreversible</strong> through normal Git commands. Any uncommitted changes — staged or unstaged — are permanently lost. The only recovery path is <code>git reflog</code>, which only works if the lost commits are still in Git's internal reference log (see below).</p>
+<p><strong>Never reset commits that have been pushed to a shared branch.</strong> Doing so rewrites public history and forces other contributors to reconcile their local copies. Use <code>git revert</code> instead.</p>
+<p><strong>Further reading:</strong> <a href="https://git-scm.com/docs/git-reset"><code>git reset</code> documentation</a></p>
+</blockquote>
+<hr />
+<h2 id="git-revert-safe-undo-for-shared-history"><code>git revert</code> — Safe Undo for Shared History</h2>
+<p><code>git revert</code> creates a new commit that <em>applies the inverse</em> of a previous commit. The original commit remains in the history — it is never deleted or moved. This makes <code>git revert</code> safe to use on branches that other people have fetched.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Revert the most recent commit</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>git<span class="w"> </span>revert<span class="w"> </span>HEAD
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Revert a specific commit by SHA</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>git<span class="w"> </span>revert<span class="w"> </span>a3f8c21
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Revert without immediately committing (stage the inverse changes only)</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>git<span class="w"> </span>revert<span class="w"> </span>--no-commit<span class="w"> </span>HEAD
+</span></code></pre></div>
+<p>When you run <code>git revert</code>, Git opens your editor with a pre-filled commit message describing what is being reverted. Save and close to complete the revert.</p>
+<h3 id="reverting-a-range-of-commits">Reverting a range of commits</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Revert commits from (exclusive) to (inclusive)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>revert<span class="w"> </span>abc123..def456
+</span></code></pre></div>
+<p>This creates one revert commit per reverted commit, in reverse chronological order. Add <code>--no-commit</code> to stage all the inverse changes first and then make a single revert commit manually.</p>
+<h3 id="reset-vs-revert-when-to-use-which"><code>reset</code> vs <code>revert</code> — when to use which</h3>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commit not yet pushed; want to remove it cleanly</td>
+<td><code>git reset</code></td>
+</tr>
+<tr>
+<td>Commit already pushed to a shared branch</td>
+<td><code>git revert</code></td>
+</tr>
+<tr>
+<td>Need to preserve full audit trail</td>
+<td><code>git revert</code></td>
+</tr>
+<tr>
+<td>Working alone on a local feature branch</td>
+<td>Either — <code>reset</code> is cleaner</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Further reading:</strong> <a href="https://git-scm.com/docs/git-revert"><code>git revert</code> documentation</a></p>
+</blockquote>
+<hr />
+<h2 id="git-reflog-the-safety-net"><code>git reflog</code> — The Safety Net</h2>
+<p>The <strong>reflog</strong> (reference log) is a local diary of every position HEAD has pointed to. It records commits, merges, rebases, resets — everything. Even after a <code>git reset --hard</code>, the reflog still knows where HEAD was before.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>git<span class="w"> </span>reflog
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># d3a1f02 (HEAD -&gt; main) HEAD@{0}: reset: moving to HEAD~2</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1"># 7b4c91e HEAD@{1}: commit: Add feature X</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># 3e8f20a HEAD@{2}: commit: Fix typo in README</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># ...</span>
+</span></code></pre></div>
+<p>Each line shows the commit SHA, a relative reference (<code>HEAD@{N}</code>), and what action moved HEAD there.</p>
+<h3 id="recovering-a-lost-commit">Recovering a lost commit</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Find the SHA of the commit you want to recover</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>git<span class="w"> </span>reflog
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Option 1 — create a new branch pointing to that commit</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>recovery-branch<span class="w"> </span>7b4c91e
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># Option 2 — hard reset back to that commit (on the current branch)</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>7b4c91e
+</span></code></pre></div>
+<blockquote>
+<p><strong>Reflog entries expire</strong> after 90 days by default (<code>gc.reflogExpire</code>). Recovery is only possible within that window, and only on your local machine — reflog is not pushed to remotes.</p>
+<p><strong>Further reading:</strong> <a href="https://git-scm.com/docs/git-reflog"><code>git reflog</code> documentation</a></p>
+</blockquote>
+<hr />
+<h2 id="decision-guide">Decision Guide</h2>
+<p>Use this table when you need to undo something and are not sure which tool to reach for.</p>
+<table>
+<thead>
+<tr>
+<th>What do you want to undo?</th>
+<th>Commit pushed?</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Typo in the last commit message</td>
+<td>No</td>
+<td><code>git commit --amend</code></td>
+</tr>
+<tr>
+<td>Forgot to include a file in the last commit</td>
+<td>No</td>
+<td><code>git add &lt;file&gt;</code> + <code>git commit --amend --no-edit</code></td>
+</tr>
+<tr>
+<td>Last commit — keep changes staged</td>
+<td>No</td>
+<td><code>git reset --soft HEAD~1</code></td>
+</tr>
+<tr>
+<td>Last commit — keep changes unstaged</td>
+<td>No</td>
+<td><code>git reset HEAD~1</code> (mixed)</td>
+</tr>
+<tr>
+<td>Last commit — discard changes entirely</td>
+<td>No</td>
+<td><code>git reset --hard HEAD~1</code> ⚠️</td>
+</tr>
+<tr>
+<td>Several local commits — squash into one</td>
+<td>No</td>
+<td><code>git reset --soft HEAD~N</code> + recommit</td>
+</tr>
+<tr>
+<td>A commit on a shared branch</td>
+<td>Yes</td>
+<td><code>git revert &lt;sha&gt;</code></td>
+</tr>
+<tr>
+<td>Accidentally staged a file</td>
+<td>Either</td>
+<td><code>git restore --staged &lt;file&gt;</code></td>
+</tr>
+<tr>
+<td>Unsaved edits in working directory</td>
+<td>Either</td>
+<td><code>git restore &lt;file&gt;</code> ⚠️</td>
+</tr>
+<tr>
+<td>Hard-reset too aggressively</td>
+<td>Local only</td>
+<td><code>git reflog</code> → <code>git reset --hard &lt;sha&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="safety-summary">Safety Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Reversible?</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git commit --amend</code> (before push)</td>
+<td>Yes</td>
+<td><code>git reflog</code> to find original SHA</td>
+</tr>
+<tr>
+<td><code>git reset --soft</code></td>
+<td>Yes</td>
+<td><code>git reflog</code></td>
+</tr>
+<tr>
+<td><code>git reset --mixed</code></td>
+<td>Yes</td>
+<td><code>git reflog</code></td>
+</tr>
+<tr>
+<td><code>git reset --hard</code></td>
+<td><strong>Rarely</strong></td>
+<td>Only via <code>git reflog</code>, within 90 days</td>
+</tr>
+<tr>
+<td><code>git restore &lt;file&gt;</code></td>
+<td><strong>No</strong></td>
+<td>Changes were never committed</td>
+</tr>
+<tr>
+<td><code>git revert</code></td>
+<td>Yes</td>
+<td>Revert the revert</td>
+</tr>
+</tbody>
+</table>
+<p>The golden rule: if a commit exists in Git's history, <code>git reflog</code> can usually get it back — within the expiry window. If a change was never committed, it is gone forever.</p>
+<hr />
+<p><em>Previous: <a href="../ch07-gitignore/">Chapter 07 — Ignoring Files (.gitignore)</a></em> · <em>Next: <a href="../ch09-stashing/">Chapter 09 — Stashing</a></em></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 18, 2026 03:30:12 UTC">April 18, 2026 03:30:12</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Florin Neagu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

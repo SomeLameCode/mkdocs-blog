@@ -1,0 +1,1685 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Appendix C — Signed Commits & GPG.">
+      
+      
+        <meta name="author" content="Florin Neagu">
+      
+      
+        <link rel="canonical" href="https://somelamecode.github.io/notes/projects/github-in-a-nutshell/appendix/appC-signed-commits/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Appendix C — Signed Commits & GPG - Florin Neagu Projects & Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#appendix-c-signed-commits-gpg" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Florin Neagu Projects & Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Appendix C — Signed Commits & GPG
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SomeLameCode/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SomeLameCode/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../articles/code-example/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../code/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Code
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../notebooks/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Notebooks
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Florin Neagu Projects & Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SomeLameCode/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SomeLameCode/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/code-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Simple Example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/content-tabs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content Tabs example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/admonitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admonitions example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/diagram-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagram example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Initial Setup
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-site-update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Publish to Github
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-integrate-with-obsidian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Integrate with Obsidian
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../paperless-ngx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paperless-ngx
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub in a Nutshell
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../notebooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signing-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signing Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpg-signing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPG Signing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GPG Signing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-gpg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install GPG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-a-gpg-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate a GPG key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-your-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List your keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-the-public-key-to-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export the public key to GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-git-to-use-the-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure Git to use the key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sign-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sign-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-commit-signatures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify commit signatures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gpg-agent-avoiding-repeated-passphrase-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GPG Agent — Avoiding Repeated Passphrase Prompts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-signing-simpler-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH Signing (Simpler Alternative)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSH Signing (Simpler Alternative)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-ssh-signing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure SSH signing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-signing-key-to-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add the signing key to GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-ssh-signatures-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify SSH signatures locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vigilant-mode-on-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vigilant Mode on GitHub
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vigilant Mode on GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requiring-signed-commits-via-branch-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requiring signed commits via branch protection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backing-up-your-private-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backing up your private key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revoking-a-compromised-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revoking a compromised key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-expiry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key expiry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-pitfalls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Pitfalls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:git" class="md-tag">git</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:github" class="md-tag">github</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:version-control" class="md-tag">version-control</a>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="appendix-c-signed-commits-gpg">Appendix C — Signed Commits &amp; GPG</h1>
+<p>Git records the author and committer name and email for every commit, but it does not verify them. Anyone can configure <code>user.name</code> and <code>user.email</code> to any value and push commits that appear to come from someone else. <strong>Commit signing</strong> closes this gap: a cryptographic signature attached to a commit proves that it was created by the holder of a specific private key, and that it has not been tampered with since signing.</p>
+<p>GitHub displays a <strong>Verified</strong> badge next to signed commits, giving reviewers confidence that the commit genuinely came from the stated author.</p>
+<hr />
+<h2 id="signing-methods">Signing Methods</h2>
+<p>Git supports three signing mechanisms:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Key type</th>
+<th>Setup complexity</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GPG</strong></td>
+<td>OpenPGP (RSA, Ed25519)</td>
+<td>Moderate</td>
+<td>Traditional; widely supported</td>
+</tr>
+<tr>
+<td><strong>SSH</strong></td>
+<td>SSH key pair</td>
+<td>Low</td>
+<td>Reuses existing SSH keys</td>
+</tr>
+<tr>
+<td><strong>S/MIME</strong></td>
+<td>X.509 certificate</td>
+<td>High</td>
+<td>Enterprise / corporate PKI</td>
+</tr>
+</tbody>
+</table>
+<p>GPG is the oldest and most widely documented method. SSH signing (introduced in Git 2.34, 2021) is simpler to set up if you already have an SSH key configured for GitHub authentication. This appendix covers GPG in depth and SSH signing as a streamlined alternative.</p>
+<hr />
+<h2 id="gpg-signing">GPG Signing</h2>
+<h3 id="install-gpg">Install GPG</h3>
+<p><strong>macOS:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>brew<span class="w"> </span>install<span class="w"> </span>gnupg
+</span></code></pre></div>
+<p><strong>Linux (Debian/Ubuntu):</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg
+</span></code></pre></div>
+<p><strong>Windows:</strong></p>
+<p>Download <a href="https://gpg4win.org/">Gpg4win</a> or install via <code>winget</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>winget<span class="w"> </span>install<span class="w"> </span>GnuPG.GnuPG
+</span></code></pre></div>
+<h3 id="generate-a-gpg-key">Generate a GPG key</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gpg<span class="w"> </span>--full-generate-key
+</span></code></pre></div>
+<p>When prompted:</p>
+<ul>
+<li><strong>Key type:</strong> <code>ECC (sign and certify)</code> with <code>Curve 25519</code> is recommended for new keys (Ed25519). Alternatively, <code>RSA and RSA</code> with 4096 bits is widely compatible.</li>
+<li><strong>Expiry:</strong> setting an expiry (e.g. 2 years) is good practice — an expiring key limits damage if the private key is later compromised.</li>
+<li><strong>User ID:</strong> use the same name and email address as your Git <code>user.name</code> and <code>user.email</code>. GitHub matches the signing key's email to your verified GitHub email addresses.</li>
+<li><strong>Passphrase:</strong> protect the private key with a strong passphrase.</li>
+</ul>
+<h3 id="list-your-keys">List your keys</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>gpg<span class="w"> </span>--list-secret-keys<span class="w"> </span>--keyid-format<span class="o">=</span>long
+</span></code></pre></div>
+<p>Example output:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sec   ed25519/3AA5C34371567BD2 2024-01-15 [SC]
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>      1234567890ABCDEF1234567890ABCDEF12345678
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>uid   [ultimate] Alice Example &lt;alice@example.com&gt;
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>ssb   cv25519/4BB6D45482678CE3 2024-01-15 [E]
+</span></code></pre></div>
+<p>The long key ID is the part after the algorithm: <code>3AA5C34371567BD2</code>. The full 40-character fingerprint is the line below <code>sec</code>.</p>
+<h3 id="export-the-public-key-to-github">Export the public key to GitHub</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gpg<span class="w"> </span>--armor<span class="w"> </span>--export<span class="w"> </span>3AA5C34371567BD2
+</span></code></pre></div>
+<p>Copy the output (the block starting <code>-----BEGIN PGP PUBLIC KEY BLOCK-----</code>) and add it to GitHub at <strong>Settings → SSH and GPG keys → New GPG key</strong>.</p>
+<h3 id="configure-git-to-use-the-key">Configure Git to use the key</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.signingkey<span class="w"> </span>3AA5C34371567BD2
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>gpg.program<span class="w"> </span>gpg
+</span></code></pre></div>
+<p>On macOS with Homebrew GPG, you may need to specify the full path:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>gpg.program<span class="w"> </span><span class="k">$(</span>which<span class="w"> </span>gpg<span class="k">)</span>
+</span></code></pre></div>
+<h3 id="sign-commits">Sign commits</h3>
+<p>To sign a single commit, add <code>-S</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>git<span class="w"> </span>commit<span class="w"> </span>-S<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add feature&quot;</span>
+</span></code></pre></div>
+<p>To sign all commits automatically:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>commit.gpgsign<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
+<p>With <code>commit.gpgsign true</code>, every <code>git commit</code> is signed without needing <code>-S</code>. Git will prompt for your GPG passphrase (or use a GPG agent if one is running).</p>
+<h3 id="sign-tags">Sign tags</h3>
+<p>Annotated tags can also be signed with <code>-s</code> (lowercase):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>git<span class="w"> </span>tag<span class="w"> </span>-s<span class="w"> </span>v1.2.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Release 1.2.0&quot;</span>
+</span></code></pre></div>
+<p>Verify a signed tag:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>git<span class="w"> </span>tag<span class="w"> </span>-v<span class="w"> </span>v1.2.0
+</span></code></pre></div>
+<h3 id="verify-commit-signatures">Verify commit signatures</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>git<span class="w"> </span>log<span class="w"> </span>--show-signature<span class="w">          </span><span class="c1"># full GPG output for each commit</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>git<span class="w"> </span>verify-commit<span class="w"> </span>&lt;sha&gt;<span class="w">           </span><span class="c1"># verify a specific commit</span>
+</span></code></pre></div>
+<p>Output from <code>git verify-commit</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>gpg: Signature made Mon 15 Jan 2024 10:23:01 UTC
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>gpg:                using EDDSA key 3AA5C34371567BD2
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>gpg: Good signature from &quot;Alice Example &lt;alice@example.com&gt;&quot; [ultimate]
+</span></code></pre></div>
+<hr />
+<h2 id="gpg-agent-avoiding-repeated-passphrase-prompts">GPG Agent — Avoiding Repeated Passphrase Prompts</h2>
+<p>Entering a passphrase on every commit is friction. <code>gpg-agent</code> caches the passphrase for a configurable duration.</p>
+<p>On Linux/macOS, <code>gpg-agent</code> usually starts automatically. To ensure it is running and configure its cache timeout, edit (or create) <code>~/.gnupg/gpg-agent.conf</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>default-cache-ttl 3600
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>max-cache-ttl 86400
+</span></code></pre></div>
+<p>Then reload:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>gpgconf<span class="w"> </span>--kill<span class="w"> </span>gpg-agent
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>gpgconf<span class="w"> </span>--launch<span class="w"> </span>gpg-agent
+</span></code></pre></div>
+<p>On macOS, the <code>pinentry-mac</code> program integrates with the macOS Keychain so the passphrase can be stored permanently:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>brew<span class="w"> </span>install<span class="w"> </span>pinentry-mac
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;pinentry-program </span><span class="k">$(</span>which<span class="w"> </span>pinentry-mac<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.gnupg/gpg-agent.conf
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>gpgconf<span class="w"> </span>--kill<span class="w"> </span>gpg-agent
+</span></code></pre></div>
+<hr />
+<h2 id="ssh-signing-simpler-alternative">SSH Signing (Simpler Alternative)</h2>
+<p>Since Git 2.34, you can use an SSH key — the same key you already use for GitHub authentication — to sign commits. No GPG installation required.</p>
+<h3 id="configure-ssh-signing">Configure SSH signing</h3>
+<p>Tell Git to use SSH for signing and specify your public key:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>gpg.format<span class="w"> </span>ssh
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.signingkey<span class="w"> </span>~/.ssh/id_ed25519.pub
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>commit.gpgsign<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
+<p>Replace <code>~/.ssh/id_ed25519.pub</code> with the path to your actual public key file.</p>
+<h3 id="add-the-signing-key-to-github">Add the signing key to GitHub</h3>
+<p>Go to <strong>Settings → SSH and GPG keys → New SSH key</strong>, select <strong>Signing Key</strong> as the key type, and paste your public key. Note that GitHub requires a separate entry for signing keys — the same key used for authentication needs to be added again as a signing key.</p>
+<h3 id="verify-ssh-signatures-locally">Verify SSH signatures locally</h3>
+<p>SSH signature verification requires an <strong>allowed signers file</strong> that maps email addresses to public keys:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Create the file</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;alice@example.com </span><span class="k">$(</span>cat<span class="w"> </span>~/.ssh/id_ed25519.pub<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>~/.ssh/allowed_signers
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Tell Git where to find it</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>gpg.ssh.allowedSignersFile<span class="w"> </span>~/.ssh/allowed_signers
+</span></code></pre></div>
+<p>Then verify normally:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>git<span class="w"> </span>log<span class="w"> </span>--show-signature
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>git<span class="w"> </span>verify-commit<span class="w"> </span>&lt;sha&gt;
+</span></code></pre></div>
+<hr />
+<h2 id="vigilant-mode-on-github">Vigilant Mode on GitHub</h2>
+<p>GitHub's <strong>vigilant mode</strong> marks commits as <strong>Unverified</strong> if they have no signature, rather than showing nothing. This makes the absence of a signature explicit and visible to reviewers.</p>
+<p>Enable it at <strong>Settings → SSH and GPG keys → Vigilant mode → Enable vigilant mode</strong>.</p>
+<p>With vigilant mode enabled:</p>
+<table>
+<thead>
+<tr>
+<th>Commit state</th>
+<th>Badge shown</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Signed with a key verified by GitHub</td>
+<td><strong>Verified</strong> (green)</td>
+</tr>
+<tr>
+<td>Signed but key not verified / expired</td>
+<td><strong>Unverified</strong> (grey)</td>
+</tr>
+<tr>
+<td>Not signed</td>
+<td><strong>Unverified</strong> (grey)</td>
+</tr>
+</tbody>
+</table>
+<p>This is useful for teams that require signed commits via branch protection rules — reviewers can immediately see any commit that bypassed the requirement.</p>
+<h3 id="requiring-signed-commits-via-branch-protection">Requiring signed commits via branch protection</h3>
+<p>In <strong>Settings → Branches → Branch protection rules</strong>, enable <strong>Require signed commits</strong>. This blocks any push to the protected branch that contains unsigned commits — including force-pushes and squash merges that re-create commits without signatures.</p>
+<hr />
+<h2 id="key-management">Key Management</h2>
+<h3 id="backing-up-your-private-key">Backing up your private key</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>gpg<span class="w"> </span>--export-secret-keys<span class="w"> </span>--armor<span class="w"> </span>3AA5C34371567BD2<span class="w"> </span>&gt;<span class="w"> </span>alice-private-key.asc
+</span></code></pre></div>
+<p>Store the backup encrypted in a secure location (password manager, encrypted drive). If you lose the private key, you can no longer sign commits with that key and will need to generate a new one and re-verify with GitHub.</p>
+<h3 id="revoking-a-compromised-key">Revoking a compromised key</h3>
+<p>If a private key is compromised, generate a <strong>revocation certificate</strong> immediately (ideally before it is needed):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>gpg<span class="w"> </span>--gen-revoke<span class="w"> </span>3AA5C34371567BD2<span class="w"> </span>&gt;<span class="w"> </span>revoke.asc
+</span></code></pre></div>
+<p>To revoke, import the certificate:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>gpg<span class="w"> </span>--import<span class="w"> </span>revoke.asc
+</span></code></pre></div>
+<p>Then upload the revoked key to a public keyserver so others' installations see the revocation:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>gpg<span class="w"> </span>--keyserver<span class="w"> </span>keyserver.ubuntu.com<span class="w"> </span>--send-keys<span class="w"> </span>3AA5C34371567BD2
+</span></code></pre></div>
+<p>Remove the revoked key from GitHub under <strong>Settings → SSH and GPG keys</strong>.</p>
+<h3 id="key-expiry">Key expiry</h3>
+<p>When a key expires, existing commits signed with it show as <strong>Unverified</strong> on GitHub (because the key can no longer be confirmed as valid at the time of verification). Extend the expiry before it lapses:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>gpg<span class="w"> </span>--edit-key<span class="w"> </span>3AA5C34371567BD2
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="c1"># At the gpg&gt; prompt:</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>expire<span class="w">     </span><span class="c1"># follow prompts to set new expiry</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>save
+</span></code></pre></div>
+<p>Re-export and update the key on GitHub after extending the expiry.</p>
+<hr />
+<h2 id="common-pitfalls">Common Pitfalls</h2>
+<p><strong>Email mismatch</strong></p>
+<p>GitHub matches the signing key's UID email to your verified GitHub email addresses. If <code>user.email</code> in Git does not match any email in the GPG key's UID, GitHub cannot verify the signature. Run <code>gpg --list-keys</code> and confirm the email matches your <code>git config user.email</code>.</p>
+<p><strong>GPG agent not running on commit</strong></p>
+<p>If <code>gpg-agent</code> is not running, Git may fail with <code>error: gpg failed to sign the data</code>. Start the agent with <code>gpgconf --launch gpg-agent</code> or add it to your shell startup script.</p>
+<p><strong>TTY errors in non-interactive environments</strong></p>
+<p>Signing in CI or scripts can fail with <code>Inappropriate ioctl for device</code>. The passphrase prompt has no TTY. Solutions:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Use a passphrase-free subkey (not recommended for personal keys)</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="c1"># Or suppress the TTY requirement:</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GPG_TTY</span><span class="o">=</span><span class="k">$(</span>tty<span class="k">)</span>
+</span></code></pre></div>
+<p>In CI, use a passphrase-free GPG key stored in a secret, or skip signing on CI builds (CI commits are typically not human-authored).</p>
+<p><strong>SSH key already added as authentication key</strong></p>
+<p>On GitHub, a key added as an <strong>authentication</strong> key cannot also be used as a <strong>signing</strong> key from the same entry. You must add it a second time explicitly choosing <strong>Signing Key</strong> as the type.</p>
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># GPG — generate key</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>gpg<span class="w"> </span>--full-generate-key
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="c1"># GPG — list keys</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>gpg<span class="w"> </span>--list-secret-keys<span class="w"> </span>--keyid-format<span class="o">=</span>long
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="c1"># GPG — export public key (to paste into GitHub)</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>gpg<span class="w"> </span>--armor<span class="w"> </span>--export<span class="w"> </span>&lt;key-id&gt;
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="c1"># Configure Git to sign with GPG</span>
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.signingkey<span class="w"> </span>&lt;key-id&gt;
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>commit.gpgsign<span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>
+</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a><span class="c1"># Configure Git to sign with SSH</span>
+</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>gpg.format<span class="w"> </span>ssh
+</span><span id="__span-27-16"><a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.signingkey<span class="w"> </span>~/.ssh/id_ed25519.pub
+</span><span id="__span-27-17"><a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>commit.gpgsign<span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-27-18"><a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a>
+</span><span id="__span-27-19"><a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a><span class="c1"># Sign a single commit explicitly</span>
+</span><span id="__span-27-20"><a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a>git<span class="w"> </span>commit<span class="w"> </span>-S<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;message&quot;</span>
+</span><span id="__span-27-21"><a id="__codelineno-27-21" name="__codelineno-27-21" href="#__codelineno-27-21"></a>
+</span><span id="__span-27-22"><a id="__codelineno-27-22" name="__codelineno-27-22" href="#__codelineno-27-22"></a><span class="c1"># Sign an annotated tag</span>
+</span><span id="__span-27-23"><a id="__codelineno-27-23" name="__codelineno-27-23" href="#__codelineno-27-23"></a>git<span class="w"> </span>tag<span class="w"> </span>-s<span class="w"> </span>v1.0.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Release 1.0.0&quot;</span>
+</span><span id="__span-27-24"><a id="__codelineno-27-24" name="__codelineno-27-24" href="#__codelineno-27-24"></a>
+</span><span id="__span-27-25"><a id="__codelineno-27-25" name="__codelineno-27-25" href="#__codelineno-27-25"></a><span class="c1"># Verify commits</span>
+</span><span id="__span-27-26"><a id="__codelineno-27-26" name="__codelineno-27-26" href="#__codelineno-27-26"></a>git<span class="w"> </span>log<span class="w"> </span>--show-signature
+</span><span id="__span-27-27"><a id="__codelineno-27-27" name="__codelineno-27-27" href="#__codelineno-27-27"></a>git<span class="w"> </span>verify-commit<span class="w"> </span>&lt;sha&gt;
+</span><span id="__span-27-28"><a id="__codelineno-27-28" name="__codelineno-27-28" href="#__codelineno-27-28"></a>
+</span><span id="__span-27-29"><a id="__codelineno-27-29" name="__codelineno-27-29" href="#__codelineno-27-29"></a><span class="c1"># Verify a signed tag</span>
+</span><span id="__span-27-30"><a id="__codelineno-27-30" name="__codelineno-27-30" href="#__codelineno-27-30"></a>git<span class="w"> </span>tag<span class="w"> </span>-v<span class="w"> </span>v1.0.0
+</span><span id="__span-27-31"><a id="__codelineno-27-31" name="__codelineno-27-31" href="#__codelineno-27-31"></a>
+</span><span id="__span-27-32"><a id="__codelineno-27-32" name="__codelineno-27-32" href="#__codelineno-27-32"></a><span class="c1"># Backup private key</span>
+</span><span id="__span-27-33"><a id="__codelineno-27-33" name="__codelineno-27-33" href="#__codelineno-27-33"></a>gpg<span class="w"> </span>--export-secret-keys<span class="w"> </span>--armor<span class="w"> </span>&lt;key-id&gt;<span class="w"> </span>&gt;<span class="w"> </span>backup.asc
+</span><span id="__span-27-34"><a id="__codelineno-27-34" name="__codelineno-27-34" href="#__codelineno-27-34"></a>
+</span><span id="__span-27-35"><a id="__codelineno-27-35" name="__codelineno-27-35" href="#__codelineno-27-35"></a><span class="c1"># Revoke a key</span>
+</span><span id="__span-27-36"><a id="__codelineno-27-36" name="__codelineno-27-36" href="#__codelineno-27-36"></a>gpg<span class="w"> </span>--gen-revoke<span class="w"> </span>&lt;key-id&gt;<span class="w"> </span>&gt;<span class="w"> </span>revoke.asc
+</span><span id="__span-27-37"><a id="__codelineno-27-37" name="__codelineno-27-37" href="#__codelineno-27-37"></a>gpg<span class="w"> </span>--import<span class="w"> </span>revoke.asc
+</span></code></pre></div>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Commit signing cryptographically proves authorship; GitHub displays a <strong>Verified</strong> badge for commits signed with a key registered to your account.</li>
+<li><strong>GPG signing:</strong> generate a key with <code>gpg --full-generate-key</code>, export the public key to GitHub, set <code>user.signingkey</code> and <code>commit.gpgsign true</code>. Use <code>gpg-agent</code> to cache the passphrase.</li>
+<li><strong>SSH signing:</strong> simpler if you already have an SSH key; set <code>gpg.format ssh</code> and <code>user.signingkey</code>, add the key to GitHub as a <strong>Signing Key</strong> (separate from the authentication key entry).</li>
+<li><strong>Vigilant mode</strong> marks unsigned commits explicitly as Unverified. <strong>Branch protection</strong> can enforce signing on protected branches.</li>
+<li>Manage keys responsibly: back up private keys, set expiry dates, and revoke compromised keys promptly.</li>
+</ul>
+<blockquote>
+<p><strong>Further reading:</strong> <a href="https://docs.github.com/en/authentication/managing-commit-signature-verification">GitHub Docs — Managing commit signature verification</a> · <a href="https://riseup.net/en/security/message-security/openpgp/best-practices">GPG best practices (riseup.net)</a></p>
+</blockquote>
+<hr />
+<p><em>Previous: <a href="../appB-git-lfs/">Appendix B — Git LFS (Large File Storage)</a></em></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 18, 2026 03:30:12 UTC">April 18, 2026 03:30:12</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Florin Neagu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

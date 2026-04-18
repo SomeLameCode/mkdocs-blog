@@ -1,0 +1,1776 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Chapter 27 — Git Aliases & Productivity Tips.">
+      
+      
+        <meta name="author" content="Florin Neagu">
+      
+      
+        <link rel="canonical" href="https://somelamecode.github.io/notes/projects/github-in-a-nutshell/part6/ch27-aliases-tips/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Chapter 27 — Git Aliases & Productivity Tips - Florin Neagu Projects & Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-27-git-aliases-productivity-tips" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Florin Neagu Projects & Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 27 — Git Aliases & Productivity Tips
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SomeLameCode/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SomeLameCode/notes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../articles/code-example/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../code/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Code
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../notebooks/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Notebooks
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Florin Neagu Projects & Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SomeLameCode/notes" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SomeLameCode/notes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/code-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code Simple Example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/content-tabs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content Tabs example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/admonitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admonitions example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/diagram-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagram example
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Initial Setup
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-site-update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Publish to Github
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../articles/mkdocs-integrate-with-obsidian/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs Integrate with Obsidian
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../paperless-ngx/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Paperless-ngx
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub in a Nutshell
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../notebooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git Aliases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git Aliases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating aliases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editing-aliases-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editing aliases directly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#useful-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful aliases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Useful aliases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compact-visual-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compact, visual log
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-with-file-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log with file stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-the-last-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Show the last commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstage-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unstage a file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soft-undo-keep-changes-staged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soft undo (keep changes staged)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-all-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List all aliases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amend-without-editing-the-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amend without editing the message
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shell-command-aliases-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shell command aliases (with !)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-configuration-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Useful Configuration Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Useful Configuration Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auto-setup-remote-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-setup remote tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-branch-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default branch name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pull-with-rebase-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pull with rebase by default
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prune-stale-remote-tracking-branches-on-fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prune stale remote-tracking branches on fetch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-stash-during-rebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-stash during rebase
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#better-diffs-with-word-level-highlighting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Better diffs with word-level highlighting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rerere-reuse-recorded-resolutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rerere — reuse recorded resolutions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credential-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Credential caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#productive-command-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Productive Command Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Productive Command Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amend-the-last-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amend the last commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stage-interactively" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stage interactively
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-stash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial stash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cherry-pick-a-single-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cherry-pick a single commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-when-a-bug-was-introduced-git-bisect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find when a bug was introduced — git bisect
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#see-what-changed-in-a-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See what changed in a range
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recover-a-deleted-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recover a deleted branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-which-branch-contains-a-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Show which branch contains a commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-files-changed-in-a-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List files changed in a commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitconfig-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .gitconfig Template
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-cli-productivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub CLI Productivity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:git" class="md-tag">git</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:github" class="md-tag">github</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:version-control" class="md-tag">version-control</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:workflows" class="md-tag">workflows</a>
+      
+    
+  </nav>
+
+
+  
+  
+
+
+<h1 id="chapter-27-git-aliases-productivity-tips">Chapter 27 — Git Aliases &amp; Productivity Tips</h1>
+<p>Git's command-line interface is consistent and precise, but many common operations involve typing the same long commands repeatedly. <strong>Aliases</strong> let you define shorthand for any Git command or sequence of commands. Beyond aliases, a handful of configuration settings and lesser-known features can meaningfully reduce the friction in everyday Git use.</p>
+<hr />
+<h2 id="git-aliases">Git Aliases</h2>
+<p>An alias maps a short name to any Git command (with arguments). Aliases are stored in your Git configuration and can be defined at any scope — local (repository), global (your account), or system-wide.</p>
+<h3 id="creating-aliases">Creating aliases</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Global alias (stored in ~/.gitconfig)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.st<span class="w"> </span>status
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.co<span class="w"> </span>checkout
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.br<span class="w"> </span>branch
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.ci<span class="w"> </span>commit
+</span></code></pre></div>
+<p>After creating these, <code>git st</code> runs <code>git status</code>, <code>git co main</code> runs <code>git checkout main</code>, and so on.</p>
+<h3 id="editing-aliases-directly">Editing aliases directly</h3>
+<p>All aliases live under <code>[alias]</code> in <code>~/.gitconfig</code>. You can edit the file directly for bulk changes:</p>
+<div class="language-ini highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[alias]</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="na">st</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">status</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="na">co</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">checkout</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="na">br</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">branch</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="na">ci</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">commit</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="na">sw</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">switch</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="na">re</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">restore</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="na">lg</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">log --oneline --graph --decorate --all</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="na">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">log -1 HEAD --stat</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="na">unstage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">restore --staged</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="na">undo</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">reset --soft HEAD~1</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="na">aliases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">config --get-regexp alias</span>
+</span></code></pre></div>
+<h3 id="useful-aliases">Useful aliases</h3>
+<h4 id="compact-visual-log">Compact, visual log</h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.lg<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="s2">&quot;log --oneline --graph --decorate --all&quot;</span>
+</span></code></pre></div>
+<p><code>git lg</code> produces a compact graph of all branches — far more readable than the default <code>git log</code> for understanding repository structure.</p>
+<h4 id="log-with-file-stats">Log with file stats</h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.ll<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="s2">&quot;log --oneline --stat&quot;</span>
+</span></code></pre></div>
+<p>Shows each commit on one line followed by the files changed — useful for a quick scan of recent work.</p>
+<h4 id="show-the-last-commit">Show the last commit</h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.last<span class="w"> </span><span class="s2">&quot;log -1 HEAD --stat&quot;</span>
+</span></code></pre></div>
+<h4 id="unstage-a-file">Unstage a file</h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.unstage<span class="w"> </span><span class="s2">&quot;restore --staged&quot;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># Usage: git unstage src/auth.js</span>
+</span></code></pre></div>
+<h4 id="soft-undo-keep-changes-staged">Soft undo (keep changes staged)</h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.undo<span class="w"> </span><span class="s2">&quot;reset --soft HEAD~1&quot;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Undoes the last commit but leaves the changes staged</span>
+</span></code></pre></div>
+<h4 id="list-all-aliases">List all aliases</h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.aliases<span class="w"> </span><span class="s2">&quot;config --get-regexp alias&quot;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># git aliases  →  lists every alias you have defined</span>
+</span></code></pre></div>
+<h4 id="amend-without-editing-the-message">Amend without editing the message</h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.amend<span class="w"> </span><span class="s2">&quot;commit --amend --no-edit&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># git amend  →  adds staged changes to the last commit</span>
+</span></code></pre></div>
+<h3 id="shell-command-aliases-with">Shell command aliases (with <code>!</code>)</h3>
+<p>Prefixing an alias value with <code>!</code> runs it as a shell command rather than a Git subcommand. This unlocks arbitrary scripting:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Open the repository root in VS Code</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.code<span class="w"> </span><span class="s1">&#39;!code $(git rev-parse --show-toplevel)&#39;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Push and immediately open a PR in the browser</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.pr<span class="w"> </span><span class="s1">&#39;!git push -u origin HEAD &amp;&amp; gh pr create --web&#39;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Delete all fully merged local branches</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.cleanup<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="s1">&#39;!git branch --merged main | grep -v &quot;^\* \|main\|master\|develop&quot; | xargs git branch -d&#39;</span>
+</span></code></pre></div>
+<hr />
+<h2 id="useful-configuration-settings">Useful Configuration Settings</h2>
+<p>Beyond aliases, these <code>git config</code> settings change default behaviour in ways that reduce friction.</p>
+<h3 id="auto-setup-remote-tracking">Auto-setup remote tracking</h3>
+<p>When you push a new branch, automatically set up the upstream tracking without <code>-u</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>push.autoSetupRemote<span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># Now: git push  (on a new branch)  just works</span>
+</span></code></pre></div>
+<h3 id="default-branch-name">Default branch name</h3>
+<p>Set the default branch name for new repositories:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>init.defaultBranch<span class="w"> </span>main
+</span></code></pre></div>
+<h3 id="pull-with-rebase-by-default">Pull with rebase by default</h3>
+<p>Avoid merge commits when pulling:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>pull.rebase<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
+<h3 id="prune-stale-remote-tracking-branches-on-fetch">Prune stale remote-tracking branches on fetch</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>fetch.prune<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
+<h3 id="auto-stash-during-rebase">Auto-stash during rebase</h3>
+<p>Automatically stash and restore uncommitted changes when rebasing:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>rebase.autoStash<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
+<h3 id="better-diffs-with-word-level-highlighting">Better diffs with word-level highlighting</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>diff.colorMoved<span class="w"> </span>zebra
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1"># Highlights moved code differently from new code</span>
+</span></code></pre></div>
+<h3 id="rerere-reuse-recorded-resolutions">Rerere — reuse recorded resolutions</h3>
+<p><code>rerere</code> (Reuse Recorded Resolution) records how you resolve merge conflicts and automatically applies the same resolution if the same conflict appears again:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>rerere.enabled<span class="w"> </span><span class="nb">true</span>
+</span></code></pre></div>
+<p>Particularly useful on long-running branches with frequent rebases — you resolve each conflict once, and Git handles it automatically thereafter.</p>
+<h3 id="credential-caching">Credential caching</h3>
+<p>Avoid re-entering credentials on every push (HTTPS users):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Cache for 1 hour (3600 seconds)</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>credential.helper<span class="w"> </span><span class="s1">&#39;cache --timeout=3600&#39;</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># macOS keychain (persists indefinitely)</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>credential.helper<span class="w"> </span>osxkeychain
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c1"># Windows credential manager</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>credential.helper<span class="w"> </span>manager
+</span></code></pre></div>
+<hr />
+<h2 id="productive-command-patterns">Productive Command Patterns</h2>
+<h3 id="amend-the-last-commit">Amend the last commit</h3>
+<p>Add forgotten files or fix the commit message without creating a new commit:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>git<span class="w"> </span>add<span class="w"> </span>forgotten-file.js
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>git<span class="w"> </span>commit<span class="w"> </span>--amend<span class="w">         </span><span class="c1"># opens editor for message</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>git<span class="w"> </span>commit<span class="w"> </span>--amend<span class="w"> </span>--no-edit<span class="w">  </span><span class="c1"># keep existing message</span>
+</span></code></pre></div>
+<h3 id="stage-interactively">Stage interactively</h3>
+<p>Review each changed hunk before staging — useful when a file contains both related and unrelated changes:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>git<span class="w"> </span>add<span class="w"> </span>-p<span class="w">               </span><span class="c1"># patch mode: y/n/s/e for each hunk</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>git<span class="w"> </span>add<span class="w"> </span>-i<span class="w">               </span><span class="c1"># full interactive mode</span>
+</span></code></pre></div>
+<h3 id="partial-stash">Partial stash</h3>
+<p>Stash only specific files, leaving others in the working directory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>git<span class="w"> </span>stash<span class="w"> </span>push<span class="w"> </span>src/auth.js<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Auth changes only&quot;</span>
+</span></code></pre></div>
+<h3 id="cherry-pick-a-single-commit">Cherry-pick a single commit</h3>
+<p>Apply a specific commit from any branch onto the current branch:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>git<span class="w"> </span>cherry-pick<span class="w"> </span>a3f8c21
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>git<span class="w"> </span>cherry-pick<span class="w"> </span>a3f8c21..f4e5d6c<span class="w">   </span><span class="c1"># range (exclusive start)</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>git<span class="w"> </span>cherry-pick<span class="w"> </span>a3f8c21^..f4e5d6c<span class="w">  </span><span class="c1"># range (inclusive start)</span>
+</span></code></pre></div>
+<p>Useful for pulling a hotfix from a feature branch without merging the whole branch.</p>
+<h3 id="find-when-a-bug-was-introduced-git-bisect">Find when a bug was introduced — <code>git bisect</code></h3>
+<p>Binary search through history to find the commit that introduced a regression:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>git<span class="w"> </span>bisect<span class="w"> </span>start
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>git<span class="w"> </span>bisect<span class="w"> </span>bad<span class="w">               </span><span class="c1"># current commit is broken</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>git<span class="w"> </span>bisect<span class="w"> </span>good<span class="w"> </span>v1.0.0<span class="w">       </span><span class="c1"># v1.0.0 was known good</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># Git checks out a midpoint commit — test it, then:</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>git<span class="w"> </span>bisect<span class="w"> </span>good<span class="w">              </span><span class="c1"># or: git bisect bad</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="c1"># Repeat until Git identifies the first bad commit</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>git<span class="w"> </span>bisect<span class="w"> </span>reset<span class="w">             </span><span class="c1"># return to HEAD when done</span>
+</span></code></pre></div>
+<p>Automate with a test script (exit 0 = good, non-zero = bad):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>git<span class="w"> </span>bisect<span class="w"> </span>run<span class="w"> </span>npm<span class="w"> </span><span class="nb">test</span>
+</span></code></pre></div>
+<h3 id="see-what-changed-in-a-range">See what changed in a range</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>git<span class="w"> </span>log<span class="w"> </span>main..feature-branch<span class="w">   </span><span class="c1"># commits in feature-branch not in main</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>git<span class="w"> </span>diff<span class="w"> </span>main...feature-branch<span class="w"> </span><span class="c1"># diff of the changes feature-branch introduces</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">                               </span><span class="c1"># (triple dot: diff from common ancestor)</span>
+</span></code></pre></div>
+<p>The three-dot <code>...</code> syntax is particularly useful in code review — it shows only the changes the branch introduces, not unrelated commits merged from main.</p>
+<h3 id="recover-a-deleted-branch">Recover a deleted branch</h3>
+<p>If you accidentally delete a branch, <code>git reflog</code> still has the SHA:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>git<span class="w"> </span>reflog<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;branch-name&quot;</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>branch-name<span class="w"> </span>&lt;sha&gt;
+</span></code></pre></div>
+<h3 id="show-which-branch-contains-a-commit">Show which branch contains a commit</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>git<span class="w"> </span>branch<span class="w"> </span>--contains<span class="w"> </span>a3f8c21<span class="w">      </span><span class="c1"># local branches</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>git<span class="w"> </span>branch<span class="w"> </span>-r<span class="w"> </span>--contains<span class="w"> </span>a3f8c21<span class="w">  </span><span class="c1"># remote-tracking branches</span>
+</span></code></pre></div>
+<h3 id="list-files-changed-in-a-commit">List files changed in a commit</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>git<span class="w"> </span>show<span class="w"> </span>--name-only<span class="w"> </span>a3f8c21<span class="w">      </span><span class="c1"># names only</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>git<span class="w"> </span>show<span class="w"> </span>--name-status<span class="w"> </span>a3f8c21<span class="w">    </span><span class="c1"># with A/M/D status</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>git<span class="w"> </span>diff-tree<span class="w"> </span>--no-commit-id<span class="w"> </span>-r<span class="w"> </span>--name-only<span class="w"> </span>a3f8c21<span class="w">  </span><span class="c1"># names only, no header</span>
+</span></code></pre></div>
+<hr />
+<h2 id="gitconfig-template"><code>.gitconfig</code> Template</h2>
+<p>A starting-point <code>~/.gitconfig</code> combining the above:</p>
+<div class="language-ini highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">[user]</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="na">name</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">Your Name</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="na">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">you@example.com</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="k">[init]</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">    </span><span class="na">defaultBranch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">main</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="k">[push]</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">    </span><span class="na">autoSetupRemote</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="k">[pull]</span>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">    </span><span class="na">rebase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="k">[fetch]</span>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="w">    </span><span class="na">prune</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="k">[rebase]</span>
+</span><span id="__span-28-18"><a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="w">    </span><span class="na">autoStash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</span><span id="__span-28-19"><a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>
+</span><span id="__span-28-20"><a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a><span class="k">[rerere]</span>
+</span><span id="__span-28-21"><a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a><span class="w">    </span><span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</span><span id="__span-28-22"><a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a>
+</span><span id="__span-28-23"><a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a><span class="k">[diff]</span>
+</span><span id="__span-28-24"><a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a><span class="w">    </span><span class="na">colorMoved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">zebra</span>
+</span><span id="__span-28-25"><a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a>
+</span><span id="__span-28-26"><a id="__codelineno-28-26" name="__codelineno-28-26" href="#__codelineno-28-26"></a><span class="k">[alias]</span>
+</span><span id="__span-28-27"><a id="__codelineno-28-27" name="__codelineno-28-27" href="#__codelineno-28-27"></a><span class="w">    </span><span class="na">st</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">status -sb</span>
+</span><span id="__span-28-28"><a id="__codelineno-28-28" name="__codelineno-28-28" href="#__codelineno-28-28"></a><span class="w">    </span><span class="na">sw</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">switch</span>
+</span><span id="__span-28-29"><a id="__codelineno-28-29" name="__codelineno-28-29" href="#__codelineno-28-29"></a><span class="w">    </span><span class="na">co</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">checkout</span>
+</span><span id="__span-28-30"><a id="__codelineno-28-30" name="__codelineno-28-30" href="#__codelineno-28-30"></a><span class="w">    </span><span class="na">br</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">branch -vv</span>
+</span><span id="__span-28-31"><a id="__codelineno-28-31" name="__codelineno-28-31" href="#__codelineno-28-31"></a><span class="w">    </span><span class="na">ci</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">commit</span>
+</span><span id="__span-28-32"><a id="__codelineno-28-32" name="__codelineno-28-32" href="#__codelineno-28-32"></a><span class="w">    </span><span class="na">lg</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">log --oneline --graph --decorate --all</span>
+</span><span id="__span-28-33"><a id="__codelineno-28-33" name="__codelineno-28-33" href="#__codelineno-28-33"></a><span class="w">    </span><span class="na">ll</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s">log --oneline --stat</span>
+</span><span id="__span-28-34"><a id="__codelineno-28-34" name="__codelineno-28-34" href="#__codelineno-28-34"></a><span class="w">    </span><span class="na">last</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">log -1 HEAD --stat</span>
+</span><span id="__span-28-35"><a id="__codelineno-28-35" name="__codelineno-28-35" href="#__codelineno-28-35"></a><span class="w">    </span><span class="na">unstage</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">restore --staged</span>
+</span><span id="__span-28-36"><a id="__codelineno-28-36" name="__codelineno-28-36" href="#__codelineno-28-36"></a><span class="w">    </span><span class="na">undo</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">reset --soft HEAD~1</span>
+</span><span id="__span-28-37"><a id="__codelineno-28-37" name="__codelineno-28-37" href="#__codelineno-28-37"></a><span class="w">    </span><span class="na">amend</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">commit --amend --no-edit</span>
+</span><span id="__span-28-38"><a id="__codelineno-28-38" name="__codelineno-28-38" href="#__codelineno-28-38"></a><span class="w">    </span><span class="na">aliases</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">config --get-regexp alias</span>
+</span><span id="__span-28-39"><a id="__codelineno-28-39" name="__codelineno-28-39" href="#__codelineno-28-39"></a><span class="w">    </span><span class="na">cleanup</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">!git branch --merged main | grep -v \&quot;^\\* \\|main\\|master\\|develop\&quot; | xargs git branch -d</span>
+</span></code></pre></div>
+<hr />
+<h2 id="github-cli-productivity">GitHub CLI Productivity</h2>
+<p>The <code>gh</code> CLI (installed separately — see Chapter 4) rounds out the command-line workflow:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>gh<span class="w"> </span>repo<span class="w"> </span>clone<span class="w"> </span>&lt;owner&gt;/&lt;repo&gt;<span class="w">     </span><span class="c1"># clone without constructing the URL</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>gh<span class="w"> </span>pr<span class="w"> </span>create<span class="w"> </span>--fill<span class="w">               </span><span class="c1"># open PR with commit title/body pre-filled</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>gh<span class="w"> </span>pr<span class="w"> </span>checkout<span class="w"> </span><span class="m">42</span><span class="w">                 </span><span class="c1"># check out PR #42 locally</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>gh<span class="w"> </span>pr<span class="w"> </span>merge<span class="w"> </span>--squash<span class="w"> </span>--delete-branch<span class="w">  </span><span class="c1"># merge and delete in one command</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>gh<span class="w"> </span>issue<span class="w"> </span>list<span class="w"> </span>--assignee<span class="w"> </span>@me<span class="w">      </span><span class="c1"># your open issues</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>gh<span class="w"> </span>run<span class="w"> </span>list<span class="w">                       </span><span class="c1"># list recent Actions runs</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>gh<span class="w"> </span>run<span class="w"> </span>watch<span class="w">                      </span><span class="c1"># watch a running workflow in the terminal</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># Create an alias for common gh patterns</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>gh<span class="w"> </span><span class="nb">alias</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>prc<span class="w"> </span><span class="s1">&#39;pr create --fill --web&#39;</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="c1"># gh prc  →  opens the PR creation page with title pre-filled</span>
+</span></code></pre></div>
+<hr />
+<h2 id="summary">Summary</h2>
+<ul>
+<li>Aliases are defined with <code>git config --global alias.&lt;name&gt; &lt;command&gt;</code> or by editing <code>~/.gitconfig</code> directly.</li>
+<li>Essential aliases: <code>lg</code> (visual log), <code>unstage</code>, <code>undo</code>, <code>amend</code>, <code>last</code>, <code>aliases</code>.</li>
+<li>Shell aliases (<code>!</code> prefix) enable arbitrary scripting — branch cleanup, push-and-PR, opening the repo in an editor.</li>
+<li>Key config settings: <code>push.autoSetupRemote</code>, <code>pull.rebase</code>, <code>fetch.prune</code>, <code>rebase.autoStash</code>, <code>rerere.enabled</code>.</li>
+<li>Productive patterns: <code>git add -p</code> for selective staging, <code>git cherry-pick</code> for single commits, <code>git bisect run</code> for automated regression hunting, triple-dot diff for PR review.</li>
+<li>The <code>gh</code> CLI complements <code>git</code> for GitHub-specific tasks — PR creation, checkout, merge, issue listing, and Actions monitoring.</li>
+</ul>
+<blockquote>
+<p><strong>Further reading:</strong> <a href="https://git-scm.com/docs/git-config">Git configuration documentation</a> · <a href="https://cli.github.com/manual/">gh CLI manual</a></p>
+</blockquote>
+<hr />
+<p><em>Previous: <a href="../ch26-workflows/">Chapter 26 — Git Workflows</a></em> · <em>Next: <a href="../../part7/ch28-object-model/">Chapter 28 — Git Object Model: Blobs, Trees &amp; Commits</a></em></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 18, 2026 03:30:12 UTC">April 18, 2026 03:30:12</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Florin Neagu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,7 +1,7 @@
 ---
 title: Paperless-ngx — Self-Hosted Document Management
-description: Practical guide to deploying Paperless-ngx on a Synology NAS with Docker, OCR, and document classification.
-date: 2026-03-10
+description: Practical guide to deploying Paperless-ngx on a Synology NAS with Docker, OCR, multi-user access, and automated document classification.
+date: 2026-04-18
 tags:
   - self-hosted
   - docker
@@ -14,7 +14,7 @@ status: published
 
 # Paperless-ngx — Self-Hosted Document Management
 
-A practical guide to deploying, organising, and getting the most out of a self-hosted [Paperless-ngx](https://docs.paperless-ngx.com/) instance on a home NAS.
+A practical guide to deploying, organising, and running a self-hosted [Paperless-ngx](https://docs.paperless-ngx.com/) instance on a home NAS — covering setup, multi-user access, daily operations, and backup.
 
 ---
 
@@ -32,8 +32,14 @@ A practical guide to deploying, organising, and getting the most out of a self-h
    - [4.3 Tags](#43-tags)
    - [4.4 Saved Views](#44-saved-views)
    - [4.5 Automated Workflows](#45-automated-workflows)
-5. [What Else Can Be Done](#5-what-else-can-be-done)
-6. [Repository Contents](#6-repository-contents)
+5. [Multi-User Setup](#5-multi-user-setup)
+6. [Running It Day-to-Day](#6-running-it-day-to-day)
+   - [6.1 Daily Routine](#61-daily-routine)
+   - [6.2 Adding Documents](#62-adding-documents)
+   - [6.3 Exception Handling](#63-exception-handling)
+   - [6.4 Annual Tasks](#64-annual-tasks)
+7. [Going Further](#7-going-further)
+8. [Repository Contents](#8-repository-contents)
 
 ---
 
@@ -82,6 +88,8 @@ Most households accumulate hundreds of documents per year — bank statements, i
 - Multiple user accounts with separate saved views
 - Shared correspondents and document types
 - Personal health records, identity documents, and property papers in one searchable archive
+
+In practice, a non-technical second user can be onboarded with a single one-page guide covering VPN access, the daily inbox routine, and the tag system. The role-based permission model (§5) keeps family access simple without exposing system configuration.
 
 > **Privacy note:** Because Paperless-ngx is self-hosted, your documents never leave your own hardware. No third-party cloud service has access to your files.
 
@@ -159,7 +167,9 @@ The OCR pipeline is configured for high-quality archival output:
 | Auto-rotate | Enabled | Corrects rotated pages automatically |
 | Colour conversion | Grayscale | Improves contrast; reduces file size |
 | Archive files | Always | Originals are preserved alongside archived copies |
-| Language | Configurable | Multi-language OCR supported (e.g. `eng`, `eng+deu`, `eng+fra`) |
+| Language | `eng` | English OCR; multi-language supported (e.g. `eng+deu`, `eng+fra`) |
+| Tesseract args | `--psm 1 --oem 3` | Automatic page layout detection; best available OCR engine |
+| Barcode detection | Disabled | Skipped to reduce processing time |
 
 ---
 
@@ -239,54 +249,202 @@ Saved Views are pre-configured filtered lists that act as one-click shortcuts. C
 Workflows automatically apply classification rules when a document is ingested. They eliminate most manual classification work.
 
 **How they work:**
-- Each workflow has a **trigger** (e.g. document added), a **filter** (e.g. title contains "invoice"), and **actions** (e.g. set type = Invoice, add tag = `needs-review`).
+- Each workflow has a **trigger** (e.g. document added), a **filter** (e.g. title contains a keyword), and **actions** (e.g. set type, add tag).
 - Workflows run in priority order — specific rules first, a catch-all last.
 
 **Recommended workflow set:**
 
-| Workflow | Match condition | Actions |
-|---|---|---|
-| Agency / Tax Authority | Title contains tax authority name | Set correspondent, type = Government Notice |
-| Bank Statements | Title contains bank name | Type = Bank Statement |
-| Payslips | Title contains employer name | Type = Payslip, tag = `income` |
-| Healthcare | Title contains health agency name | Tag = `medical-expense` |
-| Utility Bills | Title contains provider name | Type = Invoice |
-| **Catch-all** *(priority 999)* | All documents | Tag = `needs-review` |
+| Priority | Purpose | Filter | Actions |
+|---|---|---|---|
+| 10 | Tax authority documents | Title contains tax authority name | Set Correspondent; Type: Government Notice; tag: `needs-review` |
+| 20 | Bank statements | Title contains bank name | Set Correspondent; Type: Bank Statement; tag: `needs-review` |
+| 30 | Payslips | Title contains employer name | Set Correspondent; Type: Payslip; tags: `income`, `needs-review` |
+| 40 | Health / Medicare | Title contains health agency name | Set Correspondent; Type: Government Notice; tags: `medical-expense`, `needs-review` |
+| 50 | Utility bills | Title contains provider names | Type: Invoice; tag: `needs-review` |
+| 999 | **Catch-all** *(always last)* | *(none — matches everything)* | Tag: `needs-review` |
 
-> **Priority tip:** Number specific workflows 10–50. Set the catch-all to 999. This guarantees specific rules always run before the fallback.
+> **Priority tip:** Number specific workflows 10–50. Set the catch-all to 999. This guarantees specific rules always run before the fallback, and leaves room to insert new rules without renumbering.
 
 ---
 
-## 5. What Else Can Be Done
+## 5. Multi-User Setup
 
-The core deployment covers ingestion, OCR, and classification. The following additions improve security, resilience, and capability.
+Paperless-ngx supports role-based access with group-level permissions. Using named groups rather than individual account flags keeps the access model explicit and auditable.
+
+### Account and group structure
+
+| Group | Who | Permissions |
+|---|---|---|
+| `Administrators` | Admin account | Full permissions on all objects — documents, taxonomy, settings, users |
+| `Household` | Day-to-day user; family members | View and edit documents and taxonomy; no system configuration |
+| `ReadOnly` | *(reserved)* | View only |
+
+Two accounts are used in practice:
+
+- **Admin account** — used only for system configuration, user management, and break-glass access. Keep the username non-obvious (not `admin`). Strong password distinct from the database password.
+- **Power user account** — used for all daily document work. Member of Household group.
+
+Additional family members get their own account in the Household group.
+
+### Object-level permissions
+
+In addition to group membership, Paperless-ngx requires object-level permissions on documents and taxonomy. When setting up:
+
+1. Set owner of all existing documents, tags, correspondents, document types, and storage paths to the admin account
+2. Grant **view** permission to: Administrators group + Household group
+3. Grant **edit** permission to: Administrators group only
+
+### Auto-assign permissions on consumption
+
+Create a workflow that fires on every new document so family members can see newly ingested documents without manual intervention:
+
+- **Trigger:** Document added
+- **Filter:** *(none)*
+- **Actions:** Set owner = admin account; grant view to Administrators + Household; grant edit to Administrators
+
+Without this, documents consumed after the initial setup are invisible to non-admin users until permissions are applied manually — a common gotcha.
+
+### Design rationale
+
+A named `Administrators` group (rather than the raw superuser flag) makes the access model consistent and auditable — what the admin account can do is visible in the group permissions list, not implied by a hidden flag. The superuser flag remains available as a break-glass fallback.
+
+---
+
+## 6. Running It Day-to-Day
+
+### 6.1 Daily Routine
+
+Open the **Needs Review** saved view. Work through each document from top to bottom.
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | Open the document | Check what workflows auto-assigned |
+| 2 | Confirm or correct **Correspondent** | Fix if OCR misidentified the sender |
+| 3 | Confirm or correct **Document Type** | Fix if the wrong type was assigned |
+| 4 | Add **Financial Year tag** | e.g. `FY2026` for July 2025 – June 2026 |
+| 5 | Add any **topic or tax tags** | e.g. `tax-deductible`, `income`, `medical-expense` |
+| 6 | **Action required?** | If you need to pay, reply, or act — leave `needs-review` on and return once done |
+| 7 | Remove `needs-review` | Document moves out of the inbox |
+
+> Under 30 seconds per document once workflows are running. A full week's mail takes about 5 minutes. At tax time, everything is already tagged — just open the Tax saved view.
+
+### 6.2 Adding Documents
+
+**Desktop (Windows):** Map the consume folder as a network drive — `\\[your-nas-ip]\docker\paperless\consume`. Drag and drop PDFs directly in File Explorer. Requires home network or VPN when remote.
+
+**Mobile:** Use the **DS File** app — navigate to `docker/paperless/consume/`, add it to Favourites, then tap + to upload. Works over QuickConnect without VPN.
+
+**Phone scanning:** Scan paper documents with **Microsoft Lens** or **Adobe Scan** (or the iOS built-in document scanner). Save as PDF — not JPG — for better OCR results. Upload to the consume folder via DS File.
+
+**Email:** Forward relevant emails to a dedicated Gmail address configured for IMAP ingestion. Paperless pulls attachments automatically and processes them like any other consumed file. Manual forwarding (rather than giving the address to senders directly) gives selective control — not every email from a given sender is worth archiving.
+
+| Source | Method |
+|---|---|
+| Paper | Scan with phone → save as PDF → upload via DS File or SMB |
+| Digital PDF (email, download) | Save to consume folder via SMB or DS File |
+| Screenshot / image | JPG or PNG to consume — Paperless OCRs images as well as PDFs |
+| Email attachment | Forward to dedicated Gmail address (IMAP ingestion) |
+
+> **Naming tip:** Rename files descriptively before dropping them in — e.g. `bank-statement-mar-2026.pdf`. The filename becomes the initial document title, which workflow filters match against.
+
+### 6.3 Exception Handling
+
+| Problem | Symptom | Fix |
+|---|---|---|
+| **Duplicate document** | Same document ingested twice | Search by correspondent or phrase before classifying; delete the newer copy if confirmed duplicate |
+| **Failed OCR** | Document has no searchable text | Check Settings → Tasks for errors. Re-scan at 400 DPI minimum, or remove password protection. If re-scanning is not possible, set Title / Type / Correspondent manually — the document is stored regardless |
+| **Workflow didn't fire** | Document in Needs Review with no auto-assigned fields | OCR likely misread the title. Correct the title manually → re-save → the catch-all workflow fires and moves the document to `filed` automatically |
+| **Garbled OCR / wrong language** | Text is meaningless | English-only OCR — foreign-language documents store safely but text won't be searchable. Set metadata manually as a workaround |
+
+### 6.4 Annual Tasks
+
+Do these every **July** at the start of the new financial year:
+
+| Task | Where | Details |
+|---|---|---|
+| Add new FY tag | Settings → Tags → Add | e.g. `FY2027` each July |
+| Create Tax saved views for new year | Documents → Filter → Save | Tax — FY2027 (tag: FY2027 + tax-deductible); Tax — Income FY2027 (tag: FY2027 + income) |
+| Clear the inbox | Needs Review view | Classify or action any documents left over from the previous year |
+| Review `filed` documents | Optional | Archive documents older than 5 years by adding the `archive` tag |
+
+---
+
+## 7. Going Further
 
 ### Security hardening
 
-| Improvement | Description |
+These steps should be done before the instance is in regular use:
+
+| Step | What to do |
 |---|---|
-| Change default credentials | Replace placeholder database passwords with strong unique values |
-| Add a secret key | Set `PAPERLESS_SECRET_KEY` to a random string for secure session signing |
-| Restrict allowed hosts | Set `PAPERLESS_ALLOWED_HOSTS` to prevent host header injection |
-| Enable HTTPS | Route traffic through a reverse proxy (e.g. Nginx, Traefik, or Synology built-in) with a valid TLS certificate |
+| PostgreSQL password | Run via Container Manager → db → Terminal: `ALTER USER paperless WITH PASSWORD '[strong-password]';` |
+| Secret key | Generate: `openssl rand -base64 37 \| tr -d '=+/' \| cut -c1-50` → set result as `PAPERLESS_SECRET_KEY` env var on the webserver container |
+| Allowed hosts | Set `PAPERLESS_ALLOWED_HOSTS` to `[your-nas-ip],localhost,127.0.0.1,[your-ddns-hostname]`. Django returns HTTP 400 if the Host header is not on this list — the DDNS hostname must be included if you access Paperless by hostname. |
+| Admin account | Rename the default `admin` account to a non-obvious username. Use a strong password distinct from the database password. |
+
+**Remote access:** For a private home deployment, VPN-only access is the practical choice — no extra open port, no TLS certificate to manage, and the VPN tunnel handles transport security. Connect via OpenVPN, then access `http://[your-nas-ip]:8000/` or the DDNS hostname from any browser.
+
+For deployments that need internet-facing access without VPN, a reverse proxy (e.g. Nginx, Traefik, or Synology Reverse Proxy) with a Let's Encrypt certificate is the standard path.
 
 ### Automated backups
 
-| Method | Description |
+A two-layer approach covers both full recovery and document-level recovery:
+
+| Layer | What it covers | How |
+|---|---|---|
+| **Volume backup** | Everything — database, documents, config, Redis state | Back up entire `/volume1/docker/` to an external USB or NAS backup destination. Schedule: three times a week (e.g. Mon/Thu/Sat) via Hyper Backup |
+| **Document export** | All documents and metadata in a portable, human-readable format | DSM Task Scheduler: daily at 01:00. Script: `docker exec webserver document_exporter ../export`. Output: `/volume1/docker/paperless/export/` |
+
+The export produces a `manifest.json` + `documents/` folder that can be imported into a fresh Paperless instance independently of the volume backup.
+
+**What the document export does NOT include** — these must be re-created manually after a fresh-install restore:
+
+- User accounts and passwords
+- Saved views
+- Mail rules and email ingestion config
+- Automation workflows
+- Environment variables (`PAPERLESS_SECRET_KEY`, `PAPERLESS_ALLOWED_HOSTS`)
+
+### Restore
+
+| Scenario | When to use | Approach |
+|---|---|---|
+| **Add missing documents** | Database intact, some documents missing | `docker exec webserver document_importer ../export` |
+| **Full wipe and reimport** | Corrupted data, fresh database needed | Stop webserver → drop and recreate the PostgreSQL schema → start webserver → wait 30 s → reimport → recreate superuser |
+| **Disaster recovery** (new NAS) | Total hardware loss | Restore `/volume1/docker/` from volume backup → recreate container stack → reimport from export if pgdata is unusable |
+
+After any restore: verify documents are visible, tags and correspondents are present, the consume folder is being monitored, and backup jobs are re-enabled.
+
+### Email ingestion
+
+Paperless-ngx can pull email attachments via IMAP and process them exactly like files dropped into the consume folder.
+
+**Gmail setup:**
+
+| Setting | Value |
 |---|---|
-| Scheduled export | Use a scheduled task to run `document_exporter` weekly — produces a portable, human-readable backup |
-| Volume backup | Back up the database (`pgdata/`) and document store (`media/`) using your NAS backup tool or rsync |
-| Off-site copy | Sync the export folder to cloud storage (S3, Backblaze B2, OneDrive) for offsite redundancy |
+| Dedicated address | Create a separate Gmail account (e.g. `[yourname]-paperless@gmail.com`) |
+| App password | Google Account → Security → 2-Step Verification → App passwords (16-character) |
+| IMAP server | `imap.gmail.com`, port `993`, SSL/TLS |
+
+**Mail rule (catch-all):**
+
+| Setting | Value |
+|---|---|
+| Order | 999 |
+| Action | Consume attachments |
+| Assign tags | `needs-review` |
+| After processing | Mark email as read |
+
+Forward relevant emails to the dedicated address rather than giving it directly to senders — this keeps selective control over what gets archived. Because Gmail rewrites the `From:` header on forwarded mail, per-sender filter rules don't work reliably; a single catch-all rule handles everything, with document workflows doing classification after OCR.
 
 ### Optional enhancements
 
 | Feature | What it adds |
 |---|---|
-| **Storage Paths** | Auto-organise archived files into a folder structure (e.g. by correspondent / type / year) |
-| **Email ingestion** | Pull documents directly from an IMAP inbox — useful for digital invoices and statements |
-| **Custom Fields** | Add structured metadata: amount, account number, expiry date, policy number |
+| **Storage Paths** | Auto-organise archived files into a folder structure — e.g. `{correspondent}/{document_type}/{created_year}/` produces `ATO/Government Notice/2025/[title].pdf` |
+| **Custom Fields** | Add structured metadata to documents: Amount, Account Number, Policy Number, Expiry Date, Reference Number |
 | **Share Links** | Generate temporary read-only links to individual documents — no account required for the recipient |
-| **Remote access** | Combine a reverse proxy with a dynamic DNS hostname and Let's Encrypt certificate for secure access from anywhere |
 | **API integration** | Use the REST API to trigger ingestion, query documents, or integrate with home automation tools |
 
 ### Ongoing maintenance
@@ -297,19 +455,24 @@ The core deployment covers ingestion, OCR, and classification. The following add
 | Update container images | Every 2–3 months |
 | Check task queue for failed jobs | Monthly |
 | Verify backups are completing successfully | Monthly |
+| Annual restore test — confirm export imports cleanly to a fresh instance | Annually |
 | Review and archive old status-tagged documents | Quarterly |
 
 ---
 
-## 6. Repository Contents
+## 8. Repository Contents
 
 This repository contains deployment documentation and configuration references for the above setup. It is not the Paperless-ngx source code.
 
 | File | Description |
 |---|---|
-| `Paperless-ngx_Complete_Reference.md` | Full deployment reference — all containers, volumes, environment variables, OCR settings, and backup/restore procedure |
+| `Paperless-ngx_Complete_Reference/` | Full deployment reference split across 8 files: architecture, containers, volumes, environment variables, OCR settings, users and permissions, backup and restore, and quick reference |
 | `paperless-ngx-organisation-guide.md` | Complete taxonomy guide — document types, correspondents, tags, saved views, workflows, and day-to-day process |
+| `paperless-ngx-day-to-day-sop.md` | Day-to-day SOP — inbox routine, scanning, bulk import, exception handling, phone workflow, and annual tasks |
 | `paperless-ngx-next-steps.md` | Actionable checklist — UI setup tasks, security improvements, backup automation, and optional enhancements |
+| `Paperless-ngx_Restore_Procedure.md` | Step-by-step restore procedures: add missing documents and full wipe + reimport |
+| `rbac-design.md` | RBAC design — accounts, groups, object-level permissions, and implementation steps |
+| `gabi-onboarding-guide.md` | Non-technical quick guide for household users — access, daily routine, classification, and quick reference |
 | `Paperless-ngx.md` | Original per-container setup notes for Synology Container Manager GUI |
 | `OCR Settings.md` | OCR parameter reference with descriptions |
 | `Paperlessngx - Poweruser.md` | Power user permission template — full CRUD matrix |

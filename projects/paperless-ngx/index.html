@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Technical notes, projects, articles, and code references">
+        <meta name="description" content="Practical guide to deploying Paperless-ngx on a Synology NAS with Docker, OCR, multi-user access, and automated document classification.">
       
       
         <meta name="author" content="Florin Neagu">
@@ -29,7 +29,7 @@
     
     
       
-        <title>Paperless-ngx - Florin Neagu Projects & Notes</title>
+        <title>Paperless-ngx — Self-Hosted Document Management - Florin Neagu Projects & Notes</title>
       
     
     
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Paperless-ngx
+              Paperless-ngx — Self-Hosted Document Management
             
           </span>
         </div>
@@ -331,6 +331,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tags/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -492,6 +511,13 @@
   </span>
   
   
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
 
       </a>
     </li>
@@ -519,6 +545,13 @@
     
   </span>
   
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
   
 
       </a>
@@ -548,6 +581,13 @@
   </span>
   
   
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
 
       </a>
     </li>
@@ -575,6 +615,13 @@
     
   </span>
   
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
   
 
       </a>
@@ -604,6 +651,13 @@
   </span>
   
   
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
 
       </a>
     </li>
@@ -632,6 +686,13 @@
   </span>
   
   
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
 
       </a>
     </li>
@@ -659,6 +720,13 @@
     
   </span>
   
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
   
 
       </a>
@@ -778,6 +846,13 @@
   </span>
   
   
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -795,6 +870,13 @@
     
   </span>
   
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
   
 
       </a>
@@ -1026,15 +1108,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-what-else-can-be-done" class="md-nav__link">
+  <a href="#5-multi-user-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. What Else Can Be Done
+        5. Multi-User Setup
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. What Else Can Be Done">
+    <nav class="md-nav" aria-label="5. Multi-User Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account-and-group-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account and group structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-level-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object-level permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-assign-permissions-on-consumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-assign permissions on consumption
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-running-it-day-to-day" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Running It Day-to-Day
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Running It Day-to-Day">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-daily-routine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Daily Routine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-adding-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Adding Documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-exception-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Exception Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-annual-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Annual Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-going-further" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Going Further
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Going Further">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1053,6 +1257,28 @@
     <span class="md-ellipsis">
       
         Automated backups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email ingestion
       
     </span>
   </a>
@@ -1087,10 +1313,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-repository-contents" class="md-nav__link">
+  <a href="#8-repository-contents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Repository Contents
+        8. Repository Contents
       
     </span>
   </a>
@@ -1155,6 +1381,33 @@
     
   
     Notebooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
   
 
     
@@ -1405,15 +1658,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-what-else-can-be-done" class="md-nav__link">
+  <a href="#5-multi-user-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. What Else Can Be Done
+        5. Multi-User Setup
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="5. What Else Can Be Done">
+    <nav class="md-nav" aria-label="5. Multi-User Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account-and-group-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Account and group structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-level-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object-level permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auto-assign-permissions-on-consumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auto-assign permissions on consumption
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design rationale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-running-it-day-to-day" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Running It Day-to-Day
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Running It Day-to-Day">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-daily-routine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Daily Routine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-adding-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Adding Documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-exception-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Exception Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-annual-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Annual Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-going-further" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Going Further
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Going Further">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1432,6 +1807,28 @@
     <span class="md-ellipsis">
       
         Automated backups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email ingestion
       
     </span>
   </a>
@@ -1466,10 +1863,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-repository-contents" class="md-nav__link">
+  <a href="#8-repository-contents" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Repository Contents
+        8. Repository Contents
       
     </span>
   </a>
@@ -1491,13 +1888,59 @@
                 
                   
 
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:docker" class="md-tag">docker</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:home-lab" class="md-tag">home-lab</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:nas" class="md-tag">nas</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:paperless-ngx" class="md-tag">paperless-ngx</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:self-hosted" class="md-tag">self-hosted</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../tags/#tag:synology" class="md-tag">synology</a>
+      
+    
+  </nav>
+
 
   
   
 
 
 <h1 id="paperless-ngx-self-hosted-document-management">Paperless-ngx — Self-Hosted Document Management</h1>
-<p>A practical guide to deploying, organising, and getting the most out of a self-hosted <a href="https://docs.paperless-ngx.com/">Paperless-ngx</a> instance on a home NAS.</p>
+<p>A practical guide to deploying, organising, and running a self-hosted <a href="https://docs.paperless-ngx.com/">Paperless-ngx</a> instance on a home NAS — covering setup, multi-user access, daily operations, and backup.</p>
 <hr />
 <h2 id="table-of-contents">Table of Contents</h2>
 <ol>
@@ -1513,8 +1956,14 @@
 <li><a href="#43-tags">4.3 Tags</a></li>
 <li><a href="#44-saved-views">4.4 Saved Views</a></li>
 <li><a href="#45-automated-workflows">4.5 Automated Workflows</a></li>
-<li><a href="#5-what-else-can-be-done">What Else Can Be Done</a></li>
-<li><a href="#6-repository-contents">Repository Contents</a></li>
+<li><a href="#5-multi-user-setup">Multi-User Setup</a></li>
+<li><a href="#6-running-it-day-to-day">Running It Day-to-Day</a></li>
+<li><a href="#61-daily-routine">6.1 Daily Routine</a></li>
+<li><a href="#62-adding-documents">6.2 Adding Documents</a></li>
+<li><a href="#63-exception-handling">6.3 Exception Handling</a></li>
+<li><a href="#64-annual-tasks">6.4 Annual Tasks</a></li>
+<li><a href="#7-going-further">Going Further</a></li>
+<li><a href="#8-repository-contents">Repository Contents</a></li>
 </ol>
 <hr />
 <h2 id="1-what-is-paperless-ngx">1. What Is Paperless-ngx?</h2>
@@ -1588,6 +2037,7 @@
 <li>Shared correspondents and document types</li>
 <li>Personal health records, identity documents, and property papers in one searchable archive</li>
 </ul>
+<p>In practice, a non-technical second user can be onboarded with a single one-page guide covering VPN access, the daily inbox routine, and the tag system. The role-based permission model (§5) keeps family access simple without exposing system configuration.</p>
 <blockquote>
 <p><strong>Privacy note:</strong> Because Paperless-ngx is self-hosted, your documents never leave your own hardware. No third-party cloud service has access to your files.</p>
 </blockquote>
@@ -1721,8 +2171,18 @@
 </tr>
 <tr>
 <td>Language</td>
-<td>Configurable</td>
-<td>Multi-language OCR supported (e.g. <code>eng</code>, <code>eng+deu</code>, <code>eng+fra</code>)</td>
+<td><code>eng</code></td>
+<td>English OCR; multi-language supported (e.g. <code>eng+deu</code>, <code>eng+fra</code>)</td>
+</tr>
+<tr>
+<td>Tesseract args</td>
+<td><code>--psm 1 --oem 3</code></td>
+<td>Automatic page layout detection; best available OCR engine</td>
+</tr>
+<tr>
+<td>Barcode detection</td>
+<td>Disabled</td>
+<td>Skipped to reduce processing time</td>
 </tr>
 </tbody>
 </table>
@@ -1878,106 +2338,410 @@
 <h3 id="45-automated-workflows">4.5 Automated Workflows</h3>
 <p>Workflows automatically apply classification rules when a document is ingested. They eliminate most manual classification work.</p>
 <p><strong>How they work:</strong>
-- Each workflow has a <strong>trigger</strong> (e.g. document added), a <strong>filter</strong> (e.g. title contains "invoice"), and <strong>actions</strong> (e.g. set type = Invoice, add tag = <code>needs-review</code>).
+- Each workflow has a <strong>trigger</strong> (e.g. document added), a <strong>filter</strong> (e.g. title contains a keyword), and <strong>actions</strong> (e.g. set type, add tag).
 - Workflows run in priority order — specific rules first, a catch-all last.</p>
 <p><strong>Recommended workflow set:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Workflow</th>
-<th>Match condition</th>
+<th>Priority</th>
+<th>Purpose</th>
+<th>Filter</th>
 <th>Actions</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Agency / Tax Authority</td>
+<td>10</td>
+<td>Tax authority documents</td>
 <td>Title contains tax authority name</td>
-<td>Set correspondent, type = Government Notice</td>
+<td>Set Correspondent; Type: Government Notice; tag: <code>needs-review</code></td>
 </tr>
 <tr>
-<td>Bank Statements</td>
+<td>20</td>
+<td>Bank statements</td>
 <td>Title contains bank name</td>
-<td>Type = Bank Statement</td>
+<td>Set Correspondent; Type: Bank Statement; tag: <code>needs-review</code></td>
 </tr>
 <tr>
+<td>30</td>
 <td>Payslips</td>
 <td>Title contains employer name</td>
-<td>Type = Payslip, tag = <code>income</code></td>
+<td>Set Correspondent; Type: Payslip; tags: <code>income</code>, <code>needs-review</code></td>
 </tr>
 <tr>
-<td>Healthcare</td>
+<td>40</td>
+<td>Health / Medicare</td>
 <td>Title contains health agency name</td>
-<td>Tag = <code>medical-expense</code></td>
+<td>Set Correspondent; Type: Government Notice; tags: <code>medical-expense</code>, <code>needs-review</code></td>
 </tr>
 <tr>
-<td>Utility Bills</td>
-<td>Title contains provider name</td>
-<td>Type = Invoice</td>
+<td>50</td>
+<td>Utility bills</td>
+<td>Title contains provider names</td>
+<td>Type: Invoice; tag: <code>needs-review</code></td>
 </tr>
 <tr>
-<td><strong>Catch-all</strong> <em>(priority 999)</em></td>
-<td>All documents</td>
-<td>Tag = <code>needs-review</code></td>
+<td>999</td>
+<td><strong>Catch-all</strong> <em>(always last)</em></td>
+<td><em>(none — matches everything)</em></td>
+<td>Tag: <code>needs-review</code></td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p><strong>Priority tip:</strong> Number specific workflows 10–50. Set the catch-all to 999. This guarantees specific rules always run before the fallback.</p>
+<p><strong>Priority tip:</strong> Number specific workflows 10–50. Set the catch-all to 999. This guarantees specific rules always run before the fallback, and leaves room to insert new rules without renumbering.</p>
 </blockquote>
 <hr />
-<h2 id="5-what-else-can-be-done">5. What Else Can Be Done</h2>
-<p>The core deployment covers ingestion, OCR, and classification. The following additions improve security, resilience, and capability.</p>
-<h3 id="security-hardening">Security hardening</h3>
+<h2 id="5-multi-user-setup">5. Multi-User Setup</h2>
+<p>Paperless-ngx supports role-based access with group-level permissions. Using named groups rather than individual account flags keeps the access model explicit and auditable.</p>
+<h3 id="account-and-group-structure">Account and group structure</h3>
 <table>
 <thead>
 <tr>
-<th>Improvement</th>
-<th>Description</th>
+<th>Group</th>
+<th>Who</th>
+<th>Permissions</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Change default credentials</td>
-<td>Replace placeholder database passwords with strong unique values</td>
+<td><code>Administrators</code></td>
+<td>Admin account</td>
+<td>Full permissions on all objects — documents, taxonomy, settings, users</td>
 </tr>
 <tr>
-<td>Add a secret key</td>
-<td>Set <code>PAPERLESS_SECRET_KEY</code> to a random string for secure session signing</td>
+<td><code>Household</code></td>
+<td>Day-to-day user; family members</td>
+<td>View and edit documents and taxonomy; no system configuration</td>
 </tr>
 <tr>
-<td>Restrict allowed hosts</td>
-<td>Set <code>PAPERLESS_ALLOWED_HOSTS</code> to prevent host header injection</td>
-</tr>
-<tr>
-<td>Enable HTTPS</td>
-<td>Route traffic through a reverse proxy (e.g. Nginx, Traefik, or Synology built-in) with a valid TLS certificate</td>
+<td><code>ReadOnly</code></td>
+<td><em>(reserved)</em></td>
+<td>View only</td>
 </tr>
 </tbody>
 </table>
-<h3 id="automated-backups">Automated backups</h3>
+<p>Two accounts are used in practice:</p>
+<ul>
+<li><strong>Admin account</strong> — used only for system configuration, user management, and break-glass access. Keep the username non-obvious (not <code>admin</code>). Strong password distinct from the database password.</li>
+<li><strong>Power user account</strong> — used for all daily document work. Member of Household group.</li>
+</ul>
+<p>Additional family members get their own account in the Household group.</p>
+<h3 id="object-level-permissions">Object-level permissions</h3>
+<p>In addition to group membership, Paperless-ngx requires object-level permissions on documents and taxonomy. When setting up:</p>
+<ol>
+<li>Set owner of all existing documents, tags, correspondents, document types, and storage paths to the admin account</li>
+<li>Grant <strong>view</strong> permission to: Administrators group + Household group</li>
+<li>Grant <strong>edit</strong> permission to: Administrators group only</li>
+</ol>
+<h3 id="auto-assign-permissions-on-consumption">Auto-assign permissions on consumption</h3>
+<p>Create a workflow that fires on every new document so family members can see newly ingested documents without manual intervention:</p>
+<ul>
+<li><strong>Trigger:</strong> Document added</li>
+<li><strong>Filter:</strong> <em>(none)</em></li>
+<li><strong>Actions:</strong> Set owner = admin account; grant view to Administrators + Household; grant edit to Administrators</li>
+</ul>
+<p>Without this, documents consumed after the initial setup are invisible to non-admin users until permissions are applied manually — a common gotcha.</p>
+<h3 id="design-rationale">Design rationale</h3>
+<p>A named <code>Administrators</code> group (rather than the raw superuser flag) makes the access model consistent and auditable — what the admin account can do is visible in the group permissions list, not implied by a hidden flag. The superuser flag remains available as a break-glass fallback.</p>
+<hr />
+<h2 id="6-running-it-day-to-day">6. Running It Day-to-Day</h2>
+<h3 id="61-daily-routine">6.1 Daily Routine</h3>
+<p>Open the <strong>Needs Review</strong> saved view. Work through each document from top to bottom.</p>
 <table>
 <thead>
 <tr>
+<th>Step</th>
+<th>Action</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Open the document</td>
+<td>Check what workflows auto-assigned</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Confirm or correct <strong>Correspondent</strong></td>
+<td>Fix if OCR misidentified the sender</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Confirm or correct <strong>Document Type</strong></td>
+<td>Fix if the wrong type was assigned</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Add <strong>Financial Year tag</strong></td>
+<td>e.g. <code>FY2026</code> for July 2025 – June 2026</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Add any <strong>topic or tax tags</strong></td>
+<td>e.g. <code>tax-deductible</code>, <code>income</code>, <code>medical-expense</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Action required?</strong></td>
+<td>If you need to pay, reply, or act — leave <code>needs-review</code> on and return once done</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Remove <code>needs-review</code></td>
+<td>Document moves out of the inbox</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Under 30 seconds per document once workflows are running. A full week's mail takes about 5 minutes. At tax time, everything is already tagged — just open the Tax saved view.</p>
+</blockquote>
+<h3 id="62-adding-documents">6.2 Adding Documents</h3>
+<p><strong>Desktop (Windows):</strong> Map the consume folder as a network drive — <code>\\[your-nas-ip]\docker\paperless\consume</code>. Drag and drop PDFs directly in File Explorer. Requires home network or VPN when remote.</p>
+<p><strong>Mobile:</strong> Use the <strong>DS File</strong> app — navigate to <code>docker/paperless/consume/</code>, add it to Favourites, then tap + to upload. Works over QuickConnect without VPN.</p>
+<p><strong>Phone scanning:</strong> Scan paper documents with <strong>Microsoft Lens</strong> or <strong>Adobe Scan</strong> (or the iOS built-in document scanner). Save as PDF — not JPG — for better OCR results. Upload to the consume folder via DS File.</p>
+<p><strong>Email:</strong> Forward relevant emails to a dedicated Gmail address configured for IMAP ingestion. Paperless pulls attachments automatically and processes them like any other consumed file. Manual forwarding (rather than giving the address to senders directly) gives selective control — not every email from a given sender is worth archiving.</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
 <th>Method</th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Scheduled export</td>
-<td>Use a scheduled task to run <code>document_exporter</code> weekly — produces a portable, human-readable backup</td>
+<td>Paper</td>
+<td>Scan with phone → save as PDF → upload via DS File or SMB</td>
 </tr>
 <tr>
-<td>Volume backup</td>
-<td>Back up the database (<code>pgdata/</code>) and document store (<code>media/</code>) using your NAS backup tool or rsync</td>
+<td>Digital PDF (email, download)</td>
+<td>Save to consume folder via SMB or DS File</td>
 </tr>
 <tr>
-<td>Off-site copy</td>
-<td>Sync the export folder to cloud storage (S3, Backblaze B2, OneDrive) for offsite redundancy</td>
+<td>Screenshot / image</td>
+<td>JPG or PNG to consume — Paperless OCRs images as well as PDFs</td>
+</tr>
+<tr>
+<td>Email attachment</td>
+<td>Forward to dedicated Gmail address (IMAP ingestion)</td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Naming tip:</strong> Rename files descriptively before dropping them in — e.g. <code>bank-statement-mar-2026.pdf</code>. The filename becomes the initial document title, which workflow filters match against.</p>
+</blockquote>
+<h3 id="63-exception-handling">6.3 Exception Handling</h3>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Duplicate document</strong></td>
+<td>Same document ingested twice</td>
+<td>Search by correspondent or phrase before classifying; delete the newer copy if confirmed duplicate</td>
+</tr>
+<tr>
+<td><strong>Failed OCR</strong></td>
+<td>Document has no searchable text</td>
+<td>Check Settings → Tasks for errors. Re-scan at 400 DPI minimum, or remove password protection. If re-scanning is not possible, set Title / Type / Correspondent manually — the document is stored regardless</td>
+</tr>
+<tr>
+<td><strong>Workflow didn't fire</strong></td>
+<td>Document in Needs Review with no auto-assigned fields</td>
+<td>OCR likely misread the title. Correct the title manually → re-save → the catch-all workflow fires and moves the document to <code>filed</code> automatically</td>
+</tr>
+<tr>
+<td><strong>Garbled OCR / wrong language</strong></td>
+<td>Text is meaningless</td>
+<td>English-only OCR — foreign-language documents store safely but text won't be searchable. Set metadata manually as a workaround</td>
+</tr>
+</tbody>
+</table>
+<h3 id="64-annual-tasks">6.4 Annual Tasks</h3>
+<p>Do these every <strong>July</strong> at the start of the new financial year:</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Where</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add new FY tag</td>
+<td>Settings → Tags → Add</td>
+<td>e.g. <code>FY2027</code> each July</td>
+</tr>
+<tr>
+<td>Create Tax saved views for new year</td>
+<td>Documents → Filter → Save</td>
+<td>Tax — FY2027 (tag: FY2027 + tax-deductible); Tax — Income FY2027 (tag: FY2027 + income)</td>
+</tr>
+<tr>
+<td>Clear the inbox</td>
+<td>Needs Review view</td>
+<td>Classify or action any documents left over from the previous year</td>
+</tr>
+<tr>
+<td>Review <code>filed</code> documents</td>
+<td>Optional</td>
+<td>Archive documents older than 5 years by adding the <code>archive</code> tag</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-going-further">7. Going Further</h2>
+<h3 id="security-hardening">Security hardening</h3>
+<p>These steps should be done before the instance is in regular use:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL password</td>
+<td>Run via Container Manager → db → Terminal: <code>ALTER USER paperless WITH PASSWORD '[strong-password]';</code></td>
+</tr>
+<tr>
+<td>Secret key</td>
+<td>Generate: <code>openssl rand -base64 37 \| tr -d '=+/' \| cut -c1-50</code> → set result as <code>PAPERLESS_SECRET_KEY</code> env var on the webserver container</td>
+</tr>
+<tr>
+<td>Allowed hosts</td>
+<td>Set <code>PAPERLESS_ALLOWED_HOSTS</code> to <code>[your-nas-ip],localhost,127.0.0.1,[your-ddns-hostname]</code>. Django returns HTTP 400 if the Host header is not on this list — the DDNS hostname must be included if you access Paperless by hostname.</td>
+</tr>
+<tr>
+<td>Admin account</td>
+<td>Rename the default <code>admin</code> account to a non-obvious username. Use a strong password distinct from the database password.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Remote access:</strong> For a private home deployment, VPN-only access is the practical choice — no extra open port, no TLS certificate to manage, and the VPN tunnel handles transport security. Connect via OpenVPN, then access <code>http://[your-nas-ip]:8000/</code> or the DDNS hostname from any browser.</p>
+<p>For deployments that need internet-facing access without VPN, a reverse proxy (e.g. Nginx, Traefik, or Synology Reverse Proxy) with a Let's Encrypt certificate is the standard path.</p>
+<h3 id="automated-backups">Automated backups</h3>
+<p>A two-layer approach covers both full recovery and document-level recovery:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>What it covers</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Volume backup</strong></td>
+<td>Everything — database, documents, config, Redis state</td>
+<td>Back up entire <code>/volume1/docker/</code> to an external USB or NAS backup destination. Schedule: three times a week (e.g. Mon/Thu/Sat) via Hyper Backup</td>
+</tr>
+<tr>
+<td><strong>Document export</strong></td>
+<td>All documents and metadata in a portable, human-readable format</td>
+<td>DSM Task Scheduler: daily at 01:00. Script: <code>docker exec webserver document_exporter ../export</code>. Output: <code>/volume1/docker/paperless/export/</code></td>
+</tr>
+</tbody>
+</table>
+<p>The export produces a <code>manifest.json</code> + <code>documents/</code> folder that can be imported into a fresh Paperless instance independently of the volume backup.</p>
+<p><strong>What the document export does NOT include</strong> — these must be re-created manually after a fresh-install restore:</p>
+<ul>
+<li>User accounts and passwords</li>
+<li>Saved views</li>
+<li>Mail rules and email ingestion config</li>
+<li>Automation workflows</li>
+<li>Environment variables (<code>PAPERLESS_SECRET_KEY</code>, <code>PAPERLESS_ALLOWED_HOSTS</code>)</li>
+</ul>
+<h3 id="restore">Restore</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>When to use</th>
+<th>Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Add missing documents</strong></td>
+<td>Database intact, some documents missing</td>
+<td><code>docker exec webserver document_importer ../export</code></td>
+</tr>
+<tr>
+<td><strong>Full wipe and reimport</strong></td>
+<td>Corrupted data, fresh database needed</td>
+<td>Stop webserver → drop and recreate the PostgreSQL schema → start webserver → wait 30 s → reimport → recreate superuser</td>
+</tr>
+<tr>
+<td><strong>Disaster recovery</strong> (new NAS)</td>
+<td>Total hardware loss</td>
+<td>Restore <code>/volume1/docker/</code> from volume backup → recreate container stack → reimport from export if pgdata is unusable</td>
+</tr>
+</tbody>
+</table>
+<p>After any restore: verify documents are visible, tags and correspondents are present, the consume folder is being monitored, and backup jobs are re-enabled.</p>
+<h3 id="email-ingestion">Email ingestion</h3>
+<p>Paperless-ngx can pull email attachments via IMAP and process them exactly like files dropped into the consume folder.</p>
+<p><strong>Gmail setup:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dedicated address</td>
+<td>Create a separate Gmail account (e.g. <code>[yourname]-paperless@gmail.com</code>)</td>
+</tr>
+<tr>
+<td>App password</td>
+<td>Google Account → Security → 2-Step Verification → App passwords (16-character)</td>
+</tr>
+<tr>
+<td>IMAP server</td>
+<td><code>imap.gmail.com</code>, port <code>993</code>, SSL/TLS</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mail rule (catch-all):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Order</td>
+<td>999</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>Consume attachments</td>
+</tr>
+<tr>
+<td>Assign tags</td>
+<td><code>needs-review</code></td>
+</tr>
+<tr>
+<td>After processing</td>
+<td>Mark email as read</td>
+</tr>
+</tbody>
+</table>
+<p>Forward relevant emails to the dedicated address rather than giving it directly to senders — this keeps selective control over what gets archived. Because Gmail rewrites the <code>From:</code> header on forwarded mail, per-sender filter rules don't work reliably; a single catch-all rule handles everything, with document workflows doing classification after OCR.</p>
 <h3 id="optional-enhancements">Optional enhancements</h3>
 <table>
 <thead>
@@ -1989,23 +2753,15 @@
 <tbody>
 <tr>
 <td><strong>Storage Paths</strong></td>
-<td>Auto-organise archived files into a folder structure (e.g. by correspondent / type / year)</td>
-</tr>
-<tr>
-<td><strong>Email ingestion</strong></td>
-<td>Pull documents directly from an IMAP inbox — useful for digital invoices and statements</td>
+<td>Auto-organise archived files into a folder structure — e.g. <code>{correspondent}/{document_type}/{created_year}/</code> produces <code>ATO/Government Notice/2025/[title].pdf</code></td>
 </tr>
 <tr>
 <td><strong>Custom Fields</strong></td>
-<td>Add structured metadata: amount, account number, expiry date, policy number</td>
+<td>Add structured metadata to documents: Amount, Account Number, Policy Number, Expiry Date, Reference Number</td>
 </tr>
 <tr>
 <td><strong>Share Links</strong></td>
 <td>Generate temporary read-only links to individual documents — no account required for the recipient</td>
-</tr>
-<tr>
-<td><strong>Remote access</strong></td>
-<td>Combine a reverse proxy with a dynamic DNS hostname and Let's Encrypt certificate for secure access from anywhere</td>
 </tr>
 <tr>
 <td><strong>API integration</strong></td>
@@ -2039,13 +2795,17 @@
 <td>Monthly</td>
 </tr>
 <tr>
+<td>Annual restore test — confirm export imports cleanly to a fresh instance</td>
+<td>Annually</td>
+</tr>
+<tr>
 <td>Review and archive old status-tagged documents</td>
 <td>Quarterly</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="6-repository-contents">6. Repository Contents</h2>
+<h2 id="8-repository-contents">8. Repository Contents</h2>
 <p>This repository contains deployment documentation and configuration references for the above setup. It is not the Paperless-ngx source code.</p>
 <table>
 <thead>
@@ -2056,16 +2816,32 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Paperless-ngx_Complete_Reference.md</code></td>
-<td>Full deployment reference — all containers, volumes, environment variables, OCR settings, and backup/restore procedure</td>
+<td><code>Paperless-ngx_Complete_Reference/</code></td>
+<td>Full deployment reference split across 8 files: architecture, containers, volumes, environment variables, OCR settings, users and permissions, backup and restore, and quick reference</td>
 </tr>
 <tr>
 <td><code>paperless-ngx-organisation-guide.md</code></td>
 <td>Complete taxonomy guide — document types, correspondents, tags, saved views, workflows, and day-to-day process</td>
 </tr>
 <tr>
+<td><code>paperless-ngx-day-to-day-sop.md</code></td>
+<td>Day-to-day SOP — inbox routine, scanning, bulk import, exception handling, phone workflow, and annual tasks</td>
+</tr>
+<tr>
 <td><code>paperless-ngx-next-steps.md</code></td>
 <td>Actionable checklist — UI setup tasks, security improvements, backup automation, and optional enhancements</td>
+</tr>
+<tr>
+<td><code>Paperless-ngx_Restore_Procedure.md</code></td>
+<td>Step-by-step restore procedures: add missing documents and full wipe + reimport</td>
+</tr>
+<tr>
+<td><code>rbac-design.md</code></td>
+<td>RBAC design — accounts, groups, object-level permissions, and implementation steps</td>
+</tr>
+<tr>
+<td><code>gabi-onboarding-guide.md</code></td>
+<td>Non-technical quick guide for household users — access, daily routine, classification, and quick reference</td>
 </tr>
 <tr>
 <td><code>Paperless-ngx.md</code></td>
@@ -2107,7 +2883,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="March 10, 2026 10:09:54 UTC">March 10, 2026 10:09:54</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 18, 2026 02:46:00 UTC">April 18, 2026 02:46:00</span>
   </span>
 
     

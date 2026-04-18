@@ -4,9 +4,9 @@
 > If deeper context is needed, read the last 20 rows of `_blog/change-log.md`.
 
 **Updated:** 2026-04-18
-**Last session commit:** 64aa56f88881d2c47b3000192f40939c1a68fa08
-**Last check:** 2026-04-18 — Added /start command for session-start briefing (SI-005); no content changes this session
-**Open content:** 5 items (PRJ-001 Paperless update · PRJ-002 GitHub manual · PRJ-003 Wako scaffold · ART-001 · ART-002)
+**Last session commit:** e691b494d117d22e25920458a76e96bbe46431bc
+**Last check:** 2026-04-18 — Captured three-project pipeline (PRJ-001 Paperless update, PRJ-002 GitHub manual, PRJ-003 Wako scaffold) and iterative template decision (D-006); no content published
+**Open content:** 5 items (highest priority: ART-001 First code snippet)
 **Open improvements:** 1 item (SI-003 Content templates — iterative)
 **Open issues:** None
 

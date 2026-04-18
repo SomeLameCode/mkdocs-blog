@@ -76,7 +76,7 @@ mkdocs gh-deploy
 
 ## Session Workflow
 
-**At session start** — read `_blog/session-state.md` to load current context (what is live, what is in progress, next actions).
+**At session start** — read `_blog/session-state.md` immediately and present a brief session briefing to the user before doing anything else. Include: last updated date, what is in progress (if any), and the ordered next actions with effort hints.
 
 **At session end** — run `/blog-update` to update all governance files. Commit all work first; the command uses git history as its primary evidence source.
 

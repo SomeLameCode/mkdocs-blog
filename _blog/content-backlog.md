@@ -25,7 +25,7 @@
 
 | ID | Item | Priority | Effort | Risk | Status | Completed | Notes |
 |---|---|---|---|---|---|---|---|
-| SI-001 | Add frontmatter + tags plugin | High | M | Med | [ ] | | Enables tag navigation; requires editing all existing pages |
-| SI-002 | Add /blog-update Claude command | High | S | Low | [ ] | | Session close ritual |
+| SI-001 | Add frontmatter + tags plugin | High | M | Med | [x] | 2026-04-17 | Enables tag navigation; requires editing all existing pages |
+| SI-002 | Add /blog-update Claude command | High | S | Low | [x] | 2026-04-17 | Session close ritual |
 | SI-003 | Create article + project content templates | Medium | S | Low | [ ] | | In 00_templates\3_template_blog |
-| SI-004 | Update CLAUDE.md with governance conventions | Medium | S | Low | [ ] | | Document session workflow, ID scheme, frontmatter |
+| SI-004 | Update CLAUDE.md with governance conventions | Medium | S | Low | [x] | 2026-04-17 | Document session workflow, ID scheme, frontmatter |

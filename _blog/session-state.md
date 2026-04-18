@@ -4,10 +4,10 @@
 > If deeper context is needed, read the last 20 rows of `_blog/change-log.md`.
 
 **Updated:** 2026-04-17
-**Last session commit:** b7351a91
-**Last check:** 2026-04-17 — Governance layer added (_blog/ folder, improvement-ideas.md)
-**Open content:** 2 items (highest priority: ART-001 Code section — first snippet)
-**Open improvements:** 1 item (SI-001 frontmatter + tags)
+**Last session commit:** 35fef80cda49e15eb169bd70f0d2bdcb90ad06fe
+**Last check:** 2026-04-17 — Added frontmatter + tags to all 8 pages, enabled tags plugin, set up /blog-update workflow, extended CLAUDE.md governance
+**Open content:** 2 items (highest priority: ART-001 First code snippet)
+**Open improvements:** 1 item (SI-003 Create content templates)
 **Open issues:** None
 
 ---
@@ -16,8 +16,8 @@
 
 | Section | Status | Pages |
 |---|---|---|
-| Articles | Live | 7 (4 examples, 3 MkDocs guides) |
-| Projects | Live | 1 (Paperless-ngx) |
+| Articles | Live | 7 |
+| Projects | Live | 1 |
 | Code | Placeholder — Coming Soon | 0 |
 | Notebooks | Placeholder — Coming Soon | 0 |
 
@@ -31,6 +31,6 @@
 
 ## Next Actions
 
-1. Add frontmatter to existing pages (SI-001 prerequisite)
-2. Enable tags plugin in `mkdocs.yml` (SI-001)
-3. Write first Code section entry (ART-001)
+1. Create article + project content templates in `00_templates\3_template_blog` (SI-003)
+2. Write first Code section entry (ART-001) — unblocks Code placeholder
+3. Plan next project write-up (PRJ-001)

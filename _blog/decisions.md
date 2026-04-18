@@ -5,6 +5,15 @@
 
 ---
 
+## D-004 — Four-state content status field in frontmatter
+
+**Date:** 2026-04-17
+**Decision:** Use four status values in page frontmatter: `draft`, `review`, `published`, `outdated` — rather than a simple published/unpublished boolean.
+**Alternatives considered:** Boolean `published: true/false`; three-state (draft/published/outdated).
+**Rationale:** `review` stage catches content that's written but not yet polished enough to surface. `outdated` lets pages stay live while flagging they need updating — avoiding silent rot without forced removal.
+
+---
+
 ## D-003 — Governance layer adapted from BAU template
 
 **Date:** 2026-04-17

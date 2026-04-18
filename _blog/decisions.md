@@ -5,6 +5,15 @@
 
 ---
 
+## D-007 — /publish-mkdocs slash command for push + deploy
+
+**Date:** 2026-04-18
+**Decision:** Implement push + GitHub Pages deploy as a single `/publish-mkdocs` slash command, separate from the commit step (which stays with `/personal:commit`).
+**Alternatives considered:** Run `git push origin main` and `mkdocs gh-deploy` by hand — simple enough but easy to forget the sequence or skip the push.
+**Rationale:** Splitting commit from publish matches the natural workflow boundary (review the commit, then deliberately publish). The command also guards against uncommitted changes before deploying, activates the venv inline, and is self-documenting.
+
+---
+
 ## D-006 — Content templates built iteratively from project experience
 
 **Date:** 2026-04-18

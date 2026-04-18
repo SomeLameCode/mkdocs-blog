@@ -9,3 +9,4 @@
 
 | Date | Title | Description | Resolution | Resolved |
 |---|---|---|---|---|
+| 2026-04-18 | Broken cross-chapter link in ch03 | `docs/projects/github-in-a-nutshell/part1/ch03-install-configure.md` links to `ch07-gitignore.md` — resolves against `part1/` but the file is in `part2/` | Fix link to `../part2/ch07-gitignore.md` | |

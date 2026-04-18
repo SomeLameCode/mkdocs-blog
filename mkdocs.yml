@@ -76,6 +76,7 @@ nav:
   - Projects:
     - Overview: projects/index.md
     - Paperless-ngx: projects/paperless-ngx.md
+    - GitHub in a Nutshell: projects/github-in-a-nutshell.md
   - Code: code/index.md
   - Notebooks: notebooks/index.md
   - Tags: tags.md

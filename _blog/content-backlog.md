@@ -19,7 +19,9 @@
 
 | ID | Title / Topic | Section | Priority | Effort | Risk | Status | Published | Notes |
 |---|---|---|---|---|---|---|---|---|
-| PRJ-001 | [Next project write-up] | Projects | Medium | L | Low | [ ] | | |
+| PRJ-001 | Paperless-ngx page update | Projects | Medium | M | Low | [ ] | | Update existing `docs/projects/paperless-ngx.md` — implemented improvements + new items added since original publish |
+| PRJ-002 | GitHub in a Nutshell project page | Projects | Medium | L | Low | [ ] | | New page from `projects/github-in-a-nutshell`; distill 29-chapter manual into project write-up |
+| PRJ-003 | Wako Star Scaffold project page | Projects | Medium | L | Med | [ ] | | New page from `projects/wako-star-scaffold`; keep story, remove client/org specifics |
 
 ## Site Improvements (SI-NNN)
 
@@ -27,5 +29,6 @@
 |---|---|---|---|---|---|---|---|
 | SI-001 | Add frontmatter + tags plugin | High | M | Med | [x] | 2026-04-17 | Enables tag navigation; requires editing all existing pages |
 | SI-002 | Add /blog-update Claude command | High | S | Low | [x] | 2026-04-17 | Session close ritual |
-| SI-003 | Create article + project content templates | Medium | S | Low | [ ] | | In 00_templates\3_template_blog |
+| SI-003 | Content templates — iterative | Medium | S | Low | [ ] | | Draft article + project templates after PRJ-001; refine after each subsequent project. In 00_templates\3_template_blog |
 | SI-004 | Update CLAUDE.md with governance conventions | Medium | S | Low | [x] | 2026-04-17 | Document session workflow, ID scheme, frontmatter |
+| SI-005 | Add /start command for session-start briefing | Medium | S | Low | [x] | 2026-04-18 | Mirrors /blog-update; reads _blog/session-state.md and presents briefing |

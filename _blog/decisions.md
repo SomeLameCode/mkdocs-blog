@@ -5,6 +5,24 @@
 
 ---
 
+## D-006 — Content templates built iteratively from project experience
+
+**Date:** 2026-04-18
+**Decision:** SI-003 (content templates) will not be designed upfront. Templates will be drafted after completing PRJ-001, then refined after each subsequent project page (PRJ-002, PRJ-003).
+**Alternatives considered:** Design templates upfront before any project pages (risks over-engineering for hypothetical content).
+**Rationale:** Three concrete projects provide immediate real examples. Templates should emerge from practice, not prediction.
+
+---
+
+## D-005 — /start command for session-start briefing
+
+**Date:** 2026-04-18
+**Decision:** Implement session-start briefing as an explicit `/start` slash command backed by `.claude/commands/start.md`, rather than relying on the voluntary CLAUDE.md instruction.
+**Alternatives considered:** Strengthen the CLAUDE.md instruction (unreliable — Claude may still skip it); hook-based automation (no session-start hook exists in Claude Code).
+**Rationale:** Mirrors the existing `/blog-update` pattern for session end. Explicit invocation is guaranteed; voluntary instructions are not.
+
+---
+
 ## D-004 — Four-state content status field in frontmatter
 
 **Date:** 2026-04-17

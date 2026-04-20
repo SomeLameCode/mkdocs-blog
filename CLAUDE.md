@@ -74,6 +74,14 @@ mkdocs gh-deploy
 
 `mkdocs gh-deploy` builds the site and pushes HTML to the `gh-pages` branch automatically.
 
+## Working Directory Convention
+
+This repo (`C:\GitFolder\notes`) is the home base for all work done in Claude Code sessions.
+
+- **Reading** from other folders under `C:\GitFolder\` is fine — source projects, reference material, other repos.
+- **Writing new files** always happens here, under `C:\GitFolder\notes\`. Do not create files in other project folders.
+- **Scratch and synthesis work** goes in `temp/` (never published). Copy relevant material from other project folders into `temp/` before working on it.
+
 ## Session Workflow
 
 **At session start** — run `/start` to present the session briefing (last updated, in progress, next actions). If the user has not run it, suggest it.

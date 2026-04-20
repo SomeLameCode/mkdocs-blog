@@ -1617,7 +1617,7 @@
 <p>The symptom: clicking a date in the calendar consistently selected the <em>previous</em> day. Clicking the 25th showed the 24th in the URL. The data loaded correctly when the date was typed manually, which ruled out the data layer.</p>
 <p>The cause: <code>Date</code> objects created in the browser include the local timezone offset. When serialised and parsed on the server, the offset was being lost, shifting the date back by the UTC difference. This is a well-known JavaScript timezone trap — and identifying it required knowing that the issue was at the client/server boundary, not in the calendar component itself.</p>
 <p>Once the root cause was named, Claude implemented the fix correctly. But the diagnosis — knowing <em>where</em> to look and <em>why</em> the boundary mattered — came from the developer.</p>
-<p><img alt="Dashboard date navigator showing the selected date matching the URL — the fixed behaviour" src="../img/8_Show_the%20Date_Corectly.PNG" /></p>
+<p><img alt="The date navigator after the timezone fix — the selected date in the UI and the date in the URL now match" src="../img/8_Show_the%20Date_Corectly.PNG" /></p>
 <hr />
 <h2 id="the-productivity-model">The Productivity Model</h2>
 <table>
@@ -1651,6 +1651,9 @@
 </tbody>
 </table>
 <p>The final session — generating the full client handover document from a review of the entire codebase — was possible precisely because the architecture was clean and the standards had held. A codebase with drift, inconsistent patterns, and undocumented decisions produces a document that reflects the drift. Garbage in, garbage out.</p>
+<hr />
+<p>Architecture knowledge is not something Claude can replace — it is the input that makes AI-assisted development reliable. The Prompt Log shows how these principles played out across all twelve build phases, with the exact prompts used at each stage and the reasoning behind each decision.</p>
+<p><a href="../prompt-log/">Prompt Log →</a></p>
 
 
 
@@ -1671,7 +1674,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 20, 2026 09:57:27 UTC">April 20, 2026 09:57:27</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 20, 2026 10:15:22 UTC">April 20, 2026 10:15:22</span>
   </span>
 
     

@@ -46,3 +46,9 @@ A few patterns are visible across all 12 phases:
 **Plan mode absorbs the high-risk operations.** Schema design (phase 03), bug investigation (phase 07), and branch merges (phase 08) all used plan mode first. These are the cases where a wrong first move is expensive to undo.
 
 **The handover document validates the whole approach.** Phase 12 generated a 600-line architecture, setup, and limitations document from a cold review of the codebase. It was accurate and complete. That's only possible because the architecture was coherent — consistent patterns, documented standards, no drift. A messy codebase produces a messy document.
+
+---
+
+The twelve phases show a consistent pattern: plan before implementing, write standards before writing features, and feed corrections back into the constraint documents. These disciplines are not specific to Lifting Diary — they generalise to any AI-assisted development where consistency across sessions matters.
+
+[← Back to Lifting Diary](../lifting-diary-claude.md)

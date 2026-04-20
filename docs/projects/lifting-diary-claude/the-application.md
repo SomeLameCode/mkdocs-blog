@@ -93,18 +93,24 @@ Cascade deletes are configured throughout: deleting a workout removes its exerci
 
 **Sign in with Clerk:**
 
-![Sign-in screen powered by Clerk](img/2_Signin-Screen-Clerk.PNG)
+![The Clerk-powered sign-in screen — users authenticate with email, social login, or magic link before accessing the dashboard](img/2_Signin-Screen-Clerk.PNG)
 
 **Dashboard — no workout logged yet for the selected date:**
 
-![Empty dashboard state with date navigator](img/3_Dashboard_Empty_State.PNG)
+![The dashboard for a date with no workout logged yet — the date navigator is visible and the prompt to start a workout is shown](img/3_Dashboard_Empty_State.PNG)
 
 **Selecting an exercise from the catalog:**
 
-![Exercise selection — catalog list](img/4.1_Exercise_Selection.PNG)
+![Opening the exercise picker — the full 63-movement catalog is displayed before any search is entered](img/4.1_Exercise_Selection.PNG)
 
-![Exercise selection — search and pick](img/4.2_Exercise%20Selection.PNG)
+![Filtering the catalog by name — search narrows the list in real time to the matching movements](img/4.2_Exercise%20Selection.PNG)
 
 **A completed workout with sets logged:**
 
-![Workout detail showing exercises and sets with reps, weight, and RPE](img/5_Workout_Details.PNG)
+![A completed workout — each exercise is expanded to show its sets with reps, weight, unit (kg/lbs), and optional RPE score](img/5_Workout_Details.PNG)
+
+---
+
+This is the core user experience: sign in, browse by date, log exercises and sets, and review your history. The next section explains how this app was built — the tools, workflows, and prompt disciplines that kept 22 Claude Code sessions consistent.
+
+[Building with Claude Code →](building-with-claude-code.md)

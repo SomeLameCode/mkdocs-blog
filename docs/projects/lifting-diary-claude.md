@@ -16,6 +16,8 @@ status: draft
 
 A production-quality full-stack workout tracker, built entirely with Claude Code — from database schema to deployed Vercel app — in approximately 22 prompt sessions. The project is as much about the tooling as the app: it shows where AI-assisted development accelerates experienced developers, and where it still requires architectural knowledge to function at all.
 
+The central finding: Claude Code accelerates development significantly, but only when paired with explicit architectural constraints. Give it clear rules — what patterns to use, what to avoid, and why — and it will follow them consistently across 22 sessions. The constraint is the input.
+
 ---
 
 !!! info "At a Glance"
@@ -27,7 +29,7 @@ A production-quality full-stack workout tracker, built entirely with Claude Code
 
 ---
 
-![Lifting Diary dashboard with a logged workout](lifting-diary-claude/img/1_Dashboard_Workout_Hero.PNG)
+![The Lifting Diary dashboard — a logged workout showing exercises with sets, weights, and RPE scores](lifting-diary-claude/img/1_Dashboard_Workout_Hero.PNG)
 
 ---
 
@@ -60,3 +62,9 @@ The most important work wasn't code — it was the `/docs` folder: six Markdown 
 An annotated walkthrough of all 12 build phases — from initial environment setup to the AI-generated handover document — with the prompts that drove each phase and commentary on why each approach was chosen.
 
 [Prompt Log →](lifting-diary-claude/prompt-log.md)
+
+---
+
+The four sections examine this project from different angles — the finished app, the workflow that built it, the architecture that held it together, and the prompts that show it in action. The thread connecting all four: architecture knowledge is not something Claude can replace. It is the input that makes AI-assisted development reliable.
+
+[Start with the Application →](lifting-diary-claude/the-application.md)

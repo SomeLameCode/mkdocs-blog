@@ -28,7 +28,7 @@ Claude Code has three operating modes, each with a distinct role in the workflow
 
 The discipline is the sequence: **default → plan → edit**. Jumping straight to edit mode produces code — but not necessarily the right code. Plan mode makes the intent explicit and catchable before any file is touched.
 
-![Claude Code terminal — plan mode active during a design decision](img/6_Claude-Code_Terminal.PNG)
+![Claude Code in plan mode — the proposed design is shown for review before any files are touched](img/6_Claude-Code_Terminal.PNG)
 
 ---
 
@@ -126,4 +126,10 @@ This extends the architecture from the editor into the repository itself. The sa
 !!! info "The broader picture"
     Editor (Claude Code) + CI/CD (GitHub Actions) + documentation contracts (`/docs/*.md`) form a consistent layer across the entire development workflow — not just one tool, but a connected system where the same rules apply at every stage.
 
-![GitHub Actions — Claude PR review comment on an open pull request](img/7_GitHub_Actions.PNG)
+![A Claude-generated PR review comment checking changed files against the project docs standards and flagging any deviations](img/7_GitHub_Actions.PNG)
+
+---
+
+These patterns — three modes, constraint documents, custom commands, MCP integration, and CI/CD automation — form a connected workflow where AI output is predictable and correctable. The next section explains the architectural foundation that made all of it work: the `/docs` folder and why constraints written before the code are the key ingredient.
+
+[Architecture as the Input →](architecture-as-input.md)

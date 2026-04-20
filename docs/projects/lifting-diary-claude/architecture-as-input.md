@@ -73,7 +73,7 @@ The cause: `Date` objects created in the browser include the local timezone offs
 
 Once the root cause was named, Claude implemented the fix correctly. But the diagnosis — knowing *where* to look and *why* the boundary mattered — came from the developer.
 
-![Dashboard date navigator showing the selected date matching the URL — the fixed behaviour](img/8_Show_the%20Date_Corectly.PNG)
+![The date navigator after the timezone fix — the selected date in the UI and the date in the URL now match](img/8_Show_the%20Date_Corectly.PNG)
 
 ---
 
@@ -88,3 +88,9 @@ Once the root cause was named, Claude implemented the fix correctly. But the dia
 | Documentation: generating handover docs from a well-structured codebase | Reviewing generated output: Claude does not flag its own errors |
 
 The final session — generating the full client handover document from a review of the entire codebase — was possible precisely because the architecture was clean and the standards had held. A codebase with drift, inconsistent patterns, and undocumented decisions produces a document that reflects the drift. Garbage in, garbage out.
+
+---
+
+Architecture knowledge is not something Claude can replace — it is the input that makes AI-assisted development reliable. The Prompt Log shows how these principles played out across all twelve build phases, with the exact prompts used at each stage and the reasoning behind each decision.
+
+[Prompt Log →](prompt-log.md)

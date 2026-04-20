@@ -40,6 +40,27 @@ The repository's `CLAUDE.md` file told Claude Code what to know at the start of 
 - The app architecture (App Router, Server Components, path aliases)
 - Key patterns (Server Components by default, strict TypeScript)
 
+The actual file for this project — stripped to its most important sections:
+
+```md
+## Documentation
+
+**ALWAYS read and follow the relevant docs in the `/docs` directory before generating
+any code.** The docs define project standards and conventions that must be adhered to
+at all times.
+
+- /docs/ui.md
+- /docs/data-fetching.md
+- /docs/data-mutations.md
+- /docs/auth.md
+- /docs/routing.md
+
+## Key Patterns
+- Server Components by default (React 19)
+- Path alias: `@/*` maps to project root
+- Strict TypeScript mode enabled
+```
+
 Without `CLAUDE.md`, each session starts cold. Claude might make choices that are internally consistent but inconsistent with prior sessions — using a different pattern for data fetching, or adding a component style that doesn't match the rest of the codebase. `CLAUDE.md` is the minimum viable memory across sessions.
 
 ---
@@ -53,6 +74,8 @@ A custom slash command was added to handle the branch lifecycle:
 ```
 
 This single prompt planned and executed: merge the current branch into main, resolve any conflicts, and create a new feature branch. Without it, this is a multi-step git workflow that Claude has to reason about independently each time — with more room for mistakes. The custom command reduced the cognitive overhead and made branching a repeatable, reliable operation.
+
+This was the only custom slash command added to the project. The built-in `/clear` command handled context window resets at branch boundaries — described in the prompt patterns below.
 
 ---
 
@@ -93,6 +116,16 @@ The `/clear` command resets the context window. Used at the start of each new fe
 
 ---
 
+## When the Patterns Break
+
+The patterns above are most visible when they are skipped.
+
+**Skipping plan mode** — Session 18 implemented the create-workout Server Action with a `redirect()` call inside it. A natural choice, and it appeared to work. The bug surfaced later: `redirect()` inside a Server Action throws a `NEXT_REDIRECT` exception that surfaces as an unhandled error on the client. Catching it, fixing it, and updating the constraint doc to prevent recurrence took the rest of the session. Plan mode would have raised the question *before* any code was written: how should post-mutation navigation work? The answer — redirect client-side after the action resolves — would have been agreed upfront.
+
+**Skipping /clear at a branch boundary** — Without a context reset, Claude carries the previous session's assumptions into the new one. It may reference components or variables from the previous feature, apply patterns that were specific to the previous page, or conflate the two features. It will not flag this — it will just quietly generate code that is coherent with the wrong context. The `/clear` command is cheap; reworking code built on a stale assumption is not.
+
+---
+
 ## MCP Integration: Neon Database
 
 Mid-project, the Neon MCP server was added:
@@ -125,6 +158,8 @@ This extends the architecture from the editor into the repository itself. The sa
 
 !!! info "The broader picture"
     Editor (Claude Code) + CI/CD (GitHub Actions) + documentation contracts (`/docs/*.md`) form a consistent layer across the entire development workflow — not just one tool, but a connected system where the same rules apply at every stage.
+
+The PR review comment below is a direct result of this setup. When a pull request is opened, the Claude PR Assistant reads the changed files alongside the project's `/docs` standards and flags any deviations — a missing Zod validation, a data fetch in the wrong place, an auth check that doesn't follow `auth.md`. The same document that governed the editor session is the specification the bot reviews against.
 
 ![A Claude-generated PR review comment checking changed files against the project docs standards and flagging any deviations](img/7_GitHub_Actions.PNG)
 

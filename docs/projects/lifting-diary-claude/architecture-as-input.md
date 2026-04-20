@@ -33,7 +33,21 @@ Six constraint documents were written across the project. Each one was written b
 | `routing.md` | All authenticated routes under `/dashboard`; protection via middleware | Unprotected routes; inconsistent URL structure |
 | `server-components.md` | `params` must be awaited (Next.js 15 requirement) | Runtime errors from unawaited promise params |
 
+What a constraint document actually looks like — the opening section of `data-fetching.md`:
+
+> **ALL data fetching MUST be done in Server Components.** This is a hard rule with no exceptions.
+>
+> Do NOT fetch data via:
+>
+> - Route handlers (`app/api/` routes)
+> - Client components (`"use client"`)
+> - `useEffect`, `fetch` in the browser, or any client-side data fetching libraries
+>
+> Server Components are the only place where data fetching should occur. Pass fetched data down to Client Components as props when interactivity is needed.
+
 The order matters. `ui.md` was written before the first page was built. `data-fetching.md` was written before the first query. `data-mutations.md` was written before the first form. The constraint had to precede the code for it to shape the code.
+
+Writing all six documents took approximately two hours across the first two sessions. That upfront investment paid for itself the first time a constraint prevented a mistake from being written into a second feature — and compounded across every session that followed.
 
 ---
 
@@ -61,6 +75,8 @@ The solution was `server-components.md`:
 
 One document. All future dynamic routes in the project then got this right automatically, because Claude read the doc before generating the page.
 
+Both examples follow the same three-step loop: mistake caught → fix implemented → constraint updated. The third step is the one that matters. Without it, the fix is local to a single session. With it, the constraint becomes part of the permanent specification — and every subsequent session gets it right automatically. The constraint documents are not static artifacts; they are a living record of what the project has learned.
+
 ---
 
 ## When Claude Still Needs a Developer
@@ -86,6 +102,8 @@ Once the root cause was named, Claude implemented the fix correctly. But the dia
 | Debugging: implementing a fix once the cause is identified | Root cause identification: especially at system boundaries |
 | Refactoring: updating multiple files to follow a new rule | Knowing when something is wrong: catching mistakes before they become patterns |
 | Documentation: generating handover docs from a well-structured codebase | Reviewing generated output: Claude does not flag its own errors |
+
+The division in the table is not a limitation on what Claude can do — it is a description of where human judgement is irreplaceable. Claude executes reliably within defined boundaries; the developer defines the boundaries.
 
 The final session — generating the full client handover document from a review of the entire codebase — was possible precisely because the architecture was clean and the standards had held. A codebase with drift, inconsistent patterns, and undocumented decisions produces a document that reflects the drift. Garbage in, garbage out.
 

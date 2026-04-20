@@ -29,7 +29,7 @@ A legal business separation forced ~60–70 users off a shared Microsoft 365 ten
 ## Table of Contents
 
 1. [Executive Summary](#1-executive-summary)
-2. [Business Context — The Forced Cutover](#2-business-context--the-forced-cutover)
+2. [Business Context — The Forced Cutover](#2-business-context-the-forced-cutover)
 3. [Scope and Timeline](#3-scope-and-timeline)
 4. [Solution Architecture](#4-solution-architecture)
 5. [Why Nothing Was Forgotten](#5-why-nothing-was-forgotten)

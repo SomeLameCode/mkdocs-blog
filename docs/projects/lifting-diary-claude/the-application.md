@@ -8,7 +8,7 @@ tags:
   - full-stack
   - typescript
   - drizzle-orm
-status: draft
+status: published
 ---
 
 # The Application

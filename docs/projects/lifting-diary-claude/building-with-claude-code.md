@@ -7,7 +7,7 @@ tags:
   - developer-tools
   - workflow
   - prompt-engineering
-status: draft
+status: published
 ---
 
 # Building with Claude Code

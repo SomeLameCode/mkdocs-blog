@@ -140,7 +140,7 @@ git config --global core.autocrlf true
 git config --global core.autocrlf input
 ```
 
-> For teams working across platforms, an alternative is to commit a `.gitattributes` file that declares line endings per file type — this is the more robust solution and is covered in [Chapter 07](ch07-gitignore.md).
+> For teams working across platforms, an alternative is to commit a `.gitattributes` file that declares line endings per file type — this is the more robust solution and is covered in [Chapter 07](../part2/ch07-gitignore.md).
 
 ---
 

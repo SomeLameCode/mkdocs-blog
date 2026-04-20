@@ -7,7 +7,7 @@ tags:
   - developer-tools
   - workflow
   - prompt-engineering
-status: draft
+status: published
 ---
 
 # Prompt Log

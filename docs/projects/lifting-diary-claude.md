@@ -9,7 +9,7 @@ tags:
   - case-study
   - developer-tools
   - typescript
-status: draft
+status: published
 ---
 
 # Lifting Diary — Scaffold Speed with Claude Code

@@ -7,7 +7,7 @@ tags:
   - software-architecture
   - developer-tools
   - case-study
-status: draft
+status: published
 ---
 
 # Architecture as the Input

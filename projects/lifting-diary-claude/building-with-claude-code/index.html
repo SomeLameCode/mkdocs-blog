@@ -1252,6 +1252,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-the-patterns-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When the Patterns Break
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#mcp-integration-neon-database" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1580,6 +1591,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#when-the-patterns-break" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When the Patterns Break
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#mcp-integration-neon-database" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1694,13 +1716,32 @@
 <li>The app architecture (App Router, Server Components, path aliases)</li>
 <li>Key patterns (Server Components by default, strict TypeScript)</li>
 </ul>
+<p>The actual file for this project — stripped to its most important sections:</p>
+<div class="language-md highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gu">## Documentation</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>**ALWAYS read and follow the relevant docs in the <span class="sb">`/docs`</span> directory before generating
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>any code.** The docs define project standards and conventions that must be adhered to
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>at all times.
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">-</span><span class="w"> </span>/docs/ui.md
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">-</span><span class="w"> </span>/docs/data-fetching.md
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">-</span><span class="w"> </span>/docs/data-mutations.md
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">-</span><span class="w"> </span>/docs/auth.md
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">-</span><span class="w"> </span>/docs/routing.md
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="gu">## Key Patterns</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">-</span><span class="w"> </span>Server Components by default (React 19)
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">-</span><span class="w"> </span>Path alias: <span class="sb">`@/*`</span> maps to project root
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">-</span><span class="w"> </span>Strict TypeScript mode enabled
+</span></code></pre></div>
 <p>Without <code>CLAUDE.md</code>, each session starts cold. Claude might make choices that are internally consistent but inconsistent with prior sessions — using a different pattern for data fetching, or adding a component style that doesn't match the rest of the codebase. <code>CLAUDE.md</code> is the minimum viable memory across sessions.</p>
 <hr />
 <h2 id="custom-slash-command-merge-and-create-branch">Custom Slash Command: <code>/merge-and-create-branch</code></h2>
 <p>A custom slash command was added to handle the branch lifecycle:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/merge-and-create-branch main edit-workout-page
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/merge-and-create-branch main edit-workout-page
 </span></code></pre></div>
 <p>This single prompt planned and executed: merge the current branch into main, resolve any conflicts, and create a new feature branch. Without it, this is a multi-step git workflow that Claude has to reason about independently each time — with more room for mistakes. The custom command reduced the cognitive overhead and made branching a repeatable, reliable operation.</p>
+<p>This was the only custom slash command added to the project. The built-in <code>/clear</code> command handled context window resets at branch boundaries — described in the prompt patterns below.</p>
 <hr />
 <h2 id="prompt-patterns-that-worked">Prompt Patterns That Worked</h2>
 <h3 id="1-standards-first-code-second">1. Standards first, code second</h3>
@@ -1731,9 +1772,14 @@
 <h3 id="5-clear-at-branch-boundaries">5. /clear at branch boundaries</h3>
 <p>The <code>/clear</code> command resets the context window. Used at the start of each new feature branch, it prevents assumptions from the previous feature from leaking into the next. Stale context is subtle — Claude won't flag it, it will just quietly make the wrong assumption.</p>
 <hr />
+<h2 id="when-the-patterns-break">When the Patterns Break</h2>
+<p>The patterns above are most visible when they are skipped.</p>
+<p><strong>Skipping plan mode</strong> — Session 18 implemented the create-workout Server Action with a <code>redirect()</code> call inside it. A natural choice, and it appeared to work. The bug surfaced later: <code>redirect()</code> inside a Server Action throws a <code>NEXT_REDIRECT</code> exception that surfaces as an unhandled error on the client. Catching it, fixing it, and updating the constraint doc to prevent recurrence took the rest of the session. Plan mode would have raised the question <em>before</em> any code was written: how should post-mutation navigation work? The answer — redirect client-side after the action resolves — would have been agreed upfront.</p>
+<p><strong>Skipping /clear at a branch boundary</strong> — Without a context reset, Claude carries the previous session's assumptions into the new one. It may reference components or variables from the previous feature, apply patterns that were specific to the previous page, or conflate the two features. It will not flag this — it will just quietly generate code that is coherent with the wrong context. The <code>/clear</code> command is cheap; reworking code built on a stale assumption is not.</p>
+<hr />
 <h2 id="mcp-integration-neon-database">MCP Integration: Neon Database</h2>
 <p>Mid-project, the Neon MCP server was added:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>npx<span class="w"> </span>add-mcp<span class="w"> </span>https://mcp.neon.tech/mcp
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>npx<span class="w"> </span>add-mcp<span class="w"> </span>https://mcp.neon.tech/mcp
 </span></code></pre></div>
 <p>This allowed Claude to interact with the database directly — list tables, generate seed data, review it, and insert it — without leaving the editor or writing terminal commands. The seed workflow became:</p>
 <ol>
@@ -1756,6 +1802,7 @@
 <p class="admonition-title">The broader picture</p>
 <p>Editor (Claude Code) + CI/CD (GitHub Actions) + documentation contracts (<code>/docs/*.md</code>) form a consistent layer across the entire development workflow — not just one tool, but a connected system where the same rules apply at every stage.</p>
 </div>
+<p>The PR review comment below is a direct result of this setup. When a pull request is opened, the Claude PR Assistant reads the changed files alongside the project's <code>/docs</code> standards and flags any deviations — a missing Zod validation, a data fetch in the wrong place, an auth check that doesn't follow <code>auth.md</code>. The same document that governed the editor session is the specification the bot reviews against.</p>
 <p><img alt="A Claude-generated PR review comment checking changed files against the project docs standards and flagging any deviations" src="../img/7_GitHub_Actions.PNG" /></p>
 <hr />
 <p>These patterns — three modes, constraint documents, custom commands, MCP integration, and CI/CD automation — form a connected workflow where AI output is predictable and correctable. The next section explains the architectural foundation that made all of it work: the <code>/docs</code> folder and why constraints written before the code are the key ingredient.</p>
@@ -1780,7 +1827,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 20, 2026 10:15:22 UTC">April 20, 2026 10:15:22</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 20, 2026 10:30:03 UTC">April 20, 2026 10:30:03</span>
   </span>
 
     

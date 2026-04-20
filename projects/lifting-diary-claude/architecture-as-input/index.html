@@ -1593,7 +1593,19 @@
 </tr>
 </tbody>
 </table>
+<p>What a constraint document actually looks like — the opening section of <code>data-fetching.md</code>:</p>
+<blockquote>
+<p><strong>ALL data fetching MUST be done in Server Components.</strong> This is a hard rule with no exceptions.</p>
+<p>Do NOT fetch data via:</p>
+<ul>
+<li>Route handlers (<code>app/api/</code> routes)</li>
+<li>Client components (<code>"use client"</code>)</li>
+<li><code>useEffect</code>, <code>fetch</code> in the browser, or any client-side data fetching libraries</li>
+</ul>
+<p>Server Components are the only place where data fetching should occur. Pass fetched data down to Client Components as props when interactivity is needed.</p>
+</blockquote>
 <p>The order matters. <code>ui.md</code> was written before the first page was built. <code>data-fetching.md</code> was written before the first query. <code>data-mutations.md</code> was written before the first form. The constraint had to precede the code for it to shape the code.</p>
+<p>Writing all six documents took approximately two hours across the first two sessions. That upfront investment paid for itself the first time a constraint prevented a mistake from being written into a second feature — and compounded across every session that followed.</p>
 <hr />
 <h2 id="what-happens-without-the-contract">What Happens Without the Contract</h2>
 <p>Two concrete examples from this project where the contract was either absent or violated:</p>
@@ -1611,6 +1623,7 @@
 <p><em>"Create a new <code>docs/server-components.md</code> file outlining that accessing params MUST be awaited because this is a Next.js 15 project where params HAVE to be awaited as it's a promise."</em></p>
 </blockquote>
 <p>One document. All future dynamic routes in the project then got this right automatically, because Claude read the doc before generating the page.</p>
+<p>Both examples follow the same three-step loop: mistake caught → fix implemented → constraint updated. The third step is the one that matters. Without it, the fix is local to a single session. With it, the constraint becomes part of the permanent specification — and every subsequent session gets it right automatically. The constraint documents are not static artifacts; they are a living record of what the project has learned.</p>
 <hr />
 <h2 id="when-claude-still-needs-a-developer">When Claude Still Needs a Developer</h2>
 <p>The timezone bug in session 15 is the clearest example of where architectural knowledge was required — not to write code, but to identify the problem.</p>
@@ -1650,6 +1663,7 @@
 </tr>
 </tbody>
 </table>
+<p>The division in the table is not a limitation on what Claude can do — it is a description of where human judgement is irreplaceable. Claude executes reliably within defined boundaries; the developer defines the boundaries.</p>
 <p>The final session — generating the full client handover document from a review of the entire codebase — was possible precisely because the architecture was clean and the standards had held. A codebase with drift, inconsistent patterns, and undocumented decisions produces a document that reflects the drift. Garbage in, garbage out.</p>
 <hr />
 <p>Architecture knowledge is not something Claude can replace — it is the input that makes AI-assisted development reliable. The Prompt Log shows how these principles played out across all twelve build phases, with the exact prompts used at each stage and the reasoning behind each decision.</p>
@@ -1674,7 +1688,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 20, 2026 10:15:22 UTC">April 20, 2026 10:15:22</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 20, 2026 10:30:03 UTC">April 20, 2026 10:30:03</span>
   </span>
 
     

@@ -5,6 +5,15 @@
 
 ---
 
+## D-010 — Multi-page hub layout for Lifting Diary (PRJ-004)
+
+**Date:** 2026-04-20
+**Decision:** Structure PRJ-004 as a hub index page + 4 sub-pages, sitting between the GitHub manual (pure reference/links) and M365 (single long narrative).
+**Alternatives considered:** One long page like M365 — too dense for a project with four distinct themes; flat reference page like the GitHub manual — too thin for a narrative case study.
+**Rationale:** Four angles (the app, the workflow, the architecture thesis, the prompt log) are each dense enough for their own page but too thin to justify a long scroll together. Hub page stays pure navigation; sub-pages carry the content.
+
+---
+
 ## D-009 — Auto-stage tracked modified files in /personal:commit
 
 **Date:** 2026-04-20

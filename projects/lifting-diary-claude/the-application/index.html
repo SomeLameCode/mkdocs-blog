@@ -1167,6 +1167,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#scope-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope &amp; Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-app-in-action" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1469,6 +1480,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#scope-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope &amp; Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-app-in-action" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1635,6 +1657,7 @@
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                 └─ Neon PostgreSQL (serverless)
 </span></code></pre></div>
 <p>Route protection is enforced at two levels: middleware blocks unauthenticated access before any page component runs, and each protected Server Component contains a secondary auth guard as a defence-in-depth measure.</p>
+<p>Authentication is handled entirely by Clerk. On sign-in, Clerk assigns the user a unique ID. That ID becomes the <code>userId</code> column that every database query filters by — a data helper function never fetches records without scoping to the authenticated user. This is enforced at the query level as a project standard, not just at the route level: accessing another user's data is architecturally blocked, not just hidden behind a route guard.</p>
 <hr />
 <h2 id="database-schema">Database Schema</h2>
 <p>Four tables, all owned by a authenticated user:</p>
@@ -1704,6 +1727,14 @@
 </tbody>
 </table>
 <hr />
+<h2 id="scope-limitations">Scope &amp; Limitations</h2>
+<p>Lifting Diary does what a personal workout log needs to do — and deliberately nothing more:</p>
+<ul>
+<li><strong>No analytics or progress tracking</strong> — the app records raw data (sets, reps, weight, RPE) but does not calculate trends, visualise progress, or generate summaries. Data is logged; interpretation is left to the user.</li>
+<li><strong>No sharing or social features</strong> — workout data is private to the signed-in user. There is no following, sharing, or public profile.</li>
+<li><strong>Web only</strong> — no native mobile app. The UI is responsive but the application runs in the browser.</li>
+</ul>
+<hr />
 <h2 id="the-app-in-action">The App in Action</h2>
 <p><strong>Sign in with Clerk:</strong></p>
 <p><img alt="The Clerk-powered sign-in screen — users authenticate with email, social login, or magic link before accessing the dashboard" src="../img/2_Signin-Screen-Clerk.PNG" /></p>
@@ -1737,7 +1768,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 20, 2026 10:15:22 UTC">April 20, 2026 10:15:22</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 20, 2026 10:35:15 UTC">April 20, 2026 10:35:15</span>
   </span>
 
     

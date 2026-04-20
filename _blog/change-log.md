@@ -6,6 +6,8 @@
 
 | Date | What changed | Why | Ref |
 |---|---|---|---|
+| 2026-04-20 | Updated PRJ-004 pages — Tier 1/2/3 improvements: thesis statement, closing paragraphs, cross-links, screenshot captions, constraint doc excerpt, CLAUDE.md sample, failure modes section, auth/data-ownership paragraph, Scope & Limitations section | Content quality pass before publish | PRJ-004 |
+| 2026-04-20 | Published PRJ-004 Lifting Diary — hub page + 4 sub-pages (the-application, building-with-claude-code, architecture-as-input, prompt-log) + 9 screenshots | PRJ-004 publish | PRJ-004 |
 | 2026-04-20 | Published M365 Tenant Separation case study — new project page with Mermaid diagrams (Gantt, dependency flowchart, go-live sequence, RAID pie), Material admonition callouts, practitioner tip blocks; nav entry and projects index entry added | PRJ-003 publish | PRJ-003 |
 | 2026-04-18 | Published GitHub in a Nutshell project page — overview page + 29 chapter files with frontmatter, nav entry, and projects index entry | PRJ-002 publish | PRJ-002 |
 | 2026-04-18 | Updated Paperless-ngx project page — added multi-user/RBAC setup, day-to-day ops, concrete security hardening, three-layer backup with export gap warning, restore scenarios, email ingestion config, updated repo contents | PRJ-001 page refresh | PRJ-001 |

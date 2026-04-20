@@ -4,11 +4,11 @@
 > If deeper context is needed, read the last 20 rows of `_blog/change-log.md`.
 
 **Updated:** 2026-04-20
-**Last session commit:** f02a93ed4d70b863385b42621f6f915869f509c2
-**Last check:** 2026-04-20 — Added 9 screenshots to PRJ-004 pages; all 5 content files committed, ready to deploy
-**Open content:** 2 items (highest priority: PRJ-004 Lifting Diary — in progress)
-**Open improvements:** 1 item (SI-003 Content templates — iterative)
-**Open issues:** 1 item — broken cross-chapter link in ch03
+**Last session commit:** abcd978feb7b17c1c68249f7597ff0b497a5b790
+**Last check:** 2026-04-20 — Deployed PRJ-004 (5 pages, 9 screenshots); Tier 1/2/3 content improvements applied and deployed; updated _template-project.md with 8 improvements from 4 live projects
+**Open content:** 1 item (highest priority: ART-001 First code snippet)
+**Open improvements:** 1 item (SI-003 Content templates — iterative, article template pending)
+**Open issues:** 2 items — dead anchor in m365-tenant-separation.md; broken cross-chapter link in ch03
 
 ---
 
@@ -17,7 +17,7 @@
 | Section | Status | Pages |
 |---|---|---|
 | Articles | Live | 7 |
-| Projects | Live | 3 |
+| Projects | Live | 4 |
 | Code | Placeholder — Coming Soon | 0 |
 | Notebooks | Placeholder — Coming Soon | 0 |
 
@@ -25,11 +25,12 @@
 
 ## In Progress
 
-- PRJ-004: Lifting Diary — 5 pages + 9 screenshots committed (draft), not yet deployed
+*(none)*
 
 ---
 
 ## Next Actions
 
-1. Deploy PRJ-004 to GitHub Pages (`/publish-mkdocs`)
-2. Fix broken cross-chapter link in ch03-install-configure.md (issue-log) — ~15 min
+1. Update PRJ-004 frontmatter `status: draft` → `published` on all 5 pages — ~10 min
+2. Fix dead anchor in m365-tenant-separation.md (issue-log) — ~15 min
+3. Fix broken cross-chapter link in ch03-install-configure.md (issue-log) — ~15 min

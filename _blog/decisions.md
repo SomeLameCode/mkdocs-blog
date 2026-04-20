@@ -5,6 +5,15 @@
 
 ---
 
+## D-009 — Auto-stage tracked modified files in /personal:commit
+
+**Date:** 2026-04-20
+**Decision:** When `/personal:commit` finds nothing staged but tracked modified files exist, run `git add -u` automatically and proceed rather than stopping to ask the user to stage manually.
+**Alternatives considered:** Keep the "nothing staged, stop and ask" behaviour (confusing after governance-only sessions where only `_blog/` files are modified); require explicit staging every time (friction with no safety benefit for tracked files).
+**Rationale:** `git add -u` only touches already-tracked files — it cannot accidentally include untracked secrets or binaries. The common post-`/blog-update` pattern is exactly this scenario: governance files modified, nothing staged. Stopping mid-workflow is unhelpful noise.
+
+---
+
 ## D-008 — Publish manual as docs subfolder, chapters out of sidebar nav
 
 **Date:** 2026-04-18

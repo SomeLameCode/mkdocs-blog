@@ -9,5 +9,5 @@
 
 | Date | Title | Description | Resolution | Resolved |
 |---|---|---|---|---|
-| 2026-04-18 | `/personal:commit` does not stage files | The skill commits only what is already staged; it should run `git add` on modified tracked files before committing, or prompt the user to stage | Update the skill definition to include a staging step | |
+| 2026-04-18 | `/personal:commit` does not stage files | The skill commits only what is already staged; it should run `git add` on modified tracked files before committing, or prompt the user to stage | Updated skill to auto-stage tracked modified files with `git add -u` when nothing is staged (D-009) | 2026-04-20 |
 | 2026-04-18 | Broken cross-chapter link in ch03 | `docs/projects/github-in-a-nutshell/part1/ch03-install-configure.md` links to `ch07-gitignore.md` — resolves against `part1/` but the file is in `part2/` | Fix link to `../part2/ch07-gitignore.md` | |

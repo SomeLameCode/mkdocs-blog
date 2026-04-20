@@ -53,6 +53,10 @@
          <lastmod>2026-04-20</lastmod>
     </url>
     <url>
+         <loc>https://somelamecode.github.io/notes/projects/lifting-diary-claude/</loc>
+         <lastmod>2026-04-20</lastmod>
+    </url>
+    <url>
          <loc>https://somelamecode.github.io/notes/projects/m365-tenant-separation/</loc>
          <lastmod>2026-04-20</lastmod>
     </url>
@@ -190,6 +194,22 @@
     </url>
     <url>
          <loc>https://somelamecode.github.io/notes/projects/github-in-a-nutshell/part7/ch29-hashing-internals/</loc>
+         <lastmod>2026-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://somelamecode.github.io/notes/projects/lifting-diary-claude/architecture-as-input/</loc>
+         <lastmod>2026-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://somelamecode.github.io/notes/projects/lifting-diary-claude/building-with-claude-code/</loc>
+         <lastmod>2026-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://somelamecode.github.io/notes/projects/lifting-diary-claude/prompt-log/</loc>
+         <lastmod>2026-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://somelamecode.github.io/notes/projects/lifting-diary-claude/the-application/</loc>
          <lastmod>2026-04-20</lastmod>
     </url>
 </urlset>

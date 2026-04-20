@@ -20,7 +20,7 @@ An annotated walkthrough of the build from first prompt to handover document. Pr
 
 | Phase | Mode | Representative prompt | Why this approach |
 |---|---|---|---|
-| **01 Setup** | — | `/terminal-setup` · `/theme` · `/config` · `/model` · `/init` | Environment configured before any code. `/init` generated the initial `CLAUDE.md` from the codebase — the session contract that governs every subsequent prompt |
+| **01 Setup** | Default | `/terminal-setup` · `/theme` · `/config` · `/model` · `/init` | Environment configured before any code. `/init` generated the initial `CLAUDE.md` from the codebase — the session contract that governs every subsequent prompt |
 | **02 Auth** | Default → Edit | *"Is it possible to launch sign in and sign up with Clerk via a modal? Do not make any updates to the code."* | Default mode first — explore feasibility before committing. The explicit "do not update" instruction is the guard that prevents premature implementation |
 | **03 Schema** | Plan (×3 rounds) | *"Plan a table schema to log workouts... make sure this is normalized. The schema must be created using Drizzle ORM for a Postgres DB hosted on Neon."* | Schema is the foundation. Three rounds of plan mode: initial design, then two targeted refinement prompts removing columns and renaming fields. No code was written until all three iterations were agreed |
 | **04 Seed data** | Default | *"List all available tables within the liftingdiarycourse db on Neon"* → *"Generate example data for user id [X]. Do not insert yet."* → *"This looks great. Now insert."* | MCP (Neon) enabled Claude to query the database directly. The generate-review-insert sequence mirrors the plan-review-implement pattern: always agree before acting |
@@ -45,7 +45,7 @@ A few patterns are visible across all 12 phases:
 
 **Plan mode absorbs the high-risk operations.** Schema design (phase 03), bug investigation (phase 07), and branch merges (phase 08) all used plan mode first. These are the cases where a wrong first move is expensive to undo.
 
-**The handover document validates the whole approach.** Phase 12 generated a 600-line architecture, setup, and limitations document from a cold review of the codebase. It was accurate and complete. That's only possible because the architecture was coherent — consistent patterns, documented standards, no drift. A messy codebase produces a messy document.
+**The handover document validates the whole approach.** Phase 12 generated a 600-line architecture, setup, and limitations document from a cold review of the codebase. It was accurate and complete. Claude was given no summary and no prior context — it derived the architecture, the patterns, the standards, and the known limitations entirely from reading the code. That is only possible because the code was coherent enough to be read that way. Consistent patterns produce a readable codebase; a readable codebase produces a reliable handover. A messy codebase produces a messy document.
 
 ---
 

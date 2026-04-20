@@ -61,6 +61,8 @@ Browser
 
 Route protection is enforced at two levels: middleware blocks unauthenticated access before any page component runs, and each protected Server Component contains a secondary auth guard as a defence-in-depth measure.
 
+Authentication is handled entirely by Clerk. On sign-in, Clerk assigns the user a unique ID. That ID becomes the `userId` column that every database query filters by — a data helper function never fetches records without scoping to the authenticated user. This is enforced at the query level as a project standard, not just at the route level: accessing another user's data is architecturally blocked, not just hidden behind a route guard.
+
 ---
 
 ## Database Schema
@@ -86,6 +88,16 @@ Cascade deletes are configured throughout: deleting a workout removes its exerci
 | `/dashboard` | Protected | Main view — browse workouts by date |
 | `/dashboard/workout/new` | Protected | Create a new workout |
 | `/dashboard/workout/[workoutId]` | Protected | View and edit a specific workout |
+
+---
+
+## Scope & Limitations
+
+Lifting Diary does what a personal workout log needs to do — and deliberately nothing more:
+
+- **No analytics or progress tracking** — the app records raw data (sets, reps, weight, RPE) but does not calculate trends, visualise progress, or generate summaries. Data is logged; interpretation is left to the user.
+- **No sharing or social features** — workout data is private to the signed-in user. There is no following, sharing, or public profile.
+- **Web only** — no native mobile app. The UI is responsive but the application runs in the browser.
 
 ---
 

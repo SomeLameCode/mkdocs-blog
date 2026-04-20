@@ -5,6 +5,15 @@
 
 ---
 
+## D-011 — Remove navigation.sections for collapsible sidebar
+
+**Date:** 2026-04-20
+**Decision:** Remove `navigation.sections` from `mkdocs.yml` features so sidebar sub-pages collapse when navigating away from their section.
+**Alternatives considered:** Add `navigation.prune` (reduces HTML size but doesn't fix expansion behaviour); restructure nav so Lifting Diary has no children (loses sidebar sub-page links entirely).
+**Rationale:** `navigation.sections` renders any nav group with children as a permanently expanded group. With only Lifting Diary having sub-pages, its links were always visible regardless of active page. Removing the feature gives collapsible sections at no cost to other nav behaviour.
+
+---
+
 ## D-010 — Multi-page hub layout for Lifting Diary (PRJ-004)
 
 **Date:** 2026-04-20

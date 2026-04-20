@@ -5,6 +5,15 @@
 
 ---
 
+## D-008 — Publish manual as docs subfolder, chapters out of sidebar nav
+
+**Date:** 2026-04-18
+**Decision:** Copy only `git-manual-md/` into `docs/projects/github-in-a-nutshell/` as a subfolder. Chapters are accessible via links from the overview page and via site search, but not listed in the sidebar nav.
+**Alternatives considered:** Link to GitHub repo (no in-site search or browsing); add manual as its own top-level nav section (too much nav clutter for 29 chapters); upload the full project folder (unnecessary — only the compiled manual is needed).
+**Rationale:** Keeps the manual fully searchable and internally linked within the site. Nav stays clean — the overview page acts as the entry point. Python frontmatter script handles bulk metadata injection in one pass.
+
+---
+
 ## D-007 — /publish-mkdocs slash command for push + deploy
 
 **Date:** 2026-04-18

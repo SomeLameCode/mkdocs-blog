@@ -90,10 +90,10 @@ Minimal working configuration:
 
 ```yaml
 site_name: Florin Neagu Projects & Notes
-site_url: https://SomeLameCode.github.io/notes/
+site_url: https://SomeLameCode.github.io/mkdocs-blog/
 site_description: Technical notes, projects, and articles
 site_author: Florin Neagu
-repo_url: https://github.com/SomeLameCode/notes
+repo_url: https://github.com/SomeLameCode/mkdocs-blog
 
 theme:
   name: material
@@ -216,7 +216,7 @@ From `notes/`:
 
 ```bash
 git init
-git remote add origin https://github.com/SomeLameCode/notes.git
+git remote add origin https://github.com/SomeLameCode/mkdocs-blog.git
 git branch -M main
 git add .
 git commit -m "Initial MkDocs setup"
@@ -248,7 +248,7 @@ This:
 Your site becomes available at:
 
 ```
-https://SomeLameCode.github.io/notes/
+https://SomeLameCode.github.io/mkdocs-blog/
 ```
 
 ---

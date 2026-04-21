@@ -1,9 +1,9 @@
 site_name: Florin Neagu Projects & Notes
-site_url: https://somelamecode.github.io/notes/
+site_url: https://somelamecode.github.io/mkdocs-blog/
 site_description: Technical notes, projects, articles, and code references
 site_author: Florin Neagu
-repo_url: https://github.com/SomeLameCode/notes
-repo_name: SomeLameCode/notes
+repo_url: https://github.com/SomeLameCode/mkdocs-blog
+repo_name: SomeLameCode/mkdocs-blog
 copyright: "Copyright &copy; 2026 Florin Neagu"
 
 # Material theme

@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a **MkDocs** static site using the **Material theme**, deployed to GitHub Pages at `https://somelamecode.github.io/notes/`. Content lives in `docs/` as Markdown files; `site/` is generated output and never committed.
+This is a **MkDocs** static site using the **Material theme**, deployed to GitHub Pages at `https://somelamecode.github.io/mkdocs-blog/`. Content lives in `docs/` as Markdown files; `site/` is generated output and never committed.
 
 ## Common Commands
 
-All commands assume the virtual environment is activated and run from the repo root (`C:\GitFolder\notes`).
+All commands assume the virtual environment is activated and run from the repo root (`C:\GitFolder\mkdocs-blog`).
 
 **Activate the virtual environment (Git Bash):**
 ```bash
@@ -18,7 +18,7 @@ source venv/Scripts/activate
 **Local dev server** (use PowerShell/CMD on Windows for reliable live reload, not Git Bash):
 ```bash
 mkdocs serve
-# Open: http://127.0.0.1:8000/notes/
+# Open: http://127.0.0.1:8000/mkdocs-blog/
 ```
 
 **Deploy to GitHub Pages:**
@@ -76,10 +76,10 @@ mkdocs gh-deploy
 
 ## Working Directory Convention
 
-This repo (`C:\GitFolder\notes`) is the home base for all work done in Claude Code sessions.
+This repo (`C:\GitFolder\mkdocs-blog`) is the home base for all work done in Claude Code sessions.
 
 - **Reading** from other folders under `C:\GitFolder\` is fine — source projects, reference material, other repos.
-- **Writing new files** always happens here, under `C:\GitFolder\notes\`. Do not create files in other project folders.
+- **Writing new files** always happens here, under `C:\GitFolder\mkdocs-blog\`. Do not create files in other project folders.
 - **Scratch and synthesis work** goes in `temp/` (never published). Copy relevant material from other project folders into `temp/` before working on it.
 
 ## Session Workflow

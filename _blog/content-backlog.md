@@ -34,6 +34,7 @@
 | SI-002 | Add /blog-update Claude command | High | S | Low | [x] | 2026-04-17 | Session close ritual |
 | SI-005 | Add /start command for session-start briefing | Medium | S | Low | [x] | 2026-04-18 | Mirrors /blog-update; reads _blog/session-state.md and presents briefing |
 | SI-006 | Add /publish-mkdocs command | Medium | S | Low | [x] | 2026-04-18 | Push + deploy in one command; guards against uncommitted changes before deploying |
+| SI-007 | Articles section overhaul — hub, sub-folders, cluster index pages | High | M | High | [x] | 2026-04-21 | Hub page with grid cards, articles moved to mkdocs-material/ and code/ sub-folders, cluster index pages, nav grouped with navigation.indexes, "How to enable" blocks added to 3 feature-demo articles |
 
 ## Content Quality (SI-NNN)
 

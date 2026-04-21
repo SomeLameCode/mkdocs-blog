@@ -5,6 +5,24 @@
 
 ---
 
+## D-013 — Collapsed details block for "How to enable" in feature-demo articles
+
+**Date:** 2026-04-21
+**Decision:** Add a collapsed `???` details admonition at the top of each feature-demo article containing the required `mkdocs.yml` config snippet and one non-obvious gotcha.
+**Alternatives considered:** Inline setup text before examples (clutters quick-reference flow); separate "Setup" section at the bottom; link to official docs only.
+**Rationale:** Collapsed by default keeps examples front and centre — readers who know the setup skip it, new readers expand it. Direct config snippet is more actionable than a link to docs.
+
+---
+
+## D-012 — Sub-folder clustering with navigation.indexes for articles section
+
+**Date:** 2026-04-21
+**Decision:** Restructure articles into topic sub-folders (`mkdocs-material/`, `code/`) with cluster index pages and a hub landing page, using `navigation.indexes` (already enabled) so cluster section headers are clickable.
+**Alternatives considered:** Keep flat list and use tags for filtering; single `articles/index.md` listing all articles by topic without sub-folders.
+**Rationale:** Sub-folders scale to future clusters (business, ML, neural networks) — adding a cluster is a new folder + a card on the hub. Tags alone don't provide visual hierarchy. Flat list degrades as article count grows.
+
+---
+
 ## D-011 — Remove navigation.sections for collapsible sidebar
 
 **Date:** 2026-04-20

@@ -6,6 +6,9 @@
 
 | Date | What changed | Why | Ref |
 |---|---|---|---|
+| 2026-04-21 | Fixed broken image path in mkdocs-integrate-with-obsidian.md: `../assets/` → `../../assets/` | File moved one level deeper during sub-folder restructure | — |
+| 2026-04-21 | Added collapsed "How to enable" setup block to admonitions.md, content-tabs.md, diagram-examples.md — shows required mkdocs.yml config snippet | Articles showed output but not how to replicate it | SI-007 |
+| 2026-04-21 | Restructured articles section — added hub page (articles/index.md), moved 7 articles into mkdocs-material/ and code/ sub-folders, added cluster index pages, updated nav with grouped sections and clickable headers, updated homepage browse link | Visual clustering and scalable structure for future topic growth | SI-007 |
 | 2026-04-21 | Updated PRJ-004 frontmatter: status `draft` → `published` on hub + 4 sub-pages | Mark Lifting Diary as officially published | PRJ-004 |
 | 2026-04-21 | Fixed broken cross-chapter link in ch03-install-configure.md: `ch07-gitignore.md` → `../part2/ch07-gitignore.md` | Link resolved against wrong folder | — |
 | 2026-04-21 | Fixed dead anchor in m365-tenant-separation.md ToC: `#2-business-context--the-forced-cutover` → `#2-business-context-the-forced-cutover` | MkDocs slugify collapses multiple spaces to single dash | — |

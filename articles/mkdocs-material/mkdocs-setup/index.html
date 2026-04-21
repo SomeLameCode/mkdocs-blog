@@ -7,19 +7,19 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Step-by-step guide to setting up MkDocs with the Material theme on Windows, with GitHub Pages deployment." name="description"/>
 <meta content="Florin Neagu" name="author"/>
-<link href="https://somelamecode.github.io/notes/articles/mkdocs-setup/" rel="canonical"/>
-<link href="../diagram-examples/" rel="prev"/>
+<link href="https://somelamecode.github.io/notes/articles/mkdocs-material/mkdocs-setup/" rel="canonical"/>
+<link href="../" rel="prev"/>
 <link href="../mkdocs-site-update/" rel="next"/>
-<link href="../../assets/favicon.svg" rel="icon"/>
+<link href="../../../assets/favicon.svg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
 <title>MkDocs Setup — Windows + VS Code + Material Theme - Florin Neagu Projects &amp; Notes</title>
-<link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
-<link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="../../stylesheets/extra.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
@@ -34,7 +34,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Florin Neagu Projects &amp; Notes">
+<a aria-label="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Florin Neagu Projects &amp; Notes">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -118,7 +118,7 @@
 <div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../..">
+<a class="md-tabs__link" href="../../..">
         
   
   
@@ -129,7 +129,7 @@
       </a>
 </li>
 <li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="../code-example/">
+<a class="md-tabs__link" href="../../">
           
   
   
@@ -140,7 +140,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../projects/">
+<a class="md-tabs__link" href="../../../projects/">
           
   
   
@@ -151,7 +151,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../code/">
+<a class="md-tabs__link" href="../../../code/">
         
   
   
@@ -162,7 +162,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../notebooks/">
+<a class="md-tabs__link" href="../../../notebooks/">
         
   
   
@@ -173,7 +173,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../tags/">
+<a class="md-tabs__link" href="../../../tags/">
         
   
   
@@ -193,7 +193,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Florin Neagu Projects &amp; Notes">
+<a aria-label="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Florin Neagu Projects &amp; Notes">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
     Florin Neagu Projects &amp; Notes
@@ -210,7 +210,7 @@
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../..">
+<a class="md-nav__link" href="../../..">
 <span class="md-ellipsis">
     
   
@@ -223,7 +223,8 @@
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
 <input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../">
 <span class="md-ellipsis">
     
   
@@ -232,8 +233,12 @@
 
     
   </span>
+<span class="md-status md-status--published"></span>
+</a>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
+</div>
 <nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
@@ -244,65 +249,41 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../code-example/">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../">
 <span class="md-ellipsis">
     
   
-    Code Simple Example
+    MkDocs &amp; Material
   
 
     
   </span>
 <span class="md-status md-status--published"></span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../content-tabs/">
-<span class="md-ellipsis">
-    
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            
   
-    Content Tabs example
-  
-
-    
-  </span>
-<span class="md-status md-status--published"></span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../admonitions/">
-<span class="md-ellipsis">
-    
-  
-    Admonitions example
+    MkDocs &amp; Material
   
 
-    
-  </span>
-<span class="md-status md-status--published"></span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../diagram-examples/">
-<span class="md-ellipsis">
-    
-  
-    Diagram example
-  
-
-    
-  </span>
-<span class="md-status md-status--published"></span>
-</a>
-</li>
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
     
   
-    MkDocs Initial Setup
+    MkDocs Setup
   
 
     
@@ -314,7 +295,7 @@
 <span class="md-ellipsis">
     
   
-    MkDocs Initial Setup
+    MkDocs Setup
   
 
     
@@ -487,7 +468,7 @@
 <span class="md-ellipsis">
     
   
-    MkDocs Publish to Github
+    Publish to GitHub Pages
   
 
     
@@ -500,7 +481,46 @@
 <span class="md-ellipsis">
     
   
-    MkDocs Integrate with Obsidian
+    Obsidian Integration
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../admonitions/">
+<span class="md-ellipsis">
+    
+  
+    Admonitions
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../content-tabs/">
+<span class="md-ellipsis">
+    
+  
+    Content Tabs
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../diagram-examples/">
+<span class="md-ellipsis">
+    
+  
+    Diagram Examples
   
 
     
@@ -512,9 +532,56 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../code/">
+<span class="md-ellipsis">
+    
+  
+    Code &amp; Data
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Code &amp; Data
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../code/code-example/">
+<span class="md-ellipsis">
+    
+  
+    Normal Distribution Generator
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../projects/">
+<a class="md-nav__link" href="../../../projects/">
 <span class="md-ellipsis">
     
   
@@ -539,7 +606,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../projects/paperless-ngx/">
+<a class="md-nav__link" href="../../../projects/paperless-ngx/">
 <span class="md-ellipsis">
     
   
@@ -552,7 +619,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../projects/github-in-a-nutshell/">
+<a class="md-nav__link" href="../../../projects/github-in-a-nutshell/">
 <span class="md-ellipsis">
     
   
@@ -565,7 +632,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../projects/m365-tenant-separation/">
+<a class="md-nav__link" href="../../../projects/m365-tenant-separation/">
 <span class="md-ellipsis">
     
   
@@ -601,7 +668,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../projects/lifting-diary-claude/">
+<a class="md-nav__link" href="../../../projects/lifting-diary-claude/">
 <span class="md-ellipsis">
     
   
@@ -614,7 +681,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../projects/lifting-diary-claude/the-application/">
+<a class="md-nav__link" href="../../../projects/lifting-diary-claude/the-application/">
 <span class="md-ellipsis">
     
   
@@ -627,7 +694,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../projects/lifting-diary-claude/building-with-claude-code/">
+<a class="md-nav__link" href="../../../projects/lifting-diary-claude/building-with-claude-code/">
 <span class="md-ellipsis">
     
   
@@ -640,7 +707,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../projects/lifting-diary-claude/architecture-as-input/">
+<a class="md-nav__link" href="../../../projects/lifting-diary-claude/architecture-as-input/">
 <span class="md-ellipsis">
     
   
@@ -653,7 +720,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../projects/lifting-diary-claude/prompt-log/">
+<a class="md-nav__link" href="../../../projects/lifting-diary-claude/prompt-log/">
 <span class="md-ellipsis">
     
   
@@ -672,7 +739,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../code/">
+<a class="md-nav__link" href="../../../code/">
 <span class="md-ellipsis">
     
   
@@ -684,7 +751,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../notebooks/">
+<a class="md-nav__link" href="../../../notebooks/">
 <span class="md-ellipsis">
     
   
@@ -696,7 +763,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../tags/">
+<a class="md-nav__link" href="../../../tags/">
 <span class="md-ellipsis">
     
   
@@ -881,11 +948,11 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <nav class="md-tags">
-<a class="md-tag" href="../../tags/#tag:github-pages">github-pages</a>
-<a class="md-tag" href="../../tags/#tag:material-theme">material-theme</a>
-<a class="md-tag" href="../../tags/#tag:mkdocs">mkdocs</a>
-<a class="md-tag" href="../../tags/#tag:setup">setup</a>
-<a class="md-tag" href="../../tags/#tag:windows">windows</a>
+<a class="md-tag" href="../../../tags/#tag:github-pages">github-pages</a>
+<a class="md-tag" href="../../../tags/#tag:material-theme">material-theme</a>
+<a class="md-tag" href="../../../tags/#tag:mkdocs">mkdocs</a>
+<a class="md-tag" href="../../../tags/#tag:setup">setup</a>
+<a class="md-tag" href="../../../tags/#tag:windows">windows</a>
 </nav>
 <h1 id="mkdocs-setup-windows-vs-code-material-theme">MkDocs Setup (Windows + VS Code + Material Theme)</h1>
 <p>This document describes the exact steps used to set up <strong>MkDocs with the Material theme</strong> on <strong>Windows</strong>, using <strong>VS Code</strong>, a <strong>Python virtual environment</strong>, and deployment to <strong>GitHub Pages</strong>.</p>
@@ -1106,7 +1173,7 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-<script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
 </body>
 </html>

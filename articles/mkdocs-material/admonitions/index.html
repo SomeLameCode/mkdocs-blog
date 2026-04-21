@@ -6,33 +6,37 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Chapter 11 — Branches and HEAD.">
+        <meta name="description" content="Examples of MkDocs Material admonition callout boxes and collapsible details blocks.">
       
       
         <meta name="author" content="Florin Neagu">
       
       
-        <link rel="canonical" href="https://somelamecode.github.io/notes/projects/github-in-a-nutshell/part3/ch11-branches-head/">
+        <link rel="canonical" href="https://somelamecode.github.io/notes/articles/mkdocs-material/admonitions/">
       
       
+        <link rel="prev" href="../mkdocs-integrate-with-obsidian/">
+      
+      
+        <link rel="next" href="../content-tabs/">
       
       
         
       
       
-      <link rel="icon" href="../../../../assets/favicon.svg">
+      <link rel="icon" href="../../../assets/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Chapter 11 — Branches and HEAD - Florin Neagu Projects & Notes</title>
+        <title>Admonitions - Florin Neagu Projects & Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -77,11 +81,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#chapter-11-branches-and-head" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -92,7 +91,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+    <a href="../../.." title="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chapter 11 — Branches and HEAD
+              Admonitions
             
           </span>
         </div>
@@ -230,7 +229,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -247,11 +246,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../../articles/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -273,7 +274,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../" class="md-tabs__link">
+        <a href="../../../projects/" class="md-tabs__link">
           
   
   
@@ -293,7 +294,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../code/" class="md-tabs__link">
+      <a href="../../../code/" class="md-tabs__link">
         
   
   
@@ -312,7 +313,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../notebooks/" class="md-tabs__link">
+      <a href="../../../notebooks/" class="md-tabs__link">
         
   
   
@@ -331,7 +332,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../tags/" class="md-tabs__link">
+      <a href="../../../tags/" class="md-tabs__link">
         
   
   
@@ -366,7 +367,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+    <a href="../../.." title="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -396,7 +397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -420,6 +421,8 @@
       
   
   
+    
+  
   
   
     
@@ -437,18 +440,21 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../articles/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -473,13 +479,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -496,6 +502,8 @@
                 
   
   
+    
+  
   
   
     
@@ -524,15 +532,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../articles/mkdocs-material/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -563,7 +571,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -583,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/mkdocs-setup/" class="md-nav__link">
+      <a href="../mkdocs-setup/" class="md-nav__link">
         
   
   
@@ -618,7 +626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/mkdocs-site-update/" class="md-nav__link">
+      <a href="../mkdocs-site-update/" class="md-nav__link">
         
   
   
@@ -653,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/mkdocs-integrate-with-obsidian/" class="md-nav__link">
+      <a href="../mkdocs-integrate-with-obsidian/" class="md-nav__link">
         
   
   
@@ -685,10 +693,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/admonitions/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -711,6 +726,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -723,7 +739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/content-tabs/" class="md-nav__link">
+      <a href="../content-tabs/" class="md-nav__link">
         
   
   
@@ -758,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/diagram-examples/" class="md-nav__link">
+      <a href="../diagram-examples/" class="md-nav__link">
         
   
   
@@ -824,7 +840,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../articles/code/" class="md-nav__link ">
+            <a href="../../code/" class="md-nav__link ">
               
   
   
@@ -875,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/code/code-example/" class="md-nav__link">
+      <a href="../../code/code-example/" class="md-nav__link">
         
   
   
@@ -954,7 +970,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../" class="md-nav__link ">
+            <a href="../../../projects/" class="md-nav__link ">
               
   
   
@@ -998,7 +1014,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../paperless-ngx/" class="md-nav__link">
+      <a href="../../../projects/paperless-ngx/" class="md-nav__link">
         
   
   
@@ -1033,7 +1049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../../projects/github-in-a-nutshell/" class="md-nav__link">
         
   
   
@@ -1068,7 +1084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../m365-tenant-separation/" class="md-nav__link">
+      <a href="../../../projects/m365-tenant-separation/" class="md-nav__link">
         
   
   
@@ -1165,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lifting-diary-claude/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/" class="md-nav__link">
         
   
   
@@ -1200,7 +1216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lifting-diary-claude/the-application/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/the-application/" class="md-nav__link">
         
   
   
@@ -1235,7 +1251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lifting-diary-claude/building-with-claude-code/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/building-with-claude-code/" class="md-nav__link">
         
   
   
@@ -1270,7 +1286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lifting-diary-claude/architecture-as-input/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/architecture-as-input/" class="md-nav__link">
         
   
   
@@ -1305,7 +1321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lifting-diary-claude/prompt-log/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/prompt-log/" class="md-nav__link">
         
   
   
@@ -1355,7 +1371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../code/" class="md-nav__link">
+      <a href="../../../code/" class="md-nav__link">
         
   
   
@@ -1382,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../notebooks/" class="md-nav__link">
+      <a href="../../../notebooks/" class="md-nav__link">
         
   
   
@@ -1409,7 +1425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../tags/" class="md-nav__link">
+      <a href="../../../tags/" class="md-nav__link">
         
   
   
@@ -1446,204 +1462,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#commits-as-a-chain" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Commits as a Chain
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-a-branch-is" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What a Branch Is
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#head-your-current-position" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        HEAD — Your Current Position
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="HEAD — Your Current Position">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#head-follows-commits-automatically" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        HEAD follows commits automatically
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#multiple-branches" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Multiple Branches
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#branch-management-commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Branch Management Commands
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Branch Management Commands">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#list-branches" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        List branches
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-branch" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create a branch
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#switch-to-a-branch" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Switch to a branch
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-and-switch-in-one-step" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Create and switch in one step
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rename-a-branch" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rename a branch
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-a-branch" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Delete a branch
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-branches-diverge" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How Branches Diverge
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gits-efficiency-blob-reuse" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Git's Efficiency: Blob Reuse
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#git-switch-vs-git-checkout" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        git switch vs git checkout
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1664,28 +1482,21 @@
       
       
       
-        <a href="../../../../tags/#tag:branching" class="md-tag">branching</a>
+        <a href="../../../tags/#tag:examples" class="md-tag">examples</a>
       
     
       
       
       
       
-        <a href="../../../../tags/#tag:git" class="md-tag">git</a>
+        <a href="../../../tags/#tag:material-theme" class="md-tag">material-theme</a>
       
     
       
       
       
       
-        <a href="../../../../tags/#tag:github" class="md-tag">github</a>
-      
-    
-      
-      
-      
-      
-        <a href="../../../../tags/#tag:version-control" class="md-tag">version-control</a>
+        <a href="../../../tags/#tag:mkdocs" class="md-tag">mkdocs</a>
       
     
   </nav>
@@ -1695,156 +1506,32 @@
   
 
 
-<h1 id="chapter-11-branches-and-head">Chapter 11 — Branches and HEAD</h1>
-<p>Branching is one of Git's most powerful features and one of its most misunderstood. In many older version control systems, creating a branch meant copying the entire project — an expensive, slow operation. In Git, a branch costs almost nothing. Understanding <em>why</em> requires looking at what a branch actually is under the hood.</p>
-<hr />
-<h2 id="commits-as-a-chain">Commits as a Chain</h2>
-<p>Every commit (except the first) points to its parent. This forms an immutable chain of history stretching back to the root commit.</p>
-<p><img alt="Three commits in a timeline, each pointing to its parent" src="../../assets/images/6-git-branches-and-head_p0001_i0000.png" /></p>
-<p>Each commit stores:
-- A pointer to a <strong>tree</strong> (the project snapshot)
-- A pointer to its <strong>parent commit</strong> (or two parents, in a merge)
-- Author, committer, message, and timestamp</p>
-<p>This chain is the repository's history. Branches and HEAD are simply names that point into this chain.</p>
-<hr />
-<h2 id="what-a-branch-is">What a Branch Is</h2>
-<p>A <strong>branch</strong> is nothing more than a text file containing a 40-character commit SHA. That is all.</p>
-<p>When the <code>main</code> branch points to commit <code>44e073</code>, Git's <code>.git/refs/heads/main</code> file contains:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>44e073...
+  <h1>Admonitions</h1>
+
+<details class="note">
+<summary>How to enable this</summary>
+<p>Add the following to <code>mkdocs.yml</code>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">markdown_extensions</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admonition</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pymdownx.details</span>
 </span></code></pre></div>
-<p><img alt="The master branch pointer pointing to the latest commit" src="../../assets/images/6-git-branches-and-head_p0002_i0000.png" /></p>
-<p>Key properties of branches (from the vault source):</p>
-<ol>
-<li>The default branch is <code>main</code> (or <code>master</code> in older repositories)</li>
-<li>Multiple branches can exist in the same repository simultaneously</li>
-<li>All branch pointers are stored in <code>.git/refs/heads/</code></li>
-<li>The <strong>current branch</strong> tracks new commits automatically — when you commit, the branch pointer advances to the new commit</li>
-<li>You switch branches with <code>git checkout &lt;branch&gt;</code> or <code>git switch &lt;branch&gt;</code></li>
-</ol>
-<p><img alt="A branch is a text reference to a commit SHA, stored in .git/refs/heads/" src="../../assets/images/6-git-branches-and-head_p0003_i0000.png" /></p>
-<p>Because a branch is just a pointer, <strong>creating a branch is instantaneous and uses almost no storage</strong> — Git writes a single small file. This is why Git encourages frequent branching; there is no meaningful cost to it.</p>
-<hr />
-<h2 id="head-your-current-position">HEAD — Your Current Position</h2>
-<p><strong>HEAD</strong> is a special reference that tells Git where you are right now. It is stored in <code>.git/HEAD</code>.</p>
-<p>Most of the time, HEAD points to a branch name (not directly to a commit). The chain is:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>HEAD → branch → commit
-</span></code></pre></div>
-<p><img alt="HEAD pointing to master, which points to a commit" src="../../assets/images/6-git-branches-and-head_p0004_i0000.png" /></p>
-<p>Five things to know about HEAD:</p>
-<ol>
-<li>HEAD is <strong>locally significant</strong> — it only exists on your machine</li>
-<li>The pointer is stored in <code>.git/HEAD</code></li>
-<li>By default its content is <code>ref: refs/heads/main</code> (or <code>master</code>)</li>
-<li><code>git checkout &lt;branch&gt;</code> changes HEAD to point to that branch</li>
-<li><code>git checkout &lt;sha&gt;</code> points HEAD directly at a commit (this is <em>detached HEAD</em> — covered in Chapter 16)</li>
-</ol>
-<p><img alt="HEAD as a reference to the currently checked-out branch or commit" src="../../assets/images/6-git-branches-and-head_p0005_i0000.png" /></p>
-<h3 id="head-follows-commits-automatically">HEAD follows commits automatically</h3>
-<p>When you make a new commit, the branch HEAD points to advances to the new commit. HEAD itself does not change — it still points to the same branch, but that branch now points further forward.</p>
-<p><img alt="HEAD → master → three commits in a timeline" src="../../assets/images/6-git-branches-and-head_p0006_i0000.png" /></p>
-<hr />
-<h2 id="multiple-branches">Multiple Branches</h2>
-<p>A repository can have as many branches as you need, each pointing to a different commit. HEAD determines which one is active.</p>
-<p><img alt="Multiple branches (master, BR-102, temp, exp) each pointing to different commits" src="../../assets/images/6-git-branches-and-head_p0007_i0000.png" /></p>
-<p>In this diagram, HEAD is pointing to <code>exp</code> — that is the active branch. New commits will advance <code>exp</code>; all other branch pointers stay fixed.</p>
-<hr />
-<h2 id="branch-management-commands">Branch Management Commands</h2>
-<h3 id="list-branches">List branches</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>branch<span class="w">               </span><span class="c1"># list local branches; current branch marked with *</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>git<span class="w"> </span>branch<span class="w"> </span>-a<span class="w">            </span><span class="c1"># list local + remote-tracking branches</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>git<span class="w"> </span>branch<span class="w"> </span>-v<span class="w">            </span><span class="c1"># list with last commit SHA and message</span>
-</span></code></pre></div>
-<h3 id="create-a-branch">Create a branch</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>branch<span class="w"> </span>feature-x<span class="w">     </span><span class="c1"># create at current HEAD (does not switch)</span>
-</span></code></pre></div>
-<p><img alt="Creating a new branch BR-1 pointing to the same commit as master" src="../../assets/images/6-git-branches-and-head_p0010_i0000.png" /></p>
-<p>The new branch starts at the same commit as the current branch — the two pointers are identical at creation time.</p>
-<h3 id="switch-to-a-branch">Switch to a branch</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>feature-x<span class="w">   </span><span class="c1"># classic syntax (Git all versions)</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>switch<span class="w"> </span>feature-x<span class="w">     </span><span class="c1"># modern syntax (Git 2.23+)</span>
-</span></code></pre></div>
-<p>Both update HEAD to point to <code>feature-x</code> and update the working directory to match that branch's commit.</p>
-<h3 id="create-and-switch-in-one-step">Create and switch in one step</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature-x<span class="w">    </span><span class="c1"># classic syntax</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>feature-x<span class="w">      </span><span class="c1"># modern syntax</span>
-</span></code></pre></div>
-<p><img alt="git checkout -b creates a branch and switches to it simultaneously" src="../../assets/images/6-git-branches-and-head_p0009_i0000.png" /></p>
-<p>This is the most common way to start new work.</p>
-<h3 id="rename-a-branch">Rename a branch</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>branch<span class="w"> </span>-m<span class="w"> </span>old-name<span class="w"> </span>new-name<span class="w">      </span><span class="c1"># rename any branch</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git<span class="w"> </span>branch<span class="w"> </span>-m<span class="w"> </span>new-name<span class="w">               </span><span class="c1"># rename the current branch</span>
-</span></code></pre></div>
-<h3 id="delete-a-branch">Delete a branch</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>feature-x<span class="w">      </span><span class="c1"># delete a fully merged branch (safe)</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>git<span class="w"> </span>branch<span class="w"> </span>-D<span class="w"> </span>feature-x<span class="w">      </span><span class="c1"># force-delete even if unmerged (data loss risk)</span>
-</span></code></pre></div>
-<blockquote>
-<p><strong>Tip:</strong> <code>-d</code> refuses to delete a branch whose commits are not reachable from any other branch. Use <code>-D</code> only when you are sure you no longer need that work.</p>
-</blockquote>
-<p><img alt="Branch management commands: branch, checkout, -d, -m" src="../../assets/images/6-git-branches-and-head_p0008_i0000.png" /></p>
-<hr />
-<h2 id="how-branches-diverge">How Branches Diverge</h2>
-<p>Once you commit on a branch, its pointer advances while all other branch pointers stay put. This is how parallel development works.</p>
-<p>Starting point: <code>main</code> and <code>BR-1</code> both point to commit <code>a82c9e</code>.</p>
-<p>After one commit on <code>BR-1</code>:</p>
-<p><img alt="After a commit on BR-1, only BR-1's pointer advances; main stays at a82c9e" src="../../assets/images/6-git-branches-and-head_p0011_i0000.png" /></p>
-<p><code>BR-1</code> now points to the new commit <code>285b13</code>. <code>main</code> still points to <code>a82c9e</code>. The two branches have <strong>diverged</strong>. Future commits on either branch will continue diverging until the branches are merged (Chapter 12) or rebased (Chapter 13).</p>
-<hr />
-<h2 id="gits-efficiency-blob-reuse">Git's Efficiency: Blob Reuse</h2>
-<p>Because branches are just pointers, switching branches does not duplicate files. Git also reuses <strong>blob objects</strong> (file content) across branches wherever the content is identical.</p>
-<p><img alt="Git reuses the same blob object when a file with the same content appears in multiple branches" src="../../assets/images/6-git-branches-and-head_p0012_i0000.png" /></p>
-<p>If two branches contain a file with identical content — even under different names — they share the same blob object in the object store. Git only stores each unique piece of content once. This is why repositories with many branches do not balloon in size.</p>
-<hr />
-<h2 id="git-switch-vs-git-checkout"><code>git switch</code> vs <code>git checkout</code></h2>
-<p>Git 2.23 (released 2019) introduced <code>git switch</code> and <code>git restore</code> to split the responsibilities of <code>git checkout</code>, which had accumulated too many unrelated functions:</p>
-<table>
-<thead>
-<tr>
-<th>Task</th>
-<th>Modern syntax</th>
-<th>Classic syntax</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Switch to a branch</td>
-<td><code>git switch &lt;branch&gt;</code></td>
-<td><code>git checkout &lt;branch&gt;</code></td>
-</tr>
-<tr>
-<td>Create and switch</td>
-<td><code>git switch -c &lt;branch&gt;</code></td>
-<td><code>git checkout -b &lt;branch&gt;</code></td>
-</tr>
-<tr>
-<td>Restore a file</td>
-<td><code>git restore &lt;file&gt;</code></td>
-<td><code>git checkout -- &lt;file&gt;</code></td>
-</tr>
-<tr>
-<td>Detach HEAD at a commit</td>
-<td><code>git switch --detach &lt;sha&gt;</code></td>
-<td><code>git checkout &lt;sha&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<p>Both forms work in all modern Git versions. This manual uses the modern syntax going forward, with the classic equivalent noted where relevant.</p>
-<blockquote>
-<p><strong>Further reading:</strong> <a href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Git Branching — Branches in a Nutshell (Pro Git)</a></p>
-</blockquote>
-<hr />
-<h2 id="summary">Summary</h2>
-<ul>
-<li>A branch is a lightweight text pointer to a commit SHA, stored in <code>.git/refs/heads/</code>.</li>
-<li>HEAD points to the current branch (or directly to a commit in detached state).</li>
-<li>When you commit, the active branch pointer advances automatically; HEAD stays on the same branch.</li>
-<li>Creating a branch is instant and costs almost no storage.</li>
-<li><code>git switch -c &lt;name&gt;</code> (or <code>git checkout -b &lt;name&gt;</code>) creates and switches in one step.</li>
-<li>Use <code>git branch -d</code> to safely delete merged branches; <code>-D</code> to force-delete.</li>
-<li>Git reuses blob objects across branches — identical file content is never stored twice.</li>
-</ul>
-<hr />
-<p><em>Previous: <a href="../../part2/ch10-inspecting-history/">Chapter 10 — Inspecting History</a></em> · <em>Next: <a href="../ch12-merging/">Chapter 12 — Merging Branches</a></em></p>
+<p><code>admonition</code> enables the <code>!!!</code> callout syntax. <code>pymdownx.details</code> adds the <code>???</code> collapsible variant.</p>
+</details>
+<p>This is an example of an adominition with a title:</p>
+<div class="admonition note">
+<p class="admonition-title">Title of the callout</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.</p>
+</div>
+<p>Collapsible callout:</p>
+<details class="info">
+<summary>Collapsible callout</summary>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+massa, nec semper lorem quam in massa.</p>
+</details>
+<p><a href="https://squidfunk.github.io/mkdocs-material/reference/admonitions/#supported-types">Admonitions documentations</a></p>
 
 
 
@@ -1865,7 +1552,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 18, 2026 03:30:12 UTC">April 18, 2026 03:30:12</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 21, 2026 00:20:12 UTC">April 21, 2026 00:20:12</span>
   </span>
 
     
@@ -1927,10 +1614,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

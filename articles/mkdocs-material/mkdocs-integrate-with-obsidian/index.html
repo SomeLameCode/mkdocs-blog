@@ -6,33 +6,37 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Chapter 03 — Installing & Configuring Git.">
+        <meta name="description" content="How to use Obsidian as a writing front-end for an MkDocs site, with Git version control.">
       
       
         <meta name="author" content="Florin Neagu">
       
       
-        <link rel="canonical" href="https://somelamecode.github.io/notes/projects/github-in-a-nutshell/part1/ch03-install-configure/">
+        <link rel="canonical" href="https://somelamecode.github.io/notes/articles/mkdocs-material/mkdocs-integrate-with-obsidian/">
       
       
+        <link rel="prev" href="../mkdocs-site-update/">
+      
+      
+        <link rel="next" href="../admonitions/">
       
       
         
       
       
-      <link rel="icon" href="../../../../assets/favicon.svg">
+      <link rel="icon" href="../../../assets/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Chapter 03 — Installing & Configuring Git - Florin Neagu Projects & Notes</title>
+        <title>Integrate Git, MkDocs, and Obsidian - Florin Neagu Projects & Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter-03-installing-configuring-git" class="md-skip">
+        <a href="#integrate-git-mkdocs-and-obsidian" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+    <a href="../../.." title="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chapter 03 — Installing & Configuring Git
+              Integrate Git, MkDocs, and Obsidian
             
           </span>
         </div>
@@ -230,7 +234,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -247,11 +251,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../../articles/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -273,7 +279,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../" class="md-tabs__link">
+        <a href="../../../projects/" class="md-tabs__link">
           
   
   
@@ -293,7 +299,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../code/" class="md-tabs__link">
+      <a href="../../../code/" class="md-tabs__link">
         
   
   
@@ -312,7 +318,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../notebooks/" class="md-tabs__link">
+      <a href="../../../notebooks/" class="md-tabs__link">
         
   
   
@@ -331,7 +337,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../tags/" class="md-tabs__link">
+      <a href="../../../tags/" class="md-tabs__link">
         
   
   
@@ -366,7 +372,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+    <a href="../../.." title="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -396,7 +402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -420,6 +426,8 @@
       
   
   
+    
+  
   
   
     
@@ -437,18 +445,21 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../articles/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -473,13 +484,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -496,6 +507,8 @@
                 
   
   
+    
+  
   
   
     
@@ -524,15 +537,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../articles/mkdocs-material/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -563,7 +576,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -583,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/mkdocs-setup/" class="md-nav__link">
+      <a href="../mkdocs-setup/" class="md-nav__link">
         
   
   
@@ -618,7 +631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/mkdocs-site-update/" class="md-nav__link">
+      <a href="../mkdocs-site-update/" class="md-nav__link">
         
   
   
@@ -650,10 +663,44 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/mkdocs-integrate-with-obsidian/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Obsidian Integration
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -676,6 +723,114 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-fits-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Fits Together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-recommended-folder-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Recommended Folder Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-point-mkdocs-at-your-vault" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Point MkDocs at Your Vault
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-handle-image-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Handle Image Paths
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-wikilinks-vs-standard-markdown-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Wikilinks vs Standard Markdown Links
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-exclude-obsidian-specific-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Exclude Obsidian-Specific Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-daily-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Daily Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -688,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/admonitions/" class="md-nav__link">
+      <a href="../admonitions/" class="md-nav__link">
         
   
   
@@ -723,7 +878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/content-tabs/" class="md-nav__link">
+      <a href="../content-tabs/" class="md-nav__link">
         
   
   
@@ -758,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/mkdocs-material/diagram-examples/" class="md-nav__link">
+      <a href="../diagram-examples/" class="md-nav__link">
         
   
   
@@ -824,7 +979,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../articles/code/" class="md-nav__link ">
+            <a href="../../code/" class="md-nav__link ">
               
   
   
@@ -875,7 +1030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../articles/code/code-example/" class="md-nav__link">
+      <a href="../../code/code-example/" class="md-nav__link">
         
   
   
@@ -954,7 +1109,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../" class="md-nav__link ">
+            <a href="../../../projects/" class="md-nav__link ">
               
   
   
@@ -998,7 +1153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../paperless-ngx/" class="md-nav__link">
+      <a href="../../../projects/paperless-ngx/" class="md-nav__link">
         
   
   
@@ -1033,7 +1188,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../../projects/github-in-a-nutshell/" class="md-nav__link">
         
   
   
@@ -1068,7 +1223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../m365-tenant-separation/" class="md-nav__link">
+      <a href="../../../projects/m365-tenant-separation/" class="md-nav__link">
         
   
   
@@ -1165,7 +1320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lifting-diary-claude/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/" class="md-nav__link">
         
   
   
@@ -1200,7 +1355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lifting-diary-claude/the-application/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/the-application/" class="md-nav__link">
         
   
   
@@ -1235,7 +1390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lifting-diary-claude/building-with-claude-code/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/building-with-claude-code/" class="md-nav__link">
         
   
   
@@ -1270,7 +1425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lifting-diary-claude/architecture-as-input/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/architecture-as-input/" class="md-nav__link">
         
   
   
@@ -1305,7 +1460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../lifting-diary-claude/prompt-log/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/prompt-log/" class="md-nav__link">
         
   
   
@@ -1355,7 +1510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../code/" class="md-nav__link">
+      <a href="../../../code/" class="md-nav__link">
         
   
   
@@ -1382,7 +1537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../notebooks/" class="md-nav__link">
+      <a href="../../../notebooks/" class="md-nav__link">
         
   
   
@@ -1409,7 +1564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../tags/" class="md-nav__link">
+      <a href="../../../tags/" class="md-nav__link">
         
   
   
@@ -1456,121 +1611,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installing-git" class="md-nav__link">
+  <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Installing Git
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Installing Git">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Windows
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#macos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        macOS
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Linux
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#first-time-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        First-Time Configuration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="First-Time Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#your-identity" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Your Identity
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#default-branch-name" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Default Branch Name
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#default-editor" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Default Editor
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#line-endings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Line Endings
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuration-scopes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuration Scopes
+        How It Fits Together
       
     </span>
   </a>
@@ -1578,60 +1622,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#viewing-your-configuration" class="md-nav__link">
+  <a href="#1-recommended-folder-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Viewing Your Configuration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Viewing Your Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#list-all-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        List all settings
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#show-a-specific-setting" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Show a specific setting
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#show-which-file-a-setting-comes-from" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Show which file a setting comes from
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-gitconfig-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The .gitconfig File
+        1. Recommended Folder Structure
       
     </span>
   </a>
@@ -1639,10 +1633,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#useful-aliases-optional" class="md-nav__link">
+  <a href="#2-point-mkdocs-at-your-vault" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Useful Aliases (Optional)
+        2. Point MkDocs at Your Vault
       
     </span>
   </a>
@@ -1650,10 +1644,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-reference" class="md-nav__link">
+  <a href="#3-handle-image-paths" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Reference
+        3. Handle Image Paths
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-wikilinks-vs-standard-markdown-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Wikilinks vs Standard Markdown Links
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-exclude-obsidian-specific-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Exclude Obsidian-Specific Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-daily-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Daily Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
       
     </span>
   </a>
@@ -1681,28 +1719,28 @@
       
       
       
-        <a href="../../../../tags/#tag:getting-started" class="md-tag">getting-started</a>
+        <a href="../../../tags/#tag:git" class="md-tag">git</a>
       
     
       
       
       
       
-        <a href="../../../../tags/#tag:git" class="md-tag">git</a>
+        <a href="../../../tags/#tag:mkdocs" class="md-tag">mkdocs</a>
       
     
       
       
       
       
-        <a href="../../../../tags/#tag:github" class="md-tag">github</a>
+        <a href="../../../tags/#tag:obsidian" class="md-tag">obsidian</a>
       
     
       
       
       
       
-        <a href="../../../../tags/#tag:version-control" class="md-tag">version-control</a>
+        <a href="../../../tags/#tag:workflow" class="md-tag">workflow</a>
       
     
   </nav>
@@ -1712,238 +1750,94 @@
   
 
 
-<h1 id="chapter-03-installing-configuring-git">Chapter 03 — Installing &amp; Configuring Git</h1>
-<p>Before you can use Git, you need to install it and tell it who you are. This chapter covers installation on all major operating systems and walks through the essential first-time configuration so that your commits are correctly attributed and your environment behaves predictably.</p>
+<h1 id="integrate-git-mkdocs-and-obsidian">Integrate Git, MkDocs, and Obsidian</h1>
+<p>This guide explains how to use <strong>Obsidian</strong> as your note-editing front-end while publishing your notes as a <strong>MkDocs</strong> site — all tracked in <strong>Git</strong>.</p>
 <hr />
-<h2 id="installing-git">Installing Git</h2>
-<h3 id="windows">Windows</h3>
-<p>The recommended approach on Windows is <strong>Git for Windows</strong>, which installs Git along with Git Bash — a bash-compatible terminal emulator that provides the Unix-style shell environment used in this manual.</p>
+<h2 id="how-it-fits-together">How It Fits Together</h2>
+<ul>
+<li><strong>Obsidian</strong> = your writing environment (local Markdown editor)</li>
+<li><strong>MkDocs</strong> = your publishing engine (converts <code>.md</code> files to a static site)</li>
+<li><strong>Git</strong> = version control and deployment to GitHub Pages</li>
+</ul>
+<p>The key insight: MkDocs doesn't care where your Markdown files come from. Point it at your Obsidian vault and it will build a site from it.</p>
+<p><img alt="Obsidian-Mkdocs-Git" src="../assets/Pasted image 20260119153240.png" /></p>
+<hr />
+<h2 id="1-recommended-folder-structure">1. Recommended Folder Structure</h2>
+<p>Keep MkDocs config and the Obsidian vault in the same Git repo:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>notes/                    ← Git repo root
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── mkdocs.yml
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── .gitignore
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── venv/
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>└── docs/                 ← Obsidian vault AND MkDocs docs_dir
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    ├── index.md
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    ├── articles/
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    ├── projects/
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    └── assets/           ← Images and attachments (set in Obsidian settings)
+</span></code></pre></div>
+<p>Set Obsidian's <strong>"Files and links &gt; Default location for new attachments"</strong> to <code>assets/</code> so images land in a predictable, MkDocs-friendly path.</p>
+<hr />
+<h2 id="2-point-mkdocs-at-your-vault">2. Point MkDocs at Your Vault</h2>
+<p>In <code>mkdocs.yml</code>, set <code>docs_dir</code> to your vault folder:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">site_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">My Knowledge Base</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">docs_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docs</span><span class="w">            </span><span class="c1"># &lt;-- your Obsidian vault folder</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">site_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">site</span><span class="w">            </span><span class="c1"># &lt;-- generated HTML output (gitignored)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nt">theme</span><span class="p">:</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">material</span>
+</span></code></pre></div>
+<p>Everything you write in Obsidian automatically becomes part of your MkDocs site on the next <code>mkdocs serve</code> or <code>mkdocs build</code>.</p>
+<hr />
+<h2 id="3-handle-image-paths">3. Handle Image Paths</h2>
+<p>Obsidian pastes images with paths like:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>![<span class="nt">screenshot</span>](<span class="na">../assets/Pasted image 20260119153240.png</span>)
+</span></code></pre></div>
+<p>MkDocs resolves these paths relative to the Markdown file's location. This works correctly <strong>as long as</strong> your attachments folder is inside <code>docs/</code> and Obsidian is configured to save attachments there.</p>
+<p><strong>Obsidian settings to configure:</strong></p>
+<ul>
+<li><code>Settings → Files and links → Default location for new attachments</code> → <code>In the folder specified below</code></li>
+<li>Folder: <code>assets</code></li>
+</ul>
+<p>This keeps all images under <code>docs/assets/</code>, which MkDocs can find without any path rewriting.</p>
+<hr />
+<h2 id="4-wikilinks-vs-standard-markdown-links">4. Wikilinks vs Standard Markdown Links</h2>
+<p>Obsidian uses <strong>wikilinks</strong> by default (<code>[[Page Name]]</code>). MkDocs does <strong>not</strong> understand wikilinks — it requires standard Markdown links (<code>[Page Name](page-name.md)</code>).</p>
+<p><strong>Fix:</strong> In Obsidian, switch to standard Markdown links:</p>
+<p><code>Settings → Files and links → Use [[Wikilinks]]</code> → <strong>disable</strong></p>
+<p>With this off, Obsidian writes <code>[Page Name](page-name.md)</code> which MkDocs handles correctly.</p>
+<hr />
+<h2 id="5-exclude-obsidian-specific-files">5. Exclude Obsidian-Specific Files</h2>
+<p>Obsidian stores configuration in a <code>.obsidian/</code> folder inside your vault. These files should not become pages on your site.</p>
+<p>Add to your <code>mkdocs.yml</code>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">exclude_docs</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="no">.obsidian/</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="no">templates/</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="no">*.canvas</span>
+</span></code></pre></div>
+<p>And add to <code>.gitignore</code> if you don't want to commit Obsidian workspace state:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docs/.obsidian/workspace.json
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>docs/.obsidian/workspace-mobile.json
+</span></code></pre></div>
+<p>The core <code>.obsidian/</code> config (themes, plugins, settings) is worth committing so the vault is reproducible across machines.</p>
+<hr />
+<h2 id="6-daily-workflow">6. Daily Workflow</h2>
 <ol>
-<li>Download the installer from <a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a>.</li>
-<li>Run the installer. The defaults are sensible for most users; the only setting worth reviewing is the default editor (covered below).</li>
-<li>After installation, open <strong>Git Bash</strong> from the Start menu to verify:</li>
+<li>Open Obsidian, write notes normally</li>
+<li>Run <code>mkdocs serve</code> to preview the site locally</li>
+<li>Commit changes and deploy:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>--version
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># git version 2.x.x.windows.x</span>
-</span></code></pre></div>
-<blockquote>
-<p><strong>Windows Terminal + Git Bash:</strong> If you prefer Windows Terminal, you can add Git Bash as a profile. This gives you a modern terminal interface with tabs and GPU rendering while still using Git Bash as the shell.</p>
-</blockquote>
-<h3 id="macos">macOS</h3>
-<p>macOS ships with a system Git (installed as part of Xcode Command Line Tools), but it is often outdated. The cleanest approach is to install Git via <strong>Homebrew</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Install Homebrew if you don&#39;t have it (see https://brew.sh)</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>brew<span class="w"> </span>install<span class="w"> </span>git
-</span></code></pre></div>
-<p>After installation, open a new terminal and verify:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>--version
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># git version 2.x.x</span>
-</span></code></pre></div>
-<p>If you see an older version number, your shell may still be finding the system Git. Check with <code>which git</code> — it should return <code>/usr/local/bin/git</code> (Intel) or <code>/opt/homebrew/bin/git</code> (Apple Silicon), not <code>/usr/bin/git</code>.</p>
-<h3 id="linux">Linux</h3>
-<p>On Debian/Ubuntu-based distributions:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git
-</span></code></pre></div>
-<p>On Fedora/RHEL-based distributions:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>git
-</span></code></pre></div>
-<p>On Arch Linux:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>git
-</span></code></pre></div>
-<p>Verify after installation:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git<span class="w"> </span>--version
-</span></code></pre></div>
-<blockquote>
-<p><strong>Further reading:</strong> The official Git downloads page at <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a> covers additional platforms and package manager options.</p>
-</blockquote>
-<hr />
-<h2 id="first-time-configuration">First-Time Configuration</h2>
-<p>Git stores configuration in plain text files. Before making your first commit, you must set your <strong>name</strong> and <strong>email address</strong> — Git attaches these to every commit you create.</p>
-<h3 id="your-identity">Your Identity</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;Alice Nguyen&quot;</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;alice@example.com&quot;</span>
-</span></code></pre></div>
-<p>Use the <code>--global</code> flag to apply these settings to every repository on your machine. You can override them per-repository if needed (see <a href="#configuration-scopes">Configuration Scopes</a> below).</p>
-<blockquote>
-<p>The email you configure here will appear in your commit history. If your repository is public and you want to keep your address private, GitHub provides a no-reply email address (<code>&lt;username&gt;@users.noreply.github.com</code>) that you can use instead — find it in your GitHub account settings under <em>Emails</em>.</p>
-</blockquote>
-<h3 id="default-branch-name">Default Branch Name</h3>
-<p>When you run <code>git init</code>, Git creates an initial branch. Historically this was named <code>master</code>; the current convention (and GitHub's default) is <code>main</code>. Set this now to avoid mismatches:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>init.defaultBranch<span class="w"> </span>main
-</span></code></pre></div>
-<h3 id="default-editor">Default Editor</h3>
-<p>Git opens a text editor for certain operations — most notably when you run <code>git commit</code> without a <code>-m</code> message flag, or during an interactive rebase. By default Git uses <code>vim</code>, which has a steep learning curve if you are not familiar with it.</p>
-<p>To use <strong>nano</strong> instead:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor<span class="w"> </span>nano
-</span></code></pre></div>
-<p>To use <strong>Visual Studio Code</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor<span class="w"> </span><span class="s2">&quot;code --wait&quot;</span>
-</span></code></pre></div>
-<p>The <code>--wait</code> flag tells Git to pause until you close the VS Code tab, rather than treating the editor as immediately finished.</p>
-<h3 id="line-endings">Line Endings</h3>
-<p>Windows and Unix-like systems use different line ending characters (<code>\r\n</code> vs <code>\n</code>). If left unconfigured, this causes noisy diffs in cross-platform teams. The <code>core.autocrlf</code> setting controls how Git handles line endings:</p>
-<table>
-<thead>
-<tr>
-<th>Platform</th>
-<th>Recommended setting</th>
-<th>Effect</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Windows</td>
-<td><code>true</code></td>
-<td>Convert <code>LF → CRLF</code> on checkout; <code>CRLF → LF</code> on commit</td>
-</tr>
-<tr>
-<td>macOS / Linux</td>
-<td><code>input</code></td>
-<td>Convert <code>CRLF → LF</code> on commit; no conversion on checkout</td>
-</tr>
-</tbody>
-</table>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Windows</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.autocrlf<span class="w"> </span><span class="nb">true</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># macOS / Linux</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.autocrlf<span class="w"> </span>input
-</span></code></pre></div>
-<blockquote>
-<p>For teams working across platforms, an alternative is to commit a <code>.gitattributes</code> file that declares line endings per file type — this is the more robust solution and is covered in <a href="../../part2/ch07-gitignore/">Chapter 07</a>.</p>
-</blockquote>
-<hr />
-<h2 id="configuration-scopes">Configuration Scopes</h2>
-<p>Git has three configuration scopes, each stored in a different file:</p>
-<table>
-<thead>
-<tr>
-<th>Scope</th>
-<th>Flag</th>
-<th>File location</th>
-<th>Applies to</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>System</td>
-<td><code>--system</code></td>
-<td><code>/etc/gitconfig</code> (Linux/macOS) or <code>C:\Program Files\Git\etc\gitconfig</code> (Windows)</td>
-<td>Every user on the machine</td>
-</tr>
-<tr>
-<td>Global</td>
-<td><code>--global</code></td>
-<td><code>~/.gitconfig</code></td>
-<td>All repositories for the current user</td>
-</tr>
-<tr>
-<td>Local</td>
-<td><code>--local</code></td>
-<td><code>.git/config</code> inside the repository</td>
-<td>That repository only</td>
-</tr>
-</tbody>
-</table>
-<p>When Git reads a configuration value, it checks in the order <strong>local → global → system</strong>. Local settings always win.</p>
-<p><strong>Practical use of local config:</strong> If you maintain both personal and work repositories on the same machine, you can set your work email locally in each work repository without changing the global default:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Inside a work repository only</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>git<span class="w"> </span>config<span class="w"> </span>--local<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;alice.nguyen@company.com&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git<span class="w"> </span>add<span class="w"> </span>docs/
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Update notes&quot;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>mkdocs<span class="w"> </span>gh-deploy
 </span></code></pre></div>
 <hr />
-<h2 id="viewing-your-configuration">Viewing Your Configuration</h2>
-<h3 id="list-all-settings">List all settings</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>git<span class="w"> </span>config<span class="w"> </span>--list
-</span></code></pre></div>
-<p>This prints every setting Git can see, along with which file each one came from. If a key appears multiple times, the last one listed (lowest scope = most local) wins.</p>
-<h3 id="show-a-specific-setting">Show a specific setting</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>git<span class="w"> </span>config<span class="w"> </span>user.name
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>git<span class="w"> </span>config<span class="w"> </span>user.email
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor
-</span></code></pre></div>
-<h3 id="show-which-file-a-setting-comes-from">Show which file a setting comes from</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>git<span class="w"> </span>config<span class="w"> </span>--list<span class="w"> </span>--show-origin
-</span></code></pre></div>
-<p>This is useful for diagnosing unexpected settings — you can see exactly which config file is responsible.</p>
-<hr />
-<h2 id="the-gitconfig-file">The <code>.gitconfig</code> File</h2>
-<p>All global settings are stored as plain text in <code>~/.gitconfig</code> (your home directory). You can view and edit it directly:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cat<span class="w"> </span>~/.gitconfig
-</span></code></pre></div>
-<p>A typical <code>.gitconfig</code> after following this chapter looks like:</p>
-<div class="language-ini highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">[user]</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Alice Nguyen</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="na">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">alice@example.com</span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">[init]</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="na">defaultBranch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">main</span>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="k">[core]</span>
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span><span class="na">editor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">code --wait</span>
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="na">autocrlf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">input</span>
-</span></code></pre></div>
-<p>You can edit this file manually in any text editor — the format is straightforward. Any mistake will cause Git to report a parse error with the file and line number.</p>
-<hr />
-<h2 id="useful-aliases-optional">Useful Aliases (Optional)</h2>
-<p>Git allows you to define short aliases for commands you use frequently. While <a href="../../part6/ch27-aliases-tips/">Chapter 27</a> covers aliases in depth, a few useful ones are worth setting up now:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.st<span class="w"> </span>status
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.co<span class="w"> </span>checkout
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.br<span class="w"> </span>branch
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>alias.lg<span class="w"> </span><span class="s2">&quot;log --oneline --graph --decorate&quot;</span>
-</span></code></pre></div>
-<p>After setting these, <code>git st</code> runs <code>git status</code>, <code>git lg</code> shows a compact decorated graph log, and so on.</p>
-<hr />
-<h2 id="quick-reference">Quick Reference</h2>
-<table>
-<thead>
-<tr>
-<th>Task</th>
-<th>Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Check Git version</td>
-<td><code>git --version</code></td>
-</tr>
-<tr>
-<td>Set your name</td>
-<td><code>git config --global user.name "Your Name"</code></td>
-</tr>
-<tr>
-<td>Set your email</td>
-<td><code>git config --global user.email "you@example.com"</code></td>
-</tr>
-<tr>
-<td>Set default branch to <code>main</code></td>
-<td><code>git config --global init.defaultBranch main</code></td>
-</tr>
-<tr>
-<td>Set editor to nano</td>
-<td><code>git config --global core.editor nano</code></td>
-</tr>
-<tr>
-<td>Set editor to VS Code</td>
-<td><code>git config --global core.editor "code --wait"</code></td>
-</tr>
-<tr>
-<td>List all settings</td>
-<td><code>git config --list</code></td>
-</tr>
-<tr>
-<td>List settings with file origins</td>
-<td><code>git config --list --show-origin</code></td>
-</tr>
-<tr>
-<td>Show one setting</td>
-<td><code>git config &lt;key&gt;</code></td>
-</tr>
-<tr>
-<td>Edit global config file directly</td>
-<td><code>nano ~/.gitconfig</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p><em>Previous: <a href="../ch02-shell-commands/">Chapter 02 — Shell Commands Primer</a></em> · <em>Next: <a href="../ch04-github-authentication/">Chapter 04 — GitHub Authentication (SSH, PATs, gh CLI)</a></em></p>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>Set <code>docs_dir</code> in <code>mkdocs.yml</code> to point at your Obsidian vault</li>
+<li>Store attachments in <code>docs/assets/</code> for compatible image paths</li>
+<li>Disable wikilinks in Obsidian — use standard Markdown links instead</li>
+<li>Exclude <code>.obsidian/</code>, <code>templates/</code>, and <code>.canvas</code> files from MkDocs</li>
+<li>Git tracks both your notes source and drives deployment to GitHub Pages</li>
+</ul>
 
 
 
@@ -1964,7 +1858,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 20, 2026 23:48:18 UTC">April 20, 2026 23:48:18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 17, 2026 07:25:15 UTC">April 17, 2026 07:25:15</span>
   </span>
 
     
@@ -2026,10 +1920,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

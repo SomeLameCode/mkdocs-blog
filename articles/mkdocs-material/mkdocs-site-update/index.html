@@ -6,37 +6,37 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Examples of MkDocs Material admonition callout boxes and collapsible details blocks.">
+        <meta name="description" content="Cheatsheet for the local update and GitHub Pages deployment workflow for an MkDocs site.">
       
       
         <meta name="author" content="Florin Neagu">
       
       
-        <link rel="canonical" href="https://somelamecode.github.io/notes/articles/admonitions/">
+        <link rel="canonical" href="https://somelamecode.github.io/notes/articles/mkdocs-material/mkdocs-site-update/">
       
       
-        <link rel="prev" href="../content-tabs/">
+        <link rel="prev" href="../mkdocs-setup/">
       
       
-        <link rel="next" href="../diagram-examples/">
+        <link rel="next" href="../mkdocs-integrate-with-obsidian/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/favicon.svg">
+      <link rel="icon" href="../../../assets/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Admonitions - Florin Neagu Projects & Notes</title>
+        <title>MkDocs — Publish to GitHub Pages - Florin Neagu Projects & Notes</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -81,6 +81,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#mkdocks-local-update" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -91,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+    <a href="../../.." title="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -111,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Admonitions
+              MkDocs — Publish to GitHub Pages
             
           </span>
         </div>
@@ -229,7 +234,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -252,7 +257,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../code-example/" class="md-tabs__link">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -274,7 +279,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../projects/" class="md-tabs__link">
+        <a href="../../../projects/" class="md-tabs__link">
           
   
   
@@ -294,7 +299,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../code/" class="md-tabs__link">
+      <a href="../../../code/" class="md-tabs__link">
         
   
   
@@ -313,7 +318,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../notebooks/" class="md-tabs__link">
+      <a href="../../../notebooks/" class="md-tabs__link">
         
   
   
@@ -332,7 +337,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../tags/" class="md-tabs__link">
+      <a href="../../../tags/" class="md-tabs__link">
         
   
   
@@ -367,7 +372,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
+    <a href="../../.." title="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" aria-label="Florin Neagu Projects & Notes" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -397,7 +402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -429,13 +434,7 @@
     
       
         
-      
-        
-      
-        
-      
-        
-      
+          
         
       
         
@@ -459,50 +458,15 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Articles
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Articles
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
               
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../code-example/" class="md-nav__link">
-        
   
   
   <span class="md-ellipsis">
     
   
-    Code Simple Example
+    Articles
   
 
     
@@ -517,10 +481,112 @@
 
   
 
-      </a>
-    </li>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
   
 
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs & Material
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MkDocs & Material
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
             
               
@@ -530,14 +596,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../content-tabs/" class="md-nav__link">
+      <a href="../mkdocs-setup/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Content Tabs example
+    MkDocs Setup
   
 
     
@@ -572,6 +638,31 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publish to GitHub Pages
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -579,7 +670,7 @@
   <span class="md-ellipsis">
     
   
-    Admonitions example
+    Publish to GitHub Pages
   
 
     
@@ -596,111 +687,156 @@
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../diagram-examples/" class="md-nav__link">
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Diagram example
-  
 
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--published"></span>
-  
-
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
   
-    <li class="md-nav__item">
-      <a href="../mkdocs-setup/" class="md-nav__link">
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocks-local-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MkDocks - Local Update
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MkDocks - Local Update">
+      <ul class="md-nav__list">
         
+          <li class="md-nav__item">
+  <a href="#1-move-the-files-physically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1️⃣ Move the files physically
+      
+    </span>
+  </a>
   
-  
-  <span class="md-ellipsis">
-    
-  
-    MkDocs Initial Setup
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--published"></span>
-  
-
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../mkdocs-site-update/" class="md-nav__link">
+</li>
         
+          <li class="md-nav__item">
+  <a href="#2update-your-mkdocsyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2️⃣Update your mkdocs.yml
+      
+    </span>
+  </a>
   
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3commit-the-changes-with-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3️⃣Commit the changes with Git
+      
+    </span>
+  </a>
   
-  <span class="md-ellipsis">
-    
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4test-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4️⃣Test locally
+      
+    </span>
+  </a>
   
-    MkDocs Publish to Github
+</li>
+        
+      </ul>
+    </nav>
   
-
-    
-  </span>
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs-github-deployment-cheatsheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MkDocs GitHub Deployment Cheatsheet
+      
+    </span>
+  </a>
   
+    <nav class="md-nav" aria-label="MkDocs GitHub Deployment Cheatsheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-check-status-and-commit-local-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1️⃣ Check Status and Commit Local Changes
+      
+    </span>
+  </a>
   
-    
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-push-source-content-to-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2️⃣ Push Source Content to GitHub
+      
+    </span>
+  </a>
   
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deploy-site-to-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3️⃣ Deploy Site to GitHub Pages
+      
+    </span>
+  </a>
   
-    <span class="md-status md-status--published"></span>
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-updating-the-site-later" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4️⃣ Updating the Site Later
+      
+    </span>
+  </a>
   
-
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-notes-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5️⃣ Notes / Tips
+      
+    </span>
+  </a>
   
-
-      </a>
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -720,7 +856,7 @@
   <span class="md-ellipsis">
     
   
-    MkDocs Integrate with Obsidian
+    Obsidian Integration
   
 
     
@@ -736,6 +872,236 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admonitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Admonitions
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content-tabs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content Tabs
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagram-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagram Examples
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../code/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code & Data
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code & Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code/code-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normal Distribution Generator
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -784,7 +1150,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../projects/" class="md-nav__link ">
+            <a href="../../../projects/" class="md-nav__link ">
               
   
   
@@ -828,7 +1194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/paperless-ngx/" class="md-nav__link">
+      <a href="../../../projects/paperless-ngx/" class="md-nav__link">
         
   
   
@@ -863,7 +1229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/github-in-a-nutshell/" class="md-nav__link">
+      <a href="../../../projects/github-in-a-nutshell/" class="md-nav__link">
         
   
   
@@ -898,7 +1264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/m365-tenant-separation/" class="md-nav__link">
+      <a href="../../../projects/m365-tenant-separation/" class="md-nav__link">
         
   
   
@@ -995,7 +1361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/lifting-diary-claude/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/" class="md-nav__link">
         
   
   
@@ -1030,7 +1396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/lifting-diary-claude/the-application/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/the-application/" class="md-nav__link">
         
   
   
@@ -1065,7 +1431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/lifting-diary-claude/building-with-claude-code/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/building-with-claude-code/" class="md-nav__link">
         
   
   
@@ -1100,7 +1466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/lifting-diary-claude/architecture-as-input/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/architecture-as-input/" class="md-nav__link">
         
   
   
@@ -1135,7 +1501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../projects/lifting-diary-claude/prompt-log/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/prompt-log/" class="md-nav__link">
         
   
   
@@ -1185,7 +1551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../code/" class="md-nav__link">
+      <a href="../../../code/" class="md-nav__link">
         
   
   
@@ -1212,7 +1578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../notebooks/" class="md-nav__link">
+      <a href="../../../notebooks/" class="md-nav__link">
         
   
   
@@ -1239,7 +1605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tags/" class="md-nav__link">
+      <a href="../../../tags/" class="md-nav__link">
         
   
   
@@ -1277,6 +1643,147 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocks-local-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MkDocks - Local Update
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MkDocks - Local Update">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-move-the-files-physically" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1️⃣ Move the files physically
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2update-your-mkdocsyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2️⃣Update your mkdocs.yml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3commit-the-changes-with-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3️⃣Commit the changes with Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4test-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4️⃣Test locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs-github-deployment-cheatsheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MkDocs GitHub Deployment Cheatsheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MkDocs GitHub Deployment Cheatsheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-check-status-and-commit-local-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1️⃣ Check Status and Commit Local Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-push-source-content-to-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2️⃣ Push Source Content to GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-deploy-site-to-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3️⃣ Deploy Site to GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-updating-the-site-later" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4️⃣ Updating the Site Later
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-notes-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5️⃣ Notes / Tips
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1296,21 +1803,28 @@
       
       
       
-        <a href="../../tags/#tag:examples" class="md-tag">examples</a>
+        <a href="../../../tags/#tag:cheatsheet" class="md-tag">cheatsheet</a>
       
     
       
       
       
       
-        <a href="../../tags/#tag:material-theme" class="md-tag">material-theme</a>
+        <a href="../../../tags/#tag:deployment" class="md-tag">deployment</a>
       
     
       
       
       
       
-        <a href="../../tags/#tag:mkdocs" class="md-tag">mkdocs</a>
+        <a href="../../../tags/#tag:github-pages" class="md-tag">github-pages</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:mkdocs" class="md-tag">mkdocs</a>
       
     
   </nav>
@@ -1320,23 +1834,86 @@
   
 
 
-  <h1>Admonitions example</h1>
+  <h1>Publish to GitHub Pages</h1>
 
-<p>This is an example of an adominition with a title:</p>
-<div class="admonition note">
-<p class="admonition-title">Title of the callout</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
-nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
-massa, nec semper lorem quam in massa.</p>
-</div>
-<p>Collapsible callout:</p>
-<details class="info">
-<summary>Collapsible callout</summary>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
-nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
-massa, nec semper lorem quam in massa.</p>
-</details>
-<p><a href="https://squidfunk.github.io/mkdocs-material/reference/admonitions/#supported-types">Admonitions documentations</a></p>
+<h2 id="mkdocks-local-update">MkDocks - Local Update</h2>
+<h3 id="1-move-the-files-physically">1️⃣ Move the files physically</h3>
+<p>From your repo root (<code>notes/</code>), using Git Bash or PowerShell:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Git Bash</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mv<span class="w"> </span>docs/code/code-example.md<span class="w"> </span>docs/articles/
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>mv<span class="w"> </span>docs/code/content-tabs.md<span class="w"> </span>docs/articles/
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>mv<span class="w"> </span>docs/code/admonitions.md<span class="w"> </span>docs/articles/
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>mv<span class="w"> </span>docs/code/diagram-examples.md<span class="w"> </span>docs/articles/
+</span></code></pre></div></p>
+<h3 id="2update-your-mkdocsyml">2️⃣Update your <code>mkdocs.yml</code></h3>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nav:
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  - Home: index.md
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  - Articles:
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>      - Code Simple Example: articles/code-example.md
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>      - Content Tabs Example: articles/content-tabs.md
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>      - Admonitions Example: articles/admonitions.md
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>      - Diagram Example: articles/diagram-examples.md
+</span></code></pre></div>
+<strong>Important:</strong> the path is <strong>relative to <code>docs/</code></strong>, so <code>articles/filename.md</code> is correct.</p>
+<h3 id="3commit-the-changes-with-git">3️⃣Commit the changes with Git</h3>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>add<span class="w"> </span>docs/articles/*.md
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>git<span class="w"> </span>rm<span class="w"> </span>docs/code/*.md
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Move code examples from &#39;code&#39; to &#39;articles&#39;&quot;</span>
+</span></code></pre></div>
+<code>git rm</code> removes them from the old location in Git tracking, not your filesystem (since you already moved them).</p>
+<h3 id="4test-locally">4️⃣Test locally</h3>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdocs<span class="w"> </span>serve
+</span></code></pre></div>
+Open the browser at <code>http://127.0.0.1:8000/notes/</code> and check that all four pages appear under <strong>Articles</strong>.</p>
+<h2 id="mkdocs-github-deployment-cheatsheet">MkDocs GitHub Deployment Cheatsheet</h2>
+<p>This file consolidates all the commands needed to push your MkDocs site from your local <code>notes/</code> folder to <strong>GitHub Pages</strong>.</p>
+<hr />
+<h3 id="1-check-status-and-commit-local-changes">1️⃣ Check Status and Commit Local Changes</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Check which files have changed</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>status
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Stage all changes</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>git<span class="w"> </span>add<span class="w"> </span>.
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Commit changes with a message</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Update articles and navigation&quot;</span>
+</span></code></pre></div>
+<hr />
+<h3 id="2-push-source-content-to-github">2️⃣ Push Source Content to GitHub</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Push your Markdown content and mkdocs.yml to the main branch</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</span></code></pre></div>
+<blockquote>
+<p>Note: Do not push the <code>site/</code> folder manually; it will be handled by MkDocs deployment.</p>
+</blockquote>
+<hr />
+<h3 id="3-deploy-site-to-github-pages">3️⃣ Deploy Site to GitHub Pages</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Build and deploy your MkDocs site to the gh-pages branch</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>mkdocs<span class="w"> </span>gh-deploy
+</span></code></pre></div>
+<p>What this does:
+1. Builds the site into the <code>site/</code> folder<br />
+2. Creates/updates the <code>gh-pages</code> branch in your GitHub repo<br />
+3. Pushes the generated HTML content to GitHub Pages<br />
+4. Publishes it at: <code>https://YourGitHubUsername.github.io/notes/</code></p>
+<hr />
+<h3 id="4-updating-the-site-later">4️⃣ Updating the Site Later</h3>
+<p>When you make changes to content or configuration:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>add<span class="w"> </span>.
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Update notes/articles&quot;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>mkdocs<span class="w"> </span>gh-deploy
+</span></code></pre></div></p>
+<blockquote>
+<p>This workflow avoids manual handling of the <code>site/</code> folder.</p>
+</blockquote>
+<hr />
+<h3 id="5-notes-tips">5️⃣ Notes / Tips</h3>
+<ul>
+<li>Always run <code>mkdocs serve</code> locally first to verify changes before deploying.  </li>
+<li>Ensure <code>mkdocs.yml</code> has correct <code>nav</code> paths and matches folder/file names exactly.  </li>
+<li>Keep <code>site/</code> in <code>.gitignore</code> to avoid accidentally committing it.</li>
+</ul>
 
 
 
@@ -1419,10 +1996,10 @@ massa, nec semper lorem quam in massa.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

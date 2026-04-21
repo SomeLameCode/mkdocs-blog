@@ -5,6 +5,15 @@
 
 ---
 
+## D-014 — Rename GitHub repo to `mkdocs-blog` (not local only)
+
+**Date:** 2026-04-21
+**Decision:** Rename both the local folder and the GitHub repo from "notes" to "mkdocs-blog", accepting the site URL change from `/notes/` to `/mkdocs-blog/`.
+**Alternatives considered:** Local rename only, keeping the GitHub repo named "notes" (preserves the old URL but creates a local/remote name mismatch and leaves a non-descriptive URL).
+**Rationale:** `/mkdocs-blog/` is self-descriptive and consistent with the repo's purpose. Local and remote names now match. The old URL had no inbound links to break.
+
+---
+
 ## D-013 — Collapsed details block for "How to enable" in feature-demo articles
 
 **Date:** 2026-04-21

@@ -9,6 +9,18 @@ tags:
 status: published
 ---
 
+??? note "How to enable this"
+
+    Add the following to `mkdocs.yml`:
+
+    ```yaml
+    markdown_extensions:
+      - admonition
+      - pymdownx.details
+    ```
+
+    `admonition` enables the `!!!` callout syntax. `pymdownx.details` adds the `???` collapsible variant.
+
 This is an example of an adominition with a title:
 
 !!! note "Title of the callout"

@@ -11,6 +11,18 @@ status: published
 
 ## Content Tabs
 
+??? note "How to enable this"
+
+    Add the following to `mkdocs.yml`:
+
+    ```yaml
+    markdown_extensions:
+      - pymdownx.tabbed:
+          alternate_style: true
+    ```
+
+    `alternate_style: true` is required — the legacy tab style is not supported by Material.
+
 This is some examples of content tabs.
 
 ### Generic Content

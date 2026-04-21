@@ -4,11 +4,11 @@
 > If deeper context is needed, read the last 20 rows of `_blog/change-log.md`.
 
 **Updated:** 2026-04-21
-**Last session commit:** 51d5e5172bc158cde450f90ebaa36e2d50dd44e9
-**Last check:** 2026-04-21 — Articles section overhauled: hub page, sub-folders (mkdocs-material/, code/), cluster index pages, nav grouped with navigation.indexes; "How to enable" blocks added to 3 feature-demo articles; broken image path fixed in mkdocs-integrate-with-obsidian.md
+**Last session commit:** 4858d58029fdfdc79c723108cbe1a40ba3082848
+**Last check:** 2026-04-21 — Advisory session: folder rename analysis (preferred: mkdocs-blog, pending local vs GitHub repo decision); GitHub profile cleanup (deleted 11 learning/throwaway repos, kept Notes + lifting-diary-course + DSonCloud)
 **Open content:** 1 item (highest priority: ART-001 First code snippet)
 **Open improvements:** 1 item (SI-003 Content templates — article template pending)
-**Open issues:** None
+**Open issues:** 1 item — root folder "notes" rename pending decision
 
 ---
 
@@ -31,5 +31,6 @@
 
 ## Next Actions
 
-1. Add first code snippet (ART-001) — ~30 min
-2. Update article template (SI-003) — ~30 min
+1. Decide on folder rename scope (local only vs. GitHub repo too) then rename to `mkdocs-blog` — ~30 min
+2. Add first code snippet (ART-001) — ~30 min
+3. Update article template (SI-003) — ~30 min

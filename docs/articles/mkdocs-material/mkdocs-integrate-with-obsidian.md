@@ -24,7 +24,7 @@ This guide explains how to use **Obsidian** as your note-editing front-end while
 
 The key insight: MkDocs doesn't care where your Markdown files come from. Point it at your Obsidian vault and it will build a site from it.
 
-![Obsidian-Mkdocs-Git](../assets/Pasted image 20260119153240.png)
+![Obsidian-Mkdocs-Git](../../assets/Pasted image 20260119153240.png)
 
 ---
 

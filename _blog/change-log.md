@@ -6,6 +6,9 @@
 
 | Date | What changed | Why | Ref |
 |---|---|---|---|
+| 2026-04-21 | Updated PRJ-004 frontmatter: status `draft` → `published` on hub + 4 sub-pages | Mark Lifting Diary as officially published | PRJ-004 |
+| 2026-04-21 | Fixed broken cross-chapter link in ch03-install-configure.md: `ch07-gitignore.md` → `../part2/ch07-gitignore.md` | Link resolved against wrong folder | — |
+| 2026-04-21 | Fixed dead anchor in m365-tenant-separation.md ToC: `#2-business-context--the-forced-cutover` → `#2-business-context-the-forced-cutover` | MkDocs slugify collapses multiple spaces to single dash | — |
 | 2026-04-20 | Removed `navigation.sections` from mkdocs.yml — sidebar sub-pages now collapse when navigating away from their section | Fix always-expanded Lifting Diary sidebar | — |
 | 2026-04-20 | Updated PRJ-004 pages — Tier 1/2/3 improvements: thesis statement, closing paragraphs, cross-links, screenshot captions, constraint doc excerpt, CLAUDE.md sample, failure modes section, auth/data-ownership paragraph, Scope & Limitations section | Content quality pass before publish | PRJ-004 |
 | 2026-04-20 | Published PRJ-004 Lifting Diary — hub page + 4 sub-pages (the-application, building-with-claude-code, architecture-as-input, prompt-log) + 9 screenshots | PRJ-004 publish | PRJ-004 |

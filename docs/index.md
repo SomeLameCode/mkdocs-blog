@@ -14,7 +14,7 @@ A personal knowledge base for technical notes, setup guides, code references, an
 
     Setup guides, how-tos, and technical write-ups — including MkDocs, Material theme, and Obsidian integration.
 
-    [:octicons-arrow-right-24: Browse Articles](articles/mkdocs-setup.md)
+    [:octicons-arrow-right-24: Browse Articles](articles/index.md)
 
 -   :material-folder-open-outline:{ .lg .middle } **Projects**
 

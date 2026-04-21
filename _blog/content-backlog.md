@@ -22,7 +22,7 @@
 | PRJ-001 | Paperless-ngx page update | Projects | Medium | M | Low | [x] | 2026-04-18 | Update existing `docs/projects/paperless-ngx.md` — implemented improvements + new items added since original publish |
 | PRJ-002 | GitHub in a Nutshell project page | Projects | Medium | L | Low | [x] | 2026-04-18 | New page from `projects/github-in-a-nutshell`; distill 29-chapter manual into project write-up |
 | PRJ-003 | Wako Star Scaffold project page | Projects | Medium | L | Med | [x] | 2026-04-20 | New page from `projects/wako-star-scaffold`; keep story, remove client/org specifics |
-| PRJ-004 | Lifting Diary: Scaffold Speed with Claude Code | Projects | Medium | L | Low | [x] | 2026-04-20 | Hub + 4 sub-pages; Tier 1/2/3 improvements applied; frontmatter status still `draft` — update to `published` |
+| PRJ-004 | Lifting Diary: Scaffold Speed with Claude Code | Projects | Medium | L | Low | [x] | 2026-04-20 | Hub + 4 sub-pages; Tier 1/2/3 improvements applied; frontmatter set to `published` 2026-04-21 |
 
 ## Platform Improvements (SI-NNN)
 

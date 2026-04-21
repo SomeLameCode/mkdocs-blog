@@ -65,13 +65,18 @@ site_dir: site      # output folder for the built HTML
 nav:
   - Home: index.md
   - Articles:
-    - Code Simple Example: articles/code-example.md
-    - Content Tabs example: articles/content-tabs.md
-    - Admonitions example: articles/admonitions.md
-    - Diagram example: articles/diagram-examples.md
-    - MkDocs Initial Setup: articles/mkdocs-setup.md
-    - MkDocs Publish to Github: articles/mkdocs-site-update.md
-    - MkDocs Integrate with Obsidian: articles/mkdocs-integrate-with-obsidian.md
+    - Overview: articles/index.md
+    - MkDocs & Material:
+      - articles/mkdocs-material/index.md
+      - MkDocs Setup: articles/mkdocs-material/mkdocs-setup.md
+      - Publish to GitHub Pages: articles/mkdocs-material/mkdocs-site-update.md
+      - Obsidian Integration: articles/mkdocs-material/mkdocs-integrate-with-obsidian.md
+      - Admonitions: articles/mkdocs-material/admonitions.md
+      - Content Tabs: articles/mkdocs-material/content-tabs.md
+      - Diagram Examples: articles/mkdocs-material/diagram-examples.md
+    - Code & Data:
+      - articles/code/index.md
+      - Normal Distribution Generator: articles/code/code-example.md
   - Projects:
     - Overview: projects/index.md
     - Paperless-ngx: projects/paperless-ngx.md

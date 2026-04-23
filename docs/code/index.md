@@ -1,4 +1,7 @@
 # Code
 
-!!! info "Coming Soon"
-    Reusable code snippets, utilities, and reference implementations will be published here.
+Standalone scripts, utilities, and reference implementations.
+
+| Page | Description |
+|---|---|
+| [Invoice Processing](invoice-processing.md) | Azure provisioning script and Python invoice processor |

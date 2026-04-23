@@ -23,6 +23,7 @@
 | PRJ-002 | GitHub in a Nutshell project page | Projects | Medium | L | Low | [x] | 2026-04-18 | New page from `projects/github-in-a-nutshell`; distill 29-chapter manual into project write-up |
 | PRJ-003 | Wako Star Scaffold project page | Projects | Medium | L | Med | [x] | 2026-04-20 | New page from `projects/wako-star-scaffold`; keep story, remove client/org specifics |
 | PRJ-004 | Lifting Diary: Scaffold Speed with Claude Code | Projects | Medium | L | Low | [x] | 2026-04-20 | Hub + 4 sub-pages; Tier 1/2/3 improvements applied; frontmatter set to `published` 2026-04-21 |
+| PRJ-005 | Invoice Processor | Projects | Medium | S | Low | [x] | 2026-04-23 | Single project page; business narrative + Mermaid flow + setup.sh + full code embed; from workplace experiment |
 
 ## Platform Improvements (SI-NNN)
 

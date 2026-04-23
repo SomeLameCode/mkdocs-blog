@@ -51,7 +51,6 @@ plugins:
   - tags:
       tags_file: tags.md
   - mermaid2
-  - git-revision-date
   - git-revision-date-localized:
       type: datetime
       fallback_to_build_date: true
@@ -88,7 +87,10 @@ nav:
       - Building with Claude Code: projects/lifting-diary-claude/building-with-claude-code.md
       - Architecture as Input: projects/lifting-diary-claude/architecture-as-input.md
       - Prompt Log: projects/lifting-diary-claude/prompt-log.md
-  - Code: code/index.md
+    - Invoice Processor: projects/invoice-processor.md
+  - Code:
+    - code/index.md
+    - Invoice Processing: code/invoice-processing.md
   - Notebooks: notebooks/index.md
   - Tags: tags.md
 

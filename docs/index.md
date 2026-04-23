@@ -28,9 +28,9 @@ A personal knowledge base for technical notes, setup guides, code references, an
 
     ---
 
-    Reusable code snippets, utilities, and reference implementations.
+    Standalone scripts and reference implementations — starting with Azure invoice processing.
 
-    :octicons-clock-24: Coming soon
+    [:octicons-arrow-right-24: Browse Code](code/index.md)
 
 -   :material-notebook-outline:{ .lg .middle } **Notebooks**
 

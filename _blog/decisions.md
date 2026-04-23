@@ -5,6 +5,24 @@
 
 ---
 
+## D-016 — Move script code to Code section, link from project page
+
+**Date:** 2026-04-23
+**Decision:** Move `setup.sh` and `invoice_processor.py` out of the Invoice Processor project page and into a dedicated page in the Code section (`docs/code/invoice-processing.md`). Replace inline blocks with one-line descriptions and links.
+**Alternatives considered:** Keep both scripts embedded in the project page (complete in one place but heavy); split into separate Code pages per script (more nav entries than warranted for two small files).
+**Rationale:** The user found the inline code walls "spammy" — they interrupted the business narrative. The Code section is the right home for raw scripts; the project page should be a readable story, not a code dump. A single code page with both scripts keeps the reference self-contained.
+
+---
+
+## D-015 — Invoice Processor published as a project page, not article or code
+
+**Date:** 2026-04-23
+**Decision:** Publish the invoice processor as a project page in `docs/projects/` rather than an article or standalone code page.
+**Alternatives considered:** Article in the Code & Data cluster (how-to format, less narrative room); standalone code page only (no business context); split article + code page (adds nav complexity for a small project).
+**Rationale:** The project format leads with narrative ("what problem, what solution") and supports the At a Glance box pattern — both match what the user wanted. The invoice processor is a complete working solution, not a reusable technique or tutorial. Project format is the established home for that category.
+
+---
+
 ## D-014 — Rename GitHub repo to `mkdocs-blog` (not local only)
 
 **Date:** 2026-04-21

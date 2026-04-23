@@ -6,7 +6,10 @@
 
 | Date | What changed | Why | Ref |
 |---|---|---|---|
-| 2026-04-23 | Published Invoice Processor project page — business narrative, Mermaid flow diagram, setup.sh embed, full Python code, CSV output table, "Going Further" and "Scope & Limitations" sections; nav entry and projects index entry added | PRJ-005 publish | PRJ-005 |
+| 2026-04-23 | Fixed: removed redundant `git-revision-date` plugin entry from mkdocs.yml — caused fatal startup error after venv rebuild; `git-revision-date-localized` covers all the same functionality | Stale venv (paths pointed to old `notes/` folder) required full rebuild, which exposed the missing plugin | — |
+| 2026-04-23 | Activated Code section — replaced Coming Soon placeholder in `docs/code/index.md` with a hub table; expanded Code nav entry in mkdocs.yml to a section with child pages; updated homepage Code card to link through | Code section now has live content | — |
+| 2026-04-23 | Published invoice processing code page (`docs/code/invoice-processing.md`) — setup.sh (Azure provisioning) and invoice_processor.py (main script) with line numbers; linked from Invoice Processor project page | Separate code page keeps project narrative clean; scripts too long to embed inline | PRJ-005 |
+| 2026-04-23 | Published Invoice Processor project page — business narrative, Mermaid flow diagram, setup steps, CSV output reference, Going Further and Scope sections; nav entry and projects index entry added | PRJ-005 publish | PRJ-005 |
 | 2026-04-21 | Renamed GitHub repo "notes" → "mkdocs-blog" — updated `site_url`, `repo_url`, `repo_name` in mkdocs.yml; updated path refs in mkdocs-setup.md; redeployed to GitHub Pages at new URL | Repo name was ambiguous; URL now reflects site purpose | — |
 | 2026-04-21 | Fixed broken image path in mkdocs-integrate-with-obsidian.md: `../assets/` → `../../assets/` | File moved one level deeper during sub-folder restructure | — |
 | 2026-04-21 | Added collapsed "How to enable" setup block to admonitions.md, content-tabs.md, diagram-examples.md — shows required mkdocs.yml config snippet | Articles showed output but not how to replicate it | SI-007 |

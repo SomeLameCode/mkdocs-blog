@@ -89,6 +89,7 @@ nav:
       - Architecture as Input: projects/lifting-diary-claude/architecture-as-input.md
       - Prompt Log: projects/lifting-diary-claude/prompt-log.md
     - Invoice Processor: projects/invoice-processor.md
+    - Meeting Audio Notes Pipeline: projects/meeting-audio-notes-pipeline.md
   - Code:
     - code/index.md
     - Invoice Processing: code/invoice-processing.md

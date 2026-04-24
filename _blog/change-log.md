@@ -6,6 +6,7 @@
 
 | Date | What changed | Why | Ref |
 |---|---|---|---|
+| 2026-04-24 | Published Meeting Audio Notes Pipeline project page (PRJ-006) — three-stage Azure pipeline write-up: dual-mode speech transcription, action item extraction (reuses Transcript Action Extractor), GPT-4o summarization; Mermaid flow, code snippets, infrastructure table, sample output; nav entry added | PRJ-006 publish | PRJ-006 |
 | 2026-04-24 | Updated articles hub display rule — each cluster card now shows max 5 articles, newest on top; older articles remain accessible via "Browse all" | Cards were hiding all articles behind a click; new rule keeps the hub scannable as content grows | — |
 | 2026-04-24 | Published Transcript Action Extractor code page (`docs/code/transcript-action-extractor.md`) — setup.sh (Azure stack provisioning) and transcript_action_extractor.py (full script) with line numbers; linked from article | Consistent with invoice processor pattern — raw source lives in Code section | ART-003 |
 | 2026-04-24 | Published Transcript Action Extractor article (ART-003, `docs/articles/code/transcript-action-extractor.md`) — PM-facing write-up on extracting structured JSON action items from meeting transcripts via Azure OpenAI; includes setup guide, code walkthrough, sample output, and integration angle | ART-003 publish | ART-003 |

@@ -76,6 +76,7 @@ nav:
     - Code & Data:
       - articles/code/index.md
       - Normal Distribution Generator: articles/code/code-example.md
+      - Transcript Action Extractor: articles/code/transcript-action-extractor.md
   - Projects:
     - Overview: projects/index.md
     - Paperless-ngx: projects/paperless-ngx.md
@@ -91,6 +92,7 @@ nav:
   - Code:
     - code/index.md
     - Invoice Processing: code/invoice-processing.md
+    - Transcript Action Extractor: code/transcript-action-extractor.md
   - Notebooks: notebooks/index.md
   - Tags: tags.md
 

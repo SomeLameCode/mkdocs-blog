@@ -15,16 +15,21 @@ Technical write-ups, setup guides, and feature references. Organised by topic be
 
     ---
 
-    Setup guides and feature references for MkDocs with the Material theme — from initial install to Obsidian integration, with examples for admonitions, tabs, and Mermaid diagrams.
+    - [MkDocs Setup](mkdocs-material/mkdocs-setup.md)
+    - [Publish to GitHub Pages](mkdocs-material/mkdocs-site-update.md)
+    - [Obsidian Integration](mkdocs-material/mkdocs-integrate-with-obsidian.md)
+    - [Admonitions](mkdocs-material/admonitions.md)
+    - [Content Tabs](mkdocs-material/content-tabs.md)
 
-    [:octicons-arrow-right-24: Browse](mkdocs-material/index.md)
+    [:octicons-arrow-right-24: Browse all](mkdocs-material/index.md)
 
 -   :material-code-braces:{ .lg .middle } **Code & Data**
 
     ---
 
-    Reusable code snippets and data utilities — Python functions, statistical tools, and reference implementations.
+    - [Transcript Action Extractor](code/transcript-action-extractor.md)
+    - [Normal Distribution Generator](code/code-example.md)
 
-    [:octicons-arrow-right-24: Browse](code/index.md)
+    [:octicons-arrow-right-24: Browse all](code/index.md)
 
 </div>

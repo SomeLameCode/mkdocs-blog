@@ -14,6 +14,7 @@
 |---|---|---|---|---|---|---|---|---|
 | ART-001 | First code snippet (reusable utility) | Code | High | S | Low | [ ] | | Unblocks Code placeholder |
 | ART-002 | First Jupyter notebook | Notebooks | Medium | M | Low | [-] | | Deferred. Use mkdocs-jupyter plugin (not nbconvert) when ready — install via pip, add to mkdocs.yml plugins |
+| ART-003 | AI Meeting Transcript → Action Items | Code | Medium | S | Low | [x] | 2026-04-24 | Article (not project); workplace experiment; JSON output angle; from `workplace/transcript-action-extractor` |
 
 ## Content — Projects (PRJ-NNN)
 

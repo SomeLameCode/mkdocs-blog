@@ -12,3 +12,7 @@ Reusable code snippets and data utilities — Python functions, statistical tool
 ## Snippets
 
 - **[Normal Distribution Generator](code-example.md)** — A Python function to generate samples from normal, Pareto, or uniform distributions with optional drift injection.
+
+## Workplace Automation
+
+- **[Transcript Action Extractor](transcript-action-extractor.md)** — Extract structured, owner-attributed action items from meeting transcripts as JSON, ready for integration with task trackers.

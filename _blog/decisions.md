@@ -5,6 +5,24 @@
 
 ---
 
+## D-018 — Articles hub cards: max 5, newest on top
+
+**Date:** 2026-04-24
+**Decision:** Each cluster card on the articles hub shows at most 5 articles — the 5 most recently dated ones, listed newest first. Articles beyond the top 5 are accessible via "Browse all" only.
+**Alternatives considered:** Show all articles in the card (no cap — degrades as content grows); show only 3 (too few context for readers); replace cards with a flat list by cluster (better long-term, but loses the visual cluster framing).
+**Rationale:** Cards with too many links become overwhelming and defeat the point of a hub. The 5-article cap keeps the hub scannable now; the "Browse all" path preserves full discoverability. User acknowledged this is a short-term solution — flat cluster sections will replace cards once article counts grow significantly.
+
+---
+
+## D-017 — Transcript Action Extractor published as article, not project page
+
+**Date:** 2026-04-24
+**Decision:** Publish the transcript action extractor as an article in `docs/articles/code/` rather than a project page.
+**Alternatives considered:** Project page (same pattern as Invoice Processor); standalone code page only (no narrative).
+**Rationale:** The deliverable is a single ~80-line script — not enough scope for a project narrative with At a Glance box, scope & limitations, and full business context. Article format (deep-dive + how-to hybrid) fits the size: explain the problem angle, walk through the code, show setup and output. Establishes an informal sizing rule: single-script utilities → article; multi-component solutions → project page.
+
+---
+
 ## D-016 — Move script code to Code section, link from project page
 
 **Date:** 2026-04-23

@@ -6,6 +6,9 @@
 
 | Date | What changed | Why | Ref |
 |---|---|---|---|
+| 2026-04-24 | Updated articles hub display rule — each cluster card now shows max 5 articles, newest on top; older articles remain accessible via "Browse all" | Cards were hiding all articles behind a click; new rule keeps the hub scannable as content grows | — |
+| 2026-04-24 | Published Transcript Action Extractor code page (`docs/code/transcript-action-extractor.md`) — setup.sh (Azure stack provisioning) and transcript_action_extractor.py (full script) with line numbers; linked from article | Consistent with invoice processor pattern — raw source lives in Code section | ART-003 |
+| 2026-04-24 | Published Transcript Action Extractor article (ART-003, `docs/articles/code/transcript-action-extractor.md`) — PM-facing write-up on extracting structured JSON action items from meeting transcripts via Azure OpenAI; includes setup guide, code walkthrough, sample output, and integration angle | ART-003 publish | ART-003 |
 | 2026-04-23 | Fixed: removed redundant `git-revision-date` plugin entry from mkdocs.yml — caused fatal startup error after venv rebuild; `git-revision-date-localized` covers all the same functionality | Stale venv (paths pointed to old `notes/` folder) required full rebuild, which exposed the missing plugin | — |
 | 2026-04-23 | Activated Code section — replaced Coming Soon placeholder in `docs/code/index.md` with a hub table; expanded Code nav entry in mkdocs.yml to a section with child pages; updated homepage Code card to link through | Code section now has live content | — |
 | 2026-04-23 | Published invoice processing code page (`docs/code/invoice-processing.md`) — setup.sh (Azure provisioning) and invoice_processor.py (main script) with line numbers; linked from Invoice Processor project page | Separate code page keeps project narrative clean; scripts too long to embed inline | PRJ-005 |

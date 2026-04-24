@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="How Claude Code was used throughout the build: prompt modes, CLAUDE.md, custom slash commands, MCP integration, GitHub Actions workflows, and context window discipline.">
+        <meta name="description" content="A lightweight Python tool that skips the meeting summary and goes straight to structured, owner-attributed action items in JSON.">
       
       
         <meta name="author" content="Florin Neagu">
       
       
-        <link rel="canonical" href="https://somelamecode.github.io/mkdocs-blog/projects/lifting-diary-claude/building-with-claude-code/">
+        <link rel="canonical" href="https://somelamecode.github.io/mkdocs-blog/articles/code/transcript-action-extractor/">
       
       
-        <link rel="prev" href="../the-application/">
+        <link rel="prev" href="../code-example/">
       
       
-        <link rel="next" href="../architecture-as-input/">
+        <link rel="next" href="../../../projects/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Lifting Diary — Building with Claude Code - Florin Neagu Projects & Notes</title>
+        <title>AI Knows What Was Said. This Script Knows What to Do About It. - Florin Neagu Projects & Notes</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#building-with-claude-code" class="md-skip">
+        <a href="#the-problem-with-meeting-ai" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Lifting Diary — Building with Claude Code
+              AI Knows What Was Said. This Script Knows What to Do About It.
             
           </span>
         </div>
@@ -251,11 +251,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../articles/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -273,13 +275,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../projects/" class="md-tabs__link">
           
   
   
@@ -429,6 +429,8 @@
       
   
   
+    
+  
   
   
     
@@ -446,18 +448,21 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../articles/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -482,13 +487,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -541,7 +546,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../articles/mkdocs-material/" class="md-nav__link ">
+            <a href="../../mkdocs-material/" class="md-nav__link ">
               
   
   
@@ -592,7 +597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../articles/mkdocs-material/mkdocs-setup/" class="md-nav__link">
+      <a href="../../mkdocs-material/mkdocs-setup/" class="md-nav__link">
         
   
   
@@ -627,7 +632,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../articles/mkdocs-material/mkdocs-site-update/" class="md-nav__link">
+      <a href="../../mkdocs-material/mkdocs-site-update/" class="md-nav__link">
         
   
   
@@ -662,7 +667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../articles/mkdocs-material/mkdocs-integrate-with-obsidian/" class="md-nav__link">
+      <a href="../../mkdocs-material/mkdocs-integrate-with-obsidian/" class="md-nav__link">
         
   
   
@@ -697,7 +702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../articles/mkdocs-material/admonitions/" class="md-nav__link">
+      <a href="../../mkdocs-material/admonitions/" class="md-nav__link">
         
   
   
@@ -732,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../articles/mkdocs-material/content-tabs/" class="md-nav__link">
+      <a href="../../mkdocs-material/content-tabs/" class="md-nav__link">
         
   
   
@@ -767,7 +772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../articles/mkdocs-material/diagram-examples/" class="md-nav__link">
+      <a href="../../mkdocs-material/diagram-examples/" class="md-nav__link">
         
   
   
@@ -807,6 +812,8 @@
                 
   
   
+    
+  
   
   
     
@@ -827,15 +834,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../articles/code/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -866,7 +873,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -886,7 +893,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../articles/code/code-example/" class="md-nav__link">
+      <a href="../code-example/" class="md-nav__link">
         
   
   
@@ -918,10 +925,42 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../articles/code/transcript-action-extractor/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcript Action Extractor
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--published"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -944,6 +983,101 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem-with-meeting-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Problem With Meeting AI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-fix-structured-output-not-a-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Fix: Structured Output, Not a Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running It
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-do-with-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You Can Do With This
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -967,8 +1101,6 @@
       
       
   
-  
-    
   
   
   
@@ -993,21 +1125,18 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../../projects/" class="md-nav__link ">
               
   
   
@@ -1025,13 +1154,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1051,7 +1180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paperless-ngx/" class="md-nav__link">
+      <a href="../../../projects/paperless-ngx/" class="md-nav__link">
         
   
   
@@ -1086,7 +1215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../github-in-a-nutshell/" class="md-nav__link">
+      <a href="../../../projects/github-in-a-nutshell/" class="md-nav__link">
         
   
   
@@ -1121,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../m365-tenant-separation/" class="md-nav__link">
+      <a href="../../../projects/m365-tenant-separation/" class="md-nav__link">
         
   
   
@@ -1153,10 +1282,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -1177,11 +1304,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
         
           
           <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
@@ -1202,7 +1329,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1220,7 +1347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/" class="md-nav__link">
         
   
   
@@ -1255,7 +1382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../the-application/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/the-application/" class="md-nav__link">
         
   
   
@@ -1287,44 +1414,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Building with Claude Code
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--published"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../projects/lifting-diary-claude/building-with-claude-code/" class="md-nav__link">
         
   
   
@@ -1347,164 +1440,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-three-modes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Three Modes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#claudemd-as-a-session-contract" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CLAUDE.md as a Session Contract
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#custom-slash-command-merge-and-create-branch" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Custom Slash Command: /merge-and-create-branch
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prompt-patterns-that-worked" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prompt Patterns That Worked
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Prompt Patterns That Worked">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-standards-first-code-second" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Standards first, code second
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-ui-before-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. UI before data
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-plan-then-implement" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Plan, then implement
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-file-references-for-debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. @file references for debugging
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-clear-at-branch-boundaries" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. /clear at branch boundaries
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#when-the-patterns-break" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When the Patterns Break
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mcp-integration-neon-database" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        MCP Integration: Neon Database
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#github-actions-claude-at-the-cicd-level" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GitHub Actions: Claude at the CI/CD Level
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1517,7 +1452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../architecture-as-input/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/architecture-as-input/" class="md-nav__link">
         
   
   
@@ -1552,7 +1487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../prompt-log/" class="md-nav__link">
+      <a href="../../../projects/lifting-diary-claude/prompt-log/" class="md-nav__link">
         
   
   
@@ -1595,7 +1530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../invoice-processor/" class="md-nav__link">
+      <a href="../../../projects/invoice-processor/" class="md-nav__link">
         
   
   
@@ -1847,8 +1782,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1857,10 +1790,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-three-modes" class="md-nav__link">
+  <a href="#the-problem-with-meeting-ai" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Three Modes
+        The Problem With Meeting AI
       
     </span>
   </a>
@@ -1868,10 +1801,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#claudemd-as-a-session-contract" class="md-nav__link">
+  <a href="#the-fix-structured-output-not-a-summary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CLAUDE.md as a Session Contract
+        The Fix: Structured Output, Not a Summary
       
     </span>
   </a>
@@ -1879,10 +1812,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#custom-slash-command-merge-and-create-branch" class="md-nav__link">
+  <a href="#how-it-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Custom Slash Command: /merge-and-create-branch
+        How It Works
       
     </span>
   </a>
@@ -1890,82 +1823,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prompt-patterns-that-worked" class="md-nav__link">
+  <a href="#setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prompt Patterns That Worked
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Prompt Patterns That Worked">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-standards-first-code-second" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Standards first, code second
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-ui-before-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. UI before data
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-plan-then-implement" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Plan, then implement
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-file-references-for-debugging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. @file references for debugging
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-clear-at-branch-boundaries" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. /clear at branch boundaries
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#when-the-patterns-break" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When the Patterns Break
+        Setup
       
     </span>
   </a>
@@ -1973,10 +1834,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mcp-integration-neon-database" class="md-nav__link">
+  <a href="#running-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        MCP Integration: Neon Database
+        Running It
       
     </span>
   </a>
@@ -1984,10 +1845,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#github-actions-claude-at-the-cicd-level" class="md-nav__link">
+  <a href="#what-you-can-do-with-this" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GitHub Actions: Claude at the CI/CD Level
+        What You Can Do With This
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Takeaways
       
     </span>
   </a>
@@ -2015,28 +1887,49 @@
       
       
       
-        <a href="../../../tags/#tag:claude-code" class="md-tag">claude-code</a>
+        <a href="../../../tags/#tag:ai" class="md-tag">ai</a>
       
     
       
       
       
       
-        <a href="../../../tags/#tag:developer-tools" class="md-tag">developer-tools</a>
+        <a href="../../../tags/#tag:automation" class="md-tag">automation</a>
       
     
       
       
       
       
-        <a href="../../../tags/#tag:prompt-engineering" class="md-tag">prompt-engineering</a>
+        <a href="../../../tags/#tag:azure" class="md-tag">azure</a>
       
     
       
       
       
       
-        <a href="../../../tags/#tag:workflow" class="md-tag">workflow</a>
+        <a href="../../../tags/#tag:azure-openai" class="md-tag">azure-openai</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:project-management" class="md-tag">project-management</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:python" class="md-tag">python</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../tags/#tag:workplace" class="md-tag">workplace</a>
       
     
   </nav>
@@ -2046,138 +1939,174 @@
   
 
 
-<h1 id="building-with-claude-code">Building with Claude Code</h1>
-<p>Claude Code was the only editor used for this project — no manual code was written outside of it. What made the difference wasn't just asking Claude to write code; it was <em>how</em> the sessions were structured, and what constraints were in place before any prompt was sent.</p>
+  <h1>Transcript Action Extractor</h1>
+
+<p>Your AI meeting tool just summarised a 45-minute call into four paragraphs of fluent prose. Useful, if what you needed was a document. But you're a project manager. What you actually needed was: who owns what, and by when.</p>
+<p>Those are not the same thing.</p>
 <hr />
-<h2 id="the-three-modes">The Three Modes</h2>
-<p>Claude Code has three operating modes, each with a distinct role in the workflow:</p>
-<table>
-<thead>
-<tr>
-<th>Mode</th>
-<th>When to use</th>
-<th>Example from this project</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Default</strong></td>
-<td>Exploration, questions, reading code, listing files</td>
-<td>Asking whether sign-in could be a modal before committing to it; querying the Neon database via MCP</td>
-</tr>
-<tr>
-<td><strong>Plan</strong></td>
-<td>Design decisions — when you need Claude to <em>think</em>, not <em>act</em></td>
-<td>Designing the database schema; planning a branch merge strategy</td>
-</tr>
-<tr>
-<td><strong>Edit</strong></td>
-<td>Implementation — only after a plan is agreed</td>
-<td>Writing pages, actions, components, schema migrations</td>
-</tr>
-</tbody>
-</table>
-<p>The discipline is the sequence: <strong>default → plan → edit</strong>. Jumping straight to edit mode produces code — but not necessarily the right code. Plan mode makes the intent explicit and catchable before any file is touched.</p>
-<p><img alt="Claude Code in plan mode — the proposed design is shown for review before any files are touched" src="../img/6_Claude-Code_Terminal.PNG" /></p>
+<h2 id="the-problem-with-meeting-ai">The Problem With Meeting AI</h2>
+<p>Most tools in this space — Copilot, Otter, Fireflies, and the rest — are optimised for <em>narration</em>. They retell the meeting. The output reads like a well-written summary, which is genuinely impressive, and almost entirely useless for tracking work.</p>
+<p>A PM still has to read through the prose, decide what counts as a commitment, figure out who said it, guess whether a deadline was implied, and then manually paste everything into Jira or Monday. The AI handled the easy part and left you with the actual work.</p>
+<p>The gap is not a quality problem — the summaries are good. It's a <em>format</em> problem. Prose is designed for humans to read once. Action items are data. They need to be stored, queried, assigned, and integrated with the tools your team already uses.</p>
 <hr />
-<h2 id="claudemd-as-a-session-contract">CLAUDE.md as a Session Contract</h2>
-<p>The repository's <code>CLAUDE.md</code> file told Claude Code what to know at the start of every session:</p>
+<h2 id="the-fix-structured-output-not-a-summary">The Fix: Structured Output, Not a Summary</h2>
+<p>This is a ~80-line Python script that does one thing: reads a meeting transcript and returns a JSON array of action items, each with exactly three fields.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">[</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;James&quot;</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Complete pagination changes on the front end for the search refactor&quot;</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">&quot;deadline&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-30&quot;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Priya&quot;</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Set up new regression test cases for the search feature&quot;</span><span class="p">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">&quot;deadline&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-29&quot;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tom&quot;</span><span class="p">,</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Rotate the staging API keys&quot;</span><span class="p">,</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">&quot;deadline&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-27&quot;</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sarah&quot;</span><span class="p">,</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="nt">&quot;task&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Send the updated roadmap deck to the stakeholders&quot;</span><span class="p">,</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nt">&quot;deadline&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-24&quot;</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="p">]</span>
+</span></code></pre></div>
+<p>No narrative. No interpretation required. Every item has an owner, a task, and a deadline — or <code>null</code> if one wasn't mentioned. The output is machine-readable by design, ready to be piped into whatever comes next.</p>
+<p>The model behind it is gpt-4o on Azure OpenAI, but the approach is not OpenAI-specific — any model available through Azure OpenAI works. Swap the deployment name, keep the rest.</p>
+<hr />
+<h2 id="how-it-works">How It Works</h2>
+<p>The script is built around a single importable function:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">transcript_action_extractor.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">_SYSTEM_PROMPT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="s2">You are an assistant that extracts action items from meeting transcripts.</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="s2">Return ONLY a valid JSON object with a single key &quot;action_items&quot; whose value is an array.</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="s2">Each element must have exactly these fields:</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="s2">  - &quot;owner&quot;: the person responsible (string)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="s2">  - &quot;task&quot;: what needs to be done (string)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="s2">  - &quot;deadline&quot;: when it is due (string, or null if not stated)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="s2">Do not include any explanation or text outside the JSON object.&quot;&quot;&quot;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="k">def</span><span class="w"> </span><span class="nf">extract_action_items</span><span class="p">(</span><span class="n">transcript</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">transcript</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a>        <span class="k">return</span> <span class="p">[]</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a>    <span class="n">client</span> <span class="o">=</span> <span class="n">AzureOpenAI</span><span class="p">(</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a>        <span class="n">azure_endpoint</span><span class="o">=</span><span class="n">ENDPOINT</span><span class="p">,</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a>        <span class="n">api_key</span><span class="o">=</span><span class="n">API_KEY</span><span class="p">,</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a>        <span class="n">api_version</span><span class="o">=</span><span class="n">API_VERSION</span><span class="p">,</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a>    <span class="p">)</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a>        <span class="n">model</span><span class="o">=</span><span class="n">DEPLOYMENT</span><span class="p">,</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a>        <span class="n">response_format</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;json_object&quot;</span><span class="p">},</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a>        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a>            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">_SYSTEM_PROMPT</span><span class="p">},</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28"></a>            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">transcript</span><span class="p">},</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29"></a>        <span class="p">],</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30"></a>    <span class="p">)</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31"></a>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33"></a>    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;action_items&quot;</span><span class="p">,</span> <span class="p">[])</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Two things worth noting:</p>
+<p><strong>The system prompt enforces the schema.</strong> It doesn't ask the model to "try to" return JSON — it instructs it to return <em>only</em> a JSON object with a specific structure, no explanation, nothing else.</p>
+<p><strong><code>response_format={"type": "json_object"}</code> backs that up at the API level.</strong> This is structured output enforcement, not just prompting. The model is constrained to return valid JSON regardless of what the transcript throws at it.</p>
+<p>The function is importable, so it can be called directly from other scripts — useful if this becomes one stage in a larger pipeline.</p>
+<p><a class="md-button" href="../../../code/transcript-action-extractor/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 3a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2H3v2h1a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h2v-2H8v-5a2 2 0 0 0-2-2 2 2 0 0 0 2-2V5h2V3m6 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3z"/></svg></span> Full source code</a></p>
+<hr />
+<h2 id="setup">Setup</h2>
+<p><strong>Prerequisites:</strong></p>
 <ul>
-<li><strong>Always read the relevant <code>/docs</code> file before generating any code</strong> — this was the single most important instruction</li>
-<li>The app architecture (App Router, Server Components, path aliases)</li>
-<li>Key patterns (Server Components by default, strict TypeScript)</li>
+<li>Python 3.11+</li>
+<li>Azure CLI installed and authenticated (<code>az login</code>)</li>
+<li>An active Azure subscription with available Azure OpenAI quota</li>
 </ul>
-<p>The actual file for this project — stripped to its most important sections:</p>
-<div class="language-md highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gu">## Documentation</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>**ALWAYS read and follow the relevant docs in the <span class="sb">`/docs`</span> directory before generating
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>any code.** The docs define project standards and conventions that must be adhered to
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>at all times.
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">-</span><span class="w"> </span>/docs/ui.md
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">-</span><span class="w"> </span>/docs/data-fetching.md
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">-</span><span class="w"> </span>/docs/data-mutations.md
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">-</span><span class="w"> </span>/docs/auth.md
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">-</span><span class="w"> </span>/docs/routing.md
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="gu">## Key Patterns</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">-</span><span class="w"> </span>Server Components by default (React 19)
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">-</span><span class="w"> </span>Path alias: <span class="sb">`@/*`</span> maps to project root
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">-</span><span class="w"> </span>Strict TypeScript mode enabled
+<p><strong>Install dependencies:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pip<span class="w"> </span>install<span class="w"> </span>openai<span class="w"> </span>python-dotenv
 </span></code></pre></div>
-<p>Without <code>CLAUDE.md</code>, each session starts cold. Claude might make choices that are internally consistent but inconsistent with prior sessions — using a different pattern for data fetching, or adding a component style that doesn't match the rest of the codebase. <code>CLAUDE.md</code> is the minimum viable memory across sessions.</p>
-<hr />
-<h2 id="custom-slash-command-merge-and-create-branch">Custom Slash Command: <code>/merge-and-create-branch</code></h2>
-<p>A custom slash command was added to handle the branch lifecycle:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/merge-and-create-branch main edit-workout-page
+<p><strong>Provision the Azure stack:</strong></p>
+<p><code>setup.sh</code> handles the entire Azure side: it creates a resource group, provisions an Azure OpenAI resource, deploys gpt-4o, reads the endpoint and key back from Azure, and writes them to a <code>.env</code> file — no portal, no copy-paste.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>bash<span class="w"> </span>setup.sh
 </span></code></pre></div>
-<p>This single prompt planned and executed: merge the current branch into main, resolve any conflicts, and create a new feature branch. Without it, this is a multi-step git workflow that Claude has to reason about independently each time — with more room for mistakes. The custom command reduced the cognitive overhead and made branching a repeatable, reliable operation.</p>
-<p>This was the only custom slash command added to the project. The built-in <code>/clear</code> command handled context window resets at branch boundaries — described in the prompt patterns below.</p>
-<hr />
-<h2 id="prompt-patterns-that-worked">Prompt Patterns That Worked</h2>
-<h3 id="1-standards-first-code-second">1. Standards first, code second</h3>
-<p>Write the constraint document before asking for implementation. The <code>/docs</code> folder pattern: create <code>data-fetching.md</code> defining the rules, <em>then</em> implement data fetching. Claude will read the doc (because <code>CLAUDE.md</code> says to) and stay within the defined rules.</p>
-<blockquote>
-<p><em>"Create a <code>docs/data-fetching.md</code> file highlighting that ALL data fetching MUST be done via Server Components..."</em>
-<em>(Session 14 — written before a single query was implemented)</em></p>
-</blockquote>
-<h3 id="2-ui-before-data">2. UI before data</h3>
-<p>Separate the UI scaffold from the data layer. Asking Claude to build a page with UI <em>and</em> data fetching in one prompt invites it to make assumptions about both. Asking for UI only first gives you a reviewable interface before any database logic is involved.</p>
-<blockquote>
-<p><em>"Create a /dashboard page... ONLY generate the UI for this page. DO NOT generate any data fetching or server side code just yet. JUST focus on the UI."</em>
-<em>(Session 13)</em></p>
-</blockquote>
-<h3 id="3-plan-then-implement">3. Plan, then implement</h3>
-<p>For any non-trivial change — especially those involving multiple files or git operations — ask for the plan first and review it before saying "now implement."</p>
-<blockquote>
-<p><em>"Give me a plan on how you would merge the dashboard-page branch into main then resolve any merge issues, and create a new branch called create-workout-page. Do not implement anything just yet."</em>
-<em>(Session 16 — review happened, then:)</em>
-<em>"Ok great. Now implement this plan."</em></p>
-</blockquote>
-<h3 id="4-file-references-for-debugging">4. @file references for debugging</h3>
-<p>When debugging, point Claude to the exact files involved. Vague bug descriptions produce vague investigations. File references focus the context window on what matters.</p>
-<blockquote>
-<p><em>"@src/app/dashboard/page.tsx @src/app/dashboard/calendar-client.tsx — there is an issue with the calendar whenever I select a date, the previous date is selected..."</em>
-<em>(Session 15)</em></p>
-</blockquote>
-<h3 id="5-clear-at-branch-boundaries">5. /clear at branch boundaries</h3>
-<p>The <code>/clear</code> command resets the context window. Used at the start of each new feature branch, it prevents assumptions from the previous feature from leaking into the next. Stale context is subtle — Claude won't flag it, it will just quietly make the wrong assumption.</p>
-<hr />
-<h2 id="when-the-patterns-break">When the Patterns Break</h2>
-<p>The patterns above are most visible when they are skipped.</p>
-<p><strong>Skipping plan mode</strong> — Session 18 implemented the create-workout Server Action with a <code>redirect()</code> call inside it. A natural choice, and it appeared to work. The bug surfaced later: <code>redirect()</code> inside a Server Action throws a <code>NEXT_REDIRECT</code> exception that surfaces as an unhandled error on the client. Catching it, fixing it, and updating the constraint doc to prevent recurrence took the rest of the session. Plan mode would have raised the question <em>before</em> any code was written: how should post-mutation navigation work? The answer — redirect client-side after the action resolves — would have been agreed upfront.</p>
-<p><strong>Skipping /clear at a branch boundary</strong> — Without a context reset, Claude carries the previous session's assumptions into the new one. It may reference components or variables from the previous feature, apply patterns that were specific to the previous page, or conflate the two features. It will not flag this — it will just quietly generate code that is coherent with the wrong context. The <code>/clear</code> command is cheap; reworking code built on a stale assumption is not.</p>
-<hr />
-<h2 id="mcp-integration-neon-database">MCP Integration: Neon Database</h2>
-<p>Mid-project, the Neon MCP server was added:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>npx<span class="w"> </span>add-mcp<span class="w"> </span>https://mcp.neon.tech/mcp
-</span></code></pre></div>
-<p>This allowed Claude to interact with the database directly — list tables, generate seed data, review it, and insert it — without leaving the editor or writing terminal commands. The seed workflow became:</p>
-<ol>
-<li>Default mode: "List all available tables within the liftingdiarycourse db on Neon"</li>
-<li>Default mode: "Generate example data for the above tables for user id [X]. Do not insert yet."</li>
-<li>Review the data in the response</li>
-<li>Default mode: "This looks great. Now insert all of that example data."</li>
-</ol>
-<p>The review step between generation and insertion matters — it's the same principle as plan mode: <em>agree before acting</em>.</p>
-<hr />
-<h2 id="github-actions-claude-at-the-cicd-level">GitHub Actions: Claude at the CI/CD Level</h2>
-<p>Claude Code in the editor wasn't the only place Claude operated. Two GitHub Actions workflows were added mid-project:</p>
-<ul>
-<li><strong>Claude PR Assistant</strong> — reviews pull requests automatically when opened, leaving comments on code quality, patterns, and potential issues</li>
-<li><strong>Claude Code Review</strong> — triggered on push, performs a broader review of changed files against the project's standards</li>
-</ul>
-<p>The evidence is in the branch names. By Feb 17, the busiest day of the project, branches like <code>claude/issue-3-20260217-0953</code> were being created automatically — Claude picking up GitHub Issues and opening branches to work on them without a manual prompt session.</p>
-<p>This extends the architecture from the editor into the repository itself. The same constraints that governed the editor sessions — the <code>/docs</code> standards, the <code>CLAUDE.md</code> contract — were now also available to the automated workflows. A Claude bot reviewing a PR against <code>data-fetching.md</code> standards is the same principle as a developer reviewing a PR against those standards; the document is the specification either way.</p>
-<div class="admonition info">
-<p class="admonition-title">The broader picture</p>
-<p>Editor (Claude Code) + CI/CD (GitHub Actions) + documentation contracts (<code>/docs/*.md</code>) form a consistent layer across the entire development workflow — not just one tool, but a connected system where the same rules apply at every stage.</p>
+<p>The script is idempotent. If the resource already exists, it skips creation and moves on.</p>
+<div class="admonition note">
+<p class="admonition-title">Region availability</p>
+<p>The script targets <code>australiaeast</code> by default. If you have gpt-4o quota in another region (e.g. <code>eastus</code>, <code>swedencentral</code>), update the <code>LOCATION</code> variable at the top of <code>setup.sh</code> before running.</p>
 </div>
-<p>The PR review comment below is a direct result of this setup. When a pull request is opened, the Claude PR Assistant reads the changed files alongside the project's <code>/docs</code> standards and flags any deviations — a missing Zod validation, a data fetch in the wrong place, an auth check that doesn't follow <code>auth.md</code>. The same document that governed the editor session is the specification the bot reviews against.</p>
-<p><img alt="A Claude-generated PR review comment checking changed files against the project docs standards and flagging any deviations" src="../img/7_GitHub_Actions.PNG" /></p>
+<p>After <code>setup.sh</code> completes, a <code>.env</code> file is written next to the script with four variables:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>AZURE_OPENAI_API_KEY=...
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>AZURE_OPENAI_DEPLOYMENT=transcript
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>AZURE_OPENAI_API_VERSION=2024-06-01
+</span></code></pre></div>
 <hr />
-<p>These patterns — three modes, constraint documents, custom commands, MCP integration, and CI/CD automation — form a connected workflow where AI output is predictable and correctable. The next section explains the architectural foundation that made all of it work: the <code>/docs</code> folder and why constraints written before the code are the key ingredient.</p>
-<p><a href="../architecture-as-input/">Architecture as the Input →</a></p>
+<h2 id="running-it">Running It</h2>
+<p>Point the script at any plain-text transcript file:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python<span class="w"> </span>transcript_action_extractor.py<span class="w"> </span>meeting-transcript-1.txt
+</span></code></pre></div>
+<p>Output is written to <code>meeting-transcript-1.json</code> in the same folder. To specify a different path:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python<span class="w"> </span>transcript_action_extractor.py<span class="w"> </span>meeting-transcript-1.txt<span class="w"> </span>--output<span class="w"> </span>actions.json
+</span></code></pre></div>
+<p>The script prints a confirmation to stdout:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Wrote 5 action item(s) to meeting-transcript-1.json
+</span></code></pre></div>
+<p>The function handles transcripts with no action items gracefully — it returns an empty array without crashing.</p>
+<hr />
+<h2 id="what-you-can-do-with-this">What You Can Do With This</h2>
+<p>JSON is the lingua franca of integrations. Once your action items are in that format, the next step is usually one API call:</p>
+<ul>
+<li><strong>Jira</strong> — POST to the issues endpoint, map <code>owner</code> to assignee, <code>task</code> to summary, <code>deadline</code> to due date</li>
+<li><strong>Monday.com</strong> — GraphQL mutation to create items in a board</li>
+<li><strong>Microsoft Teams</strong> — Adaptive Card per item, sent to the relevant channel after the meeting</li>
+<li><strong>Spreadsheet / database</strong> — append rows directly, no parsing required</li>
+</ul>
+<p>The script was also designed to slot into a larger pipeline: a meeting audio → transcript → structured notes workflow where this function handles the final extraction stage. The importable <code>extract_action_items</code> signature makes that straightforward.</p>
+<hr />
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>Meeting AI that outputs prose still puts the extraction work on you — structured output removes it</li>
+<li>Three fields (<code>owner</code>, <code>task</code>, <code>deadline</code>) are enough to make an action item useful and automatable</li>
+<li><code>response_format={"type": "json_object"}</code> enforces schema at the API level, not just through prompting</li>
+<li><code>setup.sh</code> provisions the full Azure OpenAI stack in one command — no manual portal steps</li>
+<li>The model is swappable; the pattern is not OpenAI-specific</li>
+</ul>
 
 
 
@@ -2198,7 +2127,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 20, 2026 23:48:18 UTC">April 20, 2026 23:48:18</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 24, 2026 04:43:08 UTC">April 24, 2026 04:43:08</span>
   </span>
 
     

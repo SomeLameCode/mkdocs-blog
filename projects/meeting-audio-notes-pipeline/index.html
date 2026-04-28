@@ -5,14 +5,14 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Batch-extract invoice data to CSV using Azure Document Intelligence and Blob Storage — no templates, no per-vendor config." name="description"/>
+<meta content="A three-stage Python pipeline that transcribes meeting recordings and outputs a Markdown notes file with a summary, key decisions, and action items." name="description"/>
 <meta content="Florin Neagu" name="author"/>
-<link href="https://somelamecode.github.io/mkdocs-blog/projects/invoice-processor/" rel="canonical"/>
-<link href="../lifting-diary-claude/prompt-log/" rel="prev"/>
-<link href="../meeting-audio-notes-pipeline/" rel="next"/>
+<link href="https://somelamecode.github.io/mkdocs-blog/projects/meeting-audio-notes-pipeline/" rel="canonical"/>
+<link href="../invoice-processor/" rel="prev"/>
+<link href="../../code/" rel="next"/>
 <link href="../../assets/favicon.svg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
-<title>Invoice Processor - Florin Neagu Projects &amp; Notes</title>
+<title>Meeting Audio Notes Pipeline — Audio to Structured Notes on Azure - Florin Neagu Projects &amp; Notes</title>
 <link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -26,7 +26,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#invoice-processor">
+<a class="md-skip" href="#meeting-audio-notes-pipeline">
           Skip to content
         </a>
 </div>
@@ -50,7 +50,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Invoice Processor
+              Meeting Audio Notes Pipeline — Audio to Structured Notes on Azure
             
           </span>
 </div>
@@ -575,13 +575,26 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../invoice-processor/">
+<span class="md-ellipsis">
+    
+  
+    Invoice Processor
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
     
   
-    Invoice Processor
+    Meeting Audio Notes Pipeline
   
 
     
@@ -593,7 +606,7 @@
 <span class="md-ellipsis">
     
   
-    Invoice Processor
+    Meeting Audio Notes Pipeline
   
 
     
@@ -634,77 +647,46 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#setup">
+<a class="md-nav__link" href="#stage-1-transcription">
 <span class="md-ellipsis">
       
-        Setup
-      
-    </span>
-</a>
-<nav aria-label="Setup" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#prerequisites">
-<span class="md-ellipsis">
-      
-        Prerequisites
+        Stage 1 — Transcription
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#provision-azure-resources">
+<a class="md-nav__link" href="#stage-2-action-item-extraction">
 <span class="md-ellipsis">
       
-        Provision Azure resources
+        Stage 2 — Action Item Extraction
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#install-dependencies">
+<a class="md-nav__link" href="#stage-3-summarization">
 <span class="md-ellipsis">
       
-        Install dependencies
+        Stage 3 — Summarization
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#environment-configuration">
+<a class="md-nav__link" href="#putting-it-together">
 <span class="md-ellipsis">
       
-        Environment configuration
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#running-it">
-<span class="md-ellipsis">
-      
-        Running It
+        Putting It Together
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#the-code">
+<a class="md-nav__link" href="#infrastructure">
 <span class="md-ellipsis">
       
-        The Code
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-you-get">
-<span class="md-ellipsis">
-      
-        What You Get
+        Infrastructure
       
     </span>
 </a>
@@ -727,21 +709,17 @@
     </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#repository">
+<span class="md-ellipsis">
+      
+        Repository
+      
+    </span>
+</a>
+</li>
 </ul>
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../meeting-audio-notes-pipeline/">
-<span class="md-ellipsis">
-    
-  
-    Meeting Audio Notes Pipeline
-  
-
-    
-  </span>
-<span class="md-status md-status--published"></span>
-</a>
 </li>
 </ul>
 </nav>
@@ -868,77 +846,46 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#setup">
+<a class="md-nav__link" href="#stage-1-transcription">
 <span class="md-ellipsis">
       
-        Setup
-      
-    </span>
-</a>
-<nav aria-label="Setup" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#prerequisites">
-<span class="md-ellipsis">
-      
-        Prerequisites
+        Stage 1 — Transcription
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#provision-azure-resources">
+<a class="md-nav__link" href="#stage-2-action-item-extraction">
 <span class="md-ellipsis">
       
-        Provision Azure resources
+        Stage 2 — Action Item Extraction
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#install-dependencies">
+<a class="md-nav__link" href="#stage-3-summarization">
 <span class="md-ellipsis">
       
-        Install dependencies
+        Stage 3 — Summarization
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#environment-configuration">
+<a class="md-nav__link" href="#putting-it-together">
 <span class="md-ellipsis">
       
-        Environment configuration
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#running-it">
-<span class="md-ellipsis">
-      
-        Running It
+        Putting It Together
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#the-code">
+<a class="md-nav__link" href="#infrastructure">
 <span class="md-ellipsis">
       
-        The Code
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-you-get">
-<span class="md-ellipsis">
-      
-        What You Get
+        Infrastructure
       
     </span>
 </a>
@@ -961,6 +908,15 @@
     </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#repository">
+<span class="md-ellipsis">
+      
+        Repository
+      
+    </span>
+</a>
+</li>
 </ul>
 </nav>
 </div>
@@ -969,198 +925,244 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <nav class="md-tags">
-<a class="md-tag" href="../../tags/#tag:ai">ai</a>
 <a class="md-tag" href="../../tags/#tag:automation">automation</a>
 <a class="md-tag" href="../../tags/#tag:azure">azure</a>
+<a class="md-tag" href="../../tags/#tag:openai">openai</a>
 <a class="md-tag" href="../../tags/#tag:python">python</a>
+<a class="md-tag" href="../../tags/#tag:speech-to-text">speech-to-text</a>
+<a class="md-tag" href="../../tags/#tag:workplace">workplace</a>
 </nav>
-<h1 id="invoice-processor">Invoice Processor</h1>
-<p>Upload invoice files to cloud storage, run one command, get a structured spreadsheet back. No templates to maintain, no per-vendor configuration — the AI reads the invoices the same way a person would.</p>
+<h1 id="meeting-audio-notes-pipeline">Meeting Audio Notes Pipeline</h1>
+<p>Drop a meeting recording into cloud storage, run one command, get back a structured notes file — with a summary, the key decisions made, and a table of action items ready to share.</p>
 <hr/>
 <div class="admonition info">
 <p class="admonition-title">At a Glance</p>
-<p><strong>Python · Azure Document Intelligence · Azure Blob Storage</strong></p>
-<p>Single-file script  ·  ~150 lines  ·  No database  ·  Output: timestamped CSV with line-item detail</p>
+<p><strong>Python · Azure Speech Service · Azure Blob Storage · Azure OpenAI (GPT-4o)</strong></p>
+<p>3 Python modules  ·  ~340 lines  ·  3 Azure services  ·  Input: MP3, MP4, WAV, M4A, MOV, AVI, MKV  ·  Output: TXT + JSON + MD per recording</p>
 </div>
 <hr/>
 <h2 id="the-problem">The Problem</h2>
-<p>Manual invoice processing sounds simple until you're doing it at any volume. Download the PDF, open the spreadsheet, read each field, type it in, move to the next file. Repeat for every invoice, every vendor, every month.</p>
-<p>At low volume it's annoying. At high volume — dozens of invoices from different vendors, different layouts, different formats — it becomes a real operational cost. Because it's manual, it's also error-prone: transposition mistakes, missed line items, vendor name inconsistencies that break every pivot table you build downstream.</p>
-<p>The deeper structural problem is variability. Every vendor sends a different invoice layout. Template-based extraction tools need to be configured for each one, and when a vendor changes their format, the template breaks.</p>
+<p>The most useful output of a meeting is what was decided and what needs to happen next. In practice that information lives in someone's hastily typed notes, a recording nobody has time to replay, or both.</p>
+<p>Manual note-taking is inconsistent. The person who writes the notes shapes what gets captured — and what gets missed. Replaying recordings is time-consuming. Neither scales when a team is running multiple meetings a day.</p>
 <h2 id="the-solution">The Solution</h2>
-<p>Invoice Processor removes the manual step. Upload your invoice files to Azure Blob Storage, run one command, and a consolidated CSV lands in your output folder.</p>
-<p>The extraction is handled by Azure Document Intelligence — Microsoft's AI service for reading document structure. It uses a pre-built model trained on millions of real-world invoices. It reads the invoice the way a person would: identifying vendor name, date, line items, quantities, unit prices, and totals — regardless of the specific layout. No templates, no training data required on your side.</p>
-<p>The result is a single timestamped CSV file with all extracted data across the entire batch.</p>
+<p>The pipeline processes recordings automatically. Upload the audio or video file to Blob Storage, run the script, and three output files appear in the output container:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;name&gt;-transcript.txt</code></td>
+<td>Full verbatim transcript</td>
+</tr>
+<tr>
+<td><code>&lt;name&gt;-actions.json</code></td>
+<td>Structured action items (owner, task, deadline)</td>
+</tr>
+<tr>
+<td><code>&lt;name&gt;-notes.md</code></td>
+<td>Formatted Markdown: summary, decisions, action items table</td>
+</tr>
+</tbody>
+</table>
+<p>It handles common recording formats without requiring any per-meeting configuration.</p>
 <h2 id="how-it-works">How It Works</h2>
 <pre class="mermaid"><code>graph LR
-    A["Invoice files&lt;br/&gt;(Blob Storage input)"] --&gt; B["Download each file"]
-    B --&gt; C["Azure Document&lt;br/&gt;Intelligence"]
-    C --&gt; D["Extract fields&lt;br/&gt;&amp; line items"]
-    D --&gt; E["CSV upload&lt;br/&gt;(Blob Storage output)"]</code></pre>
-<ol>
-<li><strong>Read</strong> — the script scans the input container and finds all invoice files (PDF, JPG, PNG, TIFF, BMP)</li>
-<li><strong>Analyze</strong> — each file is sent to Azure Document Intelligence, which runs the prebuilt invoice model and returns structured data</li>
-<li><strong>Extract</strong> — vendor name, invoice date, invoice total, and each line item (description, quantity, unit price, amount) are pulled from the response</li>
-<li><strong>Consolidate</strong> — all rows from all invoices are combined into a single dataset</li>
-<li><strong>Store</strong> — the CSV is uploaded to the output container with a UTC timestamp in the filename</li>
-</ol>
-<p>Failed files are tracked and reported at the end without stopping the rest of the batch.</p>
-<h2 id="setup">Setup</h2>
-<h3 id="prerequisites">Prerequisites</h3>
-<ul>
-<li>Azure subscription (free tier is sufficient for low volume)</li>
-<li>Azure CLI installed and logged in (<code>az login</code>)</li>
-<li>Python 3.9 or later</li>
-</ul>
-<h3 id="provision-azure-resources">Provision Azure resources</h3>
-<p>The repository includes <code>setup.sh</code> — a bash script that creates everything required in one go: a resource group, a Document Intelligence account, a storage account, and the two blob containers. It also writes the <code>.env</code> credentials file automatically. <a href="../../code/invoice-processing/#setupsh">View setup.sh →</a></p>
-<p>Run it with:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>bash<span class="w"> </span>setup.sh
+    A["Audio / video files&lt;br/&gt;(Blob Storage: input/)"] --&gt; B["Stage 1: Transcribe&lt;br/&gt;Azure Speech Service"]
+    B --&gt; C["Stage 2: Extract Actions&lt;br/&gt;Azure OpenAI"]
+    C --&gt; D["Stage 3: Summarize&lt;br/&gt;Azure OpenAI"]
+    D --&gt; E["3 output files&lt;br/&gt;(Blob Storage: output/)"]</code></pre>
+<p>The main script (<code>run.py</code>) iterates over every media file in the input container, runs each through the three stages in sequence, assembles the outputs, and uploads them. A temp file is used for local processing and cleaned up after each recording regardless of success or failure.</p>
+<h2 id="stage-1-transcription">Stage 1 — Transcription</h2>
+<p>The transcription stage is the most technically involved part of the pipeline. Azure Speech Service offers two modes, and the pipeline uses both depending on the file.</p>
+<p><strong>Why two modes?</strong> The Azure Speech SDK can handle WAV files directly using real-time recognition. But for compressed audio formats — MP3, MP4, M4A, MOV, AVI, MKV — the SDK requires GStreamer to decode the audio before it can process it. GStreamer isn't available in the Azure cloud environment. The batch transcription API sidesteps this: it accepts a URL, processes the file server-side, and returns the transcript. No local decoding required.</p>
+<p>The routing logic is straightforward:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">if</span> <span class="n">ext</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">".mp3"</span><span class="p">,</span> <span class="s2">".mp4"</span><span class="p">,</span> <span class="s2">".mov"</span><span class="p">,</span> <span class="s2">".avi"</span><span class="p">,</span> <span class="s2">".mkv"</span><span class="p">,</span> <span class="s2">".m4a"</span><span class="p">}:</span>
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="k">return</span> <span class="n">_batch_transcribe</span><span class="p">(</span><span class="n">blob_name</span><span class="p">,</span> <span class="n">local_path</span><span class="p">)</span>
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="n">duration</span> <span class="o">=</span> <span class="n">_get_duration</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="k">if</span> <span class="n">duration</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>
+</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="k">return</span> <span class="n">_realtime_transcribe</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+</span><span id="__span-0-7"><a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-8"><a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="k">return</span> <span class="n">_batch_transcribe</span><span class="p">(</span><span class="n">blob_name</span><span class="p">,</span> <span class="n">local_path</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="install-dependencies">Install dependencies</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<p>All compressed formats go to batch. WAV files under 60 seconds use real-time; longer ones fall back to batch. The 60-second threshold is a reliability boundary — real-time mode has an internal timeout, and batch is more dependable for longer recordings.</p>
+<p><strong>Real-time mode</strong> works through event callbacks. The SDK fires <code>recognized</code> events as it processes audio chunks. The pipeline registers a handler that appends each result to a list, and a <code>threading.Event</code> is used to signal when recognition is complete. The collected strings are joined and returned.</p>
+<p><strong>Batch mode</strong> generates a 2-hour SAS URL for the file (so the Speech API can fetch it securely without exposing the storage key), POSTs a transcription job to the Speech API v3.1 endpoint, then polls every 5 seconds until the job status is <code>Succeeded</code>. The transcript is extracted from the <code>recognizedPhrases[].nBest[0].display</code> field and the job is deleted.</p>
+<h2 id="stage-2-action-item-extraction">Stage 2 — Action Item Extraction</h2>
+<p>This stage reuses the <a href="../../articles/code/transcript-action-extractor/">Transcript Action Extractor</a> — a separate module built to pull structured action items from meeting text using Azure OpenAI. It returns a list of objects, each with <code>owner</code>, <code>task</code>, and <code>deadline</code> (nullable).</p>
+<p>The module lives in a sibling directory and is imported at runtime:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"transcript-action-extractor"</span><span class="p">))</span>
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">transcript_action_extractor</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_action_items</span>
 </span></code></pre></div>
-<p>Three packages: <code>azure-ai-documentintelligence</code>, <code>azure-storage-blob</code>, <code>python-dotenv</code>.</p>
-<h3 id="environment-configuration">Environment configuration</h3>
-<p>The setup script writes a <code>.env</code> file automatically. If you're connecting to existing Azure resources instead, create it manually:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>AZURE_DI_ENDPOINT=https://your-resource.cognitiveservices.azure.com/
-</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>AZURE_DI_KEY=your-key-here
-</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;...
-</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>AZURE_STORAGE_INPUT_CONTAINER=input
-</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>AZURE_STORAGE_OUTPUT_CONTAINER=output
+<p>If no action items are found, the extractor returns an empty list — the pipeline handles that gracefully in the output template.</p>
+<h2 id="stage-3-summarization">Stage 3 — Summarization</h2>
+<p>The summarization stage sends the transcript to Azure OpenAI (GPT-4o) and asks for a one-paragraph meeting summary and a list of key decisions. Structured JSON output is enforced via <code>response_format</code>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="n">model</span><span class="o">=</span><span class="n">DEPLOYMENT</span><span class="p">,</span>
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="n">response_format</span><span class="o">=</span><span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"json_object"</span><span class="p">},</span>
+</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>        <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"system"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="s2">"Return ONLY valid JSON with keys 'summary' (string) and 'decisions' (array of strings). No other text."</span><span class="p">},</span>
+</span><span id="__span-2-6"><a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a>        <span class="p">{</span><span class="s2">"role"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">transcript</span><span class="p">},</span>
+</span><span id="__span-2-7"><a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a>    <span class="p">],</span>
+</span><span id="__span-2-8"><a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="p">)</span>
+</span><span id="__span-2-9"><a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="running-it">Running It</h2>
-<p>Upload invoice files to your input container, then run:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>python<span class="w"> </span>invoice_processor.py
+<p>The system prompt forbids anything other than JSON in the response, so <code>json.loads()</code> is always safe. Empty transcripts return <code>{"summary": "", "decisions": []}</code> without calling the API.</p>
+<h2 id="putting-it-together">Putting It Together</h2>
+<p>The main loop in <code>run.py</code> keeps each stage separate and handles cleanup regardless of what happens mid-processing:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">for</span> <span class="n">blob</span> <span class="ow">in</span> <span class="n">blobs</span><span class="p">:</span>
+</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>    <span class="n">suffix</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">suffix</span>
+</span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="n">suffix</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">tmp</span><span class="p">:</span>
+</span><span id="__span-3-4"><a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>        <span class="n">tmp_path</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">name</span>
+</span><span id="__span-3-5"><a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-3-6"><a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a>        <span class="n">container_client</span><span class="o">.</span><span class="n">download_blob</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="s2">"wb"</span><span class="p">))</span>
+</span><span id="__span-3-7"><a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a>        <span class="n">transcript</span> <span class="o">=</span> <span class="n">transcribe</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">tmp_path</span><span class="p">)</span>
+</span><span id="__span-3-8"><a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a>        <span class="n">actions</span> <span class="o">=</span> <span class="n">extract_action_items</span><span class="p">(</span><span class="n">transcript</span><span class="p">)</span>
+</span><span id="__span-3-9"><a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a>        <span class="n">result</span> <span class="o">=</span> <span class="n">summarize</span><span class="p">(</span><span class="n">transcript</span><span class="p">)</span>
+</span><span id="__span-3-10"><a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a>        <span class="n">notes_md</span> <span class="o">=</span> <span class="n">build_notes</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">transcript</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</span><span id="__span-3-11"><a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a>        <span class="n">upload_outputs</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">transcript</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">notes_md</span><span class="p">)</span>
+</span><span id="__span-3-12"><a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="k">finally</span><span class="p">:</span>
+</span><span id="__span-3-13"><a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a>        <span class="n">Path</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">missing_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></code></pre></div>
-<p>Console output as it runs:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>Processing: january-invoices/acme-corp-001.pdf
-</span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>  -&gt; 4 row(s) extracted
-</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>Processing: january-invoices/northwind-supplies.pdf
-</span><span id="__span-4-4"><a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>  -&gt; 1 row(s) extracted
-</span><span id="__span-4-5"><a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>Processing: january-invoices/contoso-services.pdf
-</span><span id="__span-4-6"><a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>  -&gt; 7 row(s) extracted
+<p>Each recording produces three blobs in the output container. For a short call recording, the notes file looks like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a># Meeting Notes — call-1
+</span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>## Summary
+</span><span id="__span-4-4"><a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>Ava from Contoso followed up on a prior meeting to confirm that her team can
+</span><span id="__span-4-5"><a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>meet the discussed price expectations and invited further communication to
+</span><span id="__span-4-6"><a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>discuss next steps via phone or email.
 </span><span id="__span-4-7"><a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a>
-</span><span id="__span-4-8"><a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a>Results written to 'output/invoices-20260423-143022.csv'
+</span><span id="__span-4-8"><a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a>## Decisions
+</span><span id="__span-4-9"><a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a>- Contoso confirmed they can meet the price expectations.
+</span><span id="__span-4-10"><a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a>## Action Items
+</span><span id="__span-4-12"><a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a>| Owner | Task       | Deadline |
+</span><span id="__span-4-13"><a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a>|-------|------------|----------|
+</span><span id="__span-4-14"><a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a>| —     | No action items found | — |
 </span></code></pre></div>
-<p>The output file appears in the output container, named with a UTC timestamp so successive runs never overwrite each other.</p>
-<h2 id="the-code">The Code</h2>
-<p>A single Python file, ~150 lines. Reads from blob storage, calls Azure Document Intelligence, writes the CSV.</p>
-<p><a href="../../code/invoice-processing/#invoice_processorpy">View invoice_processor.py →</a></p>
-<h2 id="what-you-get">What You Get</h2>
-<p>The output CSV has eight columns, one row per invoice line item:</p>
+<h2 id="infrastructure">Infrastructure</h2>
+<p>The repository includes <code>setup.sh</code> — an idempotent Bash script that provisions everything needed in one run. Running it a second time on an existing environment is safe.</p>
 <table>
 <thead>
 <tr>
-<th>Column</th>
-<th>Description</th>
+<th>Resource</th>
+<th>Name</th>
+<th>Region</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>source</code></td>
-<td>Original filename from blob storage</td>
+<td>Resource Group</td>
+<td><code>rg-fn-audio-pipeline</code></td>
+<td>—</td>
+<td>Container for all resources</td>
 </tr>
 <tr>
-<td><code>vendor</code></td>
-<td>Vendor name as extracted from the invoice</td>
+<td>Azure AI Speech</td>
+<td><code>speech-fn-audio-pipeline</code></td>
+<td>eastus</td>
+<td>Transcription (real-time + batch)</td>
 </tr>
 <tr>
-<td><code>invoice_date</code></td>
-<td>Invoice date (YYYY-MM-DD)</td>
+<td>Storage Account</td>
+<td><code>stfnaudiopl</code></td>
+<td>eastus</td>
+<td>Blob storage for input and output</td>
 </tr>
 <tr>
-<td><code>line_description</code></td>
-<td>Line item description</td>
+<td>Blob Container</td>
+<td><code>input</code></td>
+<td>—</td>
+<td>Source audio / video files</td>
 </tr>
 <tr>
-<td><code>quantity</code></td>
-<td>Line item quantity</td>
+<td>Blob Container</td>
+<td><code>output</code></td>
+<td>—</td>
+<td>Transcripts, action JSON, notes</td>
 </tr>
 <tr>
-<td><code>unit_price</code></td>
-<td>Line item unit price</td>
+<td>Azure OpenAI</td>
+<td><code>aoai-fn-audio-pipeline</code></td>
+<td>australiaeast</td>
+<td>GPT-4o for actions and summarization</td>
 </tr>
 <tr>
-<td><code>line_amount</code></td>
-<td>Line item total amount</td>
-</tr>
-<tr>
-<td><code>invoice_total</code></td>
-<td>Invoice-level total (repeated on each line)</td>
+<td>Model Deployment</td>
+<td><code>pipeline</code></td>
+<td>—</td>
+<td>gpt-4o (2024-11-20), 10K TPM</td>
 </tr>
 </tbody>
 </table>
-<p>Example rows from a batch of three invoices:</p>
-<table>
-<thead>
-<tr>
-<th>source</th>
-<th>vendor</th>
-<th>invoice_date</th>
-<th>line_description</th>
-<th>quantity</th>
-<th>unit_price</th>
-<th>line_amount</th>
-<th>invoice_total</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>acme-corp-001.pdf</td>
-<td>Acme Corp</td>
-<td>2026-01-15</td>
-<td>Server Hosting</td>
-<td>1</td>
-<td>450.00</td>
-<td>450.00</td>
-<td>1250.00</td>
-</tr>
-<tr>
-<td>acme-corp-001.pdf</td>
-<td>Acme Corp</td>
-<td>2026-01-15</td>
-<td>Support Plan</td>
-<td>2</td>
-<td>400.00</td>
-<td>800.00</td>
-<td>1250.00</td>
-</tr>
-<tr>
-<td>northwind-supplies.pdf</td>
-<td>Northwind Supplies</td>
-<td>2026-01-18</td>
-<td>Office Supplies</td>
-<td></td>
-<td></td>
-<td></td>
-<td>87.50</td>
-</tr>
-</tbody>
-</table>
-<p>Invoices with no line items produce a single row with just the invoice-level fields.</p>
+<p>After provisioning, <code>setup.sh</code> writes all 7 required credentials to a <code>.env</code> file. The pipeline reads this file before importing any modules — ensuring the pipeline credentials take precedence if any were already loaded by the action extractor module.</p>
 <h2 id="going-further">Going Further</h2>
-<p>The script is a foundation. A few natural extensions:</p>
-<p><strong>Automate the run</strong> — deploy it as an Azure Function with a timer trigger. Set it to run nightly and it processes every invoice uploaded that day without manual intervention.</p>
-<p><strong>Connect to a dashboard</strong> — the CSV loads directly into Power BI. With the storage account as a data source, a spend-by-vendor report takes about fifteen minutes to build.</p>
-<p><strong>Add an approval step</strong> — use Power Automate to send a notification when the CSV is ready, letting a reviewer check the totals before they move downstream.</p>
-<p><strong>Train a custom model</strong> — if your invoices are always from the same vendors in consistent formats, a custom Document Intelligence model can improve extraction accuracy. You train it on a labelled sample in the Azure portal, then swap the model ID in the script.</p>
-<h2 id="scope-and-limitations">Scope and Limitations</h2>
-<p>This is a focused extraction tool, not a full accounts-payable system. It does not:</p>
+<p>The architecture is already close to something that could run entirely on its own. A few natural directions if you wanted to take it further:</p>
 <ul>
-<li>Detect or flag duplicate invoices</li>
-<li>Integrate directly with ERP or accounting software</li>
-<li>Validate extracted totals against line-item sums</li>
-<li>Retry on transient Azure API failures</li>
-<li>Process invoices in parallel (runs sequentially)</li>
+<li><strong>Fully automated trigger</strong> — wrap the pipeline in an Azure Function with a Blob Storage trigger, so any recording dropped into the input container is processed without any manual step. Connect it to a webhook from Zoom or Microsoft Teams and the loop closes completely: meeting ends, recording uploads, notes appear.</li>
+<li><strong>Deliver to where people actually work</strong> — rather than retrieving output from Blob Storage, post the notes directly: a Teams channel message, an email, a SharePoint page via the Graph API, or a Confluence page via REST. The notes reach the right people without anyone having to fetch them.</li>
+<li><strong>Push action items to a CRM or task tracker</strong> — <code>actions.json</code> is already structured with owner, task, and deadline. That maps cleanly onto tasks in HubSpot or Salesforce, work items in Jira or Azure DevOps, or cards in Microsoft Planner — arriving where the work happens, without manual entry.</li>
+<li><strong>Speaker diarization</strong> — Azure Speech's batch API supports labelling who said what. Enabling it would make action item extraction meaningfully more accurate, since the model could attribute tasks to named speakers rather than inferring from context.</li>
+<li><strong>Multi-language support</strong> — closer to a configuration choice than a feature; the locale is a single parameter in the transcription call.</li>
 </ul>
-<p>Each of these is a buildable addition — the script provides the extraction layer and leaves the rest open.</p>
+<h2 id="scope-and-limitations">Scope and Limitations</h2>
+<p>This is a focused pipeline, not a meeting intelligence platform. It does not:</p>
+<ul>
+<li>Support languages other than English (<code>en-US</code> is hard-coded)</li>
+<li>Separate speakers — the transcript is a single undifferentiated text block</li>
+<li>Stream results in real-time as the meeting happens</li>
+<li>Provide a UI or dashboard</li>
+<li>Retry on transient Azure API failures</li>
+</ul>
+<p>Each of these is a buildable extension. Speaker diarization in particular is supported by the Azure Speech batch API and would require only minor changes to the polling and extraction logic.</p>
+<h2 id="repository">Repository</h2>
+<p>The full source — including <code>setup.sh</code>, <code>run.py</code>, <code>transcribe.py</code>, <code>summarize.py</code>, and <code>requirements.txt</code> — is in the GitHub repository. The action extractor module is a dependency imported from a sibling project.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>run.py</code></td>
+<td>Main entry point — orchestrates all three stages and manages blob I/O</td>
+</tr>
+<tr>
+<td><code>transcribe.py</code></td>
+<td>Stage 1 — dual-mode speech transcription (real-time + batch)</td>
+</tr>
+<tr>
+<td><code>summarize.py</code></td>
+<td>Stage 3 — structured meeting summary and decisions via Azure OpenAI</td>
+</tr>
+<tr>
+<td><code>setup.sh</code></td>
+<td>Idempotent Azure resource provisioning and <code>.env</code> generation</td>
+</tr>
+<tr>
+<td><code>requirements.txt</code></td>
+<td>Six Python dependencies</td>
+</tr>
+<tr>
+<td><code>.env.example</code></td>
+<td>Template for the seven required environment variables</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../">← Back to Projects</a></p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 23, 2026 05:18:15 UTC">April 23, 2026 05:18:15</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="April 24, 2026 10:55:15 UTC">April 24, 2026 10:55:15</span>
 </span>
 </aside>
 </article>

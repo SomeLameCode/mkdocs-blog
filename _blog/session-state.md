@@ -4,8 +4,8 @@
 > If deeper context is needed, read the last 20 rows of `_blog/change-log.md`.
 
 **Updated:** 2026-05-07
-**Last session commit:** ec0d6104
-**Last check:** 2026-05-07 — Published TTS Audio Generator code page and added companion "Testing with Synthetic Audio" section to PRJ-006 Meeting Audio Notes Pipeline
+**Last session commit:** 6cdf68de
+**Last check:** 2026-05-07 — Q&A session; explained /blog-update purpose; no new content changes
 **Open content:** 1 item (highest priority: ART-001 First reusable code snippet)
 **Open improvements:** 1 item (SI-003 Content templates — article template pending)
 **Open issues:** None

@@ -166,6 +166,20 @@ The repository includes `setup.sh` — an idempotent Bash script that provisions
 
 After provisioning, `setup.sh` writes all 7 required credentials to a `.env` file. The pipeline reads this file before importing any modules — ensuring the pipeline credentials take precedence if any were already loaded by the action extractor module.
 
+## Testing with Synthetic Audio
+
+End-to-end testing of the pipeline requires audio. But real meeting recordings are unpredictable — variable quality, unknown speakers, and content that is hard to control or verify against. To get around that, a small companion tool was built to generate synthetic test recordings from plain-text transcripts with known speakers, words, and timing.
+
+The generator is a code-first version of a capability that is widely used in enterprise environments. TTS has become a standard tool across several corporate patterns: IVR and call-centre systems that assemble dynamic voice prompts from text templates without recording sessions; e-learning platforms that narrate written training materials at scale; internal communications that read announcements aloud for employees who prefer audio; accessibility tooling that narrates documents for employees with visual impairments; and prototyping voice interfaces before committing to professional recordings. All of these use the same underlying technology — Azure AI Speech, the same service already in the pipeline stack.
+
+The generator reads a transcript in `Speaker: line` format, assigns `en-US-JennyNeural` to recognised female names and `en-US-GuyNeural` to male names, wraps each speaker's lines in SSML `<voice>` tags, and submits a single synthesis request to produce an MP3. The Azure Speech resource provisioned by `setup.sh` above is the same one used here — no additional Azure resources required.
+
+```
+python tts.py meeting-transcript-1.txt --output meeting-transcript-1.mp3
+```
+
+[Source code →](../code/tts-audio-generator.md)
+
 ## Going Further
 
 The architecture is already close to something that could run entirely on its own. A few natural directions if you wanted to take it further:

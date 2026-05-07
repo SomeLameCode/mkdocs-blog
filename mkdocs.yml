@@ -94,6 +94,7 @@ nav:
     - code/index.md
     - Invoice Processing: code/invoice-processing.md
     - Transcript Action Extractor: code/transcript-action-extractor.md
+    - TTS Audio Generator: code/tts-audio-generator.md
   - Notebooks: notebooks/index.md
   - Tags: tags.md
 

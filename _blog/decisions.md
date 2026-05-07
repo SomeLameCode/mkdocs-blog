@@ -5,6 +5,15 @@
 
 ---
 
+## D-019 — TTS generator published as PRJ-006 section + code page, not standalone project
+
+**Date:** 2026-05-07
+**Decision:** Add the TTS Audio Generator as a section within the Meeting Audio Notes Pipeline project page and a companion code page in the Code section, rather than a standalone project page (PRJ-007) or article.
+**Alternatives considered:** Standalone project page (PRJ-007) with its own narrative; article in the Code & Data cluster; code page only with no prose context.
+**Rationale:** The tool was built specifically to support PRJ-006 — it has no independent lifecycle. Embedding it as a section in PRJ-006 tells the story correctly (pipeline needed controllable test data → built this tool). A code page follows the established pattern for project companion scripts (same as `invoice-processing.md` and `transcript-action-extractor.md`). A standalone project page would overstate the scope of a 150-line CLI utility.
+
+---
+
 ## D-018 — Articles hub cards: max 5, newest on top
 
 **Date:** 2026-04-24

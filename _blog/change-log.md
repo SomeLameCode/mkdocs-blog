@@ -6,6 +6,7 @@
 
 | Date | What changed | Why | Ref |
 |---|---|---|---|
+| 2026-05-16 | Published Infrastructure Consolidation project page (PRJ-007) — case study covering 6→3 server consolidation: DC virtualization on Proxmox, SCCM Site Recovery migration, W2016 decommission; 6 key decisions and 6 troubleshooting cases documented; nav entry and projects index row added | PRJ-007 publish | PRJ-007 |
 | 2026-05-07 | Added "Testing with Synthetic Audio" section to PRJ-006 (`docs/projects/meeting-audio-notes-pipeline.md`) — covers why synthetic test audio was needed for pipeline development, corporate TTS use cases (IVR/call-centre, e-learning, accessibility, internal comms, voice prototyping), how the tool works (SSML + neural voices), usage command, and link to code page | Surface TTS generator in context of PRJ-006; no new Azure resources required | PRJ-006 |
 | 2026-05-07 | Published TTS Audio Generator code page (`docs/code/tts-audio-generator.md`) — setup.sh (Azure Speech resource provisioning) and tts.py (speaker-labelled transcript → MP3 via SSML with gender-matched neural voices) with line numbers; Code index row and nav entry added | Companion code page for PRJ-006 TTS tool | — |
 | 2026-04-24 | Published Meeting Audio Notes Pipeline project page (PRJ-006) — three-stage Azure pipeline write-up: dual-mode speech transcription, action item extraction (reuses Transcript Action Extractor), GPT-4o summarization; Mermaid flow, code snippets, infrastructure table, sample output; nav entry added | PRJ-006 publish | PRJ-006 |

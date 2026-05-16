@@ -90,6 +90,7 @@ nav:
       - Prompt Log: projects/lifting-diary-claude/prompt-log.md
     - Invoice Processor: projects/invoice-processor.md
     - Meeting Audio Notes Pipeline: projects/meeting-audio-notes-pipeline.md
+    - Infrastructure Consolidation: projects/infrastructure-consolidation.md
   - Code:
     - code/index.md
     - Invoice Processing: code/invoice-processing.md

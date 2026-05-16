@@ -10,3 +10,4 @@ Personal projects, home lab deployments, and self-hosted tools.
 | [Lifting Diary](lifting-diary-claude.md) | Full-stack workout tracker built with Claude Code — from schema to Vercel deployment in ~22 prompt sessions |
 | [Invoice Processor](invoice-processor.md) | Batch-extract invoice data to CSV using Azure Document Intelligence — no templates, no per-vendor config |
 | [Meeting Audio Notes Pipeline](meeting-audio-notes-pipeline.md) | Three-stage Azure pipeline that transcribes meeting recordings and outputs a summary, key decisions, and action items |
+| [Infrastructure Consolidation](infrastructure-consolidation.md) | Six-server Windows homelab reduced to three — DC virtualization on Proxmox, SCCM stack consolidation, structured server decommission, ten days |

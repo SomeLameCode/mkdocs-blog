@@ -3,9 +3,9 @@
 > Updated by `/blog-update` at each session close. Read this first at session start.
 > If deeper context is needed, read the last 20 rows of `_blog/change-log.md`.
 
-**Updated:** 2026-05-07
-**Last session commit:** 6cdf68de
-**Last check:** 2026-05-07 — Q&A session; explained /blog-update purpose; no new content changes
+**Updated:** 2026-05-16
+**Last session commit:** 3782f3ac2e95cde0192897fcf2a25d232fe2a0b4
+**Last check:** 2026-05-16 — Published Infrastructure Consolidation project page (PRJ-007); 10-day Windows Server consolidation case study with technical snippets from runbooks and maintenance scripts
 **Open content:** 1 item (highest priority: ART-001 First reusable code snippet)
 **Open improvements:** 1 item (SI-003 Content templates — article template pending)
 **Open issues:** None
@@ -17,7 +17,7 @@
 | Section | Status | Pages |
 |---|---|---|
 | Articles | Live | 8 |
-| Projects | Live | 6 |
+| Projects | Live | 7 |
 | Code | Live | 3 |
 | Notebooks | Placeholder — Coming Soon | 0 |
 

@@ -5,6 +5,15 @@
 
 ---
 
+## D-022 — New `MAN-NNN` backlog prefix for Manuals content
+
+**Date:** 2026-07-10
+**Decision:** Track future Manuals content under a new `MAN-NNN` prefix in `content-backlog.md`, starting with `MAN-001` (Prisma Access / SASE). GitHub in a Nutshell is not retroactively renumbered — it stays tracked under `PRJ-002`, with a note added at migration time (see change-log, D-020).
+**Alternatives considered:** Keep using `PRJ-NNN` for manuals content (simplest, no new scheme, but conflates two content types the site now deliberately distinguishes — see D-020); retroactively renumber GitHub in a Nutshell to a new prefix (rewrites settled history for no real benefit, `PRJ-002`'s row already carries a migration note).
+**Rationale:** Manuals is now a distinct top-level section with its own structure and nav pattern (D-020) — its backlog items are a different shape (chapter counts, part structure) from project write-ups and deserve their own ID space going forward, consistent with how `ART-NNN`/`PRJ-NNN`/`SI-NNN` are already split by content type in `CLAUDE.md`.
+
+---
+
 ## D-021 — No redirect plugin for GitHub in a Nutshell URL change; links fixed directly
 
 **Date:** 2026-07-10

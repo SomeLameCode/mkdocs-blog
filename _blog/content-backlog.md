@@ -28,6 +28,14 @@
 | PRJ-006 | Meeting Audio Notes Pipeline | Projects | Medium | S | Low | [x] | 2026-04-24 | Single project page; 3-stage Azure pipeline (speech → action extraction → summarization); reuses Transcript Action Extractor module; full code on separate GitHub repo |
 | PRJ-007 | Infrastructure Consolidation — Six Servers to Three | Projects | High | L | Low | [x] | 2026-05-16 | Single case study page; DC virtualization on Proxmox, SCCM stack consolidation via Site Recovery, W2016 decommission; 6 key decisions, 6 troubleshooting cases; from `02_Projects/02_Infrastructure-consolidation` |
 
+## Content — Manuals (MAN-NNN)
+
+> New prefix (D-022) — Manuals is now a distinct top-level section from Projects; GitHub in a Nutshell predates this prefix and stays tracked under PRJ-002.
+
+| ID | Title / Topic | Section | Priority | Effort | Risk | Status | Published | Notes |
+|---|---|---|---|---|---|---|---|---|
+| MAN-001 | Prisma Access / SASE training manual | Manuals | Medium | L | Med | [x] | 2026-07-10 | 54 chapters + 4 appendix from `C:\GitFolder\02_Projects\07_SASE-PrismaAccess\workspace\`; first-time publish (no prior site URL); frontmatter normalized, part-level READMEs folded into new overview page, ch54 broken link fixed |
+
 ## Platform Improvements (SI-NNN)
 
 > MkDocs config, plugins, deployment tooling, Claude commands, site structure.

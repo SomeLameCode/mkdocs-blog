@@ -134,6 +134,76 @@ nav:
         - App A Git Submodules: manuals/github-in-a-nutshell/appendix/appA-submodules.md
         - App B Git LFS: manuals/github-in-a-nutshell/appendix/appB-git-lfs.md
         - App C Signed Commits & GPG: manuals/github-in-a-nutshell/appendix/appC-signed-commits.md
+    - Prisma Access / SASE:
+      - Overview: manuals/prisma-access-sase.md
+      - Part 1 — Prisma Access Overview:
+        - Ch 01 Traditional VPN & Branch Architecture: manuals/prisma-access-sase/part1/ch01-traditional-network-challenges.md
+        - Ch 02 SASE Concepts & Key Components: manuals/prisma-access-sase/part1/ch02-sase-concepts-and-components.md
+        - Ch 03 Prisma Access Architecture: manuals/prisma-access-sase/part1/ch03-prisma-access-architecture.md
+        - Ch 04 Prisma Access for Networks: manuals/prisma-access-sase/part1/ch04-prisma-access-for-networks.md
+        - Ch 05 Prisma Access for Users: manuals/prisma-access-sase/part1/ch05-prisma-access-for-users.md
+      - Part 2 — Planning & Designing:
+        - Ch 06 Licensing & Management Models: manuals/prisma-access-sase/part2/ch06-licensing-and-management-models.md
+        - Ch 07 Service Infrastructure Planning: manuals/prisma-access-sase/part2/ch07-service-infrastructure-planning.md
+        - Ch 08 Service Connections Planning: manuals/prisma-access-sase/part2/ch08-service-connections-planning.md
+        - Ch 09 Remote Networks Planning: manuals/prisma-access-sase/part2/ch09-remote-networks-planning.md
+        - Ch 10 Mobile User Deployment Planning: manuals/prisma-access-sase/part2/ch10-mobile-user-deployment-planning.md
+        - Ch 11 Resiliency & Redundancy Design: manuals/prisma-access-sase/part2/ch11-resiliency-and-redundancy-design.md
+      - Part 3 — Routing & SD-WAN Design:
+        - Ch 12 Traffic Flow Scenarios: manuals/prisma-access-sase/part3/ch12-traffic-flow-scenarios.md
+        - Ch 13 Default Routing & Backbone: manuals/prisma-access-sase/part3/ch13-default-routing-and-backbone.md
+        - Ch 14 Hot Potato Routing: manuals/prisma-access-sase/part3/ch14-hot-potato-routing.md
+        - Ch 15 SD-WAN Overview & Architecture: manuals/prisma-access-sase/part3/ch15-sd-wan-overview-and-architecture.md
+        - Ch 16 SD-WAN Controllers & ION Security: manuals/prisma-access-sase/part3/ch16-sd-wan-controllers-and-ion-security.md
+        - Ch 17 ION Devices & High Availability: manuals/prisma-access-sase/part3/ch17-ion-devices-and-high-availability.md
+        - Ch 18 SD-WAN Design Considerations: manuals/prisma-access-sase/part3/ch18-sd-wan-design-considerations.md
+        - Ch 19 Data Center Scaling Design: manuals/prisma-access-sase/part3/ch19-data-center-scaling-design.md
+      - Part 4 — ZTNA Connector:
+        - Ch 20 ZTNA Connector Overview & Components: manuals/prisma-access-sase/part4/ch20-ztna-connector-overview-and-components.md
+        - Ch 21 ZTNA Use Cases & Packet Flow: manuals/prisma-access-sase/part4/ch21-ztna-use-cases-and-packet-flow.md
+        - Ch 22 ZTNA Connector vs Service Connections: manuals/prisma-access-sase/part4/ch22-ztna-connector-vs-service-connections.md
+        - Ch 23 ZTNA Network Requirements: manuals/prisma-access-sase/part4/ch23-ztna-network-requirements-and-prerequisites.md
+        - Ch 24 Enable & Configure ZTNA Connector: manuals/prisma-access-sase/part4/ch24-enable-and-configure-ztna-connector.md
+        - Ch 25 Onboard ZTNA Connector in ESXi: manuals/prisma-access-sase/part4/ch25-onboard-ztna-connector-esxi-and-upgrade.md
+      - Part 5 — Activate & Configure:
+        - Ch 26 Activation Planning Checklist: manuals/prisma-access-sase/part5/ch26-activation-planning-checklist.md
+        - Ch 27 Integrating Panorama: manuals/prisma-access-sase/part5/ch27-integrating-panorama-with-prisma-access.md
+        - Ch 28 Configuring Service Infrastructure: manuals/prisma-access-sase/part5/ch28-configuring-service-infrastructure.md
+        - Ch 29 IPSec Tunnel Configuration: manuals/prisma-access-sase/part5/ch29-ipsec-tunnel-configuration.md
+        - Ch 30 Service Connection — Static Routes: manuals/prisma-access-sase/part5/ch30-service-connection-static-routes.md
+        - Ch 31 Service Connection — BGP: manuals/prisma-access-sase/part5/ch31-service-connection-bgp.md
+      - Part 6 — Panorama Operations:
+        - Ch 32 Templates & Template Stacks: manuals/prisma-access-sase/part6/ch32-templates-and-template-stacks.md
+        - Ch 33 Device Groups — Concepts & Hierarchy: manuals/prisma-access-sase/part6/ch33-device-groups-concepts-and-hierarchy.md
+        - Ch 34 Device Group Policies & Objects: manuals/prisma-access-sase/part6/ch34-device-group-policies-and-objects.md
+        - Ch 35 Inheritance & Predefined Templates: manuals/prisma-access-sase/part6/ch35-inheritance-and-predefined-templates.md
+        - Ch 36 Prisma Access Zones: manuals/prisma-access-sase/part6/ch36-prisma-access-zones.md
+      - Part 7 — Remote Networks:
+        - Ch 37 Remote Network Templates & Zone Mapping: manuals/prisma-access-sase/part7/ch37-remote-network-templates-and-zone-mapping.md
+        - Ch 38 Remote Network Bandwidth Allocation: manuals/prisma-access-sase/part7/ch38-remote-network-bandwidth-allocation.md
+        - Ch 39 Onboard Remote Network — Static Route: manuals/prisma-access-sase/part7/ch39-onboard-remote-network-static-route.md
+        - Ch 40 Onboard Remote Network — BGP: manuals/prisma-access-sase/part7/ch40-onboard-remote-network-bgp.md
+        - Ch 41 Onboard Remote Network — ECMP & BGP: manuals/prisma-access-sase/part7/ch41-onboard-remote-network-ecmp-bgp.md
+      - Part 8 — Mobile Users:
+        - Ch 42 Mobile User Templates & Zone Mapping: manuals/prisma-access-sase/part8/ch42-mobile-user-templates-and-zone-mapping.md
+        - Ch 43 LDAP & Authentication Profile: manuals/prisma-access-sase/part8/ch43-ldap-and-authentication-profile.md
+        - Ch 44 Onboard Mobile Users — GlobalProtect: manuals/prisma-access-sase/part8/ch44-onboard-mobile-users-globalprotect.md
+        - Ch 45 Verify Mobile Users — GlobalProtect: manuals/prisma-access-sase/part8/ch45-verify-mobile-users-globalprotect.md
+        - Ch 46 GlobalProtect Split Tunneling: manuals/prisma-access-sase/part8/ch46-globalprotect-split-tunneling.md
+        - Ch 47 GlobalProtect App Settings: manuals/prisma-access-sase/part8/ch47-globalprotect-app-settings.md
+        - Ch 48 GlobalProtect App Upgrades: manuals/prisma-access-sase/part8/ch48-globalprotect-app-upgrades.md
+      - Part 9 — Cloud Secure Web Gateway:
+        - Ch 49 How Explicit Proxy Works: manuals/prisma-access-sase/part9/ch49-how-explicit-proxy-works.md
+        - Ch 50 Explicit Proxy Configuration Guidelines: manuals/prisma-access-sase/part9/ch50-explicit-proxy-configuration-guidelines.md
+        - Ch 51 App Support, Browser & PAC Requirements: manuals/prisma-access-sase/part9/ch51-app-support-browser-and-pac-requirements.md
+        - Ch 52 PAC File Guidelines & Sample: manuals/prisma-access-sase/part9/ch52-pac-file-guidelines-and-sample.md
+        - Ch 53 Configure Azure AD SAML Profile: manuals/prisma-access-sase/part9/ch53-configure-azure-ad-saml-profile.md
+        - Ch 54 Configure SAML in Azure AD: manuals/prisma-access-sase/part9/ch54-configure-saml-in-azure-ad.md
+      - Appendix:
+        - App A Glossary of Terms: manuals/prisma-access-sase/appendix/appA-glossary.md
+        - App B CLI & API Commands Reference: manuals/prisma-access-sase/appendix/appB-cli-and-api-commands.md
+        - App C Architecture Quick-Reference: manuals/prisma-access-sase/appendix/appC-architecture-quick-reference.md
+        - App D Known Documentation Ambiguities: manuals/prisma-access-sase/appendix/appD-known-documentation-ambiguities.md
   - Code:
     - code/index.md
     - Invoice Processing: code/invoice-processing.md

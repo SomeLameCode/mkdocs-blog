@@ -38,6 +38,7 @@ pip install mkdocs mkdocs-material mkdocs-mermaid2-plugin mkdocs-git-revision-da
   - `index.md` — homepage
   - `articles/` — published articles and how-to guides
   - `projects/` — project documentation and case studies
+  - `manuals/` — multi-chapter reference manuals (parts/chapters, deep nav, prev/next)
   - `code/` — code snippets and utilities
   - `notebooks/` — Jupyter notebooks
   - `tags.md` — auto-generated tag index (do not edit manually)
@@ -106,6 +107,7 @@ The `_blog/` folder is the governance layer for this site. It is never published
 |---|---|
 | `ART-NNN` | Planned articles |
 | `PRJ-NNN` | Planned project pages |
+| `MAN-NNN` | Planned manuals (multi-chapter reference works) |
 | `SI-NNN` | Site improvement tasks |
 | `D-NNN` | Decisions |
 

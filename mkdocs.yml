@@ -48,8 +48,7 @@ theme:
 # Plugins
 plugins:
   - search
-  - tags:
-      tags_file: tags.md
+  - tags
   - mermaid2
   - git-revision-date-localized:
       type: datetime

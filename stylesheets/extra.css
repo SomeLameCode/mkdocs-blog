@@ -15,7 +15,14 @@
   line-height: 1.4;
 }
 
-.md-footer nav,
+/* Prev/next chapter nav: hidden site-wide by default (D-011, 2026-03),
+   shown only in Manuals — Material has no per-section feature toggle, so
+   navigation.footer is enabled globally and re-scoped here via the page's
+   canonical URL, the only depth-independent section marker Material renders. */
 .md-footer__inner {
   display: none !important;
+}
+
+html:has(link[rel="canonical"][href*="/manuals/"]) .md-footer__inner {
+  display: flex !important;
 }

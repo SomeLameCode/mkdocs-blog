@@ -24,6 +24,14 @@ A personal knowledge base for technical notes, setup guides, code references, an
 
     [:octicons-arrow-right-24: Browse Projects](projects/index.md)
 
+-   :material-book-open-page-variant-outline:{ .lg .middle } **Manuals**
+
+    ---
+
+    Multi-chapter reference manuals — jump straight to the chapter you need, or read a part in sequence.
+
+    [:octicons-arrow-right-24: Browse Manuals](manuals/index.md)
+
 -   :material-code-braces:{ .lg .middle } **Code**
 
     ---

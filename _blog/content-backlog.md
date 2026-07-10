@@ -27,6 +27,7 @@
 | PRJ-005 | Invoice Processor | Projects | Medium | S | Low | [x] | 2026-04-23 | Single project page; business narrative + Mermaid flow + setup.sh + full code embed; from workplace experiment |
 | PRJ-006 | Meeting Audio Notes Pipeline | Projects | Medium | S | Low | [x] | 2026-04-24 | Single project page; 3-stage Azure pipeline (speech → action extraction → summarization); reuses Transcript Action Extractor module; full code on separate GitHub repo |
 | PRJ-007 | Infrastructure Consolidation — Six Servers to Three | Projects | High | L | Low | [x] | 2026-05-16 | Single case study page; DC virtualization on Proxmox, SCCM stack consolidation via Site Recovery, W2016 decommission; 6 key decisions, 6 troubleshooting cases; from `02_Projects/02_Infrastructure-consolidation` |
+| PRJ-008 | Prisma Access SASE Implementation | Projects | High | L | Med | [x] | 2026-07-10 | Case study page from `02_Projects/03_agd_Prisma_Cloud_Web/workspace/success-story/` — fully anonymized (client name, sector/industry, regulatory framework names, country, real domains/IPs/tenant IDs, site codes, AG/AGD-derived naming all stripped, see D-023); scrubbed working set built in `temp/agd-scrubbed/` (uncommitted) before drafting |
 
 ## Content — Manuals (MAN-NNN)
 

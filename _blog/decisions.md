@@ -5,6 +5,19 @@
 
 ---
 
+## D-023 — Anonymization scope for Ausgrid Prisma Access case study (Phase 0 scrub)
+
+**Date:** 2026-07-10
+**Decision:** Produced a scrubbed working set in `temp/agd-scrubbed/` (not committed) from the four source documents in `C:\GitFolder\02_Projects\03_agd_Prisma_Cloud_Web\workspace\`, stripping the client name (Ausgrid → "the client"), sector/industry (electricity distribution/utility → "a large distributed-infrastructure organization"), regulatory framework names (SOCI Act/CIRMP/ASD Essential Eight → "critical infrastructure compliance obligations" / "a recognized security maturity framework"), country/region signals (Australia, Sydney/Central Coast/Hunter Valley, and even Prisma Access's own AU-SE/AU-S/Japan region names → generic "Primary Region"/"Backup Region"/"APAC Fallback Region"), all real domains/tenant IDs/app IDs/IP ranges/site codes (FUJI/HMDC/AEA1/AEA2/ASE1/ASE2 → DC-1 through DC-4B), and all AG/AGD-derived naming (zone names, profile groups, cert profiles, group names). Full substitution table in `temp/agd-scrubbed/00-glossary.md`.
+**Flagged for review (not decided unilaterally):**
+1. ~~Even the generic "critical infrastructure compliance obligations" framing may narrow the field too far~~ — **Resolved 2026-07-10:** Florin confirmed, then asked for full consistency. Removed the customer-scale sentence ("serving millions of end customers across a large metropolitan and regional service area") and every remaining "critical infrastructure" qualifier throughout `01-success-story-scrubbed.md` (title, intro note, Challenge section, and the file's own footnote — the footnote itself was removed since it's now moot). Final language is sector-neutral "regulatory compliance obligations" / "the applicable regulatory risk management program" with no "critical infrastructure" tie-in anywhere in the file. Glossary updated to record "critical infrastructure" as dropped entirely, not just genericized — do not reintroduce in Phase 1 drafting.
+2. Prisma Access's own compute region names (AU-SE, AU-S, Japan Central/South) are Palo Alto product naming, not client-specific — genericized anyway since combined with everything else they still signal the client's country. Reversible if Florin judges this over-cautious.
+3. Project dates (HLD 1 April 2026, closure 2026-06-04) were kept as-is — no evidence they're publicly tied to the real client elsewhere, but not independently verified.
+4. The Prisma Access Browser Chrome extension ID (`dbpnkcjkchadgbgihmmolkjcgjkodoaf`) was kept — it's Palo Alto's published product ID, not a client identifier.
+**Rationale:** The Phase 0 prompt (`temp/agd-prisma-access-blog-publish-plan.md`) required stripping strictly more than the M365 case study (which anonymizes name but keeps sector) — for this client, sector itself (critical infrastructure / energy distribution) is the sensitive fact, so genericization had to go further than a simple find-and-replace on the client's name. Erred toward stripping ambiguous details per the plan's explicit instruction, flagging the borderline calls above rather than silently deciding them.
+
+---
+
 ## D-022 — New `MAN-NNN` backlog prefix for Manuals content
 
 **Date:** 2026-07-10

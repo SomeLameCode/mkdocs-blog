@@ -5,28 +5,28 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="How Hot Potato routing differs from default routing — AS-PATH prepending mechanics, primary/backup SC differentiation, and when to choose this mode over default routing." name="description"/>
+<meta content="Replacing two disconnected legacy security platforms with a single identity-aware Prisma Access SASE deployment across 30 branch sites, four data centres, and 5,000 managed endpoints." name="description"/>
 <meta content="Florin Neagu" name="author"/>
-<link href="https://somelamecode.github.io/mkdocs-blog/manuals/prisma-access-sase/part3/ch14-hot-potato-routing/" rel="canonical"/>
-<link href="../ch13-default-routing-and-backbone/" rel="prev"/>
-<link href="../ch15-sd-wan-overview-and-architecture/" rel="next"/>
-<link href="../../../../assets/favicon.svg" rel="icon"/>
+<link href="https://somelamecode.github.io/mkdocs-blog/projects/prisma-access-sase-implementation/" rel="canonical"/>
+<link href="../infrastructure-consolidation/" rel="prev"/>
+<link href="../../manuals/" rel="next"/>
+<link href="../../assets/favicon.svg" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
-<title>Hot Potato Routing - Florin Neagu Projects &amp; Notes</title>
-<link href="../../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
-<link href="../../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<title>Prisma Access SASE Implementation — Two Legacy Platforms, One Identity-Aware Policy Plane - Florin Neagu Projects &amp; Notes</title>
+<link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="../../../../stylesheets/extra.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="slate" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#chapter-14-hot-potato-routing">
+<a class="md-skip" href="#prisma-access-sase-implementation-two-legacy-platforms-one-identity-aware-policy-plane">
           Skip to content
         </a>
 </div>
@@ -34,7 +34,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" data-md-component="logo" href="../../../.." title="Florin Neagu Projects &amp; Notes">
+<a aria-label="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Florin Neagu Projects &amp; Notes">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -50,7 +50,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Hot Potato Routing
+              Prisma Access SASE Implementation — Two Legacy Platforms, One Identity-Aware Policy Plane
             
           </span>
 </div>
@@ -118,7 +118,7 @@
 <div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../..">
+<a class="md-tabs__link" href="../..">
         
   
   
@@ -129,7 +129,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../../articles/">
+<a class="md-tabs__link" href="../../articles/">
           
   
   
@@ -139,8 +139,8 @@
 
         </a>
 </li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../../projects/">
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../">
           
   
   
@@ -150,8 +150,8 @@
 
         </a>
 </li>
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="../../../">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../manuals/">
           
   
   
@@ -162,7 +162,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../../code/">
+<a class="md-tabs__link" href="../../code/">
           
   
   
@@ -173,7 +173,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../../notebooks/">
+<a class="md-tabs__link" href="../../notebooks/">
         
   
   
@@ -184,7 +184,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../../tags/">
+<a class="md-tabs__link" href="../../tags/">
         
   
   
@@ -204,7 +204,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" data-md-component="logo" href="../../../.." title="Florin Neagu Projects &amp; Notes">
+<a aria-label="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Florin Neagu Projects &amp; Notes">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
     Florin Neagu Projects &amp; Notes
@@ -221,7 +221,7 @@
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../..">
+<a class="md-nav__link" href="../..">
 <span class="md-ellipsis">
     
   
@@ -235,7 +235,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../../articles/">
+<a class="md-nav__link" href="../../articles/">
 <span class="md-ellipsis">
     
   
@@ -263,7 +263,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../../articles/mkdocs-material/">
+<a class="md-nav__link" href="../../articles/mkdocs-material/">
 <span class="md-ellipsis">
     
   
@@ -289,7 +289,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../articles/mkdocs-material/mkdocs-setup/">
+<a class="md-nav__link" href="../../articles/mkdocs-material/mkdocs-setup/">
 <span class="md-ellipsis">
     
   
@@ -302,7 +302,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../articles/mkdocs-material/mkdocs-site-update/">
+<a class="md-nav__link" href="../../articles/mkdocs-material/mkdocs-site-update/">
 <span class="md-ellipsis">
     
   
@@ -315,7 +315,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../articles/mkdocs-material/mkdocs-integrate-with-obsidian/">
+<a class="md-nav__link" href="../../articles/mkdocs-material/mkdocs-integrate-with-obsidian/">
 <span class="md-ellipsis">
     
   
@@ -328,7 +328,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../articles/mkdocs-material/admonitions/">
+<a class="md-nav__link" href="../../articles/mkdocs-material/admonitions/">
 <span class="md-ellipsis">
     
   
@@ -341,7 +341,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../articles/mkdocs-material/content-tabs/">
+<a class="md-nav__link" href="../../articles/mkdocs-material/content-tabs/">
 <span class="md-ellipsis">
     
   
@@ -354,7 +354,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../articles/mkdocs-material/diagram-examples/">
+<a class="md-nav__link" href="../../articles/mkdocs-material/diagram-examples/">
 <span class="md-ellipsis">
     
   
@@ -372,7 +372,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../../articles/code/">
+<a class="md-nav__link" href="../../articles/code/">
 <span class="md-ellipsis">
     
   
@@ -398,7 +398,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../articles/code/code-example/">
+<a class="md-nav__link" href="../../articles/code/code-example/">
 <span class="md-ellipsis">
     
   
@@ -411,7 +411,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../articles/code/transcript-action-extractor/">
+<a class="md-nav__link" href="../../articles/code/transcript-action-extractor/">
 <span class="md-ellipsis">
     
   
@@ -429,10 +429,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../../projects/">
+<a class="md-nav__link" href="../">
 <span class="md-ellipsis">
     
   
@@ -442,11 +442,11 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
             
@@ -457,7 +457,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../projects/paperless-ngx/">
+<a class="md-nav__link" href="../paperless-ngx/">
 <span class="md-ellipsis">
     
   
@@ -470,7 +470,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../projects/m365-tenant-separation/">
+<a class="md-nav__link" href="../m365-tenant-separation/">
 <span class="md-ellipsis">
     
   
@@ -506,7 +506,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../projects/lifting-diary-claude/">
+<a class="md-nav__link" href="../lifting-diary-claude/">
 <span class="md-ellipsis">
     
   
@@ -519,7 +519,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../projects/lifting-diary-claude/the-application/">
+<a class="md-nav__link" href="../lifting-diary-claude/the-application/">
 <span class="md-ellipsis">
     
   
@@ -532,7 +532,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../projects/lifting-diary-claude/building-with-claude-code/">
+<a class="md-nav__link" href="../lifting-diary-claude/building-with-claude-code/">
 <span class="md-ellipsis">
     
   
@@ -545,7 +545,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../projects/lifting-diary-claude/architecture-as-input/">
+<a class="md-nav__link" href="../lifting-diary-claude/architecture-as-input/">
 <span class="md-ellipsis">
     
   
@@ -558,7 +558,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../projects/lifting-diary-claude/prompt-log/">
+<a class="md-nav__link" href="../lifting-diary-claude/prompt-log/">
 <span class="md-ellipsis">
     
   
@@ -574,7 +574,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../projects/invoice-processor/">
+<a class="md-nav__link" href="../invoice-processor/">
 <span class="md-ellipsis">
     
   
@@ -587,7 +587,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../projects/meeting-audio-notes-pipeline/">
+<a class="md-nav__link" href="../meeting-audio-notes-pipeline/">
 <span class="md-ellipsis">
     
   
@@ -600,7 +600,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../projects/infrastructure-consolidation/">
+<a class="md-nav__link" href="../infrastructure-consolidation/">
 <span class="md-ellipsis">
     
   
@@ -612,8 +612,21 @@
 <span class="md-status md-status--published"></span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../../../projects/prisma-access-sase-implementation/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Prisma Access SASE Implementation
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     
   
@@ -624,14 +637,174 @@
   </span>
 <span class="md-status md-status--published"></span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-of-contents">
+<span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-executive-summary">
+<span class="md-ellipsis">
+      
+        1. Executive Summary
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-business-context-two-disconnected-platforms">
+<span class="md-ellipsis">
+      
+        2. Business Context — Two Disconnected Platforms
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-why-prisma-access">
+<span class="md-ellipsis">
+      
+        3. Why Prisma Access
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-solution-architecture">
+<span class="md-ellipsis">
+      
+        4. Solution Architecture
+      
+    </span>
+</a>
+<nav aria-label="4. Solution Architecture" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#network-fabric">
+<span class="md-ellipsis">
+      
+        Network fabric
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#managed-endpoints">
+<span class="md-ellipsis">
+      
+        Managed endpoints
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#headless-and-ot-devices">
+<span class="md-ellipsis">
+      
+        Headless and OT devices
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#browser-layer">
+<span class="md-ellipsis">
+      
+        Browser layer
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#security-policy-identity-first">
+<span class="md-ellipsis">
+      
+        Security policy — identity first
+      
+    </span>
+</a>
 </li>
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-delivery-approach">
+<span class="md-ellipsis">
+      
+        5. Delivery Approach
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-what-changed-from-the-original-design">
+<span class="md-ellipsis">
+      
+        6. What Changed From the Original Design
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-outcomes-and-results">
+<span class="md-ellipsis">
+      
+        7. Outcomes and Results
+      
+    </span>
+</a>
+<nav aria-label="7. Outcomes and Results" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#whats-operational-today">
+<span class="md-ellipsis">
+      
+        What's operational today
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#risk-disposition">
+<span class="md-ellipsis">
+      
+        Risk disposition
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-takeaways">
+<span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../">
+<a class="md-nav__link" href="../../manuals/">
 <span class="md-ellipsis">
     
   
@@ -642,11 +815,11 @@
   </span>
 <span class="md-status md-status--published"></span>
 </a>
-<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
             
@@ -680,7 +853,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/">
 <span class="md-ellipsis">
     
   
@@ -716,7 +889,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part1/ch01-introduction/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part1/ch01-introduction/">
 <span class="md-ellipsis">
     
   
@@ -729,7 +902,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part1/ch02-shell-commands/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part1/ch02-shell-commands/">
 <span class="md-ellipsis">
     
   
@@ -742,7 +915,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part1/ch03-install-configure/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part1/ch03-install-configure/">
 <span class="md-ellipsis">
     
   
@@ -755,7 +928,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part1/ch04-github-authentication/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part1/ch04-github-authentication/">
 <span class="md-ellipsis">
     
   
@@ -794,7 +967,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch05-basic-operations/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch05-basic-operations/">
 <span class="md-ellipsis">
     
   
@@ -807,7 +980,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch06-file-states/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch06-file-states/">
 <span class="md-ellipsis">
     
   
@@ -820,7 +993,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch07-gitignore/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch07-gitignore/">
 <span class="md-ellipsis">
     
   
@@ -833,7 +1006,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch08-undoing-changes/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch08-undoing-changes/">
 <span class="md-ellipsis">
     
   
@@ -846,7 +1019,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch09-stashing/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch09-stashing/">
 <span class="md-ellipsis">
     
   
@@ -859,7 +1032,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch10-inspecting-history/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch10-inspecting-history/">
 <span class="md-ellipsis">
     
   
@@ -898,7 +1071,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch11-branches-head/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch11-branches-head/">
 <span class="md-ellipsis">
     
   
@@ -911,7 +1084,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch12-merging/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch12-merging/">
 <span class="md-ellipsis">
     
   
@@ -924,7 +1097,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch13-rebasing/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch13-rebasing/">
 <span class="md-ellipsis">
     
   
@@ -937,7 +1110,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch14-interactive-rebase/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch14-interactive-rebase/">
 <span class="md-ellipsis">
     
   
@@ -950,7 +1123,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch15-tags/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch15-tags/">
 <span class="md-ellipsis">
     
   
@@ -963,7 +1136,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch16-detached-head/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch16-detached-head/">
 <span class="md-ellipsis">
     
   
@@ -1002,7 +1175,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch17-github-remotes/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch17-github-remotes/">
 <span class="md-ellipsis">
     
   
@@ -1015,7 +1188,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch18-push-fetch-pull/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch18-push-fetch-pull/">
 <span class="md-ellipsis">
     
   
@@ -1028,7 +1201,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch19-forks/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch19-forks/">
 <span class="md-ellipsis">
     
   
@@ -1041,7 +1214,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch20-pull-requests/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch20-pull-requests/">
 <span class="md-ellipsis">
     
   
@@ -1054,7 +1227,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch21-branch-protection/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch21-branch-protection/">
 <span class="md-ellipsis">
     
   
@@ -1067,7 +1240,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch22-issues-projects/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch22-issues-projects/">
 <span class="md-ellipsis">
     
   
@@ -1106,7 +1279,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part5/ch23-git-hooks/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part5/ch23-git-hooks/">
 <span class="md-ellipsis">
     
   
@@ -1119,7 +1292,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part5/ch24-github-actions/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part5/ch24-github-actions/">
 <span class="md-ellipsis">
     
   
@@ -1132,7 +1305,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part5/ch25-github-pages/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part5/ch25-github-pages/">
 <span class="md-ellipsis">
     
   
@@ -1171,7 +1344,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part6/ch26-workflows/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part6/ch26-workflows/">
 <span class="md-ellipsis">
     
   
@@ -1184,7 +1357,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part6/ch27-aliases-tips/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part6/ch27-aliases-tips/">
 <span class="md-ellipsis">
     
   
@@ -1223,7 +1396,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part7/ch28-object-model/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part7/ch28-object-model/">
 <span class="md-ellipsis">
     
   
@@ -1236,7 +1409,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/part7/ch29-hashing-internals/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part7/ch29-hashing-internals/">
 <span class="md-ellipsis">
     
   
@@ -1275,7 +1448,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/appendix/appA-submodules/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/appendix/appA-submodules/">
 <span class="md-ellipsis">
     
   
@@ -1288,7 +1461,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/appendix/appB-git-lfs/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/appendix/appB-git-lfs/">
 <span class="md-ellipsis">
     
   
@@ -1301,7 +1474,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../github-in-a-nutshell/appendix/appC-signed-commits/">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/appendix/appC-signed-commits/">
 <span class="md-ellipsis">
     
   
@@ -1319,8 +1492,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
 <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
 <span class="md-ellipsis">
     
@@ -1332,7 +1505,7 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_4_3">
 <span class="md-nav__icon md-icon"></span>
             
@@ -1343,7 +1516,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/">
 <span class="md-ellipsis">
     
   
@@ -1379,7 +1552,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part1/ch01-traditional-network-challenges/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part1/ch01-traditional-network-challenges/">
 <span class="md-ellipsis">
     
   
@@ -1392,7 +1565,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part1/ch02-sase-concepts-and-components/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part1/ch02-sase-concepts-and-components/">
 <span class="md-ellipsis">
     
   
@@ -1405,7 +1578,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part1/ch03-prisma-access-architecture/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part1/ch03-prisma-access-architecture/">
 <span class="md-ellipsis">
     
   
@@ -1418,7 +1591,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part1/ch04-prisma-access-for-networks/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part1/ch04-prisma-access-for-networks/">
 <span class="md-ellipsis">
     
   
@@ -1431,7 +1604,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part1/ch05-prisma-access-for-users/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part1/ch05-prisma-access-for-users/">
 <span class="md-ellipsis">
     
   
@@ -1470,7 +1643,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part2/ch06-licensing-and-management-models/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch06-licensing-and-management-models/">
 <span class="md-ellipsis">
     
   
@@ -1483,7 +1656,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part2/ch07-service-infrastructure-planning/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch07-service-infrastructure-planning/">
 <span class="md-ellipsis">
     
   
@@ -1496,7 +1669,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part2/ch08-service-connections-planning/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch08-service-connections-planning/">
 <span class="md-ellipsis">
     
   
@@ -1509,7 +1682,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part2/ch09-remote-networks-planning/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch09-remote-networks-planning/">
 <span class="md-ellipsis">
     
   
@@ -1522,7 +1695,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part2/ch10-mobile-user-deployment-planning/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch10-mobile-user-deployment-planning/">
 <span class="md-ellipsis">
     
   
@@ -1535,7 +1708,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part2/ch11-resiliency-and-redundancy-design/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch11-resiliency-and-redundancy-design/">
 <span class="md-ellipsis">
     
   
@@ -1550,8 +1723,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_4_3_4" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_4" type="checkbox"/>
 <label class="md-nav__link" for="__nav_4_3_4" id="__nav_4_3_4_label" tabindex="0">
 <span class="md-ellipsis">
     
@@ -1563,7 +1736,7 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_4_3_4_label" class="md-nav" data-md-level="3">
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_4_label" class="md-nav" data-md-level="3">
 <label class="md-nav__title" for="__nav_4_3_4">
 <span class="md-nav__icon md-icon"></span>
             
@@ -1574,7 +1747,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ch12-traffic-flow-scenarios/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch12-traffic-flow-scenarios/">
 <span class="md-ellipsis">
     
   
@@ -1587,7 +1760,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ch13-default-routing-and-backbone/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch13-default-routing-and-backbone/">
 <span class="md-ellipsis">
     
   
@@ -1599,21 +1772,8 @@
 <span class="md-status md-status--published"></span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    
-  
-    Ch 14 Hot Potato Routing
-  
-
-    
-  </span>
-<span class="md-status md-status--published"></span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch14-hot-potato-routing/">
 <span class="md-ellipsis">
     
   
@@ -1624,71 +1784,9 @@
   </span>
 <span class="md-status md-status--published"></span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#the-core-principle">
-<span class="md-ellipsis">
-      
-        The Core Principle
-      
-    </span>
-</a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#as-path-prepend-values">
-<span class="md-ellipsis">
-      
-        AS-PATH Prepend Values
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#primary-and-backup-sc-designation">
-<span class="md-ellipsis">
-      
-        Primary and Backup SC Designation
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-hot-potato-solves-route-summarisation">
-<span class="md-ellipsis">
-      
-        Why Hot Potato Solves Route Summarisation
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#default-vs-hot-potato-decision-guide">
-<span class="md-ellipsis">
-      
-        Default vs Hot Potato — Decision Guide
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#key-takeaways">
-<span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../ch15-sd-wan-overview-and-architecture/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch15-sd-wan-overview-and-architecture/">
 <span class="md-ellipsis">
     
   
@@ -1701,7 +1799,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ch16-sd-wan-controllers-and-ion-security/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch16-sd-wan-controllers-and-ion-security/">
 <span class="md-ellipsis">
     
   
@@ -1714,7 +1812,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ch17-ion-devices-and-high-availability/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch17-ion-devices-and-high-availability/">
 <span class="md-ellipsis">
     
   
@@ -1727,7 +1825,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ch18-sd-wan-design-considerations/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch18-sd-wan-design-considerations/">
 <span class="md-ellipsis">
     
   
@@ -1740,7 +1838,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../ch19-data-center-scaling-design/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch19-data-center-scaling-design/">
 <span class="md-ellipsis">
     
   
@@ -1779,7 +1877,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part4/ch20-ztna-connector-overview-and-components/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch20-ztna-connector-overview-and-components/">
 <span class="md-ellipsis">
     
   
@@ -1792,7 +1890,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part4/ch21-ztna-use-cases-and-packet-flow/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch21-ztna-use-cases-and-packet-flow/">
 <span class="md-ellipsis">
     
   
@@ -1805,7 +1903,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part4/ch22-ztna-connector-vs-service-connections/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch22-ztna-connector-vs-service-connections/">
 <span class="md-ellipsis">
     
   
@@ -1818,7 +1916,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part4/ch23-ztna-network-requirements-and-prerequisites/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch23-ztna-network-requirements-and-prerequisites/">
 <span class="md-ellipsis">
     
   
@@ -1831,7 +1929,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part4/ch24-enable-and-configure-ztna-connector/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch24-enable-and-configure-ztna-connector/">
 <span class="md-ellipsis">
     
   
@@ -1844,7 +1942,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part4/ch25-onboard-ztna-connector-esxi-and-upgrade/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch25-onboard-ztna-connector-esxi-and-upgrade/">
 <span class="md-ellipsis">
     
   
@@ -1883,7 +1981,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part5/ch26-activation-planning-checklist/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch26-activation-planning-checklist/">
 <span class="md-ellipsis">
     
   
@@ -1896,7 +1994,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part5/ch27-integrating-panorama-with-prisma-access/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch27-integrating-panorama-with-prisma-access/">
 <span class="md-ellipsis">
     
   
@@ -1909,7 +2007,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part5/ch28-configuring-service-infrastructure/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch28-configuring-service-infrastructure/">
 <span class="md-ellipsis">
     
   
@@ -1922,7 +2020,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part5/ch29-ipsec-tunnel-configuration/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch29-ipsec-tunnel-configuration/">
 <span class="md-ellipsis">
     
   
@@ -1935,7 +2033,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part5/ch30-service-connection-static-routes/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch30-service-connection-static-routes/">
 <span class="md-ellipsis">
     
   
@@ -1948,7 +2046,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part5/ch31-service-connection-bgp/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch31-service-connection-bgp/">
 <span class="md-ellipsis">
     
   
@@ -1987,7 +2085,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part6/ch32-templates-and-template-stacks/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part6/ch32-templates-and-template-stacks/">
 <span class="md-ellipsis">
     
   
@@ -2000,7 +2098,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part6/ch33-device-groups-concepts-and-hierarchy/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part6/ch33-device-groups-concepts-and-hierarchy/">
 <span class="md-ellipsis">
     
   
@@ -2013,7 +2111,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part6/ch34-device-group-policies-and-objects/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part6/ch34-device-group-policies-and-objects/">
 <span class="md-ellipsis">
     
   
@@ -2026,7 +2124,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part6/ch35-inheritance-and-predefined-templates/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part6/ch35-inheritance-and-predefined-templates/">
 <span class="md-ellipsis">
     
   
@@ -2039,7 +2137,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part6/ch36-prisma-access-zones/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part6/ch36-prisma-access-zones/">
 <span class="md-ellipsis">
     
   
@@ -2078,7 +2176,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part7/ch37-remote-network-templates-and-zone-mapping/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part7/ch37-remote-network-templates-and-zone-mapping/">
 <span class="md-ellipsis">
     
   
@@ -2091,7 +2189,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part7/ch38-remote-network-bandwidth-allocation/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part7/ch38-remote-network-bandwidth-allocation/">
 <span class="md-ellipsis">
     
   
@@ -2104,7 +2202,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part7/ch39-onboard-remote-network-static-route/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part7/ch39-onboard-remote-network-static-route/">
 <span class="md-ellipsis">
     
   
@@ -2117,7 +2215,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part7/ch40-onboard-remote-network-bgp/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part7/ch40-onboard-remote-network-bgp/">
 <span class="md-ellipsis">
     
   
@@ -2130,7 +2228,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part7/ch41-onboard-remote-network-ecmp-bgp/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part7/ch41-onboard-remote-network-ecmp-bgp/">
 <span class="md-ellipsis">
     
   
@@ -2169,7 +2267,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part8/ch42-mobile-user-templates-and-zone-mapping/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch42-mobile-user-templates-and-zone-mapping/">
 <span class="md-ellipsis">
     
   
@@ -2182,7 +2280,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part8/ch43-ldap-and-authentication-profile/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch43-ldap-and-authentication-profile/">
 <span class="md-ellipsis">
     
   
@@ -2195,7 +2293,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part8/ch44-onboard-mobile-users-globalprotect/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch44-onboard-mobile-users-globalprotect/">
 <span class="md-ellipsis">
     
   
@@ -2208,7 +2306,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part8/ch45-verify-mobile-users-globalprotect/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch45-verify-mobile-users-globalprotect/">
 <span class="md-ellipsis">
     
   
@@ -2221,7 +2319,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part8/ch46-globalprotect-split-tunneling/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch46-globalprotect-split-tunneling/">
 <span class="md-ellipsis">
     
   
@@ -2234,7 +2332,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part8/ch47-globalprotect-app-settings/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch47-globalprotect-app-settings/">
 <span class="md-ellipsis">
     
   
@@ -2247,7 +2345,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part8/ch48-globalprotect-app-upgrades/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch48-globalprotect-app-upgrades/">
 <span class="md-ellipsis">
     
   
@@ -2286,7 +2384,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part9/ch49-how-explicit-proxy-works/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch49-how-explicit-proxy-works/">
 <span class="md-ellipsis">
     
   
@@ -2299,7 +2397,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part9/ch50-explicit-proxy-configuration-guidelines/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch50-explicit-proxy-configuration-guidelines/">
 <span class="md-ellipsis">
     
   
@@ -2312,7 +2410,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part9/ch51-app-support-browser-and-pac-requirements/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch51-app-support-browser-and-pac-requirements/">
 <span class="md-ellipsis">
     
   
@@ -2325,7 +2423,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part9/ch52-pac-file-guidelines-and-sample/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch52-pac-file-guidelines-and-sample/">
 <span class="md-ellipsis">
     
   
@@ -2338,7 +2436,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part9/ch53-configure-azure-ad-saml-profile/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch53-configure-azure-ad-saml-profile/">
 <span class="md-ellipsis">
     
   
@@ -2351,7 +2449,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../part9/ch54-configure-saml-in-azure-ad/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch54-configure-saml-in-azure-ad/">
 <span class="md-ellipsis">
     
   
@@ -2390,7 +2488,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../appendix/appA-glossary/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/appendix/appA-glossary/">
 <span class="md-ellipsis">
     
   
@@ -2403,7 +2501,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../appendix/appB-cli-and-api-commands/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/appendix/appB-cli-and-api-commands/">
 <span class="md-ellipsis">
     
   
@@ -2416,7 +2514,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../appendix/appC-architecture-quick-reference/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/appendix/appC-architecture-quick-reference/">
 <span class="md-ellipsis">
     
   
@@ -2429,7 +2527,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../appendix/appD-known-documentation-ambiguities/">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/appendix/appD-known-documentation-ambiguities/">
 <span class="md-ellipsis">
     
   
@@ -2453,7 +2551,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../../../code/">
+<a class="md-nav__link" href="../../code/">
 <span class="md-ellipsis">
     
   
@@ -2478,7 +2576,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../code/invoice-processing/">
+<a class="md-nav__link" href="../../code/invoice-processing/">
 <span class="md-ellipsis">
     
   
@@ -2491,7 +2589,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../code/transcript-action-extractor/">
+<a class="md-nav__link" href="../../code/transcript-action-extractor/">
 <span class="md-ellipsis">
     
   
@@ -2504,7 +2602,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../code/tts-audio-generator/">
+<a class="md-nav__link" href="../../code/tts-audio-generator/">
 <span class="md-ellipsis">
     
   
@@ -2520,7 +2618,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../notebooks/">
+<a class="md-nav__link" href="../../notebooks/">
 <span class="md-ellipsis">
     
   
@@ -2532,7 +2630,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../../tags/">
+<a class="md-nav__link" href="../../tags/">
 <span class="md-ellipsis">
     
   
@@ -2558,46 +2656,141 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#the-core-principle">
+<a class="md-nav__link" href="#table-of-contents">
 <span class="md-ellipsis">
       
-        The Core Principle
+        Table of Contents
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#as-path-prepend-values">
+<a class="md-nav__link" href="#1-executive-summary">
 <span class="md-ellipsis">
       
-        AS-PATH Prepend Values
+        1. Executive Summary
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#primary-and-backup-sc-designation">
+<a class="md-nav__link" href="#2-business-context-two-disconnected-platforms">
 <span class="md-ellipsis">
       
-        Primary and Backup SC Designation
+        2. Business Context — Two Disconnected Platforms
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#why-hot-potato-solves-route-summarisation">
+<a class="md-nav__link" href="#3-why-prisma-access">
 <span class="md-ellipsis">
       
-        Why Hot Potato Solves Route Summarisation
+        3. Why Prisma Access
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#default-vs-hot-potato-decision-guide">
+<a class="md-nav__link" href="#4-solution-architecture">
 <span class="md-ellipsis">
       
-        Default vs Hot Potato — Decision Guide
+        4. Solution Architecture
+      
+    </span>
+</a>
+<nav aria-label="4. Solution Architecture" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#network-fabric">
+<span class="md-ellipsis">
+      
+        Network fabric
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#managed-endpoints">
+<span class="md-ellipsis">
+      
+        Managed endpoints
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#headless-and-ot-devices">
+<span class="md-ellipsis">
+      
+        Headless and OT devices
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#browser-layer">
+<span class="md-ellipsis">
+      
+        Browser layer
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#security-policy-identity-first">
+<span class="md-ellipsis">
+      
+        Security policy — identity first
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-delivery-approach">
+<span class="md-ellipsis">
+      
+        5. Delivery Approach
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-what-changed-from-the-original-design">
+<span class="md-ellipsis">
+      
+        6. What Changed From the Original Design
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-outcomes-and-results">
+<span class="md-ellipsis">
+      
+        7. Outcomes and Results
+      
+    </span>
+</a>
+<nav aria-label="7. Outcomes and Results" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#whats-operational-today">
+<span class="md-ellipsis">
+      
+        What's operational today
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#risk-disposition">
+<span class="md-ellipsis">
+      
+        Risk disposition
       
     </span>
 </a>
@@ -2613,160 +2806,397 @@
 </li>
 </ul>
 </nav>
+</li>
+</ul>
+</nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <nav class="md-tags">
-<a class="md-tag" href="../../../../tags/#tag:as-path">as-path</a>
-<a class="md-tag" href="../../../../tags/#tag:bgp">bgp</a>
-<a class="md-tag" href="../../../../tags/#tag:hot-potato">hot-potato</a>
-<a class="md-tag" href="../../../../tags/#tag:network-security">network-security</a>
-<a class="md-tag" href="../../../../tags/#tag:paloalto">paloalto</a>
-<a class="md-tag" href="../../../../tags/#tag:prisma-access">prisma-access</a>
-<a class="md-tag" href="../../../../tags/#tag:routing">routing</a>
-<a class="md-tag" href="../../../../tags/#tag:sase">sase</a>
-<a class="md-tag" href="../../../../tags/#tag:service-connections">service-connections</a>
+<a class="md-tag" href="../../tags/#tag:case-study">case-study</a>
+<a class="md-tag" href="../../tags/#tag:network-security">network-security</a>
+<a class="md-tag" href="../../tags/#tag:prisma-access">prisma-access</a>
+<a class="md-tag" href="../../tags/#tag:sase">sase</a>
 </nav>
-<h1 id="chapter-14-hot-potato-routing">Chapter 14 — Hot Potato Routing</h1>
-<p><strong>Hot potato routing</strong> is an alternative to default routing where Prisma Access egresses traffic to the customer's network as quickly as possible — at the first available exit point — instead of holding it in the Prisma Access fabric to find the optimal SC. It achieves this through <strong>AS-PATH prepending</strong> to influence BGP path selection at the CPE.</p>
+<h1 id="prisma-access-sase-implementation-two-legacy-platforms-one-identity-aware-policy-plane">Prisma Access SASE Implementation — Two Legacy Platforms, One Identity-Aware Policy Plane</h1>
+<p><em>Two legacy platforms with no shared visibility, no identity-aware policy, and no supported migration path between them — replaced by a single Prisma Access deployment spanning 30 branch sites, four data centres, and roughly 5,000 managed endpoints.</em></p>
+<p>The client needed to retire a legacy VPN and a legacy Secure Web Gateway that had never been designed to talk to each other, while proving — not just describing — its security posture against a tightening set of regulatory compliance obligations. This is the architecture that replaced them, the technical problems that came up along the way, and what shipped.</p>
+<div class="admonition info">
+<p class="admonition-title">Engagement at a Glance</p>
+<p><strong>2,442 active users  ·  30 branch sites  ·  4 data centres  ·  ~5,000 endpoints</strong></p>
+<p>12 Remote Network tunnels  ·  100% SSL traffic decrypted  ·  5,235 SaaS apps catalogued  ·  10 of 11 success criteria met</p>
+</div>
 <hr/>
-<h2 id="the-core-principle">The Core Principle</h2>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#1-executive-summary">Executive Summary</a></li>
+<li><a href="#2-business-context-two-disconnected-platforms">Business Context — Two Disconnected Platforms</a></li>
+<li><a href="#3-why-prisma-access">Why Prisma Access</a></li>
+<li><a href="#4-solution-architecture">Solution Architecture</a></li>
+<li><a href="#5-delivery-approach">Delivery Approach</a></li>
+<li><a href="#6-what-changed-from-the-original-design">What Changed From the Original Design</a></li>
+<li><a href="#7-outcomes-and-results">Outcomes and Results</a></li>
+</ol>
+<hr/>
+<h2 id="1-executive-summary">1. Executive Summary</h2>
+<p>The client operates a large distributed-infrastructure organization and must demonstrate alignment with a recognized security maturity framework (Maturity Level 2 equivalent). It replaced two disconnected legacy security platforms — a legacy Secure Web Gateway for branch internet egress and a legacy VPN for remote access — with a single Palo Alto Networks Prisma Access implementation spanning 30 branch sites, four data centres, and roughly 5,000 managed endpoints.</p>
+<p>Neither legacy platform had identity-aware or application-aware policy. Rules were written against IP addresses and ports — a Technology team member and a standard business user were indistinguishable in the rulebase — and there was no way to say "block this application" rather than "block this port." Correlating an incident across both platforms meant manually cross-referencing two unrelated logging systems. A prior attempt at a proxy-based GlobalProtect rollout had already caused endpoint instability at scale, and the legacy SWG had no export format compatible with any replacement platform — whatever came next meant rebuilding security policy from scratch.</p>
+<p>Prisma Access was implemented to solve all three problems at once: a single Strata Cloud Manager (SCM) tenant replacing both legacy platforms, a Direct-to-Full-Tunnel GlobalProtect architecture that eliminated the proxy-agent instability, and an identity- and application-aware policy model built specifically to answer the client's compliance obligations with evidence rather than intent.</p>
+<p>The result: 10 of 11 success criteria fully met, full SSL visibility with application-aware policy across seven distinct access tiers, and a security architecture mapped directly to the client's regulatory obligations.</p>
+<hr/>
+<h2 id="2-business-context-two-disconnected-platforms">2. Business Context — Two Disconnected Platforms</h2>
+<p>The client's existing security architecture had grown in layers, over time, out of two platforms that had never been designed to interoperate.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Endpoints["~5,000 Managed Endpoints"]
+        EP[Windows / macOS laptops]
+    end
+    subgraph Branches["30 Branch Sites + 4 Data Centres"]
+        BR[Servers, OT devices, branch traffic]
+    end
+
+    EP --&gt;|remote access| VPN[Legacy VPN]
+    VPN --&gt;|IP/port rules only| DC1[(Data Centres)]
+
+    BR --&gt;|internet egress| SWG[Legacy SWG]
+    SWG --&gt;|IP/port rules only| INT((Internet))
+
+    VPN -. no shared policy, no shared logs .- SWG
+
+    style VPN fill:#e8e8e8,stroke:#999
+    style SWG fill:#e8e8e8,stroke:#999</code></pre>
+<p>Three problems compounded on top of each other:</p>
+<p><strong>No common visibility plane.</strong> Remote access logs lived in the VPN platform. Web traffic logs lived in the SWG. Correlating an incident across both meant manually cross-referencing two unrelated systems — slow, error-prone, and hard to defend in an audit.</p>
+<p><strong>A prior agent rollout had already failed once.</strong> An earlier attempt at a proxy-based GlobalProtect integration caused endpoint instability at scale, leaving the organisation wary of agent-based remote access as a category, not just that one implementation.</p>
+<p><strong>No migration path off the legacy proxy.</strong> The legacy SWG's policy had no export format compatible with any replacement platform. Whatever came next would mean rebuilding security policy from scratch — with no shortcut through existing rules.</p>
+<p>The client's compliance obligations were tightening at the same time. The applicable regulatory risk management program requires demonstrated controls over data access, network monitoring, and incident response; the target maturity framework adds specific, checkable requirements around patch currency, MFA, application control, and centralised logging. An architecture built on IP-and-port rules with two disconnected logging systems could not produce that evidence on demand.</p>
+<hr/>
+<h2 id="3-why-prisma-access">3. Why Prisma Access</h2>
+<p>The decision to deploy Prisma Access was driven by three specific requirements, not a general platform preference.</p>
+<p><strong>Direct-to-Full-Tunnel GlobalProtect</strong> eliminates the proxy-based agent model that had caused the prior instability. Traffic goes into the tunnel before any proxy processing — there is no local proxy agent for endpoint software to conflict with.</p>
+<p><strong>A single Strata Cloud Manager tenant</strong> manages every traffic path — managed endpoints on GlobalProtect, headless devices on Explicit Proxy, branch sites on Remote Networks, and browser users on Prisma Access Browser. One rulebase, one logging stream, one policy review process.</p>
+<p><strong>Identity- and application-aware policy</strong> directly addresses the client's compliance requirements. Rules reference user groups and App-ID application objects, not IP ranges and port numbers — security posture becomes provably tied to who is doing what, not just where traffic is coming from.</p>
+<hr/>
+<h2 id="4-solution-architecture">4. Solution Architecture</h2>
+<p>Prisma Access replaced both legacy platforms with a single SCM tenant governing four distinct traffic paths — managed endpoints, branch/headless traffic, browser sessions, and SaaS activity — under one rulebase and one logging stream.</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph MU["Mobile Users — 2,442 active"]
+        GP["GlobalProtect\nFull-Tunnel / Always-On"]
+    end
+
+    subgraph RNsites["6 Remote Network Sites — 30 branches, 12 tunnels"]
+        RN["6 branch/data centre sites\nprimary + backup region"]
+    end
+
+    GP --&gt; SCM
+    RN --&gt; SCM
+
+    subgraph SCM["Prisma Access — Strata Cloud Manager"]
+        POL["Single policy plane\nUser-ID · App-ID · SSL Decryption · CASB"]
+    end
+
+    SCM --&gt; SC1["Service Connection\nDC-1 (on-prem)"]
+    SCM --&gt; SC2["Service Connection\nDC-2 (on-prem)"]
+    SCM --&gt; SC3["Service Connection\nDC-3A/3B — Active/Backup"]
+    SCM --&gt; SC4["Service Connection\nDC-4A"]
+
+    SC1 --&gt; DC1[("On-prem Data Centre 1")]
+    SC2 --&gt; DC2[("On-prem Data Centre 2")]
+    SC3 --&gt; DC3[("Cloud-hosted Data Centre A")]
+    SC4 --&gt; DC4[("Cloud-hosted Data Centre B")]</code></pre>
+<h3 id="network-fabric">Network fabric</h3>
+<p>Five IPSec Service Connections link Prisma Access to the client's four data centres — two on-premises, two cloud-hosted. All connections are confirmed <strong>Up, In Sync, with BGP established</strong>. The two cloud-hosted sites run active/backup BGP roles with AS-path prepending; the on-premises and standalone cloud connections run without a redundancy pairing. All tunnels use <strong>IKEv2 with AES-GCM-256 and DH Group 20</strong>, at or above NSA CNSSP 15 cryptographic minimums.</p>
+<p>Twelve Remote Network tunnels extend the same policy plane across six sites to headless devices and server farms that can't run a VPN agent — each with a primary connection to a Primary compute region and a backup to a Backup region. Policy-Based Forwarding on each site's perimeter firewall steers internet-bound server traffic through the primary region and fails over automatically on a path-monitoring alert, with no session interruption. Combined throughput across all 12 tunnels measured <strong>850.78 Mbps at 44% utilisation</strong>.</p>
+<h3 id="managed-endpoints">Managed endpoints</h3>
+<p>Roughly 2,440 Windows and macOS laptops run GlobalProtect in Full-Tunnel / Always-On mode. The tunnel establishes at boot using a machine certificate, before any user logs in. On login, SAML 2.0 authentication redirects through the client's identity provider (Microsoft Entra ID), where MFA and Conditional Access are enforced natively — no duplicate policy configuration inside Prisma Access. iOS and Android managed devices use Per-App VPN, scoping the tunnel to corporate applications only, deployed and kept current via a mobile device management platform.</p>
+<h3 id="headless-and-ot-devices">Headless and OT devices</h3>
+<p>Servers and automated systems that cannot run an agent are configured with a PAC file pointing to Prisma Access's Explicit Proxy. The first unauthenticated request triggers a SAML redirect; subsequent requests authenticate via a browser-injected cookie. For systems that cannot complete interactive authentication at all — automation accounts, legacy services, and OT monitoring and control systems — a curated list of 20 trusted source addresses admits them via IP bypass while keeping every session fully subject to Prisma Access inspection.</p>
+<h3 id="browser-layer">Browser layer</h3>
+<p>Prisma Access Browser is deployed as a managed extension on Chrome and Edge, adding data control (clipboard, download, and screenshot restriction) and phishing protection directly at the browser layer for managed endpoints — a control surface neither legacy platform could offer at all.</p>
+<h3 id="security-policy-identity-first">Security policy — identity first</h3>
+<p>The security model was built around a strict dependency chain: each layer needs the one below it operational before it can do meaningful work.</p>
 <pre class="mermaid"><code>flowchart TD
-    A["User / Branch&lt;br/&gt;sends traffic"]
-    B["MU-SPN or RN-SPN&lt;br/&gt;(nearest to user)"]
-    C["Nearest SC-CAN&lt;br/&gt;egresses traffic&lt;br/&gt;AS-PATH = shortest"]
-    D["Far SC-CAN&lt;br/&gt;discouraged by&lt;br/&gt;AS-PATH prepends"]
-    E["Customer CPE&lt;br/&gt;prefers shortest AS-PATH"]
-
-    A --&gt; B
-    B --&gt; C
-    B --&gt;|longer AS-PATH| D
-    C --&gt; E</code></pre>
-<p>Traffic exits through the SC closest to the source (fewest AS-PATH prepends) — the CPE's BGP best-path selection then naturally prefers the shortest AS-PATH for return traffic, making the path <strong>symmetric</strong>.</p>
-<hr/>
-<h2 id="as-path-prepend-values">AS-PATH Prepend Values</h2>
-<p>Prisma Access applies different numbers of prepends based on the Service Connection's role and BGP peer relationship:</p>
+    A["User-ID\nCloud identity sync + on-prem directory agents\n11,852 users / 24,121 groups synced"] --&gt; B
+    B["SSL Decryption\nDecrypt-All forward proxy\n362/362 compliance exclusions active"] --&gt; C
+    C["App-ID\nIdentity + application-aware policy\n7 access tiers, zero IP-only rules"] --&gt; D
+    D["SaaS Security / CASB\n5,235 apps discovered, 610 high-risk flagged\ntag-based enforcement"] --&gt; E
+    E["Prisma Access Browser\nData control + phishing protection\nat the browser layer"]</code></pre>
+<p>User-ID must resolve an IP to a user before any identity-based rule can match. SSL Decryption must be running before App-ID can classify HTTPS traffic beyond "TLS on port 443." CASB's inline, activity-level enforcement needs decrypted traffic to distinguish, say, a read from an export. Deploying these layers out of order means the layers above fail silently rather than loudly — exactly the kind of gap an audit finds and a live dashboard doesn't.</p>
+<p>Every source IP is mapped to a username and group in real time. On-premises directory agents feed the Remote Network Security Processing Node directly — a platform feature flag had to be configured to disable the default redistribution path — while cloud identity group membership syncs through the Cloud Identity Engine (11,852 users, 24,121 groups). Every session in Prisma Access carries a real identity, and security policy enforces <strong>seven distinct access tiers</strong> — Standard, Technology, Executive, Basic Server, Guest Wi-Fi, Basic Citrix, and Birthright — instead of one blanket ruleset for everyone.</p>
+<p>A Decrypt-All forward proxy rule inspects every HTTPS session across GlobalProtect and Explicit Proxy traffic. 362 of 362 predefined exclusions are enabled — covering financial, health, and pinned-certificate categories that fall under the client's compliance protections — alongside explicit exclusions for productivity-suite and vulnerability-scanning traffic. URL categories specifically in scope for the client's compliance obligations, including social networking, P2P, and personal cloud storage, are decrypted and inspected rather than carved out.</p>
+<p>SaaS Security Inline (CASB) adds application-layer governance on top: 5,235 applications discovered in a 90-day window, 610 flagged high-risk, tagged Sanctioned / Unsanctioned / Tolerated rather than blanket allow/block. GenAI posture is deliberately conservative — a small set of sanctioned productivity AI tools is permitted by default; every other AI tool is unsanctioned and blocked, a direct response to the data-exfiltration risk unmanaged AI access poses under the client's compliance obligations.</p>
 <table>
 <thead>
 <tr>
-<th>SC Role</th>
-<th>Same BGP Peer IP</th>
-<th>Different BGP Peer IP</th>
+<th>Control</th>
+<th>Regulatory anchor</th>
+<th>Implementation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Primary SC</strong></td>
-<td>0 prepends</td>
-<td>1 prepend</td>
+<td>MFA enforcement</td>
+<td>Maturity framework</td>
+<td>Identity provider Conditional Access, natively integrated via SAML</td>
 </tr>
 <tr>
-<td><strong>Backup SC</strong> (designated)</td>
-<td>3 prepends</td>
-<td>4 prepends</td>
+<td>Application control</td>
+<td>Maturity framework</td>
+<td>App-ID policy across all 7 access tiers</td>
 </tr>
 <tr>
-<td><strong>Other SCs</strong></td>
-<td>6 prepends</td>
-<td>7 prepends</td>
+<td>SSL/TLS inspection scope</td>
+<td>Compliance obligations</td>
+<td>Decrypt-All + 362/362 compliance-relevant exclusions</td>
+</tr>
+<tr>
+<td>Centralised logging</td>
+<td>Compliance obligations</td>
+<td>Single logging stream, all traffic paths</td>
+</tr>
+<tr>
+<td>GenAI / data exfiltration risk</td>
+<td>Compliance obligations</td>
+<td>CASB tag-based blocking, sanctioned-app allowlist</td>
+</tr>
+<tr>
+<td>Patch/AV currency</td>
+<td>Maturity framework</td>
+<td>HIP deny rules (see <a href="#7-outcomes-and-results">§7</a> for the one open item here)</td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li><strong>0 prepends</strong> = shortest AS-PATH = most preferred by CPE</li>
-<li><strong>6–7 prepends</strong> = strongly discouraged — only used if primary and backup are both unavailable</li>
-</ul>
-<p>This creates a clear preference hierarchy: primary SC → backup SC → all other SCs.</p>
-<blockquote>
-<p><strong>Verified 2026-07-09</strong> — all six prepend counts confirmed still current via direct fetch of Palo Alto's current routing documentation: Primary 0/1, Backup 3/4, Other 6/7 (same/different BGP peer IP respectively) — no changes needed.</p>
-<p>📷 <a href="https://docs.paloaltonetworks.com/prisma-access/administration/prisma-access-advanced-deployments/service-connection-advanced-deployments/route-preferences-for-service-connection-traffic">PaloAlto diagram — Hot potato routing AS-PATH prepending</a></p>
-</blockquote>
-<p><img alt="PaloAlto diagram — Hot potato routing AS-PATH prepending (1)" src="../../assets/Pasted%20image%2020260528175636.png"/></p>
-<p><img alt="PaloAlto diagram — Hot potato routing AS-PATH prepending (2)" src="../../assets/Pasted%20image%2020260528175721.png"/></p>
 <hr/>
-<h2 id="primary-and-backup-sc-designation">Primary and Backup SC Designation</h2>
-<p>When configuring a Remote Network or Service Connection in hot potato mode, you designate one SC as <strong>primary</strong> and optionally one as <strong>backup</strong>:</p>
-<pre class="mermaid"><code>graph TD
-    PA["☁️ Prisma Access"]
-    SC_P["SC Primary&lt;br/&gt;0 prepends&lt;br/&gt;(preferred)"]
-    SC_B["SC Backup&lt;br/&gt;3 prepends&lt;br/&gt;(standby)"]
-    SC_O["Other SCs&lt;br/&gt;6 prepends&lt;br/&gt;(last resort)"]
-    DC["🏢 DC / CPE"]
+<h2 id="5-delivery-approach">5. Delivery Approach</h2>
+<p>Replacing two production security platforms serving 5,000 endpoints and 30 branch sites was not a big-bang cutover. The implementation followed a structured, phased methodology, each phase gated on the one before it.</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Row1[" "]
+        direction LR
+        P1["Discovery &amp; Design\nLicensing, IP addressing,\nIKE/IPSec parameters, BGP design"] --&gt; P2["Core Network Build\nService Connections\n+ Remote Network tunnels"] --&gt; P3["Identity &amp; Access\nGlobalProtect rollout\n+ User-ID integration"] --&gt; P4["Security Policy Build\nInline learning →\nApp-ID rule conversion"]
+    end
+    subgraph Row2[" "]
+        direction LR
+        P5["SSL Decryption\nPhased rollout,\nbeta group, full deployment"] --&gt; P6["SaaS Security &amp; OT Integration\nCASB tagging,\nExplicit Proxy for headless/OT"] --&gt; P7["Cutover &amp; Validation\nBranch migration,\nlegacy decommission"]
+    end
+    P4 --&gt; P5
 
-    PA --&gt; SC_P --&gt; DC
-    PA --&gt; SC_B --&gt; DC
-    PA --&gt; SC_O --&gt; DC</code></pre>
+    style Row1 fill:none,stroke:none
+    style Row2 fill:none,stroke:none</code></pre>
+<p>The network fabric had to be confirmed stable before identity integration began; identity had to be operational before security policy could reference user and group objects; SSL Decryption had to be live before application-layer CASB enforcement could see anything beyond raw TLS handshakes.</p>
+<p><strong>Redundancy matched to real failure domains, not a template.</strong> The two cloud-hosted Service Connections had a natural redundancy relationship and got an explicit active/backup BGP role with AS-path prepending; the on-premises and standalone cloud connections had no natural pairing and were built as independent connections instead.</p>
+<p><strong>Security policy without a portable legacy ruleset.</strong> The legacy SWG had no export format that could seed the new App-ID rulebase — every existing rule was written against IP addresses and ports, with no application or identity context to translate. Rather than attempt a lossy, incomplete import, policy was built using <strong>inline learning</strong>: Prisma Access placed inline with a permissive, fully-logged baseline rule, running for two to four weeks to capture real traffic patterns before converting that traffic into specific, least-privilege App-ID rules.</p>
+<p><strong>OT and headless systems needed their own design pass.</strong> OT monitoring and control systems with no interactive login and no standard VPN agent path route through a chain of intermediate proxies specific to that environment, so standard SAML-based Explicit Proxy authentication couldn't apply. The solution was a curated set of trusted-source IP bypasses paired with identity-header propagation (XAU), so OT traffic still carries an attributable identity and remains fully subject to Prisma Access inspection — SSL Decryption, App-ID, and logging all still apply.</p>
+<p><strong>A deliberately conservative GenAI posture.</strong> SaaS Security policy needed an explicit answer to what happens when an employee tries an unsanctioned AI tool. Given the client's data-exfiltration risk profile, the implementation defaulted to blocking unsanctioned GenAI tools outright, with a small, deliberately curated allowlist of sanctioned productivity AI applications — a stricter default than many organisations choose, chosen specifically because the regulatory risk profile called for it.</p>
+<p><strong>Validated component by component, not batch-verified.</strong> Service Connections were confirmed Up and BGP-established one by one. Every Remote Network tunnel was checked for both primary and backup path health. GlobalProtect authentication was end-to-end tested through a pilot user group before wider rollout.</p>
+<hr/>
+<h2 id="6-what-changed-from-the-original-design">6. What Changed From the Original Design</h2>
+<p>The implementation was documented retrospectively against the live SCM tenant, so a formal design-delta comparison against the original HLD was produced alongside the as-built reference documents. The deviations worth knowing about, grouped by why they happened:</p>
+<p><strong>Corrected during build:</strong></p>
 <ul>
-<li>Normal traffic: exits via the primary SC (AS-PATH = shortest)</li>
-<li>Primary fails: CPE now prefers the backup SC (3 prepends become best available)</li>
-<li>All designated SCs fail: remaining SCs activate with 6-prepend AS-PATH</li>
+<li>The Asia-Pacific fallback gateway region shipped as the as-deployed region rather than the one originally planned — the originally-planned region was referenced in the runbook but never provisioned.</li>
+<li>The two cloud-hosted backup sites use reversed primary/backup tunnel numbering internally, but dual-region coverage is confirmed equivalent either way.</li>
+<li>The internal AD domain used in HIP checks, User-ID group DNs, and GP DNS suffixes differs from the external/public domain — corrected throughout the documentation set.</li>
 </ul>
+<p><strong>Accepted trade-offs, made explicitly:</strong></p>
+<ul>
+<li>The Forward Trust CA uses the platform's auto-generated certificate rather than a dedicated sub-CA from the client's internal PKI. Functionally equivalent for internal SSL inspection; avoided PKI-team process overhead in exchange for a standing renewal-management obligation (all four certificates expire the same date — flagged as a single point of failure if renewal is missed).</li>
+<li>SSL Decryption shipped as a full Decrypt-All deployment rather than the originally planned beta-group pilot — exceeding the original design intent, not falling short of it.</li>
+<li>Zone and security-profile-group naming conventions in the live tenant diverge from the HLD's proposed naming scheme. Over 100 existing rules already referenced the live names; renaming would have meant a mass rule update for no operational benefit.</li>
+</ul>
+<p><strong>Open items, disclosed rather than hidden:</strong></p>
+<ul>
+<li>The HIP antivirus-currency threshold is set to 14 days against the target framework's 24-hour guidance — operationally appropriate given the endpoint management tooling in place, but a gap the client's security team should formally confirm.</li>
+<li>No patch-age HIP check is currently configured; patch currency is managed through the MDM platform instead.</li>
+<li>"Allow User to Sign Out" remains enabled on GlobalProtect profiles (intended for helpdesk troubleshooting) rather than disabled for full Always-On hardening.</li>
+<li>Log forwarding to the client's cloud SIEM was de-scoped for this engagement — credentials were never provided on the client side. Centralised logging within Prisma Access's own logging service is unaffected.</li>
+</ul>
+<p>Every one of these was tracked to an explicit disposition — corrected, accepted with rationale, or handed to the client with a named owner — rather than left ambiguous at go-live.</p>
 <hr/>
-<h2 id="why-hot-potato-solves-route-summarisation">Why Hot Potato Solves Route Summarisation</h2>
-<p>In default routing, if the CPE summarises routes (e.g. advertises <code>10.0.0.0/8</code> instead of individual <code>/24s</code>), Prisma Access loses the granularity to determine which SC the return traffic should use — causing asymmetry.</p>
-<p>Hot potato avoids this problem because:
-- The exit decision is made <strong>outbound</strong> based on AS-PATH, not on the CPE-advertised prefix
-- The CPE's return path follows the same BGP preference (shortest AS-PATH) automatically
-- Route summarisation does not affect the AS-PATH-driven selection</p>
-<blockquote>
-<p>ℹ️ <strong>Investigated 2026-07-09 — priority item, resolved as "claim not overturned," not confirmed as fact either.</strong> Research surfaced during Chapter 13's review suggested a directly conflicting claim: that enabling route summarization while using Hot Potato causes Prisma Access to <em>stop</em> AS-PATH prepending, potentially reintroducing asymmetric routing. This was investigated rigorously — multiple direct, targeted fetches of the specific current Palo Alto page the claim was attributed to (including an exact-phrase search for "no longer prepends" combined with "hot potato" and "route summarization") found <strong>no such statement anywhere on that page</strong>. This matches a pattern seen repeatedly elsewhere in this project this session: a specific, plausible-sounding claim that traces only to aggregated search-engine summaries, not to any verifiable primary-source text. The claim is <strong>not</strong> applied as a correction here. At the same time, this chapter's own "unaffected by route summarization" framing above is architectural reasoning (AS-PATH prepending is an outbound Prisma-Access-side mechanism, independent of how the CPE aggregates its own inbound-learned routes) rather than a direct docs quote either — it wasn't found explicitly stated as such in the fetched source. Treat it as a reasoned, not contradicted, claim — not a verbatim-confirmed one. If you're relying on this behavior for a production design, verify directly with Palo Alto or in your own tenant rather than trusting either framing at face value.</p>
-</blockquote>
-<hr/>
-<h2 id="default-vs-hot-potato-decision-guide">Default vs Hot Potato — Decision Guide</h2>
+<h2 id="7-outcomes-and-results">7. Outcomes and Results</h2>
+<pre class="mermaid"><code>pie showData
+    title Success Criteria Assessment (11 total)
+    "Fully met" : 10
+    "Partially met — scheduled operational task" : 1</code></pre>
 <table>
 <thead>
 <tr>
-<th>Scenario</th>
-<th>Recommended Mode</th>
+<th>#</th>
+<th>Criterion</th>
+<th>Status</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Single SC</td>
-<td>Either (default is simpler)</td>
+<td>1</td>
+<td>Full-Tunnel GlobalProtect deployed to all managed endpoints</td>
+<td>✓ Met</td>
 </tr>
 <tr>
-<td>Multiple SCs, independent DCs, no summarisation</td>
-<td>Default</td>
+<td>2</td>
+<td>All 4 data centres connected via Service Connections</td>
+<td>✓ Met</td>
 </tr>
 <tr>
-<td>Multiple SCs with backbone between DCs</td>
-<td>Hot Potato (avoid asymmetric issues)</td>
+<td>3</td>
+<td>Remote Networks providing internet egress for headless devices</td>
+<td>✓ Met</td>
 </tr>
 <tr>
-<td>CPE summarises routes on SC advertisements</td>
-<td><strong>Hot Potato required</strong></td>
+<td>4</td>
+<td>User-ID active</td>
+<td>✓ Met</td>
 </tr>
 <tr>
-<td>Deterministic symmetric routing across multiple DCs</td>
-<td>Hot Potato</td>
+<td>5</td>
+<td>App-ID active</td>
+<td>✓ Met</td>
 </tr>
 <tr>
-<td>Want CPE to fully control routing</td>
-<td>Default</td>
+<td>6</td>
+<td>SSL Decryption with approved exclusions</td>
+<td>✓ Met</td>
+</tr>
+<tr>
+<td>7</td>
+<td>AV, anti-spyware, URL filtering, WildFire active</td>
+<td>✓ Met</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Centralised logging in place</td>
+<td>✓ Met</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Policy built on user/group + application objects</td>
+<td>✓ Met</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Strata Cloud Manager as single pane of glass</td>
+<td>✓ Met</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Legacy SWG + VPN decommissioned</td>
+<td>Partial — SWG ✓ decommissioned; legacy VPN decommission scheduled as a client operations task</td>
 </tr>
 </tbody>
 </table>
-<hr/>
-<h2 id="key-takeaways">Key Takeaways</h2>
-<ul>
-<li>Hot potato egresses traffic at the nearest SC by using AS-PATH prepending to influence CPE BGP preference</li>
-<li>Primary SC = 0 prepends, backup SC = 3 prepends, other SCs = 6 prepends (+ 1 more for different BGP peer IPs) — confirmed still current 2026-07-09</li>
-<li>Symmetric return routing is achieved because the CPE naturally prefers the shortest AS-PATH</li>
-<li>Required when the CPE uses route summarisation — default routing breaks under summarisation</li>
-<li><strong>Investigated 2026-07-09</strong> — a claim that Hot Potato itself becomes compromised by route summarization (stops AS-PATH prepending) could not be verified against its cited primary source despite rigorous, targeted attempts; not applied as a correction, but this chapter's own "unaffected" claim isn't a directly-quoted fact either — treat both with appropriate caution</li>
-<li>Designate a backup SC to ensure automatic failover with a 3-prepend preference</li>
-</ul>
-<hr/>
-<p><em>Previous: <a href="../ch13-default-routing-and-backbone/">Chapter 13 — Default Routing (Cold Potato)</a></em> · <em>Next: <a href="../ch15-sd-wan-overview-and-architecture/">Chapter 15 — Prisma SD-WAN Overview &amp; Architecture</a></em></p>
+<p>The one open item — legacy VPN decommission — was deliberately not forced to closure. Cutting remote access before every user cohort had validated GlobalProtect stability would have traded project velocity for production risk. It's now an owned, scheduled task on the client's operations roadmap, with no dependency on the implementation itself.</p>
+<h3 id="whats-operational-today">What's operational today</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Status</th>
+<th>Scale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service Connections</td>
+<td>✓ Operational</td>
+<td>5 connections, 4 data centres, all Up / BGP established</td>
+</tr>
+<tr>
+<td>Remote Networks</td>
+<td>✓ Operational</td>
+<td>6 sites, 12 tunnels, 850.78 Mbps combined @ 44% utilisation</td>
+</tr>
+<tr>
+<td>GlobalProtect (Mobile Users)</td>
+<td>✓ Operational</td>
+<td>2,442 active users, Full-Tunnel / Always-On</td>
+</tr>
+<tr>
+<td>Explicit Proxy</td>
+<td>✓ Operational</td>
+<td>Headless + OT devices, SAML + Kerberos + trusted-source paths</td>
+</tr>
+<tr>
+<td>Prisma Access Browser</td>
+<td>✓ Operational</td>
+<td>Chrome + Edge, centrally managed</td>
+</tr>
+<tr>
+<td>SSL Decryption</td>
+<td>✓ Operational</td>
+<td>Decrypt-All, 362/362 compliance exclusions</td>
+</tr>
+<tr>
+<td>User-ID</td>
+<td>✓ Operational</td>
+<td>11,852 users / 24,121 groups synced via identity engine + directory agents</td>
+</tr>
+<tr>
+<td>SaaS Security (CASB)</td>
+<td>✓ Operational</td>
+<td>5,235 apps discovered, 610 high-risk flagged, tag-based enforcement</td>
+</tr>
+</tbody>
+</table>
+<h3 id="risk-disposition">Risk disposition</h3>
+<p>Every technical risk identified during the implementation received an explicit disposition rather than being left ambiguous at go-live:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Disposition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Legacy SWG migration risk (no supported export path)</td>
+<td>Mitigated — SWG decommissioned, inline learning policy operational</td>
+</tr>
+<tr>
+<td>Prior proxy-agent instability risk</td>
+<td>Mitigated — 2,442 users active on Full-Tunnel architecture, no reported issues</td>
+</tr>
+<tr>
+<td>Cloud-hosted Service Connection approval risk</td>
+<td>Mitigated — all cloud Service Connections operational</td>
+</tr>
+<tr>
+<td>PKI/certificate dependency risk</td>
+<td>Mitigated — CAs confirmed valid; renewal scheduled ahead of expiry</td>
+</tr>
+<tr>
+<td>Additional interconnect licensing risk</td>
+<td>Accepted — no use case identified requiring it</td>
+</tr>
+<tr>
+<td>BGP migration change-window risk</td>
+<td>Mitigated — all 30 branches migrated, zero incidents recorded</td>
+</tr>
+<tr>
+<td>Shared BGP ASN on two cloud Service Connections</td>
+<td>Accepted — confirmed intentional single-cluster topology</td>
+</tr>
+<tr>
+<td>Orphaned Service Connection object</td>
+<td>Accepted — confirmed benign, cleanup scheduled</td>
+</tr>
+<tr>
+<td>HIP antivirus-currency threshold below framework guidance</td>
+<td>Accepted — operationally appropriate; gap acknowledged, not hidden</td>
+</tr>
+</tbody>
+</table>
+<h3 id="key-takeaways">Key Takeaways</h3>
+<p><strong>Identity before decryption, decryption before CASB.</strong> Each layer in the security stack depends on the one below it. Skipping ahead doesn't fail loudly; it fails silently, and the gap only shows up when someone goes looking for evidence during an audit.</p>
+<p><strong>Inline learning is the realistic path off a legacy proxy with no portable ruleset.</strong> Any organisation migrating off a legacy web proxy will recognize this situation: existing policy simply isn't portable. Running the new platform in permissive, fully-logged inline learning mode for two to four weeks before writing blocking rules produces a policy grounded in what users actually do, not what old documentation claims they do.</p>
+<p><strong>Regulatory obligations are design inputs, not a post-deployment checklist.</strong> The GenAI block posture, the AV currency threshold, the SSL decryption category scope, and the MFA enforcement model all trace directly back to a specific compliance requirement in this implementation — the difference between "we believe we're compliant" and "here's the control, here's the obligation it satisfies, here's the evidence it's active."</p>
+<p><strong>OT and headless systems need their own design pass.</strong> They will not fit a generic access pattern. Generic SASE architecture patterns are built around users and standard servers; devices with no interactive login and no standard agent path need to be scoped explicitly, early — or they surface as a gap late, exactly when it's most expensive to fix.</p>
+<p><strong>A go-live is only as strong as its risk dispositions, not its checkmarks.</strong> Every technical risk still open at go-live got an explicit disposition — accepted, mitigated, or handed to operations with a named owner — rather than being marked "resolved" by omission. An implementation that's "done" but leaves ambiguous open items behind isn't actually finished; it's just stopped.</p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 10, 2026 07:57:58 UTC">July 10, 2026 07:57:58</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 10, 2026 12:40:28 UTC">July 10, 2026 12:40:28</span>
 </span>
 </aside>
 </article>
@@ -2781,7 +3211,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Ch 13 Default Routing &amp; Backbone" class="md-footer__link md-footer__link--prev" href="../ch13-default-routing-and-backbone/">
+<a aria-label="Previous: Infrastructure Consolidation" class="md-footer__link md-footer__link--prev" href="../infrastructure-consolidation/">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
 </div>
@@ -2790,17 +3220,17 @@
                 Previous
               </span>
 <div class="md-ellipsis">
-                Ch 13 Default Routing &amp; Backbone
+                Infrastructure Consolidation
               </div>
 </div>
 </a>
-<a aria-label="Next: Ch 15 SD-WAN Overview &amp; Architecture" class="md-footer__link md-footer__link--next" href="../ch15-sd-wan-overview-and-architecture/">
+<a aria-label="Next: Overview" class="md-footer__link md-footer__link--next" href="../../manuals/">
 <div class="md-footer__title">
 <span class="md-footer__direction">
                 Next
               </span>
 <div class="md-ellipsis">
-                Ch 15 SD-WAN Overview &amp; Architecture
+                Overview
               </div>
 </div>
 <div class="md-footer__button md-icon">
@@ -2828,7 +3258,7 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-<script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
 </body>
 </html>

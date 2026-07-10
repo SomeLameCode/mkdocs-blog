@@ -5,6 +5,15 @@
 
 ---
 
+## D-024 — Design-delta content gets its own section on the Prisma Access SASE project page, not folded into delivery
+
+**Date:** 2026-07-10
+**Decision:** On `docs/projects/prisma-access-sase-implementation.md`, gave "what changed vs. the original HLD" (scrubbed design-delta content) its own numbered section (§6, "What Changed From the Original Design") between Delivery Approach and Outcomes, rather than folding it into the delivery narrative.
+**Alternatives considered:** Fold design deviations into §5 Delivery Approach as inline asides where each deviation naturally arose (keeps section count matched to `m365-tenant-separation.md`'s 7 sections exactly, but scatters a coherent set of before/after facts across a narrative section and makes them harder to scan).
+**Rationale:** The design-delta material is a formal deviation record (corrected / accepted-tradeoff / open-item groupings), not a narrative beat — structurally closer to the M365 page's own decision-log section than to its delivery story. Grouping it lets a reader scan "what shipped differently than planned" in one place, matching how the M365 case study gives its decision log a dedicated section (§5, "Why Nothing Was Forgotten") rather than weaving it through the build narrative.
+
+---
+
 ## D-023 — Anonymization scope for Ausgrid Prisma Access case study (Phase 0 scrub)
 
 **Date:** 2026-07-10

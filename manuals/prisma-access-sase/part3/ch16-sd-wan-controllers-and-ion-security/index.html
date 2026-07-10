@@ -1,0 +1,2818 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="How ION devices communicate with the Prisma SD-WAN controller — zero-touch provisioning, the control plane trust model, autonomous operation during disconnection, and VPN session key security." name="description"/>
+<meta content="Florin Neagu" name="author"/>
+<link href="https://somelamecode.github.io/mkdocs-blog/manuals/prisma-access-sase/part3/ch16-sd-wan-controllers-and-ion-security/" rel="canonical"/>
+<link href="../ch15-sd-wan-overview-and-architecture/" rel="prev"/>
+<link href="../ch17-ion-devices-and-high-availability/" rel="next"/>
+<link href="../../../../assets/favicon.svg" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
+<title>SD-WAN Controllers, ION Communication &amp; Trust Chain - Florin Neagu Projects &amp; Notes</title>
+<link href="../../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#chapter-16-sd-wan-controllers-ion-communication-trust-chain">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" data-md-component="logo" href="../../../.." title="Florin Neagu Projects &amp; Notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Florin Neagu Projects &amp; Notes
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              SD-WAN Controllers, ION Communication &amp; Trust Chain
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+<input aria-label="Light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/SomeLameCode/mkdocs-blog" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    SomeLameCode/mkdocs-blog
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../..">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../articles/">
+          
+  
+  
+    
+  
+  Articles
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../projects/">
+          
+  
+  
+    
+  
+  Projects
+
+        </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../../">
+          
+  
+  
+    
+  
+  Manuals
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../code/">
+          
+  
+  
+    
+  
+  Code
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../notebooks/">
+        
+  
+  
+    
+  
+  Notebooks
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../tags/">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" data-md-component="logo" href="../../../.." title="Florin Neagu Projects &amp; Notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Florin Neagu Projects &amp; Notes
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/SomeLameCode/mkdocs-blog" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    SomeLameCode/mkdocs-blog
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../..">
+<span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../articles/">
+<span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../articles/mkdocs-material/">
+<span class="md-ellipsis">
+    
+  
+    MkDocs &amp; Material
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    MkDocs &amp; Material
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../articles/mkdocs-material/mkdocs-setup/">
+<span class="md-ellipsis">
+    
+  
+    MkDocs Setup
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../articles/mkdocs-material/mkdocs-site-update/">
+<span class="md-ellipsis">
+    
+  
+    Publish to GitHub Pages
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../articles/mkdocs-material/mkdocs-integrate-with-obsidian/">
+<span class="md-ellipsis">
+    
+  
+    Obsidian Integration
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../articles/mkdocs-material/admonitions/">
+<span class="md-ellipsis">
+    
+  
+    Admonitions
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../articles/mkdocs-material/content-tabs/">
+<span class="md-ellipsis">
+    
+  
+    Content Tabs
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../articles/mkdocs-material/diagram-examples/">
+<span class="md-ellipsis">
+    
+  
+    Diagram Examples
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../articles/code/">
+<span class="md-ellipsis">
+    
+  
+    Code &amp; Data
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Code &amp; Data
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../articles/code/code-example/">
+<span class="md-ellipsis">
+    
+  
+    Normal Distribution Generator
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../articles/code/transcript-action-extractor/">
+<span class="md-ellipsis">
+    
+  
+    Transcript Action Extractor
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../projects/">
+<span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../projects/paperless-ngx/">
+<span class="md-ellipsis">
+    
+  
+    Paperless-ngx
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../projects/m365-tenant-separation/">
+<span class="md-ellipsis">
+    
+  
+    M365 Tenant Separation
+  
+
+    
+  </span>
+<span class="md-status md-status--draft"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Lifting Diary
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Lifting Diary
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../projects/lifting-diary-claude/">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../projects/lifting-diary-claude/the-application/">
+<span class="md-ellipsis">
+    
+  
+    The Application
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../projects/lifting-diary-claude/building-with-claude-code/">
+<span class="md-ellipsis">
+    
+  
+    Building with Claude Code
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../projects/lifting-diary-claude/architecture-as-input/">
+<span class="md-ellipsis">
+    
+  
+    Architecture as Input
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../projects/lifting-diary-claude/prompt-log/">
+<span class="md-ellipsis">
+    
+  
+    Prompt Log
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../projects/invoice-processor/">
+<span class="md-ellipsis">
+    
+  
+    Invoice Processor
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../projects/meeting-audio-notes-pipeline/">
+<span class="md-ellipsis">
+    
+  
+    Meeting Audio Notes Pipeline
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../projects/infrastructure-consolidation/">
+<span class="md-ellipsis">
+    
+  
+    Infrastructure Consolidation
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../">
+<span class="md-ellipsis">
+    
+  
+    Manuals
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Manuals
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    GitHub in a Nutshell
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    GitHub in a Nutshell
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 1 — Getting Started
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Getting Started
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part1/ch01-introduction/">
+<span class="md-ellipsis">
+    
+  
+    Ch 01 Introduction to Version Control &amp; Git
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part1/ch02-shell-commands/">
+<span class="md-ellipsis">
+    
+  
+    Ch 02 Shell Commands Primer
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part1/ch03-install-configure/">
+<span class="md-ellipsis">
+    
+  
+    Ch 03 Installing &amp; Configuring Git
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part1/ch04-github-authentication/">
+<span class="md-ellipsis">
+    
+  
+    Ch 04 GitHub Authentication
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 2 — Core Git Workflow
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Core Git Workflow
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch05-basic-operations/">
+<span class="md-ellipsis">
+    
+  
+    Ch 05 Creating a Repository &amp; Basic Operations
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch06-file-states/">
+<span class="md-ellipsis">
+    
+  
+    Ch 06 Tracking Files &amp; File States
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch07-gitignore/">
+<span class="md-ellipsis">
+    
+  
+    Ch 07 Ignoring Files (.gitignore)
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch08-undoing-changes/">
+<span class="md-ellipsis">
+    
+  
+    Ch 08 Undoing Changes
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch09-stashing/">
+<span class="md-ellipsis">
+    
+  
+    Ch 09 Stashing
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part2/ch10-inspecting-history/">
+<span class="md-ellipsis">
+    
+  
+    Ch 10 Inspecting History
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 3 — Branching &amp; History Management
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_4_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Branching &amp; History Management
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch11-branches-head/">
+<span class="md-ellipsis">
+    
+  
+    Ch 11 Branches and HEAD
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch12-merging/">
+<span class="md-ellipsis">
+    
+  
+    Ch 12 Merging Branches
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch13-rebasing/">
+<span class="md-ellipsis">
+    
+  
+    Ch 13 Rebasing
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch14-interactive-rebase/">
+<span class="md-ellipsis">
+    
+  
+    Ch 14 Interactive Rebase
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch15-tags/">
+<span class="md-ellipsis">
+    
+  
+    Ch 15 Tags &amp; Semantic Versioning
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part3/ch16-detached-head/">
+<span class="md-ellipsis">
+    
+  
+    Ch 16 Detached HEAD
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 4 — GitHub &amp; Collaboration
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — GitHub &amp; Collaboration
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch17-github-remotes/">
+<span class="md-ellipsis">
+    
+  
+    Ch 17 GitHub Overview &amp; Remote Repositories
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch18-push-fetch-pull/">
+<span class="md-ellipsis">
+    
+  
+    Ch 18 Push, Fetch &amp; Pull
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch19-forks/">
+<span class="md-ellipsis">
+    
+  
+    Ch 19 Forks &amp; Contributing to Open Source
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch20-pull-requests/">
+<span class="md-ellipsis">
+    
+  
+    Ch 20 Pull Requests
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch21-branch-protection/">
+<span class="md-ellipsis">
+    
+  
+    Ch 21 Branch Protection &amp; Code Review
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part4/ch22-issues-projects/">
+<span class="md-ellipsis">
+    
+  
+    Ch 22 GitHub Issues &amp; Project Management
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 5 — Automation &amp; Deployment
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_6_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Automation &amp; Deployment
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part5/ch23-git-hooks/">
+<span class="md-ellipsis">
+    
+  
+    Ch 23 Git Hooks
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part5/ch24-github-actions/">
+<span class="md-ellipsis">
+    
+  
+    Ch 24 GitHub Actions &amp; CI/CD
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part5/ch25-github-pages/">
+<span class="md-ellipsis">
+    
+  
+    Ch 25 GitHub Pages
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_7" id="__nav_4_2_7_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 6 — Workflows &amp; Best Practices
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_7_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Workflows &amp; Best Practices
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part6/ch26-workflows/">
+<span class="md-ellipsis">
+    
+  
+    Ch 26 Git Workflows
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part6/ch27-aliases-tips/">
+<span class="md-ellipsis">
+    
+  
+    Ch 27 Git Aliases &amp; Productivity Tips
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_8" id="__nav_4_2_8_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 7 — Under the Hood
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_8_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_8">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Under the Hood
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part7/ch28-object-model/">
+<span class="md-ellipsis">
+    
+  
+    Ch 28 Git Object Model
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/part7/ch29-hashing-internals/">
+<span class="md-ellipsis">
+    
+  
+    Ch 29 SHA1, Hashing &amp; Object Storage Internals
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_9" id="__nav_4_2_9_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Appendix
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_9_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_9">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendix
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/appendix/appA-submodules/">
+<span class="md-ellipsis">
+    
+  
+    App A Git Submodules
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/appendix/appB-git-lfs/">
+<span class="md-ellipsis">
+    
+  
+    App B Git LFS
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../github-in-a-nutshell/appendix/appC-signed-commits/">
+<span class="md-ellipsis">
+    
+  
+    App C Signed Commits &amp; GPG
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Prisma Access / SASE
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Prisma Access / SASE
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 1 — Prisma Access Overview
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Prisma Access Overview
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part1/ch01-traditional-network-challenges/">
+<span class="md-ellipsis">
+    
+  
+    Ch 01 Traditional VPN &amp; Branch Architecture
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part1/ch02-sase-concepts-and-components/">
+<span class="md-ellipsis">
+    
+  
+    Ch 02 SASE Concepts &amp; Key Components
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part1/ch03-prisma-access-architecture/">
+<span class="md-ellipsis">
+    
+  
+    Ch 03 Prisma Access Architecture
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part1/ch04-prisma-access-for-networks/">
+<span class="md-ellipsis">
+    
+  
+    Ch 04 Prisma Access for Networks
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part1/ch05-prisma-access-for-users/">
+<span class="md-ellipsis">
+    
+  
+    Ch 05 Prisma Access for Users
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_3" id="__nav_4_3_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 2 — Planning &amp; Designing
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Planning &amp; Designing
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part2/ch06-licensing-and-management-models/">
+<span class="md-ellipsis">
+    
+  
+    Ch 06 Licensing &amp; Management Models
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part2/ch07-service-infrastructure-planning/">
+<span class="md-ellipsis">
+    
+  
+    Ch 07 Service Infrastructure Planning
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part2/ch08-service-connections-planning/">
+<span class="md-ellipsis">
+    
+  
+    Ch 08 Service Connections Planning
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part2/ch09-remote-networks-planning/">
+<span class="md-ellipsis">
+    
+  
+    Ch 09 Remote Networks Planning
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part2/ch10-mobile-user-deployment-planning/">
+<span class="md-ellipsis">
+    
+  
+    Ch 10 Mobile User Deployment Planning
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part2/ch11-resiliency-and-redundancy-design/">
+<span class="md-ellipsis">
+    
+  
+    Ch 11 Resiliency &amp; Redundancy Design
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4_3_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_4" id="__nav_4_3_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 3 — Routing &amp; SD-WAN Design
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_4_3_4_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Routing &amp; SD-WAN Design
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ch12-traffic-flow-scenarios/">
+<span class="md-ellipsis">
+    
+  
+    Ch 12 Traffic Flow Scenarios
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ch13-default-routing-and-backbone/">
+<span class="md-ellipsis">
+    
+  
+    Ch 13 Default Routing &amp; Backbone
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ch14-hot-potato-routing/">
+<span class="md-ellipsis">
+    
+  
+    Ch 14 Hot Potato Routing
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ch15-sd-wan-overview-and-architecture/">
+<span class="md-ellipsis">
+    
+  
+    Ch 15 SD-WAN Overview &amp; Architecture
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Ch 16 SD-WAN Controllers &amp; ION Security
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    Ch 16 SD-WAN Controllers &amp; ION Security
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#controller-architecture">
+<span class="md-ellipsis">
+      
+        Controller Architecture
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#zero-touch-provisioning">
+<span class="md-ellipsis">
+      
+        Zero-Touch Provisioning
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#trust-chain">
+<span class="md-ellipsis">
+      
+        Trust Chain
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#autonomous-operation-controller-disconnected">
+<span class="md-ellipsis">
+      
+        Autonomous Operation (Controller Disconnected)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#control-channel-vs-data-plane">
+<span class="md-ellipsis">
+      
+        Control Channel vs Data Plane
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-takeaways">
+<span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ch17-ion-devices-and-high-availability/">
+<span class="md-ellipsis">
+    
+  
+    Ch 17 ION Devices &amp; High Availability
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ch18-sd-wan-design-considerations/">
+<span class="md-ellipsis">
+    
+  
+    Ch 18 SD-WAN Design Considerations
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ch19-data-center-scaling-design/">
+<span class="md-ellipsis">
+    
+  
+    Ch 19 Data Center Scaling Design
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_5" id="__nav_4_3_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 4 — ZTNA Connector
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — ZTNA Connector
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part4/ch20-ztna-connector-overview-and-components/">
+<span class="md-ellipsis">
+    
+  
+    Ch 20 ZTNA Connector Overview &amp; Components
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part4/ch21-ztna-use-cases-and-packet-flow/">
+<span class="md-ellipsis">
+    
+  
+    Ch 21 ZTNA Use Cases &amp; Packet Flow
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part4/ch22-ztna-connector-vs-service-connections/">
+<span class="md-ellipsis">
+    
+  
+    Ch 22 ZTNA Connector vs Service Connections
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part4/ch23-ztna-network-requirements-and-prerequisites/">
+<span class="md-ellipsis">
+    
+  
+    Ch 23 ZTNA Network Requirements
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part4/ch24-enable-and-configure-ztna-connector/">
+<span class="md-ellipsis">
+    
+  
+    Ch 24 Enable &amp; Configure ZTNA Connector
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part4/ch25-onboard-ztna-connector-esxi-and-upgrade/">
+<span class="md-ellipsis">
+    
+  
+    Ch 25 Onboard ZTNA Connector in ESXi
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_6" id="__nav_4_3_6_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 5 — Activate &amp; Configure
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_6_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Activate &amp; Configure
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part5/ch26-activation-planning-checklist/">
+<span class="md-ellipsis">
+    
+  
+    Ch 26 Activation Planning Checklist
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part5/ch27-integrating-panorama-with-prisma-access/">
+<span class="md-ellipsis">
+    
+  
+    Ch 27 Integrating Panorama
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part5/ch28-configuring-service-infrastructure/">
+<span class="md-ellipsis">
+    
+  
+    Ch 28 Configuring Service Infrastructure
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part5/ch29-ipsec-tunnel-configuration/">
+<span class="md-ellipsis">
+    
+  
+    Ch 29 IPSec Tunnel Configuration
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part5/ch30-service-connection-static-routes/">
+<span class="md-ellipsis">
+    
+  
+    Ch 30 Service Connection — Static Routes
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part5/ch31-service-connection-bgp/">
+<span class="md-ellipsis">
+    
+  
+    Ch 31 Service Connection — BGP
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_7" id="__nav_4_3_7_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 6 — Panorama Operations
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_7_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Panorama Operations
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part6/ch32-templates-and-template-stacks/">
+<span class="md-ellipsis">
+    
+  
+    Ch 32 Templates &amp; Template Stacks
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part6/ch33-device-groups-concepts-and-hierarchy/">
+<span class="md-ellipsis">
+    
+  
+    Ch 33 Device Groups — Concepts &amp; Hierarchy
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part6/ch34-device-group-policies-and-objects/">
+<span class="md-ellipsis">
+    
+  
+    Ch 34 Device Group Policies &amp; Objects
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part6/ch35-inheritance-and-predefined-templates/">
+<span class="md-ellipsis">
+    
+  
+    Ch 35 Inheritance &amp; Predefined Templates
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part6/ch36-prisma-access-zones/">
+<span class="md-ellipsis">
+    
+  
+    Ch 36 Prisma Access Zones
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_8" id="__nav_4_3_8_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 7 — Remote Networks
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_8_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_8">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Remote Networks
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part7/ch37-remote-network-templates-and-zone-mapping/">
+<span class="md-ellipsis">
+    
+  
+    Ch 37 Remote Network Templates &amp; Zone Mapping
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part7/ch38-remote-network-bandwidth-allocation/">
+<span class="md-ellipsis">
+    
+  
+    Ch 38 Remote Network Bandwidth Allocation
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part7/ch39-onboard-remote-network-static-route/">
+<span class="md-ellipsis">
+    
+  
+    Ch 39 Onboard Remote Network — Static Route
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part7/ch40-onboard-remote-network-bgp/">
+<span class="md-ellipsis">
+    
+  
+    Ch 40 Onboard Remote Network — BGP
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part7/ch41-onboard-remote-network-ecmp-bgp/">
+<span class="md-ellipsis">
+    
+  
+    Ch 41 Onboard Remote Network — ECMP &amp; BGP
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_9" id="__nav_4_3_9_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 8 — Mobile Users
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_9_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_9">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Mobile Users
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part8/ch42-mobile-user-templates-and-zone-mapping/">
+<span class="md-ellipsis">
+    
+  
+    Ch 42 Mobile User Templates &amp; Zone Mapping
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part8/ch43-ldap-and-authentication-profile/">
+<span class="md-ellipsis">
+    
+  
+    Ch 43 LDAP &amp; Authentication Profile
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part8/ch44-onboard-mobile-users-globalprotect/">
+<span class="md-ellipsis">
+    
+  
+    Ch 44 Onboard Mobile Users — GlobalProtect
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part8/ch45-verify-mobile-users-globalprotect/">
+<span class="md-ellipsis">
+    
+  
+    Ch 45 Verify Mobile Users — GlobalProtect
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part8/ch46-globalprotect-split-tunneling/">
+<span class="md-ellipsis">
+    
+  
+    Ch 46 GlobalProtect Split Tunneling
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part8/ch47-globalprotect-app-settings/">
+<span class="md-ellipsis">
+    
+  
+    Ch 47 GlobalProtect App Settings
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part8/ch48-globalprotect-app-upgrades/">
+<span class="md-ellipsis">
+    
+  
+    Ch 48 GlobalProtect App Upgrades
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_10" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_10" id="__nav_4_3_10_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 9 — Cloud Secure Web Gateway
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_10_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_10">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 9 — Cloud Secure Web Gateway
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part9/ch49-how-explicit-proxy-works/">
+<span class="md-ellipsis">
+    
+  
+    Ch 49 How Explicit Proxy Works
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part9/ch50-explicit-proxy-configuration-guidelines/">
+<span class="md-ellipsis">
+    
+  
+    Ch 50 Explicit Proxy Configuration Guidelines
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part9/ch51-app-support-browser-and-pac-requirements/">
+<span class="md-ellipsis">
+    
+  
+    Ch 51 App Support, Browser &amp; PAC Requirements
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part9/ch52-pac-file-guidelines-and-sample/">
+<span class="md-ellipsis">
+    
+  
+    Ch 52 PAC File Guidelines &amp; Sample
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part9/ch53-configure-azure-ad-saml-profile/">
+<span class="md-ellipsis">
+    
+  
+    Ch 53 Configure Azure AD SAML Profile
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../part9/ch54-configure-saml-in-azure-ad/">
+<span class="md-ellipsis">
+    
+  
+    Ch 54 Configure SAML in Azure AD
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_11" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_11" id="__nav_4_3_11_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Appendix
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_11_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_11">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendix
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../appendix/appA-glossary/">
+<span class="md-ellipsis">
+    
+  
+    App A Glossary of Terms
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../appendix/appB-cli-and-api-commands/">
+<span class="md-ellipsis">
+    
+  
+    App B CLI &amp; API Commands Reference
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../appendix/appC-architecture-quick-reference/">
+<span class="md-ellipsis">
+    
+  
+    App C Architecture Quick-Reference
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../appendix/appD-known-documentation-ambiguities/">
+<span class="md-ellipsis">
+    
+  
+    App D Known Documentation Ambiguities
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../../../code/">
+<span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../code/invoice-processing/">
+<span class="md-ellipsis">
+    
+  
+    Invoice Processing
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../code/transcript-action-extractor/">
+<span class="md-ellipsis">
+    
+  
+    Transcript Action Extractor
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../code/tts-audio-generator/">
+<span class="md-ellipsis">
+    
+  
+    TTS Audio Generator
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../notebooks/">
+<span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../tags/">
+<span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#controller-architecture">
+<span class="md-ellipsis">
+      
+        Controller Architecture
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#zero-touch-provisioning">
+<span class="md-ellipsis">
+      
+        Zero-Touch Provisioning
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#trust-chain">
+<span class="md-ellipsis">
+      
+        Trust Chain
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#autonomous-operation-controller-disconnected">
+<span class="md-ellipsis">
+      
+        Autonomous Operation (Controller Disconnected)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#control-channel-vs-data-plane">
+<span class="md-ellipsis">
+      
+        Control Channel vs Data Plane
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#key-takeaways">
+<span class="md-ellipsis">
+      
+        Key Takeaways
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<nav class="md-tags">
+<a class="md-tag" href="../../../../tags/#tag:controller">controller</a>
+<a class="md-tag" href="../../../../tags/#tag:ion-devices">ion-devices</a>
+<a class="md-tag" href="../../../../tags/#tag:paloalto">paloalto</a>
+<a class="md-tag" href="../../../../tags/#tag:prisma-access">prisma-access</a>
+<a class="md-tag" href="../../../../tags/#tag:prisma-sd-wan">prisma-sd-wan</a>
+<a class="md-tag" href="../../../../tags/#tag:sase">sase</a>
+<a class="md-tag" href="../../../../tags/#tag:sd-wan">sd-wan</a>
+<a class="md-tag" href="../../../../tags/#tag:trust-chain">trust-chain</a>
+<a class="md-tag" href="../../../../tags/#tag:vpn-security">vpn-security</a>
+<a class="md-tag" href="../../../../tags/#tag:zero-touch">zero-touch</a>
+</nav>
+<h1 id="chapter-16-sd-wan-controllers-ion-communication-trust-chain">Chapter 16 — SD-WAN Controllers, ION Communication &amp; Trust Chain</h1>
+<p>The Prisma SD-WAN controller and ION devices communicate through a secure, cloud-hosted management channel. This chapter covers how that channel works, what happens when it breaks, and how the VPN fabric maintains security without a persistent controller connection.</p>
+<hr/>
+<h2 id="controller-architecture">Controller Architecture</h2>
+<pre class="mermaid"><code>graph TD
+    SCM["☁️ Strata Cloud Manager&lt;br/&gt;(SD-WAN Controller)"]
+    ION1["ION — Branch A"]
+    ION2["ION — Branch B"]
+    ION3["ION — Data Centre"]
+    VPN["🔒 VPN Fabric&lt;br/&gt;(direct ION-to-ION)"]
+
+    SCM -.-&gt;|config + policy&lt;br/&gt;(control channel)| ION1
+    SCM -.-&gt;|config + policy| ION2
+    SCM -.-&gt;|config + policy| ION3
+    ION1 &lt;--&gt;|encrypted VPN tunnel&lt;br/&gt;(data plane)| VPN
+    ION2 &lt;--&gt;|encrypted VPN tunnel| VPN
+    ION3 &lt;--&gt;|encrypted VPN tunnel| VPN</code></pre>
+<p><strong>Key separation:</strong> The controller manages configuration and policy via the <strong>control channel</strong>. Actual user traffic flows over <strong>direct ION-to-ION VPN tunnels</strong> (<strong>Secure Fabric Links</strong> — see the correction below) — the controller is never in the forwarding path.</p>
+<blockquote>
+<p><strong>Added 2026-07-09, confirmed via direct fetch — a meaningful privacy/security detail not previously in this chapter:</strong> customer data traffic itself is <strong>never sent to the controller</strong>. The ION device inspects only metadata for path-selection and telemetry purposes and does not decrypt or forward end-user traffic content to Strata Cloud Manager. What the control channel actually carries back is anonymized network/application metadata — bytes transferred, link capacity, voice MOS score, transaction error rate/time, and event alerts/alarms — not the traffic itself.</p>
+</blockquote>
+<hr/>
+<h2 id="zero-touch-provisioning">Zero-Touch Provisioning</h2>
+<p>ION devices ship without manual pre-configuration and call home to the controller on first boot:</p>
+<ol>
+<li>ION device powers on and establishes an outbound connection to the Strata Cloud Manager</li>
+<li>Controller authenticates the device (based on serial number / claim code registered in SCM)</li>
+<li>Controller pushes site configuration, policies, and network topology</li>
+<li>ION device begins establishing VPN tunnels to other ION devices per the received topology</li>
+</ol>
+<p>No on-site technician needs to touch a CLI to complete branch deployment.</p>
+<blockquote>
+<p>📷 <a href="https://docs.paloaltonetworks.com/prisma-sd-wan/administration/prisma-sd-wan-sites-and-devices/set-up-devices/assign-the-ion">PaloAlto diagram — Prisma SD-WAN zero-touch provisioning</a></p>
+</blockquote>
+<hr/>
+<h2 id="trust-chain">Trust Chain</h2>
+<pre class="mermaid"><code>flowchart TD
+    REG["Device registered&lt;br/&gt;in SCM&lt;br/&gt;(serial / claim code)"]
+    BOOT["ION powers on&lt;br/&gt;calls home to controller"]
+    AUTH["Controller verifies&lt;br/&gt;device identity"]
+    PUSH["Config + topology&lt;br/&gt;pushed to ION"]
+    VPN["ION establishes&lt;br/&gt;VPN tunnels&lt;br/&gt;to peers"]
+    KEY["Session keys rotated&lt;br/&gt;every hour automatically"]
+
+    REG --&gt; BOOT --&gt; AUTH --&gt; PUSH --&gt; VPN --&gt; KEY</code></pre>
+<ul>
+<li>Each ION device's identity is established through registration in Strata Cloud Manager before deployment</li>
+<li>VPN sessions between ION devices use <strong>unique per-session keys</strong></li>
+<li>Keys are rotated <strong>every hour</strong>, even when the ION is disconnected from the controller</li>
+</ul>
+<hr/>
+<h2 id="autonomous-operation-controller-disconnected">Autonomous Operation (Controller Disconnected)</h2>
+<p>If the ION device loses its connection to the controller:</p>
+<table>
+<thead>
+<tr>
+<th>Duration</th>
+<th>ION Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0–72 hours</strong></td>
+<td>Continues forwarding traffic using last-known configuration and policies</td>
+</tr>
+<tr>
+<td><strong>0–72 hours</strong></td>
+<td>Continues VPN tunnels; session keys still rotate hourly</td>
+</tr>
+<tr>
+<td><strong>After 72 hours</strong></td>
+<td>Behaviour degrades — contact PaloAlto for guidance — <strong>checked 2026-07-09, confirmed this vague framing is genuinely the extent of what's publicly documented</strong>; no more specific post-72-hour behavior was found (searches surfaced only that the ION "cannot learn about new sites or policy updates until controller connectivity is restored" and general support-ticket guidance) — not embellished here with invented specifics</td>
+</tr>
+</tbody>
+</table>
+<p>This resilience means:
+- A controller cloud outage does <strong>not</strong> take branches offline
+- WAN path selection, QoS, and application steering continue using the cached policy
+- VPN security is maintained even without controller connectivity</p>
+<hr/>
+<h2 id="control-channel-vs-data-plane">Control Channel vs Data Plane</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Control Channel</th>
+<th>Data Plane (VPN)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Path</strong></td>
+<td>ION → Strata Cloud Manager (cloud)</td>
+<td>ION ↔ ION (direct)</td>
+</tr>
+<tr>
+<td><strong>Content</strong></td>
+<td>Config updates, policy, telemetry</td>
+<td>User traffic</td>
+</tr>
+<tr>
+<td><strong>Encryption</strong></td>
+<td>TLS — <strong>confirmed 2026-07-09</strong> (four TLS 1.2 connections: control/Message Routing Layer, logs, flows, stats channels)</td>
+<td><strong>Corrected 2026-07-09</strong> — native ION-to-ION traffic uses <strong>Secure Fabric Links</strong>, not IPsec, with hourly key rotation</td>
+</tr>
+<tr>
+<td><strong>Impact if lost</strong></td>
+<td>Policy cannot be updated; forwarding continues</td>
+<td>Service interruption</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>Data Plane encryption corrected 2026-07-09 — a likely factual error, not just a terminology gap.</strong> This table previously stated the Data Plane uses "IPSec with hourly key rotation." Confirmed via direct fetch of Palo Alto's current documentation, quoted verbatim: <em>"Prisma SD-WAN ION devices can communicate with other Prisma SD-WAN devices through Prisma SD-WAN Secure Fabric Links or communicate with standard VPN endpoints through traditional IPsec or GRE tunnels."</em> IPsec/GRE ("Standard VPN") is specifically the mechanism for connecting to <strong>non-Prisma-SD-WAN third-party endpoints</strong> (e.g. a Cisco ASA, or a third-party cloud security service) — it is <strong>not</strong> the term for native ION-to-ION data plane traffic, which this chapter is actually describing. Native ION-to-ION traffic uses <strong>Secure Fabric Links</strong> instead. The hourly key rotation figure itself remains accurate and unaffected by this correction.</p>
+</blockquote>
+<hr/>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ul>
+<li>The controller (Strata Cloud Manager) manages config and policy; it is never in the forwarding path</li>
+<li>Zero-touch provisioning: devices call home, authenticate via serial/claim code, receive config automatically</li>
+<li>VPN session keys rotate every hour — even during controller disconnection</li>
+<li>ION devices operate autonomously for up to 72 hours without controller connectivity — vague post-72-hour framing confirmed 2026-07-09 as the genuine extent of what's publicly documented</li>
+<li>Control plane and data plane are fully separated — controller outage ≠ branch outage</li>
+<li><strong>Corrected 2026-07-09</strong> — native ION-to-ION data plane traffic uses <strong>Secure Fabric Links</strong>, not IPSec; IPsec/GRE is specifically the "Standard VPN" mechanism for connecting to non-Prisma-SD-WAN third-party endpoints</li>
+<li><strong>Added 2026-07-09</strong> — customer data traffic is never sent to the controller; only anonymized metadata (bytes transferred, link quality, transaction metrics, alerts) crosses the TLS control channel</li>
+</ul>
+<hr/>
+<p><em>Previous: <a href="../ch15-sd-wan-overview-and-architecture/">Chapter 15 — Prisma SD-WAN Overview &amp; Architecture</a></em> · <em>Next: <a href="../ch17-ion-devices-and-high-availability/">Chapter 17 — ION Device Family &amp; High-Availability Design</a></em></p>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 10, 2026 07:57:58 UTC">July 10, 2026 07:57:58</span>
+</span>
+</aside>
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Ch 15 SD-WAN Overview &amp; Architecture" class="md-footer__link md-footer__link--prev" href="../ch15-sd-wan-overview-and-architecture/">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</div>
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Previous
+              </span>
+<div class="md-ellipsis">
+                Ch 15 SD-WAN Overview &amp; Architecture
+              </div>
+</div>
+</a>
+<a aria-label="Next: Ch 17 ION Devices &amp; High Availability" class="md-footer__link md-footer__link--next" href="../ch17-ion-devices-and-high-availability/">
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Next
+              </span>
+<div class="md-ellipsis">
+                Ch 17 ION Devices &amp; High Availability
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2026 Florin Neagu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+</body>
+</html>

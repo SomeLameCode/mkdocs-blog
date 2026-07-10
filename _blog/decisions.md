@@ -5,6 +5,24 @@
 
 ---
 
+## D-021 — No redirect plugin for GitHub in a Nutshell URL change; links fixed directly
+
+**Date:** 2026-07-10
+**Decision:** Migrating GitHub in a Nutshell from `docs/projects/github-in-a-nutshell/` to `docs/manuals/github-in-a-nutshell/` changes its live URL from `/projects/github-in-a-nutshell/` to `/manuals/github-in-a-nutshell/`. No redirect plugin (e.g. `mkdocs-redirects`) was added — the old URL will simply 404 after deploy. `projects/index.md` was updated with a pointer sentence to the new Manuals section for in-site navigation.
+**Alternatives considered:** Add `mkdocs-redirects` and configure a stub for the old path (preserves any external bookmarks/search-engine links, but adds a new plugin dependency for a single one-time move); leave a manual redirect stub page at the old path (extra file to maintain with no clear removal trigger).
+**Rationale:** Same reasoning as D-014 (repo rename) — this is a personal portfolio site with no known inbound links or SEO stake to protect, and the chapter-level URLs were never linked from nav in the first place (only the overview page had a real nav entry). Adding a redirect plugin for a single migration is disproportionate; if this pattern recurs (e.g. future section reorganizations), revisit installing `mkdocs-redirects` then rather than pre-emptively.
+
+---
+
+## D-020 — New top-level `Manuals` nav section, separate from `Projects`
+
+**Date:** 2026-07-10
+**Decision:** Introduce a dedicated top-level `Manuals` nav section to house multi-chapter reference manuals, starting with GitHub in a Nutshell (currently wedged into a single `Projects` nav entry with 32 un-navved chapter files) and then Prisma Access SASE (currently unpublished, living outside the blog entirely). GitHub in a Nutshell will be migrated first to validate the pattern against live, currently-published content; Prisma Access SASE will be published second into the now-proven structure — reversing the lower-risk, net-new-first order that would normally be preferred, because validating against real content the user already knows well is more useful here than validating on unfamiliar net-new material.
+**Alternatives considered:** Leave GitHub in a Nutshell as-is inside `Projects` (status quo — no sidebar chapter visibility, no Material auto prev/next); flatten its chapters directly into the `Projects` nav (works mechanically but misrepresents a reference manual as a project narrative — `Projects` tells a build story read once, not a work readers jump into at a chapter); host manuals on a separate site entirely (avoids nav complexity but fragments the single-site, single-workflow setup this repo is built around).
+**Rationale:** `Projects` and `Manuals` serve different reading patterns — projects tell a build narrative meant to be read once start to finish, manuals are reference works readers jump into at a specific chapter and expect full sidebar nav, part-level grouping, and prev/next footer links. Wedging a 32-chapter manual into one `Projects` nav entry loses exactly those reference-navigation features. A dedicated section lets `Manuals` be structured for depth (nested nav, part grouping) without changing how `Projects` works for its own content.
+
+---
+
 ## D-019 — TTS generator published as PRJ-006 section + code page, not standalone project
 
 **Date:** 2026-05-07

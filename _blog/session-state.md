@@ -4,8 +4,8 @@
 > If deeper context is needed, read the last 20 rows of `_blog/change-log.md`.
 
 **Updated:** 2026-07-10
-**Last session commit:** f30b94f0
-**Last check:** 2026-07-10 — Fixed deprecated `tags_file` plugin config; rolled out the new `Manuals` top-level nav section end to end (5 phases): built the skeleton, migrated GitHub in a Nutshell out of Projects (D-020, D-021), scoped prev/next footer nav to Manuals only (`navigation.footer` + canonical-URL CSS selector), published Prisma Access / SASE as a first-time publish (MAN-001, D-022), reviewed/deployed both manuals live, and closed out governance
+**Last session commit:** 69532eb2
+**Last check:** 2026-07-10 — Fixed deprecated `tags_file` plugin config; rolled out the new `Manuals` top-level nav section end to end (5 phases): built the skeleton, migrated GitHub in a Nutshell out of Projects (D-020, D-021), scoped prev/next footer nav to Manuals only (`navigation.footer` + canonical-URL CSS selector), published Prisma Access / SASE as a first-time publish (MAN-001, D-022), reviewed/deployed both manuals live, and closed out governance; `/blog-update`'s conversation pass caught one gap missed by the manual close-out — the `tags_file` fix had never been logged in change-log.md — and backfilled it
 **Open content:** 1 item (highest priority: ART-001 First reusable code snippet)
 **Open improvements:** 1 item (SI-003 Content templates — article template pending)
 **Open issues:** None

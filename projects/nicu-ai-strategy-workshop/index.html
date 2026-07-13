@@ -1,0 +1,3007 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="A two-day AI strategy workshop for an Australian credit union that turned three unanswered leadership questions — automate or generate, what's our AI philosophy, and how do we govern AI staff are already using without permission — into a signed-off philosophy and a board-ready roadmap." name="description"/>
+<meta content="Florin Neagu" name="author"/>
+<link href="https://somelamecode.github.io/mkdocs-blog/projects/nicu-ai-strategy-workshop/" rel="canonical"/>
+<link href="../prisma-access-sase-implementation/" rel="prev"/>
+<link href="../nicu-irrbb-poc/" rel="next"/>
+<link href="../../assets/favicon.svg" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
+<title>NICU AI Strategy Workshop — Two Days, Three Unresolved Questions, One Governed Answer - Florin Neagu Projects &amp; Notes</title>
+<link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#nicu-ai-strategy-workshop-two-days-three-unresolved-questions-one-governed-answer">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Florin Neagu Projects &amp; Notes" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Florin Neagu Projects &amp; Notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Florin Neagu Projects &amp; Notes
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              NICU AI Strategy Workshop — Two Days, Three Unresolved Questions, One Governed Answer
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+<input aria-label="Light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/SomeLameCode/mkdocs-blog" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    SomeLameCode/mkdocs-blog
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../articles/">
+          
+  
+  
+    
+  
+  Articles
+
+        </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../">
+          
+  
+  
+    
+  
+  Projects
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../manuals/">
+          
+  
+  
+    
+  
+  Manuals
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../code/">
+          
+  
+  
+    
+  
+  Code
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../notebooks/">
+        
+  
+  
+    
+  
+  Notebooks
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../tags/">
+        
+  
+  
+    
+  
+  Tags
+
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Florin Neagu Projects &amp; Notes" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Florin Neagu Projects &amp; Notes">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    Florin Neagu Projects &amp; Notes
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/SomeLameCode/mkdocs-blog" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    SomeLameCode/mkdocs-blog
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../articles/">
+<span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Articles
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../articles/mkdocs-material/">
+<span class="md-ellipsis">
+    
+  
+    MkDocs &amp; Material
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    MkDocs &amp; Material
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../articles/mkdocs-material/mkdocs-setup/">
+<span class="md-ellipsis">
+    
+  
+    MkDocs Setup
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../articles/mkdocs-material/mkdocs-site-update/">
+<span class="md-ellipsis">
+    
+  
+    Publish to GitHub Pages
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../articles/mkdocs-material/mkdocs-integrate-with-obsidian/">
+<span class="md-ellipsis">
+    
+  
+    Obsidian Integration
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../articles/mkdocs-material/admonitions/">
+<span class="md-ellipsis">
+    
+  
+    Admonitions
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../articles/mkdocs-material/content-tabs/">
+<span class="md-ellipsis">
+    
+  
+    Content Tabs
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../articles/mkdocs-material/diagram-examples/">
+<span class="md-ellipsis">
+    
+  
+    Diagram Examples
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../articles/code/">
+<span class="md-ellipsis">
+    
+  
+    Code &amp; Data
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Code &amp; Data
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../articles/code/code-example/">
+<span class="md-ellipsis">
+    
+  
+    Normal Distribution Generator
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../articles/code/transcript-action-extractor/">
+<span class="md-ellipsis">
+    
+  
+    Transcript Action Extractor
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../paperless-ngx/">
+<span class="md-ellipsis">
+    
+  
+    Paperless-ngx
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../m365-tenant-separation/">
+<span class="md-ellipsis">
+    
+  
+    M365 Tenant Separation
+  
+
+    
+  </span>
+<span class="md-status md-status--draft"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Lifting Diary
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Lifting Diary
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lifting-diary-claude/">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lifting-diary-claude/the-application/">
+<span class="md-ellipsis">
+    
+  
+    The Application
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lifting-diary-claude/building-with-claude-code/">
+<span class="md-ellipsis">
+    
+  
+    Building with Claude Code
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lifting-diary-claude/architecture-as-input/">
+<span class="md-ellipsis">
+    
+  
+    Architecture as Input
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../lifting-diary-claude/prompt-log/">
+<span class="md-ellipsis">
+    
+  
+    Prompt Log
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../invoice-processor/">
+<span class="md-ellipsis">
+    
+  
+    Invoice Processor
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../meeting-audio-notes-pipeline/">
+<span class="md-ellipsis">
+    
+  
+    Meeting Audio Notes Pipeline
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../infrastructure-consolidation/">
+<span class="md-ellipsis">
+    
+  
+    Infrastructure Consolidation
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../prisma-access-sase-implementation/">
+<span class="md-ellipsis">
+    
+  
+    Prisma Access SASE Implementation
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    NICU AI Strategy Workshop
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    NICU AI Strategy Workshop
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-of-contents">
+<span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-the-question-nobody-had-answered">
+<span class="md-ellipsis">
+      
+        1. The Question Nobody Had Answered
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-why-a-strategy-engagement-not-a-training-session">
+<span class="md-ellipsis">
+      
+        2. Why a Strategy Engagement, Not a Training Session
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-day-one-building-the-platform">
+<span class="md-ellipsis">
+      
+        3. Day One — Building the Platform
+      
+    </span>
+</a>
+<nav aria-label="3. Day One — Building the Platform" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#a-vocabulary-for-three-different-things">
+<span class="md-ellipsis">
+      
+        A vocabulary for three different things
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#naming-where-nicu-actually-stood-without-judgment">
+<span class="md-ellipsis">
+      
+        Naming where NICU actually stood — without judgment
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#governance-has-to-come-before-scale-not-after">
+<span class="md-ellipsis">
+      
+        Governance has to come before scale, not after
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#building-nicus-own-ai-philosophy-in-the-room">
+<span class="md-ellipsis">
+      
+        Building NICU's own AI Philosophy, in the room
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-day-two-putting-it-to-work">
+<span class="md-ellipsis">
+      
+        4. Day Two — Putting It to Work
+      
+    </span>
+</a>
+<nav aria-label="4. Day Two — Putting It to Work" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-sector-isnt-as-far-ahead-as-the-hype-suggests">
+<span class="md-ellipsis">
+      
+        The sector isn't as far ahead as the hype suggests
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-decision-test-applied-for-real">
+<span class="md-ellipsis">
+      
+        The decision test, applied for real
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#turning-a-use-case-list-into-a-sequenced-roadmap">
+<span class="md-ellipsis">
+      
+        Turning a use case list into a sequenced roadmap
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-what-the-room-walked-out-with">
+<span class="md-ellipsis">
+      
+        5. What the Room Walked Out With
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../nicu-irrbb-poc/">
+<span class="md-ellipsis">
+    
+  
+    NICU IRRBB Proof of Concept
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../manuals/">
+<span class="md-ellipsis">
+    
+  
+    Manuals
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Manuals
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    GitHub in a Nutshell
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    GitHub in a Nutshell
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 1 — Getting Started
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Getting Started
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part1/ch01-introduction/">
+<span class="md-ellipsis">
+    
+  
+    Ch 01 Introduction to Version Control &amp; Git
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part1/ch02-shell-commands/">
+<span class="md-ellipsis">
+    
+  
+    Ch 02 Shell Commands Primer
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part1/ch03-install-configure/">
+<span class="md-ellipsis">
+    
+  
+    Ch 03 Installing &amp; Configuring Git
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part1/ch04-github-authentication/">
+<span class="md-ellipsis">
+    
+  
+    Ch 04 GitHub Authentication
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 2 — Core Git Workflow
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Core Git Workflow
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch05-basic-operations/">
+<span class="md-ellipsis">
+    
+  
+    Ch 05 Creating a Repository &amp; Basic Operations
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch06-file-states/">
+<span class="md-ellipsis">
+    
+  
+    Ch 06 Tracking Files &amp; File States
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch07-gitignore/">
+<span class="md-ellipsis">
+    
+  
+    Ch 07 Ignoring Files (.gitignore)
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch08-undoing-changes/">
+<span class="md-ellipsis">
+    
+  
+    Ch 08 Undoing Changes
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch09-stashing/">
+<span class="md-ellipsis">
+    
+  
+    Ch 09 Stashing
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part2/ch10-inspecting-history/">
+<span class="md-ellipsis">
+    
+  
+    Ch 10 Inspecting History
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 3 — Branching &amp; History Management
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_4_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Branching &amp; History Management
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch11-branches-head/">
+<span class="md-ellipsis">
+    
+  
+    Ch 11 Branches and HEAD
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch12-merging/">
+<span class="md-ellipsis">
+    
+  
+    Ch 12 Merging Branches
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch13-rebasing/">
+<span class="md-ellipsis">
+    
+  
+    Ch 13 Rebasing
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch14-interactive-rebase/">
+<span class="md-ellipsis">
+    
+  
+    Ch 14 Interactive Rebase
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch15-tags/">
+<span class="md-ellipsis">
+    
+  
+    Ch 15 Tags &amp; Semantic Versioning
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part3/ch16-detached-head/">
+<span class="md-ellipsis">
+    
+  
+    Ch 16 Detached HEAD
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 4 — GitHub &amp; Collaboration
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — GitHub &amp; Collaboration
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch17-github-remotes/">
+<span class="md-ellipsis">
+    
+  
+    Ch 17 GitHub Overview &amp; Remote Repositories
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch18-push-fetch-pull/">
+<span class="md-ellipsis">
+    
+  
+    Ch 18 Push, Fetch &amp; Pull
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch19-forks/">
+<span class="md-ellipsis">
+    
+  
+    Ch 19 Forks &amp; Contributing to Open Source
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch20-pull-requests/">
+<span class="md-ellipsis">
+    
+  
+    Ch 20 Pull Requests
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch21-branch-protection/">
+<span class="md-ellipsis">
+    
+  
+    Ch 21 Branch Protection &amp; Code Review
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part4/ch22-issues-projects/">
+<span class="md-ellipsis">
+    
+  
+    Ch 22 GitHub Issues &amp; Project Management
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 5 — Automation &amp; Deployment
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_6_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Automation &amp; Deployment
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part5/ch23-git-hooks/">
+<span class="md-ellipsis">
+    
+  
+    Ch 23 Git Hooks
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part5/ch24-github-actions/">
+<span class="md-ellipsis">
+    
+  
+    Ch 24 GitHub Actions &amp; CI/CD
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part5/ch25-github-pages/">
+<span class="md-ellipsis">
+    
+  
+    Ch 25 GitHub Pages
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_7" id="__nav_4_2_7_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 6 — Workflows &amp; Best Practices
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_7_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Workflows &amp; Best Practices
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part6/ch26-workflows/">
+<span class="md-ellipsis">
+    
+  
+    Ch 26 Git Workflows
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part6/ch27-aliases-tips/">
+<span class="md-ellipsis">
+    
+  
+    Ch 27 Git Aliases &amp; Productivity Tips
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_8" id="__nav_4_2_8_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 7 — Under the Hood
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_8_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_8">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Under the Hood
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part7/ch28-object-model/">
+<span class="md-ellipsis">
+    
+  
+    Ch 28 Git Object Model
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/part7/ch29-hashing-internals/">
+<span class="md-ellipsis">
+    
+  
+    Ch 29 SHA1, Hashing &amp; Object Storage Internals
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_2_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2_9" id="__nav_4_2_9_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Appendix
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_9_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_2_9">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendix
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/appendix/appA-submodules/">
+<span class="md-ellipsis">
+    
+  
+    App A Git Submodules
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/appendix/appB-git-lfs/">
+<span class="md-ellipsis">
+    
+  
+    App B Git LFS
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/github-in-a-nutshell/appendix/appC-signed-commits/">
+<span class="md-ellipsis">
+    
+  
+    App C Signed Commits &amp; GPG
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Prisma Access / SASE
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Prisma Access / SASE
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/">
+<span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 1 — Prisma Access Overview
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_2_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 — Prisma Access Overview
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part1/ch01-traditional-network-challenges/">
+<span class="md-ellipsis">
+    
+  
+    Ch 01 Traditional VPN &amp; Branch Architecture
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part1/ch02-sase-concepts-and-components/">
+<span class="md-ellipsis">
+    
+  
+    Ch 02 SASE Concepts &amp; Key Components
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part1/ch03-prisma-access-architecture/">
+<span class="md-ellipsis">
+    
+  
+    Ch 03 Prisma Access Architecture
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part1/ch04-prisma-access-for-networks/">
+<span class="md-ellipsis">
+    
+  
+    Ch 04 Prisma Access for Networks
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part1/ch05-prisma-access-for-users/">
+<span class="md-ellipsis">
+    
+  
+    Ch 05 Prisma Access for Users
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_3" id="__nav_4_3_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 2 — Planning &amp; Designing
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 — Planning &amp; Designing
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch06-licensing-and-management-models/">
+<span class="md-ellipsis">
+    
+  
+    Ch 06 Licensing &amp; Management Models
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch07-service-infrastructure-planning/">
+<span class="md-ellipsis">
+    
+  
+    Ch 07 Service Infrastructure Planning
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch08-service-connections-planning/">
+<span class="md-ellipsis">
+    
+  
+    Ch 08 Service Connections Planning
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch09-remote-networks-planning/">
+<span class="md-ellipsis">
+    
+  
+    Ch 09 Remote Networks Planning
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch10-mobile-user-deployment-planning/">
+<span class="md-ellipsis">
+    
+  
+    Ch 10 Mobile User Deployment Planning
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part2/ch11-resiliency-and-redundancy-design/">
+<span class="md-ellipsis">
+    
+  
+    Ch 11 Resiliency &amp; Redundancy Design
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_4" id="__nav_4_3_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 3 — Routing &amp; SD-WAN Design
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_4_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 — Routing &amp; SD-WAN Design
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch12-traffic-flow-scenarios/">
+<span class="md-ellipsis">
+    
+  
+    Ch 12 Traffic Flow Scenarios
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch13-default-routing-and-backbone/">
+<span class="md-ellipsis">
+    
+  
+    Ch 13 Default Routing &amp; Backbone
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch14-hot-potato-routing/">
+<span class="md-ellipsis">
+    
+  
+    Ch 14 Hot Potato Routing
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch15-sd-wan-overview-and-architecture/">
+<span class="md-ellipsis">
+    
+  
+    Ch 15 SD-WAN Overview &amp; Architecture
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch16-sd-wan-controllers-and-ion-security/">
+<span class="md-ellipsis">
+    
+  
+    Ch 16 SD-WAN Controllers &amp; ION Security
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch17-ion-devices-and-high-availability/">
+<span class="md-ellipsis">
+    
+  
+    Ch 17 ION Devices &amp; High Availability
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch18-sd-wan-design-considerations/">
+<span class="md-ellipsis">
+    
+  
+    Ch 18 SD-WAN Design Considerations
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part3/ch19-data-center-scaling-design/">
+<span class="md-ellipsis">
+    
+  
+    Ch 19 Data Center Scaling Design
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_5" id="__nav_4_3_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 4 — ZTNA Connector
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 — ZTNA Connector
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch20-ztna-connector-overview-and-components/">
+<span class="md-ellipsis">
+    
+  
+    Ch 20 ZTNA Connector Overview &amp; Components
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch21-ztna-use-cases-and-packet-flow/">
+<span class="md-ellipsis">
+    
+  
+    Ch 21 ZTNA Use Cases &amp; Packet Flow
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch22-ztna-connector-vs-service-connections/">
+<span class="md-ellipsis">
+    
+  
+    Ch 22 ZTNA Connector vs Service Connections
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch23-ztna-network-requirements-and-prerequisites/">
+<span class="md-ellipsis">
+    
+  
+    Ch 23 ZTNA Network Requirements
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch24-enable-and-configure-ztna-connector/">
+<span class="md-ellipsis">
+    
+  
+    Ch 24 Enable &amp; Configure ZTNA Connector
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part4/ch25-onboard-ztna-connector-esxi-and-upgrade/">
+<span class="md-ellipsis">
+    
+  
+    Ch 25 Onboard ZTNA Connector in ESXi
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_6" id="__nav_4_3_6_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 5 — Activate &amp; Configure
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_6_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 — Activate &amp; Configure
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch26-activation-planning-checklist/">
+<span class="md-ellipsis">
+    
+  
+    Ch 26 Activation Planning Checklist
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch27-integrating-panorama-with-prisma-access/">
+<span class="md-ellipsis">
+    
+  
+    Ch 27 Integrating Panorama
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch28-configuring-service-infrastructure/">
+<span class="md-ellipsis">
+    
+  
+    Ch 28 Configuring Service Infrastructure
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch29-ipsec-tunnel-configuration/">
+<span class="md-ellipsis">
+    
+  
+    Ch 29 IPSec Tunnel Configuration
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch30-service-connection-static-routes/">
+<span class="md-ellipsis">
+    
+  
+    Ch 30 Service Connection — Static Routes
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part5/ch31-service-connection-bgp/">
+<span class="md-ellipsis">
+    
+  
+    Ch 31 Service Connection — BGP
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_7" id="__nav_4_3_7_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 6 — Panorama Operations
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_7_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 — Panorama Operations
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part6/ch32-templates-and-template-stacks/">
+<span class="md-ellipsis">
+    
+  
+    Ch 32 Templates &amp; Template Stacks
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part6/ch33-device-groups-concepts-and-hierarchy/">
+<span class="md-ellipsis">
+    
+  
+    Ch 33 Device Groups — Concepts &amp; Hierarchy
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part6/ch34-device-group-policies-and-objects/">
+<span class="md-ellipsis">
+    
+  
+    Ch 34 Device Group Policies &amp; Objects
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part6/ch35-inheritance-and-predefined-templates/">
+<span class="md-ellipsis">
+    
+  
+    Ch 35 Inheritance &amp; Predefined Templates
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part6/ch36-prisma-access-zones/">
+<span class="md-ellipsis">
+    
+  
+    Ch 36 Prisma Access Zones
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_8" id="__nav_4_3_8_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 7 — Remote Networks
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_8_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_8">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 — Remote Networks
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part7/ch37-remote-network-templates-and-zone-mapping/">
+<span class="md-ellipsis">
+    
+  
+    Ch 37 Remote Network Templates &amp; Zone Mapping
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part7/ch38-remote-network-bandwidth-allocation/">
+<span class="md-ellipsis">
+    
+  
+    Ch 38 Remote Network Bandwidth Allocation
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part7/ch39-onboard-remote-network-static-route/">
+<span class="md-ellipsis">
+    
+  
+    Ch 39 Onboard Remote Network — Static Route
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part7/ch40-onboard-remote-network-bgp/">
+<span class="md-ellipsis">
+    
+  
+    Ch 40 Onboard Remote Network — BGP
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part7/ch41-onboard-remote-network-ecmp-bgp/">
+<span class="md-ellipsis">
+    
+  
+    Ch 41 Onboard Remote Network — ECMP &amp; BGP
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_9" id="__nav_4_3_9_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 8 — Mobile Users
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_9_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_9">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 — Mobile Users
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch42-mobile-user-templates-and-zone-mapping/">
+<span class="md-ellipsis">
+    
+  
+    Ch 42 Mobile User Templates &amp; Zone Mapping
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch43-ldap-and-authentication-profile/">
+<span class="md-ellipsis">
+    
+  
+    Ch 43 LDAP &amp; Authentication Profile
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch44-onboard-mobile-users-globalprotect/">
+<span class="md-ellipsis">
+    
+  
+    Ch 44 Onboard Mobile Users — GlobalProtect
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch45-verify-mobile-users-globalprotect/">
+<span class="md-ellipsis">
+    
+  
+    Ch 45 Verify Mobile Users — GlobalProtect
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch46-globalprotect-split-tunneling/">
+<span class="md-ellipsis">
+    
+  
+    Ch 46 GlobalProtect Split Tunneling
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch47-globalprotect-app-settings/">
+<span class="md-ellipsis">
+    
+  
+    Ch 47 GlobalProtect App Settings
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part8/ch48-globalprotect-app-upgrades/">
+<span class="md-ellipsis">
+    
+  
+    Ch 48 GlobalProtect App Upgrades
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_10" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_10" id="__nav_4_3_10_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Part 9 — Cloud Secure Web Gateway
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_10_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_10">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 9 — Cloud Secure Web Gateway
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch49-how-explicit-proxy-works/">
+<span class="md-ellipsis">
+    
+  
+    Ch 49 How Explicit Proxy Works
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch50-explicit-proxy-configuration-guidelines/">
+<span class="md-ellipsis">
+    
+  
+    Ch 50 Explicit Proxy Configuration Guidelines
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch51-app-support-browser-and-pac-requirements/">
+<span class="md-ellipsis">
+    
+  
+    Ch 51 App Support, Browser &amp; PAC Requirements
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch52-pac-file-guidelines-and-sample/">
+<span class="md-ellipsis">
+    
+  
+    Ch 52 PAC File Guidelines &amp; Sample
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch53-configure-azure-ad-saml-profile/">
+<span class="md-ellipsis">
+    
+  
+    Ch 53 Configure Azure AD SAML Profile
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/part9/ch54-configure-saml-in-azure-ad/">
+<span class="md-ellipsis">
+    
+  
+    Ch 54 Configure SAML in Azure AD
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4_3_11" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_3_11" id="__nav_4_3_11_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Appendix
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_3_11_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_3_11">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendix
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/appendix/appA-glossary/">
+<span class="md-ellipsis">
+    
+  
+    App A Glossary of Terms
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/appendix/appB-cli-and-api-commands/">
+<span class="md-ellipsis">
+    
+  
+    App B CLI &amp; API Commands Reference
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/appendix/appC-architecture-quick-reference/">
+<span class="md-ellipsis">
+    
+  
+    App C Architecture Quick-Reference
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../manuals/prisma-access-sase/appendix/appD-known-documentation-ambiguities/">
+<span class="md-ellipsis">
+    
+  
+    App D Known Documentation Ambiguities
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../code/">
+<span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../code/invoice-processing/">
+<span class="md-ellipsis">
+    
+  
+    Invoice Processing
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../code/transcript-action-extractor/">
+<span class="md-ellipsis">
+    
+  
+    Transcript Action Extractor
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../code/tts-audio-generator/">
+<span class="md-ellipsis">
+    
+  
+    TTS Audio Generator
+  
+
+    
+  </span>
+<span class="md-status md-status--published"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../notebooks/">
+<span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tags/">
+<span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#table-of-contents">
+<span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-the-question-nobody-had-answered">
+<span class="md-ellipsis">
+      
+        1. The Question Nobody Had Answered
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-why-a-strategy-engagement-not-a-training-session">
+<span class="md-ellipsis">
+      
+        2. Why a Strategy Engagement, Not a Training Session
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-day-one-building-the-platform">
+<span class="md-ellipsis">
+      
+        3. Day One — Building the Platform
+      
+    </span>
+</a>
+<nav aria-label="3. Day One — Building the Platform" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#a-vocabulary-for-three-different-things">
+<span class="md-ellipsis">
+      
+        A vocabulary for three different things
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#naming-where-nicu-actually-stood-without-judgment">
+<span class="md-ellipsis">
+      
+        Naming where NICU actually stood — without judgment
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#governance-has-to-come-before-scale-not-after">
+<span class="md-ellipsis">
+      
+        Governance has to come before scale, not after
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#building-nicus-own-ai-philosophy-in-the-room">
+<span class="md-ellipsis">
+      
+        Building NICU's own AI Philosophy, in the room
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-day-two-putting-it-to-work">
+<span class="md-ellipsis">
+      
+        4. Day Two — Putting It to Work
+      
+    </span>
+</a>
+<nav aria-label="4. Day Two — Putting It to Work" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-sector-isnt-as-far-ahead-as-the-hype-suggests">
+<span class="md-ellipsis">
+      
+        The sector isn't as far ahead as the hype suggests
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-decision-test-applied-for-real">
+<span class="md-ellipsis">
+      
+        The decision test, applied for real
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#turning-a-use-case-list-into-a-sequenced-roadmap">
+<span class="md-ellipsis">
+      
+        Turning a use case list into a sequenced roadmap
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-what-the-room-walked-out-with">
+<span class="md-ellipsis">
+      
+        5. What the Room Walked Out With
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<nav class="md-tags">
+<a class="md-tag" href="../../tags/#tag:ai-governance">ai-governance</a>
+<a class="md-tag" href="../../tags/#tag:ai-strategy">ai-strategy</a>
+<a class="md-tag" href="../../tags/#tag:case-study">case-study</a>
+<a class="md-tag" href="../../tags/#tag:copilot">copilot</a>
+<a class="md-tag" href="../../tags/#tag:credit-union">credit-union</a>
+</nav>
+<h1 id="nicu-ai-strategy-workshop-two-days-three-unresolved-questions-one-governed-answer">NICU AI Strategy Workshop — Two Days, Three Unresolved Questions, One Governed Answer</h1>
+<p><em>For months, the CEO of a regional Australian credit union had been asking the CTO the same question in leadership meetings: "What is our philosophy when it comes to AI?" Nobody had a written answer. Meanwhile, three staff were already building their own AI agents at home on personal laptops, and the CEO's own AI use case had already forced a policy exception nobody had planned for.</em></p>
+<p>Northern Inland Credit Union (NICU) didn't ask Experteq for a Copilot demo. It asked for help answering three questions its leadership team had been circling for months without landing on a written position: when should the organisation automate a process versus reach for generative AI, what is NICU's actual philosophy on AI, and what does it do about staff who are already using AI tools nobody approved. This is the story of the two-day workshop built to answer exactly those questions — and what the room walked out with.</p>
+<div class="admonition info">
+<p class="admonition-title">Engagement at a Glance</p>
+<p><strong>2 days  ·  ~11 hours facilitated  ·  10 live Copilot licences at the start</strong></p>
+<p>A signed-off-ready AI Philosophy  ·  A three-horizon AI Roadmap  ·  A committed Purview sequencing plan  ·  A live predictive-ML proof of concept (<a href="../nicu-irrbb-poc/">its own technical deep-dive</a>)</p>
+</div>
+<hr/>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#1-the-question-nobody-had-answered">The Question Nobody Had Answered</a></li>
+<li><a href="#2-why-a-strategy-engagement-not-a-training-session">Why a Strategy Engagement, Not a Training Session</a></li>
+<li><a href="#3-day-one-building-the-platform">Day One — Building the Platform</a></li>
+<li><a href="#4-day-two-putting-it-to-work">Day Two — Putting It to Work</a></li>
+<li><a href="#5-what-the-room-walked-out-with">What the Room Walked Out With</a></li>
+</ol>
+<hr/>
+<h2 id="1-the-question-nobody-had-answered">1. The Question Nobody Had Answered</h2>
+<p>NICU's leadership group — the CEO, the CFO, the CTO, and the security lead — had been meeting weekly to discuss AI philosophy. The CEO kept asking the same direct question: <em>"What is our philosophy when it comes to AI?"</em> Every week, the conversation ended without a written answer.</p>
+<p>While that conversation stalled, AI was already happening at NICU, just not where anyone had agreed it should. Three staff were quietly building personal Claude agents on their own laptops, off the network, on data they judged to be non-critical. The CEO had a live Claude use case of his own — one legitimate enough that the CTO couldn't argue against it, so the Copilot-only policy line was quietly redrawn to make room for it. Gamma, an AI-powered presentation tool built on three different AI providers, was approved as a second exception not long after.</p>
+<p>NICU did have a formal AI policy, written in late 2024. It named Copilot as the sole approved tool. By the time this workshop was commissioned, that policy already had two exceptions punched through it, and it had no principled way to evaluate the next request — just a list of what was allowed, with no test for what should be allowed next.</p>
+<p>The CTO's own framing of the problem was sharper than "we need an AI policy": <em>"How do we decide when to continue automating versus moving to AI?"</em> That's a strategy question, not a licensing question — and it's the question that shaped everything that followed.</p>
+<div class="admonition quote">
+<p class="admonition-title">The tension in one sentence</p>
+<p>Ungoverned AI was already live inside the organisation. There was no framework to govern it. Closing that gap — not rolling out a new tool — is what the next two days were actually for.</p>
+</div>
+<hr/>
+<h2 id="2-why-a-strategy-engagement-not-a-training-session">2. Why a Strategy Engagement, Not a Training Session</h2>
+<p>It would have been easy to sell NICU a Copilot training day. It would also have missed the point. The questions on the table — governance, philosophy, shadow AI — don't get solved by teaching people which button to click in Outlook.</p>
+<p>There's a hard evidence base for why the strategy-first path matters, and it isn't one pessimistic analyst's opinion. Four independent research organisations, using different methodologies through 2025 and 2026, converge on the same story:</p>
+<p><img alt="AI failure rates across independent studies, and why deployment approach changes the odds" src="img/ai-failure-rates-2025-2026.png"/></p>
+<ul>
+<li><strong>MIT NANDA</strong>'s <em>State of AI in Business 2025</em> found <strong>95% of generative AI pilots deliver no measurable P&amp;L impact</strong> — only 5% of deployments studied reached production with measurable value.</li>
+<li><strong>IDC</strong> puts it at <strong>88% of AI proofs-of-concept that never reach production.</strong></li>
+<li><strong>RAND Corporation</strong> measured AI project failure at roughly <strong>80%</strong> — double the failure rate of comparable non-AI IT projects.</li>
+<li><strong>Gartner</strong> projects <strong>over 40% of agentic AI projects will be canceled by the end of 2027</strong>, citing escalating cost, unclear business value, and inadequate risk controls.</li>
+<li><strong>S&amp;P Global</strong> found the trend getting worse, not better: <strong>42% of firms scrapped most of their AI initiatives in 2025, up from 17% in 2024.</strong></li>
+</ul>
+<p>The same MIT research is specific about what separates the 5% that succeed: organisations that bought or partnered for specialised AI capability succeeded 67% of the time; those that tried to build proprietary systems without strategic discipline succeeded only 33% of the time — half the rate. Vague goals, poor data readiness, and rushing to deploy before the underlying process is understood are the recurring causes, not model quality.</p>
+<p>Credit unions specifically are not exempt from this gap — if anything, the data shows they're accelerating into it faster than they're governing it. Cornerstone Advisors' <em>2026 Banking Outlook</em> found credit unions ahead of banks on raw adoption (59% have deployed generative AI in production, against 49% of banks) and investing in agentic AI at more than double the rate. But Wipfli's January 2026 <em>State of the Credit Union Industry</em> report found that while 67% of credit unions are implementing AI <em>somewhere</em>, only <strong>16% have an enterprise-wide AI roadmap.</strong> Adoption and strategy are two different things, and most of the sector has the first without the second.</p>
+<p>That's the gap this workshop was built to close for NICU specifically: not adoption for its own sake, but adoption paired with the governance and roadmap work the majority of the sector is currently skipping. It's also why the engagement runs two days, in a specific order, rather than one. Day One builds the shared language and governance foundation. Day Two is only credible because Day One happened first — the use cases prioritised and the roadmap drafted on Day Two would have nowhere solid to stand without it.</p>
+<hr/>
+<h2 id="3-day-one-building-the-platform">3. Day One — Building the Platform</h2>
+<p>Day One's job was to build the platform everything else stands on: a shared vocabulary, an honest picture of where NICU actually stood, and NICU's own governance foundations — before a single use case got prioritised.</p>
+<h3 id="a-vocabulary-for-three-different-things">A vocabulary for three different things</h3>
+<p>The most common executive mistake, and the first thing Day One corrected, is treating "AI" as one category. It isn't:</p>
+<pre class="mermaid"><code>graph TD
+    A["&lt;span style='color:#FFFFFF'&gt;What's the actual problem?&lt;/span&gt;"] --&gt; B{"Rules-based and&lt;br/&gt;structured, or judgment&lt;br/&gt;and language, or a&lt;br/&gt;numeric forecast?"}
+    B -- "Rules can be written&lt;br/&gt;in a spreadsheet" --&gt; C["&lt;span style='color:#FFFFFF'&gt;Automation&lt;br/&gt;(Power Automate / agent flows)&lt;br/&gt;&lt;br/&gt;Deterministic, auditable,&lt;br/&gt;predictable outputs&lt;/span&gt;"]
+    B -- "Judgment, language,&lt;br/&gt;reasoning over documents" --&gt; D["&lt;span style='color:#FFFFFF'&gt;Generative AI&lt;br/&gt;(Copilot / agents)&lt;br/&gt;&lt;br/&gt;Drafting, summarising,&lt;br/&gt;Q&amp;A on policy&lt;/span&gt;"]
+    B -- "Structured historical&lt;br/&gt;data, need to forecast&lt;br/&gt;or find a pattern" --&gt; E["&lt;span style='color:#FFFFFF'&gt;Predictive AI / ML&lt;br/&gt;&lt;br/&gt;Risk modelling, forecasting,&lt;br/&gt;replicating expert judgment&lt;br/&gt;at scale&lt;/span&gt;"]
+
+    style A fill:#1B2A4A,color:#FFFFFF,stroke:#0D1626,stroke-width:1px
+    style B fill:#E8A33D,color:#1B2A4A,stroke:#1B2A4A,stroke-width:1px
+    style C fill:#145C6E,color:#FFFFFF,stroke:#0D1626,stroke-width:1px
+    style D fill:#145C6E,color:#FFFFFF,stroke:#0D1626,stroke-width:1px
+    style E fill:#1B2A4A,color:#FFFFFF,stroke:#0D1626,stroke-width:1px</code></pre>
+<p>The test the CTO had asked for going in came down to one line: <em>if the rules keep changing, or you can't enumerate them, that's an AI problem — not an automation one.</em> Day One built the vocabulary; Day Two would apply the test directly to a real regulatory obligation.</p>
+<h3 id="naming-where-nicu-actually-stood-without-judgment">Naming where NICU actually stood — without judgment</h3>
+<p>Rather than open with a maturity model borrowed from a vendor deck, the workshop named NICU's actual position plainly: roughly 10 live Microsoft 365 Copilot licences, active and growing, mostly among front-of-house branch staff. Meeting transcription and summarisation in Teams was already the highest-usage feature. Outlook drafting was gaining traction with branch staff. Copilot Chat adoption was low, with no structured training program or champion network yet in place.</p>
+<p>And then the part most workshops skip: the shadow AI situation, named directly, without treating it as a disciplinary problem. Three staff building personal agents at home. A CEO exception. A Gamma exception. The room already knew all of this — what it didn't have was a framework for what to do about it. Prohibition wasn't a serious option; the workshop's position was blunt about why: <em>attempting to prohibit AI use without a credible sanctioned alternative doesn't reduce the risk, it just removes the organisation's visibility into it.</em> The real governance question isn't "can we stop it" — it's <em>"how do we make the approved path easier than the unapproved one, and how do we make the risk visible to the people taking it?"</em></p>
+<h3 id="governance-has-to-come-before-scale-not-after">Governance has to come before scale, not after</h3>
+<p>The afternoon's Purview session made a sequencing argument that shaped the rest of the roadmap: Copilot respects whatever permissions already exist, but it cannot fix permissions that are already broken. An oversharedSharePoint site or a misclassified sensitivity label doesn't get safer because Copilot is now searching it — it gets more exposed, faster, to anyone with existing access. The principle: <strong>deploy data classification and DLP before or alongside scaling Copilot, not after.</strong> Retrofitting governance onto a Copilot deployment that's already indexed everything is materially harder than classifying it correctly from the start.</p>
+<p>Four Purview controls did the actual work of making that principle concrete: sensitivity labels (the permission foundation everything else relies on), DLP policies (blocking restricted data patterns from flowing through Copilot outputs), audit logs (every interaction logged and eDiscovery-searchable — directly relevant to APRA's information security obligations), and information barriers (keeping Copilot from crossing boundaries where separation is required). NICU's Purview deployment wasn't live yet at workshop time, but a go-live date was already committed — and the sequencing recommendation was to hold Copilot's current ~10-licence footprint there until classification and DLP enforcement, not just labelling, were both in place.</p>
+<h3 id="building-nicus-own-ai-philosophy-in-the-room">Building NICU's own AI Philosophy, in the room</h3>
+<p>The centrepiece of the afternoon was a 30-minute facilitated exercise with one job: answer the CEO's question, in writing, in the leadership team's own words. Not a policy document. Not a vendor template. A short, plain-language statement of what NICU will do with AI, what it won't, and what principles guide the room when it's unsure — built from four elements.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><input id="__tabbed_1_4" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Purpose</label><label for="__tabbed_1_2">Principles</label><label for="__tabbed_1_3">Boundaries</label><label for="__tabbed_1_4">Accountability</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>The question put to the room:</strong> <em>"In one sentence — why is NICU investing in AI? Not 'because everyone else is.' What outcome are you trying to achieve for your members or your people?"</em></p>
+<p>Not a technology statement — a value statement. The prompt used to unstick a quiet room: <em>"If AI works exactly as you hope over the next three years, what's different for a member walking into a branch or calling your contact centre?"</em></p>
+</div>
+<div class="tabbed-block">
+<p><strong>The question put to the room:</strong> <em>"What must be true of every AI use at NICU, no matter what the tool or use case? Not aspirations — non-negotiables. If a use case doesn't meet these, it doesn't go ahead."</em></p>
+<p>Starting points offered only if the room got stuck: member-first, human accountability, transparency, data stewardship, regulatory alignment. The facilitation pushed back hard on anything too broad to be testable — "we will use AI responsibly" doesn't survive contact with a real decision.</p>
+</div>
+<div class="tabbed-block">
+<p><strong>The question put to the room:</strong> <em>"What will NICU not do with AI, full stop? What would your board be uncomfortable seeing on the front page of the local paper?"</em></p>
+<p>The most important section for a regulated entity — hard limits, not soft preferences, and deliberately distinct from what regulation already prohibits. This is where the room's own risk appetite gets written down.</p>
+</div>
+<div class="tabbed-block">
+<p><strong>The question put to the room:</strong> <em>"When an AI-assisted decision turns out to be wrong — who is responsible? Not who do we blame. Who is accountable?"</em></p>
+<p>The one rule enforced without exception: the answer must always resolve to a named role or a human being. Never "the AI." Never "the system."</p>
+</div>
+</div>
+</input></input></input></input></div>
+<p>The draft that came out of that half-hour was rough on purpose — that's exactly right for a first pass. The overnight homework was simple: read it, ask <em>"does this say what I actually meant?"</em>, and come back tomorrow with one specific edit. A second, smaller prompt went out alongside it — bring one process you'd nominate with the line <em>"the way we handle this — we shouldn't still be doing it this way."</em> That nomination would go straight into tomorrow's use case list.</p>
+<hr/>
+<h2 id="4-day-two-putting-it-to-work">4. Day Two — Putting It to Work</h2>
+<p>Day Two opened by recapping what Day One had actually produced — a shared vocabulary, an honest picture of where NICU stood, a governance sequencing plan, and a working AI Philosophy draft — before turning to the question the rest of the day existed to answer: <em>what should NICU actually do with AI, and in what order?</em></p>
+<h3 id="the-sector-isnt-as-far-ahead-as-the-hype-suggests">The sector isn't as far ahead as the hype suggests</h3>
+<p><img alt="The industry gap the workshop is built to close, and what disciplined adoption already delivers for comparable institutions" src="img/credit-union-industry-gap-2026.png"/></p>
+<p>KPMG's 2025 Mutuals Industry Review found small Australian ADIs sitting at an early, fragmented AI maturity stage — organisations exploring individually, duplicating effort, with no shared learning across the sector, while consolidation accelerates around them (seven mutual mergers completed in FY2025 alone). Delivered right, that's not a discouraging slide — it's validation. NICU already had 10 live Copilot licences, a committed Purview go-live date, and now a structured strategy engagement. On every dimension that matters, it was ahead of comparable peers before this workshop even started.</p>
+<p>The sector research also names three specific traps small ADIs keep falling into, framed to the room as things NICU was actively avoiding rather than warnings to fear: deploying Copilot without Purview first (creating invisible data-leakage risk); treating AI as a single category instead of three distinct capabilities, which quietly starves all three of a coherent budget line; and waiting for the "perfect" use case while the governance gap keeps widening in the meantime. Cautious-with-governance beats fast-without-governance — but both beat doing nothing.</p>
+<h3 id="the-decision-test-applied-for-real">The decision test, applied for real</h3>
+<p>Day One had built the vocabulary — automation, generative AI, predictive AI/ML. Day Two applied it directly to the processes NICU actually runs. Exception handling, where payment transactions that fail matching land in a manual review queue, is a clean fit for an agent flow: rules-based, structured, auditable, with a human approval gate. The CTO had already estimated 20 to 40 similar processes across the organisation in the same category. Meeting summaries and email drafting — already NICU's highest-usage Copilot features — are generative AI doing exactly what it's suited for: language and judgment, not numeric prediction.</p>
+<p>The third category is where the workshop's most concrete proof point lives: a live, working proof of concept that applies predictive machine learning to a real, expensive, manually-run regulatory obligation NICU faces every quarter. That build — the data pipeline, the model, the governance gate, and an honestly-reported result — is <a href="../nicu-irrbb-poc/">its own story</a>, and it gets a full post of its own rather than a rushed paragraph here. What matters for this story is simpler: the room didn't just talk about predictive AI in the abstract. They watched it work, live, against a problem they actually have.</p>
+<h3 id="turning-a-use-case-list-into-a-sequenced-roadmap">Turning a use case list into a sequenced roadmap</h3>
+<p>The afternoon's job was to turn a long list of possible AI initiatives into something NICU's leadership could actually take to a board — sequenced, not just prioritised by enthusiasm. The framework was Crawl / Walk / Run, mapped against the credit union's own corporate strategy pillars: financial sustainability, relevance to a changing member base, organic growth, security and resilience, and deliberate AI and automation.</p>
+<pre class="mermaid"><code>graph LR
+    subgraph Crawl["&lt;span style='color:#FFFFFF'&gt;Crawl — now to 3 months&lt;/span&gt;"]
+        C1["&lt;span style='color:#FFFFFF'&gt;Approved tools in staff hands&lt;br/&gt;Conversational only&lt;br/&gt;Purview + acceptable use policy live&lt;/span&gt;"]
+    end
+    subgraph Walk["Walk — 3 to 9 months"]
+        W1["AI in bounded workflows&lt;br/&gt;Structured inputs, human approval&lt;br/&gt;Governance audited before expanding"]
+    end
+    subgraph Run["&lt;span style='color:#FFFFFF'&gt;Run — 9 to 18+ months&lt;/span&gt;"]
+        R1["&lt;span style='color:#FFFFFF'&gt;Agentic, multi-step reasoning&lt;br/&gt;Human-in-the-loop for high impact&lt;br/&gt;Autonomous for low-risk, high-volume&lt;/span&gt;"]
+    end
+
+    Crawl --&gt; Walk --&gt; Run
+
+    style Crawl fill:#0D3E49,color:#FFFFFF,stroke:#0D1626,stroke-width:1px
+    style Walk fill:#F0B15C,color:#1B2A4A,stroke:#1B2A4A,stroke-width:1px
+    style Run fill:#0D1626,color:#FFFFFF,stroke:#0D1626,stroke-width:1px
+    style C1 fill:#145C6E,color:#FFFFFF,stroke:#FFFFFF,stroke-width:1px
+    style W1 fill:#E8A33D,color:#1B2A4A,stroke:#1B2A4A,stroke-width:1px
+    style R1 fill:#1B2A4A,color:#FFFFFF,stroke:#FFFFFF,stroke-width:1px</code></pre>
+<p>Four things had to be true before anything could move from Crawl to Walk to Run — not initiatives on the roadmap themselves, but the platform the roadmap stands on: Microsoft Purview live, DLP policies enforcing rather than just labelling, the AI Philosophy signed off, and a set of operational guardrails translating that philosophy into day-to-day rules. None of the exciting Walk- or Run-stage initiatives — the exception-processing agent flow, the member Q&amp;A agent, the fraud-detection models — get to scale ahead of that foundation, no matter how good the ROI case looks.</p>
+<p>Five prioritisation principles kept the room from simply funding whatever felt most exciting: Purview first, not optional; start with the low-risk wins already working (meeting summaries, drafting); the predictive-ML proof of concept is the credible first major initiative, because it has a regulatory obligation behind it, a clear ROI, and an architecture already built; shadow AI is the burning platform, not a side issue — every month without a signed policy and live DLP is a month the gap widens; and every use case gets framed as working <em>alongside</em> the existing core banking platform, never replacing it, given the organisation's own history with a difficult prior system migration.</p>
+<p>The day closed by returning to the AI Philosophy with a night's distance behind it — the overnight edits collected, the Boundaries section (predictably) attracting the most second thoughts, and the accountability model checked once more against a simple test: does it name a role, not just "leadership"?</p>
+<hr/>
+<h2 id="5-what-the-room-walked-out-with">5. What the Room Walked Out With</h2>
+<p>Two days produced concrete, specific outputs — not just a shared vocabulary everyone nodded along to.</p>
+<p><strong>From Day One:</strong></p>
+<ul>
+<li>NICU's own <strong>AI Philosophy</strong>, working draft, captured in the leadership team's own words and ready for a leadership sign-off pass within the week</li>
+<li>A <strong>Purview sequencing plan</strong> — the specific order (classification → labels → DLP → audit logging → scale) that keeps Copilot's expansion safe</li>
+<li>A committed <strong>Information Protection Design document</strong>, specifying exactly how classification, labelling, and DLP get configured across NICU's environment</li>
+<li>An honest, non-judgmental picture of NICU's current AI maturity that the leadership team could act on rather than guess at</li>
+</ul>
+<p><strong>From Day Two:</strong></p>
+<ul>
+<li>A working, running <strong>predictive ML proof of concept</strong> — not a mockup — with a governed model registry and a costed path to production. Its full story, including one model result that failed its own governance gate and was shown on screen rather than hidden, is told in <a href="../nicu-irrbb-poc/">a companion technical deep-dive</a>.</li>
+<li>A curated, filtered <strong>use case list</strong>, annotated by horizon and dependency, sized specifically to a credit union of NICU's scale</li>
+<li>A draft <strong>AI Roadmap</strong>, mapped to the organisation's own strategic pillars and sequenced across Now, 6–12 months, and 12–24 months — ready for board discussion</li>
+<li>A refined <strong>AI Philosophy</strong>, tested by a full night's reflection rather than drafted once and left alone</li>
+</ul>
+<p>The less tangible outcome may matter more than any single artefact: the CEO's question — asked directly, discussed weekly, never landed in writing — got answered in the room, by the people who have to live with the answer. That's a different outcome from a consultant handing over a philosophy document to sign. NICU walked out owning it.</p>
+<p><em>This isn't two days about Copilot. It's two days that turned three separate, unresolved conversations — what's our AI philosophy, how do we govern this safely, and what should we actually build first — into one coherent answer NICU owns.</em></p>
+<aside class="md-source-file">
+<span class="md-source-file__fact">
+<span class="md-icon" title="Last update">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="July 13, 2026 12:45:45 UTC">July 13, 2026 12:45:45</span>
+</span>
+</aside>
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Prisma Access SASE Implementation" class="md-footer__link md-footer__link--prev" href="../prisma-access-sase-implementation/">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</div>
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Previous
+              </span>
+<div class="md-ellipsis">
+                Prisma Access SASE Implementation
+              </div>
+</div>
+</a>
+<a aria-label="Next: NICU IRRBB Proof of Concept" class="md-footer__link md-footer__link--next" href="../nicu-irrbb-poc/">
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Next
+              </span>
+<div class="md-ellipsis">
+                NICU IRRBB Proof of Concept
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2026 Florin Neagu
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.footer", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+</body>
+</html>

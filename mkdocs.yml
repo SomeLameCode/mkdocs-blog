@@ -91,6 +91,8 @@ nav:
     - Meeting Audio Notes Pipeline: projects/meeting-audio-notes-pipeline.md
     - Infrastructure Consolidation: projects/infrastructure-consolidation.md
     - Prisma Access SASE Implementation: projects/prisma-access-sase-implementation.md
+    - NICU AI Strategy Workshop: projects/nicu-ai-strategy-workshop.md
+    - NICU IRRBB Proof of Concept: projects/nicu-irrbb-poc.md
   - Manuals:
     - Overview: manuals/index.md
     - GitHub in a Nutshell:

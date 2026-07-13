@@ -5,6 +5,23 @@
 
 ---
 
+## D-026 — No scrub needed for NICU IRRBB PoC page; third-person voice for author attribution
+
+**Date:** 2026-07-13
+**Decision:** For `docs/projects/nicu-irrbb-poc.md` (companion technical deep-dive to PRJ-009), no names-only scrub was required — all five source files under `.../workspace/4_ProjectStory/PoC-IRRBB/` are purely technical/architecture documents with no client-side individual named anywhere. The only person named in the source is the delivery team's own AI architect (kept, per the same rule as D-025 — normal author attribution). Chose to narrate the page in third person, matching the site's established voice, with a single attribution near the top rather than repeating the author's name throughout as the first-person source material does. Also verified the linked GitHub repo (`SomeLameCode/NICU-AI-Rollout-Strategy`) has no individual names on its page before linking to it directly.
+**Rationale:** The source material for this page is a different register from Part 1 (technical/governance reference documents, not workshop narrative with named client stakeholders), so the Phase 0 check surfaced nothing to redact — confirmed via `temp/nicu-poc-prep/prep-notes.md` before drafting, consistent with the gated three-phase workflow used for both NICU pages.
+
+---
+
+## D-025 — Names-only scrub scope for NICU AI Strategy Workshop page (lighter than D-023)
+
+**Date:** 2026-07-13
+**Decision:** For `docs/projects/nicu-ai-strategy-workshop.md`, scrubbed only individual client-side names (CTO, CEO, and three IT/security staff → role descriptions) and one internal corporate-strategy codename ("TrueNorth30" → generic "the credit union's corporate strategy"), from source material at `C:\GitFolder\02_Projects\01_NICU-AI-Strategy\workspace\`. Everything else — the institution name (NICU), sector, delivery firm name (Experteq) and delivery team's own names (Florin Neagu, James Sheron), core banking platform name (Ultracs/Ultradata), regulatory framework (APRA/APS 117/CPS 234), and real dollar figures — was kept as-is, per the site owner's explicit confirmation that this engagement does not need institution-level anonymization (unlike D-023's Ausgrid case study, which required stripping sector, country, and all client-derived naming).
+**Judgment call flagged:** the source plan named only two staff members to scrub (a security lead and an IT lead, referenced by first name in the Purview section). A third named individual — a member of NICU's IT team, quoted confirming licensing details and emphasising DLP requirements — was found during the scrub and treated as client-side personal information under the same "remove every named individual" rule, given a distinct generic descriptor ("a member of NICU's IT team") rather than reusing "the IT lead," to avoid implying they're the same person.
+**Rationale:** The site owner distinguished this engagement from the Ausgrid case study up front — narrow, names-only scope, confirmed via `temp/nicu-strategy-prep/prep-notes.md` before drafting began (three-phase workflow: scrub → draft → nav-wiring, gated on review at each step, mirroring PRJ-008's process but with a lighter Phase 0 pass matched to the actually-required scope).
+
+---
+
 ## D-024 — Design-delta content gets its own section on the Prisma Access SASE project page, not folded into delivery
 
 **Date:** 2026-07-10

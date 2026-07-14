@@ -20,3 +20,7 @@ Setup guides and feature references for MkDocs with the Material theme — from 
 - **[Admonitions](admonitions.md)** — Callout boxes and collapsible details blocks.
 - **[Content Tabs](content-tabs.md)** — Tabbed layouts for text, lists, and code blocks.
 - **[Diagram Examples](diagram-examples.md)** — Mermaid flowcharts and sequence diagrams.
+
+## Visibility & SEO
+
+- **[Blog Visibility & SEO](mkdocs-seo-and-visibility.md)** — robots.txt, sitemap verification, meta descriptions, RSS, social cards, and analytics — plus two Windows-specific dependency gotchas.

@@ -15,6 +15,7 @@
 | ART-001 | First code snippet (reusable utility) | Code | High | S | Low | [/] | | Descoped 2026-07-14 — Code section already has 3 live pages (invoice-processing, transcript-action-extractor, tts-audio-generator); "Unblocks Code placeholder" note was stale |
 | ART-002 | First Jupyter notebook | Notebooks | Medium | M | Low | [-] | | Deferred. Use mkdocs-jupyter plugin (not nbconvert) when ready — install via pip, add to mkdocs.yml plugins |
 | ART-003 | AI Meeting Transcript → Action Items | Code | Medium | S | Low | [x] | 2026-04-24 | Article (not project); workplace experiment; JSON output angle; from `workplace/transcript-action-extractor` |
+| ART-004 | Blog Visibility & SEO for a MkDocs Site | MkDocs & Material | Medium | S | Low | [x] | 2026-07-14 | Practitioner write-up distilling the SI-008–013 visibility/SEO work into a reusable checklist: robots.txt, sitemap verification, meta descriptions, RSS, social cards, analytics, GSC/Bing; generalized URLs (not this site's specific ones), matching existing article style; documents both Windows-specific gotchas found along the way (cairosvg/Cairo native dependency, RSS plugin's path-separator bug) |
 
 ## Content — Projects (PRJ-NNN)
 

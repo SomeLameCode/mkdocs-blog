@@ -15,11 +15,11 @@ Technical write-ups, setup guides, and feature references. Organised by topic be
 
     ---
 
+    - [Blog Visibility & SEO](mkdocs-material/mkdocs-seo-and-visibility.md)
     - [Diagram Examples](mkdocs-material/diagram-examples.md)
     - [Content Tabs](mkdocs-material/content-tabs.md)
     - [Admonitions](mkdocs-material/admonitions.md)
     - [Obsidian Integration](mkdocs-material/mkdocs-integrate-with-obsidian.md)
-    - [Publish to GitHub Pages](mkdocs-material/mkdocs-site-update.md)
 
     [:octicons-arrow-right-24: Browse all](mkdocs-material/index.md)
 

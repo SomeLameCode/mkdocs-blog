@@ -74,6 +74,7 @@ nav:
     - Overview: articles/index.md
     - MkDocs & Material:
       - articles/mkdocs-material/index.md
+      - Blog Visibility & SEO: articles/mkdocs-material/mkdocs-seo-and-visibility.md
       - Diagram Examples: articles/mkdocs-material/diagram-examples.md
       - Content Tabs: articles/mkdocs-material/content-tabs.md
       - Admonitions: articles/mkdocs-material/admonitions.md

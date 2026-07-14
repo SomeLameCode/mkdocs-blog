@@ -11,5 +11,5 @@ Full-length reference manuals, organised into parts and chapters. Unlike [Articl
 
 | Manual | Description | Status |
 |---|---|---|
-| [GitHub in a Nutshell](github-in-a-nutshell.md) | 29-chapter Git & GitHub reference manual — from first commit to CI/CD and internals | Published |
 | [Prisma Access / SASE](prisma-access-sase.md) | 54-chapter SASE training manual covering Palo Alto Prisma Access architecture, design, deployment, and day-2 operations | Published |
+| [GitHub in a Nutshell](github-in-a-nutshell.md) | 29-chapter Git & GitHub reference manual — from first commit to CI/CD and internals | Published |

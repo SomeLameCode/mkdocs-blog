@@ -67,76 +67,34 @@ nav:
     - Overview: articles/index.md
     - MkDocs & Material:
       - articles/mkdocs-material/index.md
-      - MkDocs Setup: articles/mkdocs-material/mkdocs-setup.md
-      - Publish to GitHub Pages: articles/mkdocs-material/mkdocs-site-update.md
-      - Obsidian Integration: articles/mkdocs-material/mkdocs-integrate-with-obsidian.md
-      - Admonitions: articles/mkdocs-material/admonitions.md
-      - Content Tabs: articles/mkdocs-material/content-tabs.md
       - Diagram Examples: articles/mkdocs-material/diagram-examples.md
+      - Content Tabs: articles/mkdocs-material/content-tabs.md
+      - Admonitions: articles/mkdocs-material/admonitions.md
+      - Obsidian Integration: articles/mkdocs-material/mkdocs-integrate-with-obsidian.md
+      - Publish to GitHub Pages: articles/mkdocs-material/mkdocs-site-update.md
+      - MkDocs Setup: articles/mkdocs-material/mkdocs-setup.md
     - Code & Data:
       - articles/code/index.md
-      - Normal Distribution Generator: articles/code/code-example.md
       - Transcript Action Extractor: articles/code/transcript-action-extractor.md
+      - Normal Distribution Generator: articles/code/code-example.md
   - Projects:
     - Overview: projects/index.md
-    - Paperless-ngx: projects/paperless-ngx.md
-    - M365 Tenant Separation: projects/m365-tenant-separation.md
+    - NICU IRRBB Proof of Concept: projects/nicu-irrbb-poc.md
+    - NICU AI Strategy Workshop: projects/nicu-ai-strategy-workshop.md
+    - Prisma Access SASE Implementation: projects/prisma-access-sase-implementation.md
+    - Infrastructure Consolidation: projects/infrastructure-consolidation.md
+    - Meeting Audio Notes Pipeline: projects/meeting-audio-notes-pipeline.md
+    - Invoice Processor: projects/invoice-processor.md
     - Lifting Diary:
       - Overview: projects/lifting-diary-claude.md
       - The Application: projects/lifting-diary-claude/the-application.md
       - Building with Claude Code: projects/lifting-diary-claude/building-with-claude-code.md
       - Architecture as Input: projects/lifting-diary-claude/architecture-as-input.md
       - Prompt Log: projects/lifting-diary-claude/prompt-log.md
-    - Invoice Processor: projects/invoice-processor.md
-    - Meeting Audio Notes Pipeline: projects/meeting-audio-notes-pipeline.md
-    - Infrastructure Consolidation: projects/infrastructure-consolidation.md
-    - Prisma Access SASE Implementation: projects/prisma-access-sase-implementation.md
-    - NICU AI Strategy Workshop: projects/nicu-ai-strategy-workshop.md
-    - NICU IRRBB Proof of Concept: projects/nicu-irrbb-poc.md
+    - M365 Tenant Separation: projects/m365-tenant-separation.md
+    - Paperless-ngx: projects/paperless-ngx.md
   - Manuals:
     - Overview: manuals/index.md
-    - GitHub in a Nutshell:
-      - Overview: manuals/github-in-a-nutshell.md
-      - Part 1 — Getting Started:
-        - Ch 01 Introduction to Version Control & Git: manuals/github-in-a-nutshell/part1/ch01-introduction.md
-        - Ch 02 Shell Commands Primer: manuals/github-in-a-nutshell/part1/ch02-shell-commands.md
-        - Ch 03 Installing & Configuring Git: manuals/github-in-a-nutshell/part1/ch03-install-configure.md
-        - Ch 04 GitHub Authentication: manuals/github-in-a-nutshell/part1/ch04-github-authentication.md
-      - Part 2 — Core Git Workflow:
-        - Ch 05 Creating a Repository & Basic Operations: manuals/github-in-a-nutshell/part2/ch05-basic-operations.md
-        - Ch 06 Tracking Files & File States: manuals/github-in-a-nutshell/part2/ch06-file-states.md
-        - Ch 07 Ignoring Files (.gitignore): manuals/github-in-a-nutshell/part2/ch07-gitignore.md
-        - Ch 08 Undoing Changes: manuals/github-in-a-nutshell/part2/ch08-undoing-changes.md
-        - Ch 09 Stashing: manuals/github-in-a-nutshell/part2/ch09-stashing.md
-        - Ch 10 Inspecting History: manuals/github-in-a-nutshell/part2/ch10-inspecting-history.md
-      - Part 3 — Branching & History Management:
-        - Ch 11 Branches and HEAD: manuals/github-in-a-nutshell/part3/ch11-branches-head.md
-        - Ch 12 Merging Branches: manuals/github-in-a-nutshell/part3/ch12-merging.md
-        - Ch 13 Rebasing: manuals/github-in-a-nutshell/part3/ch13-rebasing.md
-        - Ch 14 Interactive Rebase: manuals/github-in-a-nutshell/part3/ch14-interactive-rebase.md
-        - Ch 15 Tags & Semantic Versioning: manuals/github-in-a-nutshell/part3/ch15-tags.md
-        - Ch 16 Detached HEAD: manuals/github-in-a-nutshell/part3/ch16-detached-head.md
-      - Part 4 — GitHub & Collaboration:
-        - Ch 17 GitHub Overview & Remote Repositories: manuals/github-in-a-nutshell/part4/ch17-github-remotes.md
-        - Ch 18 Push, Fetch & Pull: manuals/github-in-a-nutshell/part4/ch18-push-fetch-pull.md
-        - Ch 19 Forks & Contributing to Open Source: manuals/github-in-a-nutshell/part4/ch19-forks.md
-        - Ch 20 Pull Requests: manuals/github-in-a-nutshell/part4/ch20-pull-requests.md
-        - Ch 21 Branch Protection & Code Review: manuals/github-in-a-nutshell/part4/ch21-branch-protection.md
-        - Ch 22 GitHub Issues & Project Management: manuals/github-in-a-nutshell/part4/ch22-issues-projects.md
-      - Part 5 — Automation & Deployment:
-        - Ch 23 Git Hooks: manuals/github-in-a-nutshell/part5/ch23-git-hooks.md
-        - Ch 24 GitHub Actions & CI/CD: manuals/github-in-a-nutshell/part5/ch24-github-actions.md
-        - Ch 25 GitHub Pages: manuals/github-in-a-nutshell/part5/ch25-github-pages.md
-      - Part 6 — Workflows & Best Practices:
-        - Ch 26 Git Workflows: manuals/github-in-a-nutshell/part6/ch26-workflows.md
-        - Ch 27 Git Aliases & Productivity Tips: manuals/github-in-a-nutshell/part6/ch27-aliases-tips.md
-      - Part 7 — Under the Hood:
-        - Ch 28 Git Object Model: manuals/github-in-a-nutshell/part7/ch28-object-model.md
-        - Ch 29 SHA1, Hashing & Object Storage Internals: manuals/github-in-a-nutshell/part7/ch29-hashing-internals.md
-      - Appendix:
-        - App A Git Submodules: manuals/github-in-a-nutshell/appendix/appA-submodules.md
-        - App B Git LFS: manuals/github-in-a-nutshell/appendix/appB-git-lfs.md
-        - App C Signed Commits & GPG: manuals/github-in-a-nutshell/appendix/appC-signed-commits.md
     - Prisma Access / SASE:
       - Overview: manuals/prisma-access-sase.md
       - Part 1 — Prisma Access Overview:
@@ -207,11 +165,53 @@ nav:
         - App B CLI & API Commands Reference: manuals/prisma-access-sase/appendix/appB-cli-and-api-commands.md
         - App C Architecture Quick-Reference: manuals/prisma-access-sase/appendix/appC-architecture-quick-reference.md
         - App D Known Documentation Ambiguities: manuals/prisma-access-sase/appendix/appD-known-documentation-ambiguities.md
+    - GitHub in a Nutshell:
+      - Overview: manuals/github-in-a-nutshell.md
+      - Part 1 — Getting Started:
+        - Ch 01 Introduction to Version Control & Git: manuals/github-in-a-nutshell/part1/ch01-introduction.md
+        - Ch 02 Shell Commands Primer: manuals/github-in-a-nutshell/part1/ch02-shell-commands.md
+        - Ch 03 Installing & Configuring Git: manuals/github-in-a-nutshell/part1/ch03-install-configure.md
+        - Ch 04 GitHub Authentication: manuals/github-in-a-nutshell/part1/ch04-github-authentication.md
+      - Part 2 — Core Git Workflow:
+        - Ch 05 Creating a Repository & Basic Operations: manuals/github-in-a-nutshell/part2/ch05-basic-operations.md
+        - Ch 06 Tracking Files & File States: manuals/github-in-a-nutshell/part2/ch06-file-states.md
+        - Ch 07 Ignoring Files (.gitignore): manuals/github-in-a-nutshell/part2/ch07-gitignore.md
+        - Ch 08 Undoing Changes: manuals/github-in-a-nutshell/part2/ch08-undoing-changes.md
+        - Ch 09 Stashing: manuals/github-in-a-nutshell/part2/ch09-stashing.md
+        - Ch 10 Inspecting History: manuals/github-in-a-nutshell/part2/ch10-inspecting-history.md
+      - Part 3 — Branching & History Management:
+        - Ch 11 Branches and HEAD: manuals/github-in-a-nutshell/part3/ch11-branches-head.md
+        - Ch 12 Merging Branches: manuals/github-in-a-nutshell/part3/ch12-merging.md
+        - Ch 13 Rebasing: manuals/github-in-a-nutshell/part3/ch13-rebasing.md
+        - Ch 14 Interactive Rebase: manuals/github-in-a-nutshell/part3/ch14-interactive-rebase.md
+        - Ch 15 Tags & Semantic Versioning: manuals/github-in-a-nutshell/part3/ch15-tags.md
+        - Ch 16 Detached HEAD: manuals/github-in-a-nutshell/part3/ch16-detached-head.md
+      - Part 4 — GitHub & Collaboration:
+        - Ch 17 GitHub Overview & Remote Repositories: manuals/github-in-a-nutshell/part4/ch17-github-remotes.md
+        - Ch 18 Push, Fetch & Pull: manuals/github-in-a-nutshell/part4/ch18-push-fetch-pull.md
+        - Ch 19 Forks & Contributing to Open Source: manuals/github-in-a-nutshell/part4/ch19-forks.md
+        - Ch 20 Pull Requests: manuals/github-in-a-nutshell/part4/ch20-pull-requests.md
+        - Ch 21 Branch Protection & Code Review: manuals/github-in-a-nutshell/part4/ch21-branch-protection.md
+        - Ch 22 GitHub Issues & Project Management: manuals/github-in-a-nutshell/part4/ch22-issues-projects.md
+      - Part 5 — Automation & Deployment:
+        - Ch 23 Git Hooks: manuals/github-in-a-nutshell/part5/ch23-git-hooks.md
+        - Ch 24 GitHub Actions & CI/CD: manuals/github-in-a-nutshell/part5/ch24-github-actions.md
+        - Ch 25 GitHub Pages: manuals/github-in-a-nutshell/part5/ch25-github-pages.md
+      - Part 6 — Workflows & Best Practices:
+        - Ch 26 Git Workflows: manuals/github-in-a-nutshell/part6/ch26-workflows.md
+        - Ch 27 Git Aliases & Productivity Tips: manuals/github-in-a-nutshell/part6/ch27-aliases-tips.md
+      - Part 7 — Under the Hood:
+        - Ch 28 Git Object Model: manuals/github-in-a-nutshell/part7/ch28-object-model.md
+        - Ch 29 SHA1, Hashing & Object Storage Internals: manuals/github-in-a-nutshell/part7/ch29-hashing-internals.md
+      - Appendix:
+        - App A Git Submodules: manuals/github-in-a-nutshell/appendix/appA-submodules.md
+        - App B Git LFS: manuals/github-in-a-nutshell/appendix/appB-git-lfs.md
+        - App C Signed Commits & GPG: manuals/github-in-a-nutshell/appendix/appC-signed-commits.md
   - Code:
     - code/index.md
-    - Invoice Processing: code/invoice-processing.md
-    - Transcript Action Extractor: code/transcript-action-extractor.md
     - TTS Audio Generator: code/tts-audio-generator.md
+    - Transcript Action Extractor: code/transcript-action-extractor.md
+    - Invoice Processing: code/invoice-processing.md
   - Notebooks: notebooks/index.md
   - Tags: tags.md
 

@@ -6,7 +6,7 @@
 **Updated:** 2026-07-13
 **Last session commit:** dc3a1b5b
 **Last check:** 2026-07-13 — Published two cross-linked project pages from the NICU AI Strategy engagement, via two gated three-phase execution plans in `temp/` (scrub → draft → wire, mirroring the PRJ-008 workflow): PRJ-009 (the Day 1/Day 2 workshop story — shadow AI, the unwritten AI philosophy, the evidence case for strategy over hype) with a light names-only scrub (D-025, lighter than PRJ-008's full anonymization, per confirmed scope) and PRJ-010 (companion IRRBB predictive-ML proof-of-concept technical/governance deep-dive, no scrub needed — D-026), cross-linked both ways. Iterated once on Mermaid diagram contrast (unstyled nodes and the `color:` style not applying to multi-line HTML labels — fixed with explicit per-node styling and inline `<span>` color wraps, then applied proactively on the second page). Committed, pushed, and deployed to GitHub Pages.
-**Open content:** 1 item (highest priority: ART-001 First reusable code snippet)
+**Open content:** None
 **Open improvements:** 1 item (SI-003 Content templates — article template pending)
 **Open issues:** None
 
@@ -32,5 +32,4 @@
 
 ## Next Actions
 
-1. Add first reusable code snippet (ART-001) — ~30 min
-2. Update article template (SI-003) — ~30 min
+1. Update article template (SI-003) — ~30 min

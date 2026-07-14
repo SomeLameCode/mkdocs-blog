@@ -52,7 +52,7 @@
 | SI-007 | Articles section overhaul — hub, sub-folders, cluster index pages | High | M | High | [x] | 2026-04-21 | Hub page with grid cards, articles moved to mkdocs-material/ and code/ sub-folders, cluster index pages, nav grouped with navigation.indexes, "How to enable" blocks added to 3 feature-demo articles |
 | SI-008 | Add robots.txt | Medium | S | Low | [x] | 2026-07-14 | `docs/robots.txt`, points crawlers at sitemap.xml; from `temp/blog-visibility-seo-execution-plan.md` Item 1 |
 | SI-009 | Enable RSS feed (mkdocs-rss-plugin) | Medium | S | Low | [x] | 2026-07-14 | Feeds from `articles/` + `projects/` only (manuals excluded — reference material, not date-driven); `use_material_social_cards: false` set to dodge a Windows path-separator bug in the plugin's card lookup, see D-028; from execution plan Item 5 |
-| SI-010 | Enable social cards (Material `social` plugin) | Medium | S | Low | [-] | | Deferred — `cairosvg` needs a native `libcairo-2.dll` not installable via pip on Windows; plugin added to `requirements.txt` (pillow, CairoSVG) but left out of `mkdocs.yml` `plugins:`; see D-028 for what unblocks it; from execution plan Item 4 |
+| SI-010 | Enable social cards (Material `social` plugin) | Medium | S | Low | [-] | | Deferred — `cairosvg` needs a native `libcairo-2.dll` not installable via pip on Windows; plugin added to `requirements.txt` (pillow, CairoSVG) but left out of `mkdocs.yml` `plugins:`; see D-028 for what unblocks it (GTK3 runtime install, manual). 2026-07-14: site owner confirmed postponing rather than installing the GTK3 runtime now — revisit if/when wanted; from execution plan Item 4 |
 
 ## Content Quality (SI-NNN)
 

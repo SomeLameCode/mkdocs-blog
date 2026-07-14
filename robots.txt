@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://somelamecode.github.io/mkdocs-blog/sitemap.xml

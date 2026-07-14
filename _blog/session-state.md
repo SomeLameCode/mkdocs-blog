@@ -4,11 +4,11 @@
 > If deeper context is needed, read the last 20 rows of `_blog/change-log.md`.
 
 **Updated:** 2026-07-14
-**Last session commit:** 283c91cebc538632ba3245ee0b5aeb3a80c2a925
-**Last check:** 2026-07-14 — Descoped ART-001 (stale — Code section already has 3 live pages). Executed the pre-written nav-reordering plan (`temp/nav-reverse-order-execution-plan.md`): reversed `mkdocs.yml` item order to newest-first across Projects, Code, top-level Manuals, and both Articles sub-lists, keeping Overview/index entries pinned and leaving manual chapter/part order and Lifting Diary sub-pages untouched; confirmed no tutorial dependency in the two Articles sub-lists before reversing them (D-027). Followed up by matching the corresponding hub tables/cards (Projects, Manuals, Code index pages; Articles hub's MkDocs & Material card) to the new order, which also surfaced and fixed a pre-existing bug where that card had silently dropped "Diagram Examples" since its publish. Committed, pushed, and deployed to GitHub Pages.
+**Last session commit:** 45b4cc24d6e8b373a2dc5e6befb73a5614b04014
+**Last check:** 2026-07-14 — Closed SI-010 (social cards). Unblocked `cairosvg`'s native Cairo dependency on Windows via MSYS2 (`pacman -S mingw-w64-ucrt-x86_64-cairo` in the UCRT64 shell, `C:\msys64\ucrt64\bin` added to PATH) rather than the GTK3 runtime route D-028 originally pointed to; re-added `social` to `mkdocs.yml`. Re-confirmed the RSS path-separator bug from D-028 is a separate, still-open issue unrelated to Cairo, so `use_material_social_cards` stays `false` (RSS readers fall back to the theme default image; direct page shares get the real per-page card). `mkdocs build --strict` clean, 125 per-page card PNGs generated and spot-checked; verified live via `curl` (`og:image` meta tag present and resolving) and a real link-preview screenshot from the site owner. Committed, pushed, and deployed via `mkdocs gh-deploy`.
 **Open content:** None
 **Open improvements:** 1 item (SI-003 Content templates — article template pending)
-**Open issues:** None
+**Open issues:** 1 item — Notebooks stub indexed as a real page (deferred until ART-002 ships)
 
 ---
 

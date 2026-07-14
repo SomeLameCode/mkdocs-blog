@@ -4,8 +4,8 @@
 > If deeper context is needed, read the last 20 rows of `_blog/change-log.md`.
 
 **Updated:** 2026-07-14
-**Last session commit:** 45b4cc24d6e8b373a2dc5e6befb73a5614b04014
-**Last check:** 2026-07-14 — Closed SI-010 (social cards). Unblocked `cairosvg`'s native Cairo dependency on Windows via MSYS2 (`pacman -S mingw-w64-ucrt-x86_64-cairo` in the UCRT64 shell, `C:\msys64\ucrt64\bin` added to PATH) rather than the GTK3 runtime route D-028 originally pointed to; re-added `social` to `mkdocs.yml`. Re-confirmed the RSS path-separator bug from D-028 is a separate, still-open issue unrelated to Cairo, so `use_material_social_cards` stays `false` (RSS readers fall back to the theme default image; direct page shares get the real per-page card). `mkdocs build --strict` clean, 125 per-page card PNGs generated and spot-checked; verified live via `curl` (`og:image` meta tag present and resolving) and a real link-preview screenshot from the site owner. Committed, pushed, and deployed via `mkdocs gh-deploy`.
+**Last session commit:** 4862ad36842ab56d1cf2035ba4ffdb842d7c5515
+**Last check:** 2026-07-14 — Published ART-004, "Blog Visibility & SEO for a MkDocs Site" (`docs/articles/mkdocs-material/mkdocs-seo-and-visibility.md`), distilling the session's SI-008 through SI-013 visibility/SEO work into a reusable how-to: robots.txt, sitemap verification, meta descriptions, RSS, social cards, analytics, Search Console/Bing, plus admonitions documenting the two Windows-only gotchas (cairosvg/Cairo native dependency, RSS plugin's path-separator bug). URLs generalized to match the existing article style rather than referencing this site specifically (site owner's call). Wired into the MkDocs & Material nav (newest-first), the Articles hub card (dropped "Publish to GitHub Pages" off the card per the max-5 rule — still reachable via "Browse all"), and a new "Visibility & SEO" subsection on the cluster index page. `mkdocs build --strict` clean, social card generated for the new page and spot-checked. Committed, pushed, and deployed via `mkdocs gh-deploy`.
 **Open content:** None
 **Open improvements:** 1 item (SI-003 Content templates — article template pending)
 **Open issues:** 1 item — Notebooks stub indexed as a real page (deferred until ART-002 ships)
@@ -16,7 +16,7 @@
 
 | Section | Status | Pages |
 |---|---|---|
-| Articles | Live | 8 |
+| Articles | Live | 9 |
 | Projects | Live | 9 |
 | Manuals | Live | 92 (GitHub in a Nutshell: 33, Prisma Access / SASE: 59) |
 | Code | Live | 3 |

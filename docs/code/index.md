@@ -1,3 +1,10 @@
+---
+title: "Code"
+description: "Standalone scripts and Azure provisioning code for TTS generation, transcript extraction, and invoice processing — the code behind related project write-ups."
+date: 2026-07-14
+status: published
+---
+
 # Code
 
 Standalone scripts, utilities, and reference implementations.

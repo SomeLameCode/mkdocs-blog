@@ -5,6 +5,24 @@
 
 ---
 
+## D-028 — Deferred social cards on Windows; disabled RSS plugin's social-card lookup
+
+**Date:** 2026-07-14
+**Decision:** Per `temp/blog-visibility-seo-execution-plan.md` Items 4 and 5, attempted to enable Material's `social` plugin for auto-generated OpenGraph card images and `mkdocs-rss-plugin` for an RSS feed together. The `social` plugin's `cairosvg` dependency needs the native Cairo C library (`libcairo-2.dll`), which has no pip wheel on Windows and wasn't present on this machine — `mkdocs build --strict` failed with repeated `cairosvg` crash warnings. Rather than install a system-level DLL from a third-party source unprompted, left `pillow`/`CairoSVG` pinned in `requirements.txt` (ready for later) but removed `social` from `mkdocs.yml`, deferring it as SI-010. Separately — and independent of the Cairo problem — found that `mkdocs-rss-plugin`'s default `use_material_social_cards: true` builds per-page card-image URLs with Windows path separators (`social\projects\foo.png`), producing 404s and failing strict builds on any Windows machine even once Cairo is fixed. Set `use_material_social_cards: false` in the `rss` plugin config to avoid it, unrelated to whether `social` itself is ever enabled.
+**Alternatives considered:** Download and manually place a prebuilt `libcairo-2.dll` (e.g. via the GTK3 runtime installer for Windows) to get `social` working immediately. Rejected for this pass — installing a system-level native library is a bigger, less reversible action than a pip install and belongs to the site owner's call, not something to do silently mid-session.
+**Rationale:** Keeps `mkdocs build --strict` clean and RSS shipping now rather than blocking both items on an unrelated native-dependency problem. To unblock social cards later: install a Cairo runtime for Windows (GTK3 runtime installer is the standard route), confirm `python -c "import cairosvg"` succeeds, then re-add `social` to `mkdocs.yml` `plugins:` and re-enable `use_material_social_cards` in the `rss` config if desired.
+
+---
+
+## D-027 — Reversed both Articles sub-lists after confirming no tutorial dependency
+
+**Date:** 2026-07-14
+**Decision:** Per the nav-reordering plan (`temp/nav-reverse-order-execution-plan.md`), the "MkDocs & Material" and "Code & Data" Articles sub-lists were flagged as a judgment call — they could read as tutorial sequences rather than pure creation-order lists, similar to manual chapters. Checked both clusters' page content for cross-references ("as covered in," "assumes you've read," etc.) and found none — each article has its own standalone "How to enable this" block with no dependency on sibling articles. Proceeded to reverse both sub-lists to newest-first, matching every other reordered list.
+**Alternatives considered:** Leave the two Articles sub-lists in creation order as a precaution, treating them like manual chapters.
+**Rationale:** The site owner had already confirmed Articles sub-lists should be reversed; the flag was a courtesy check, not a blocker. Content inspection found no sequencing dependency, so no reason to carve out an exception.
+
+---
+
 ## D-026 — No scrub needed for NICU IRRBB PoC page; third-person voice for author attribution
 
 **Date:** 2026-07-13

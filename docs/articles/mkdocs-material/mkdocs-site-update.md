@@ -105,3 +105,5 @@ mkdocs gh-deploy
 - Always run `mkdocs serve` locally first to verify changes before deploying.  
 - Ensure `mkdocs.yml` has correct `nav` paths and matches folder/file names exactly.  
 - Keep `site/` in `.gitignore` to avoid accidentally committing it.
+
+Want to understand what these `git` commands are actually doing, or how GitHub Pages serves the built site? See [Push, Fetch & Pull](../../manuals/github-in-a-nutshell/part4/ch18-push-fetch-pull.md) and [GitHub Pages](../../manuals/github-in-a-nutshell/part5/ch25-github-pages.md) in the **GitHub in a Nutshell** reference manual.

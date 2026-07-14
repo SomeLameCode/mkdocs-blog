@@ -1,3 +1,10 @@
+---
+title: "Projects"
+description: "Personal projects and case studies — home lab builds, Azure automation pipelines, and enterprise SASE and AI engagements, with real architecture and outcomes."
+date: 2026-07-14
+status: published
+---
+
 # Projects
 
 Personal projects, home lab deployments, and self-hosted tools.

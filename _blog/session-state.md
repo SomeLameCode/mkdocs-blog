@@ -3,9 +3,9 @@
 > Updated by `/blog-update` at each session close. Read this first at session start.
 > If deeper context is needed, read the last 20 rows of `_blog/change-log.md`.
 
-**Updated:** 2026-07-13
-**Last session commit:** dc3a1b5b
-**Last check:** 2026-07-13 — Published two cross-linked project pages from the NICU AI Strategy engagement, via two gated three-phase execution plans in `temp/` (scrub → draft → wire, mirroring the PRJ-008 workflow): PRJ-009 (the Day 1/Day 2 workshop story — shadow AI, the unwritten AI philosophy, the evidence case for strategy over hype) with a light names-only scrub (D-025, lighter than PRJ-008's full anonymization, per confirmed scope) and PRJ-010 (companion IRRBB predictive-ML proof-of-concept technical/governance deep-dive, no scrub needed — D-026), cross-linked both ways. Iterated once on Mermaid diagram contrast (unstyled nodes and the `color:` style not applying to multi-line HTML labels — fixed with explicit per-node styling and inline `<span>` color wraps, then applied proactively on the second page). Committed, pushed, and deployed to GitHub Pages.
+**Updated:** 2026-07-14
+**Last session commit:** 283c91cebc538632ba3245ee0b5aeb3a80c2a925
+**Last check:** 2026-07-14 — Descoped ART-001 (stale — Code section already has 3 live pages). Executed the pre-written nav-reordering plan (`temp/nav-reverse-order-execution-plan.md`): reversed `mkdocs.yml` item order to newest-first across Projects, Code, top-level Manuals, and both Articles sub-lists, keeping Overview/index entries pinned and leaving manual chapter/part order and Lifting Diary sub-pages untouched; confirmed no tutorial dependency in the two Articles sub-lists before reversing them (D-027). Followed up by matching the corresponding hub tables/cards (Projects, Manuals, Code index pages; Articles hub's MkDocs & Material card) to the new order, which also surfaced and fixed a pre-existing bug where that card had silently dropped "Diagram Examples" since its publish. Committed, pushed, and deployed to GitHub Pages.
 **Open content:** None
 **Open improvements:** 1 item (SI-003 Content templates — article template pending)
 **Open issues:** None

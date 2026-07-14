@@ -94,6 +94,8 @@ The decision to deploy Prisma Access was driven by three specific requirements, 
 
 **Identity- and application-aware policy** directly addresses the client's compliance requirements. Rules reference user groups and App-ID application objects, not IP ranges and port numbers — security posture becomes provably tied to who is doing what, not just where traffic is coming from.
 
+For the SASE concepts and Prisma Access architecture behind these decisions — Strata Cloud Manager, GlobalProtect tunnel modes, App-ID policy — see the [Prisma Access / SASE training manual](../manuals/prisma-access-sase.md).
+
 ---
 
 ## 4. Solution Architecture

@@ -245,6 +245,8 @@ This:
 2. Pushes it to the `gh-pages` branch  
 3. Publishes it via GitHub Pages  
 
+For a deeper look at how GitHub Pages serves a branch as a live site, see [Chapter 25 — GitHub Pages](../../manuals/github-in-a-nutshell/part5/ch25-github-pages.md) in the **GitHub in a Nutshell** reference manual.
+
 Your site becomes available at:
 
 ```

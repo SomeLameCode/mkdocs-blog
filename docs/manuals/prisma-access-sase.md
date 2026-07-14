@@ -38,6 +38,8 @@ The problem it solves: Prisma Access documentation is split across nine separate
 
 > **Key idea:** Everything from why hub-and-spoke networking broke down to configuring SAML authentication for Explicit Proxy — in one place, in reading order.
 
+Want to see these concepts applied to a real deployment? The [Prisma Access SASE Implementation](../projects/prisma-access-sase-implementation.md) case study covers a 30-branch-site, 5,000-endpoint rollout built on exactly this architecture.
+
 ---
 
 ## 2. Who Is It For?

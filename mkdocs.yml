@@ -54,7 +54,13 @@ plugins:
   - git-revision-date-localized:
       type: datetime
       fallback_to_build_date: true
- 
+  - rss:
+      match_path: "(articles|projects)/.*"
+      date_from_meta:
+        as_creation: date
+      categories:
+        - tags
+      use_material_social_cards: false
 
 # Paths
 docs_dir: docs      # folder with your Markdown content

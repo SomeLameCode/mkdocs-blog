@@ -50,6 +50,9 @@
 | SI-005 | Add /start command for session-start briefing | Medium | S | Low | [x] | 2026-04-18 | Mirrors /blog-update; reads _blog/session-state.md and presents briefing |
 | SI-006 | Add /publish-mkdocs command | Medium | S | Low | [x] | 2026-04-18 | Push + deploy in one command; guards against uncommitted changes before deploying |
 | SI-007 | Articles section overhaul — hub, sub-folders, cluster index pages | High | M | High | [x] | 2026-04-21 | Hub page with grid cards, articles moved to mkdocs-material/ and code/ sub-folders, cluster index pages, nav grouped with navigation.indexes, "How to enable" blocks added to 3 feature-demo articles |
+| SI-008 | Add robots.txt | Medium | S | Low | [x] | 2026-07-14 | `docs/robots.txt`, points crawlers at sitemap.xml; from `temp/blog-visibility-seo-execution-plan.md` Item 1 |
+| SI-009 | Enable RSS feed (mkdocs-rss-plugin) | Medium | S | Low | [x] | 2026-07-14 | Feeds from `articles/` + `projects/` only (manuals excluded — reference material, not date-driven); `use_material_social_cards: false` set to dodge a Windows path-separator bug in the plugin's card lookup, see D-028; from execution plan Item 5 |
+| SI-010 | Enable social cards (Material `social` plugin) | Medium | S | Low | [-] | | Deferred — `cairosvg` needs a native `libcairo-2.dll` not installable via pip on Windows; plugin added to `requirements.txt` (pillow, CairoSVG) but left out of `mkdocs.yml` `plugins:`; see D-028 for what unblocks it; from execution plan Item 4 |
 
 ## Content Quality (SI-NNN)
 
@@ -57,5 +60,5 @@
 
 | ID | Item | Priority | Effort | Risk | Status | Completed | Notes |
 |---|---|---|---|---|---|---|---|
-| SI-003 | Content templates — iterative | Medium | S | Low | [ ] | | Project template updated 2026-04-20 with 4 project types, At a Glance box, Scope & Limitations, image conventions, pub checklist, hub guidance. Article template not yet updated. |
+| SI-003 | Content templates — iterative | Medium | S | Low | [ ] | | Project template updated 2026-04-20 with 4 project types, At a Glance box, Scope & Limitations, image conventions, pub checklist, hub guidance. 2026-07-14: added a "Before publishing" checklist block to the article template (previously had none) and added two items to both templates' checklists — meta description quality, checked for cross-links to related pages — prompted by the SEO/visibility execution plan. Article template still lacks project template's other enhancements (multiple article types already existed as guidance, but no At a Glance/Scope & Limitations equivalents assessed as needed for articles). |
 | SI-004 | Update CLAUDE.md with governance conventions | Medium | S | Low | [x] | 2026-04-17 | Document session workflow, ID scheme, frontmatter |

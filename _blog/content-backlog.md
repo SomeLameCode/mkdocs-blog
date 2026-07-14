@@ -53,6 +53,7 @@
 | SI-008 | Add robots.txt | Medium | S | Low | [x] | 2026-07-14 | `docs/robots.txt`, points crawlers at sitemap.xml; from `temp/blog-visibility-seo-execution-plan.md` Item 1 |
 | SI-009 | Enable RSS feed (mkdocs-rss-plugin) | Medium | S | Low | [x] | 2026-07-14 | Feeds from `articles/` + `projects/` only (manuals excluded — reference material, not date-driven); `use_material_social_cards: false` set to dodge a Windows path-separator bug in the plugin's card lookup, see D-028; from execution plan Item 5 |
 | SI-010 | Enable social cards (Material `social` plugin) | Medium | S | Low | [-] | | Deferred — `cairosvg` needs a native `libcairo-2.dll` not installable via pip on Windows; plugin added to `requirements.txt` (pillow, CairoSVG) but left out of `mkdocs.yml` `plugins:`; see D-028 for what unblocks it (GTK3 runtime install, manual). 2026-07-14: site owner confirmed postponing rather than installing the GTK3 runtime now — revisit if/when wanted; from execution plan Item 4 |
+| SI-011 | Wire up GoatCounter analytics | Medium | S | Low | [x] | 2026-07-14 | Site owner signed up and chose GoatCounter (cookieless, no consent banner needed) over Google Analytics/Plausible/Fathom; no native Material `extra.analytics` support for GoatCounter, so wired via `docs/javascripts/goatcounter.js` (creates the tracking `<script>` with `data-goatcounter` attribute) + `extra_javascript` in `mkdocs.yml`; from execution plan Item 7 |
 
 ## Content Quality (SI-NNN)
 

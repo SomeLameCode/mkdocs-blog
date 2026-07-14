@@ -51,6 +51,7 @@ plugins:
   - search
   - tags
   - mermaid2
+  - social
   - git-revision-date-localized:
       type: datetime
       fallback_to_build_date: true
